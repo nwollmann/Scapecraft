@@ -34,23 +34,23 @@ public class ItemLtab extends Item {
 
 	public ItemLtab(int i) {
 		super(i);
-	    this.setCreativeTab(CreativeTabs.tabMaterials);
-		
+		this.setCreativeTab(CreativeTabs.tabMaterials);
+
 	}
 	public ItemStack onItemRightClick(ItemStack itemstack, World world,
 			EntityPlayer entityplayer){
-	
-		   entityplayer.setPositionAndUpdate(-342, 69, 187);
-		   --itemstack.stackSize;
+
+		entityplayer.setPositionAndUpdate(-342, 69, 187);
+		--itemstack.stackSize;
 		return itemstack;
-		
+
 	}
-    @SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister ir)
-    {
-            {
-            this.itemIcon = ir.registerIcon("ltab");
-            }
-    }
+	@SideOnly(Side.CLIENT)
+	public void registerIcons(IconRegister ir)
+	{
+		{
+			this.itemIcon = ir.registerIcon("ltab");
+		}
+	}
 
 }

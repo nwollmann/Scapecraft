@@ -15,32 +15,32 @@ import net.minecraft.world.World;
 
 public class ItemBXPORB extends Item {
 
-public ItemBXPORB(int i)
-  {
-   super(i);
-   this.setCreativeTab(CreativeTabs.tabMaterials);
-  
-  }
-
-  public boolean hasEffect(ItemStack itemstack)
-  {
-   return false;
-  }
-
-  public ItemStack onItemRightClick(ItemStack itemstack, World world,
-			EntityPlayer entityplayer){
-	
+	public ItemBXPORB(int i)
 	{
-		ExtendedPlayer.get(entityplayer).addXp(6);
-		--itemstack.stackSize;
-		return itemstack;}
-	}
-  @SideOnly(Side.CLIENT)
-  public void registerIcons(IconRegister ir)
-  {
-          {
-          this.itemIcon = ir.registerIcon("xporb");
-          }
-  }
+		super(i);
+		this.setCreativeTab(CreativeTabs.tabMaterials);
 
 	}
+
+	public boolean hasEffect(ItemStack itemstack)
+	{
+		return false;
+	}
+
+	public ItemStack onItemRightClick(ItemStack itemstack, World world,
+			EntityPlayer entityplayer){
+
+		{
+			ExtendedPlayer.get(entityplayer).addXp(6);
+			--itemstack.stackSize;
+			return itemstack;}
+	}
+	@SideOnly(Side.CLIENT)
+	public void registerIcons(IconRegister ir)
+	{
+		{
+			this.itemIcon = ir.registerIcon("xporb");
+		}
+	}
+
+}

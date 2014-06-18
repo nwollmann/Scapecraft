@@ -15,31 +15,31 @@ import net.minecraft.world.World;
 
 public class ItemNote1 extends Item {
 
-public ItemNote1(int i)
-  {
-   super(i);
-   this.setCreativeTab(CreativeTabs.tabMaterials);
-  
-  }
-
-  public boolean hasEffect(ItemStack itemstack)
-  {
-   return false;
-  }
-
-  public ItemStack onItemRightClick(ItemStack itemstack, World world,
-			EntityPlayer entityplayer){
-	
+	public ItemNote1(int i)
 	{
-	
-		return itemstack;}
-	}
-  @SideOnly(Side.CLIENT)
-  public void registerIcons(IconRegister ir)
-  {
-          {
-          this.itemIcon = ir.registerIcon("goldnote1");
-          }
-  }
+		super(i);
+		this.setCreativeTab(CreativeTabs.tabMaterials);
 
 	}
+
+	public boolean hasEffect(ItemStack itemstack)
+	{
+		return false;
+	}
+
+	public ItemStack onItemRightClick(ItemStack itemstack, World world,
+			EntityPlayer entityplayer){
+
+		{
+
+			return itemstack;}
+	}
+	@SideOnly(Side.CLIENT)
+	public void registerIcons(IconRegister ir)
+	{
+		{
+			this.itemIcon = ir.registerIcon("goldnote1");
+		}
+	}
+
+}

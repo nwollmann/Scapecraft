@@ -19,22 +19,22 @@ import net.minecraftforge.common.MinecraftForge;
 
 public class BlockRuneore extends Block
 {
-    public BlockRuneore(int i, int j)
-    {
-        super(i, Material.rock);
-        this.setCreativeTab(CreativeTabs.tabBlock);
-        MinecraftForge.setBlockHarvestLevel(mod_BlocksGalore.Runeore, 0, "pickaxe", 3);
-    }
-    public int idDropped(int par1, Random par2Random, int par3)
-    {
-        return mod_BlocksGalore.Runeore.blockID;
-    }
-    @SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister ir)
-    {
-           
-            {
-            this.blockIcon = ir.registerIcon("Runeore");
-            }
-    }
+	public BlockRuneore(int i, int j)
+	{
+		super(i, Material.rock);
+		this.setCreativeTab(CreativeTabs.tabBlock);
+		MinecraftForge.setBlockHarvestLevel(mod_BlocksGalore.Runeore, 0, "pickaxe", 3);
+	}
+	public int idDropped(int par1, Random par2Random, int par3)
+	{
+		return mod_BlocksGalore.Runeore.blockID;
+	}
+	@SideOnly(Side.CLIENT)
+	public void registerIcons(IconRegister ir)
+	{
+
+		{
+			this.blockIcon = ir.registerIcon("Runeore");
+		}
+	}
 }

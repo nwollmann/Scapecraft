@@ -22,33 +22,33 @@ import java.lang.annotation.Target;
  * @author cpw
  *
  */
-@Retention(value = RUNTIME)
+	@Retention(value = RUNTIME)
 @Target(value = FIELD)
-@Deprecated
-public @interface MLProp
+	@Deprecated
+	public @interface MLProp
 {
-    /**
-     * Adds additional help to top of configuration file.
-     */
-    @Deprecated
-    String info() default "";
+	/**
+	 * Adds additional help to top of configuration file.
+	 */
+	@Deprecated
+	String info() default "";
 
-    /**
-     * Maximum value allowed if field is a number.
-     */
-    @Deprecated
-    double max() default Double.MAX_VALUE;
+	/**
+	 * Maximum value allowed if field is a number.
+	 */
+	@Deprecated
+	double max() default Double.MAX_VALUE;
 
-    /**
-     * Minimum value allowed if field is a number.
-     */
-    @Deprecated
-    double min() default Double.MIN_VALUE;
+	/**
+	 * Minimum value allowed if field is a number.
+	 */
+	@Deprecated
+	double min() default Double.MIN_VALUE;
 
-    /**
-     * Overrides the field name for property key.
-     */
-    @Deprecated
-    String name() default "";
+	/**
+	 * Overrides the field name for property key.
+	 */
+	@Deprecated
+	String name() default "";
 
 }

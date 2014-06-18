@@ -23,31 +23,31 @@ public class BlockMagiclog extends Block {
 	protected BlockMagiclog(int i, int j) {
 		super(i, Material.wood);
 
-        this.setCreativeTab(CreativeTabs.tabBlock);
-        MinecraftForge.setBlockHarvestLevel(mod_MagicTree.Magiclog, 0, "axe", 3);
+		this.setCreativeTab(CreativeTabs.tabBlock);
+		MinecraftForge.setBlockHarvestLevel(mod_MagicTree.Magiclog, 0, "axe", 3);
 		setTickRandomly(true);
 
 	}
 	public void randomDisplayTick(World world, int i, int j, int k, Random random) 
 	{        world.spawnParticle("magicCrit", i, j, k, 0.0D, 0.0D, 1.0D);
-	 world.spawnParticle("magicCrit", i+0.5, j, k, 0.0D, 0.0D, 1.0D);
-	 world.spawnParticle("magicCrit", i+1.5, j, k, 0.0D, 0.0D, 1.0D);
-	 world.spawnParticle("magicCrit", i, j, k+0.5, 0.0D, 0.0D, 1.0D);
-	 world.spawnParticle("magicCrit", i, j-0.5, k-0.5, 0.0D, 0.0D, 1.0D);
+		world.spawnParticle("magicCrit", i+0.5, j, k, 0.0D, 0.0D, 1.0D);
+		world.spawnParticle("magicCrit", i+1.5, j, k, 0.0D, 0.0D, 1.0D);
+		world.spawnParticle("magicCrit", i, j, k+0.5, 0.0D, 0.0D, 1.0D);
+		world.spawnParticle("magicCrit", i, j-0.5, k-0.5, 0.0D, 0.0D, 1.0D);
 	}
 	//public Icon getBlockTextureFromSide(int side)
-//	{
+	//	{
 	//     if(side == 1)
 	//     {
-	 //         return 20;
+	//         return 20;
 	//     }
-	 //    else
+	//    else
 	//     {
-	 //         return blockIndexInTexture;
+	//         return blockIndexInTexture;
 	//     }
 	//} 
-      
-	  
+
+
 	public int quantityDropped(Random random) {
 		return 1;
 	}
@@ -94,9 +94,9 @@ public class BlockMagiclog extends Block {
 		entity.setLocationAndAngles(x+5, y + 1, z+4,
 				world.rand.nextFloat() * 360.0F, 0.0F);
 		world.spawnEntityInWorld(entity);
-		  world.setBlock(x+5, y+1, z+4, 0);
-		  world.setBlock(x+5, y+2, z+4, 0);
-		  world.setBlock(x+5, y+3, z+4, 0);
+		world.setBlock(x+5, y+1, z+4, 0);
+		world.setBlock(x+5, y+2, z+4, 0);
+		world.setBlock(x+5, y+3, z+4, 0);
 	}
 
 	public int damageDropped(int i) {
@@ -109,17 +109,17 @@ public class BlockMagiclog extends Block {
 	private Icon field_94392_b;
 
 	public Icon getIcon(int par1, int par2) {
-	return par1 == 0 ? this.field_94392_b : (par1 == 1 ? this.field_94393_a
-	: this.blockIcon);
+		return par1 == 0 ? this.field_94392_b : (par1 == 1 ? this.field_94393_a
+				: this.blockIcon);
 	}
 
-    @SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister ir)
+	@SideOnly(Side.CLIENT)
+	public void registerIcons(IconRegister ir)
 	{
-    	   this.blockIcon = ir.registerIcon("magiclog0");
-	this.field_94393_a = ir.registerIcon("magiclog1");//Top
-	this.field_94392_b = ir.registerIcon("magiclog1");//Bottom
+		this.blockIcon = ir.registerIcon("magiclog0");
+		this.field_94393_a = ir.registerIcon("magiclog1");//Top
+		this.field_94392_b = ir.registerIcon("magiclog1");//Bottom
 	}
-	
-	
+
+
 }

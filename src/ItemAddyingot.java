@@ -15,32 +15,32 @@ import net.minecraft.world.World;
 
 public class ItemAddyingot extends Item {
 
-public ItemAddyingot(int i)
-  {
-   super(i);
-   this.setCreativeTab(CreativeTabs.tabMaterials);
-  
-  }
-
-  public boolean hasEffect(ItemStack itemstack)
-  {
-   return false;
-  }
-
-  public ItemStack onItemRightClick(ItemStack itemstack, World world,
-			EntityPlayer entityplayer){
-	
+	public ItemAddyingot(int i)
 	{
-	
-		return itemstack;}
+		super(i);
+		this.setCreativeTab(CreativeTabs.tabMaterials);
+
 	}
-  
-  @SideOnly(Side.CLIENT)
-  public void registerIcons(IconRegister ir)
-  {
-          if(itemID == mod_BlocksGalore.Addyingot.itemID)
-          {
-          this.itemIcon = ir.registerIcon("Addyingot");
-          }
-  }
+
+	public boolean hasEffect(ItemStack itemstack)
+	{
+		return false;
 	}
+
+	public ItemStack onItemRightClick(ItemStack itemstack, World world,
+			EntityPlayer entityplayer){
+
+		{
+
+			return itemstack;}
+	}
+
+	@SideOnly(Side.CLIENT)
+	public void registerIcons(IconRegister ir)
+	{
+		if(itemID == mod_BlocksGalore.Addyingot.itemID)
+		{
+			this.itemIcon = ir.registerIcon("Addyingot");
+		}
+	}
+}

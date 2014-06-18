@@ -17,34 +17,34 @@ import net.minecraft.world.World;
 
 public class ItemSpecPot extends Item {
 
-public ItemSpecPot(int i)
-  {
-   super(i);
-   this.setCreativeTab(CreativeTabs.tabMaterials);
-  
-  }
-
-  public boolean hasEffect(ItemStack itemstack)
-  {
-   return false;
-  }
-
-  public ItemStack onItemRightClick(ItemStack itemstack, World world,
-			EntityPlayer entityplayer){
-	
+	public ItemSpecPot(int i)
 	{
-		   ExtendedPlayer props = ExtendedPlayer.get(entityplayer);	
-			if (props.getEnergy() <  3000)
-			props.addEnergy(2500);
-		--itemstack.stackSize;
-		return itemstack;}
-	}
-  @SideOnly(Side.CLIENT)
-  public void registerIcons(IconRegister ir)
-  {
-          {
-          this.itemIcon = ir.registerIcon("superdef");
-          }
-  }
+		super(i);
+		this.setCreativeTab(CreativeTabs.tabMaterials);
 
 	}
+
+	public boolean hasEffect(ItemStack itemstack)
+	{
+		return false;
+	}
+
+	public ItemStack onItemRightClick(ItemStack itemstack, World world,
+			EntityPlayer entityplayer){
+
+		{
+			ExtendedPlayer props = ExtendedPlayer.get(entityplayer);	
+			if (props.getEnergy() <  3000)
+				props.addEnergy(2500);
+			--itemstack.stackSize;
+			return itemstack;}
+	}
+	@SideOnly(Side.CLIENT)
+	public void registerIcons(IconRegister ir)
+	{
+		{
+			this.itemIcon = ir.registerIcon("superdef");
+		}
+	}
+
+}

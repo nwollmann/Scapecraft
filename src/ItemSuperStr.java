@@ -17,32 +17,32 @@ import net.minecraft.world.World;
 
 public class ItemSuperStr extends Item {
 
-public ItemSuperStr(int i)
-  {
-   super(i);
-   this.setCreativeTab(CreativeTabs.tabMaterials);
-  
-  }
-
-  public boolean hasEffect(ItemStack itemstack)
-  {
-   return false;
-  }
-
-  public ItemStack onItemRightClick(ItemStack itemstack, World world,
-			EntityPlayer entityplayer){
-	
+	public ItemSuperStr(int i)
 	{
-        entityplayer.addPotionEffect(new PotionEffect(Potion.damageBoost.id, 600, 0));
-		--itemstack.stackSize;
-		return itemstack;}
-	}
-  @SideOnly(Side.CLIENT)
-  public void registerIcons(IconRegister ir)
-  {
-          {
-          this.itemIcon = ir.registerIcon("superstr");
-          }
-  }
+		super(i);
+		this.setCreativeTab(CreativeTabs.tabMaterials);
 
 	}
+
+	public boolean hasEffect(ItemStack itemstack)
+	{
+		return false;
+	}
+
+	public ItemStack onItemRightClick(ItemStack itemstack, World world,
+			EntityPlayer entityplayer){
+
+		{
+			entityplayer.addPotionEffect(new PotionEffect(Potion.damageBoost.id, 600, 0));
+			--itemstack.stackSize;
+			return itemstack;}
+	}
+	@SideOnly(Side.CLIENT)
+	public void registerIcons(IconRegister ir)
+	{
+		{
+			this.itemIcon = ir.registerIcon("superstr");
+		}
+	}
+
+}

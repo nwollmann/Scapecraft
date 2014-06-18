@@ -17,39 +17,39 @@ import net.minecraft.world.World;
 
 public class ItemSuperRestore extends Item {
 
-public ItemSuperRestore(int i)
-  {
-   super(i);
-   this.setCreativeTab(CreativeTabs.tabMaterials);
-  
-  }
-
-  public boolean hasEffect(ItemStack itemstack)
-  {
-   return false;
-  }
-
-  public ItemStack onItemRightClick(ItemStack itemstack, World world,
-			EntityPlayer entityplayer){
-	
+	public ItemSuperRestore(int i)
 	{
-		  if (!world.isRemote)
-	        {
-	            entityplayer.curePotionEffects(itemstack);
-	        }
-
-		  entityplayer.addPotionEffect(new PotionEffect(Potion.moveSpeed.id, 600, 0));
-		  entityplayer.addPotionEffect(new PotionEffect(Potion.field_76443_y.id, 600, 0));
-			 
-		--itemstack.stackSize;
-		return itemstack;}
-	}
-  @SideOnly(Side.CLIENT)
-  public void registerIcons(IconRegister ir)
-  {
-          {
-          this.itemIcon = ir.registerIcon("superrestore");
-          }
-  }
+		super(i);
+		this.setCreativeTab(CreativeTabs.tabMaterials);
 
 	}
+
+	public boolean hasEffect(ItemStack itemstack)
+	{
+		return false;
+	}
+
+	public ItemStack onItemRightClick(ItemStack itemstack, World world,
+			EntityPlayer entityplayer){
+
+		{
+			if (!world.isRemote)
+			{
+				entityplayer.curePotionEffects(itemstack);
+			}
+
+			entityplayer.addPotionEffect(new PotionEffect(Potion.moveSpeed.id, 600, 0));
+			entityplayer.addPotionEffect(new PotionEffect(Potion.field_76443_y.id, 600, 0));
+
+			--itemstack.stackSize;
+			return itemstack;}
+	}
+	@SideOnly(Side.CLIENT)
+	public void registerIcons(IconRegister ir)
+	{
+		{
+			this.itemIcon = ir.registerIcon("superrestore");
+		}
+	}
+
+}

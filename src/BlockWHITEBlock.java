@@ -18,31 +18,31 @@ import net.minecraft.world.World;
 
 public class BlockWHITEBlock extends Block
 {
-    public BlockWHITEBlock(int i, int j)
-    {
-    	 super(i, Material.rock);
-        this.setCreativeTab(CreativeTabs.tabBlock);	
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    public int idDropped(int par1, Random par2Random, int par3)
-    {
-        return stone.blockID;
-    }
-    @SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister ir)
-    {
-           
-            {
-            this.blockIcon = ir.registerIcon("WhiteKnightBlock");
-            }
-    }
+	public BlockWHITEBlock(int i, int j)
+	{
+		super(i, Material.rock);
+		this.setCreativeTab(CreativeTabs.tabBlock);	
+	}
+
+
+
+
+
+
+
+
+
+
+	public int idDropped(int par1, Random par2Random, int par3)
+	{
+		return stone.blockID;
+	}
+	@SideOnly(Side.CLIENT)
+	public void registerIcons(IconRegister ir)
+	{
+
+		{
+			this.blockIcon = ir.registerIcon("WhiteKnightBlock");
+		}
+	}
 }

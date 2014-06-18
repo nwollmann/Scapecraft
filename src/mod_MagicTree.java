@@ -29,11 +29,11 @@ public class mod_MagicTree extends BaseMod {
 	public static final Item Magicboat = new ItemMagicBoat(17117).setUnlocalizedName("mod_MagicTree:magicboat");
 	public static final Block Magicplank = (new BlockMagicplank(203, 19).setHardness(5.0F).setUnlocalizedName("magicplank").setStepSound(Block.soundWoodFootstep));
 	public static final Block Magicstairs = (new BlockMagicstairs(214, mod_MagicTree.Magicplank, 0).setHardness(5.0F).setUnlocalizedName("magicstairs").setStepSound(Block.soundWoodFootstep));
-	
+
 	public static int blocktop;
 
 	public void registerRenderers() {
-	
+
 	}
 
 	public void load() {
@@ -52,32 +52,32 @@ public class mod_MagicTree extends BaseMod {
 		ModLoader.addName(Magicstairs, "Magic Stairs");
 		ModLoader.addName(Magicboat, "Magic Boat");
 
-	
-	
+
+
 
 		//blocktop = ModLoader
 		//		.addOverride("/terrain.png", "/mods/magicwood2.png");
 
 		GameRegistry.addRecipe(new ItemStack(mod_MagicTree.Magicsapling, 1),
-						new Object[] { "XXX", "XYX","XXX", Character.valueOf('Y'),
-								Item.diamond,Character.valueOf('X'),mod_YewTree.Yewsapling });
+				new Object[] { "XXX", "XYX","XXX", Character.valueOf('Y'),
+					Item.diamond,Character.valueOf('X'),mod_YewTree.Yewsapling });
 
 		GameRegistry.addRecipe(new ItemStack(mod_MagicTree.Magicplank, 2),
 				new Object[] { "X", 
-						Character.valueOf('X'),mod_MagicTree.Magiclog });
-		
+					Character.valueOf('X'),mod_MagicTree.Magiclog });
+
 		GameRegistry.addRecipe(new ItemStack(mod_MagicTree.Magicstick, 1),
 				new Object[] { "X","X", 
-						Character.valueOf('X'),mod_MagicTree.Magicplank });
-		
+					Character.valueOf('X'),mod_MagicTree.Magicplank });
+
 		GameRegistry.addRecipe(new ItemStack(mod_MagicTree.Magicstairs, 4),
 				new Object[] { "  X"," XX","XXX", 
-						Character.valueOf('X'),mod_MagicTree.Magicplank });
-		
+					Character.valueOf('X'),mod_MagicTree.Magicplank });
+
 		GameRegistry.addRecipe(new ItemStack(mod_MagicTree.Magicboat, 1),
 				new Object[] { "X X","XXX", 
-						Character.valueOf('X'),mod_MagicTree.Magicplank });
-		
+					Character.valueOf('X'),mod_MagicTree.Magicplank });
+
 	}
 
 	public String getVersion() {

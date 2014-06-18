@@ -14,33 +14,33 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 public class ItemBoltRack extends Item {
 
-public ItemBoltRack(int i)
-  {
-   super(i);
-   this.setCreativeTab(CreativeTabs.tabCombat);
-  
-  }
-
-  public boolean hasEffect(ItemStack itemstack)
-  {
-   return false;
-  }
-
-  public ItemStack onItemRightClick(ItemStack itemstack, World world,
-			EntityPlayer entityplayer){
-	
+	public ItemBoltRack(int i)
 	{
-	
-		return itemstack;}
-	}
-
-  @SideOnly(Side.CLIENT)
-  public void registerIcons(IconRegister ir)
-  {
-  
-          {
-          this.itemIcon = ir.registerIcon("BoltRack");
-          }
-  }
+		super(i);
+		this.setCreativeTab(CreativeTabs.tabCombat);
 
 	}
+
+	public boolean hasEffect(ItemStack itemstack)
+	{
+		return false;
+	}
+
+	public ItemStack onItemRightClick(ItemStack itemstack, World world,
+			EntityPlayer entityplayer){
+
+		{
+
+			return itemstack;}
+	}
+
+	@SideOnly(Side.CLIENT)
+	public void registerIcons(IconRegister ir)
+	{
+
+		{
+			this.itemIcon = ir.registerIcon("BoltRack");
+		}
+	}
+
+}

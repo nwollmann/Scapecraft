@@ -18,31 +18,31 @@ import net.minecraft.world.World;
 
 public class BlockMagicplank extends Block
 {
-    public BlockMagicplank(int i, int j)
-    {
-    	 super(i, Material.wood);
-        this.setCreativeTab(CreativeTabs.tabBlock);	
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    public int idDropped(int par1, Random par2Random, int par3)
-    {
-        return mod_MagicTree.Magicplank.blockID;
-    }
-    @SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister ir)
-    {
-           
-            {
-            this.blockIcon = ir.registerIcon("magicplank");
-            }
-    }
+	public BlockMagicplank(int i, int j)
+	{
+		super(i, Material.wood);
+		this.setCreativeTab(CreativeTabs.tabBlock);	
+	}
+
+
+
+
+
+
+
+
+
+
+	public int idDropped(int par1, Random par2Random, int par3)
+	{
+		return mod_MagicTree.Magicplank.blockID;
+	}
+	@SideOnly(Side.CLIENT)
+	public void registerIcons(IconRegister ir)
+	{
+
+		{
+			this.blockIcon = ir.registerIcon("magicplank");
+		}
+	}
 }

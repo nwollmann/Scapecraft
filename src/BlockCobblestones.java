@@ -19,29 +19,29 @@ import net.minecraftforge.common.MinecraftForge;
 
 public class BlockCobblestones extends Block
 {
-    public BlockCobblestones(int i, int j)
-    {
-        super(i, Material.rock);
-        this.setCreativeTab(CreativeTabs.tabBlock);
-		 MinecraftForge.setBlockHarvestLevel(mod_Flower.cobblestones, 0, "pickaxe", 1);
-    }
+	public BlockCobblestones(int i, int j)
+	{
+		super(i, Material.rock);
+		this.setCreativeTab(CreativeTabs.tabBlock);
+		MinecraftForge.setBlockHarvestLevel(mod_Flower.cobblestones, 0, "pickaxe", 1);
+	}
 	int x = 0;
-    public int idDropped(int par1, Random par2Random, int par3)
-    {
-        if (x==0){x++;return Block.cobblestone.blockID;}
-        else{
-        	x=0;
-        return mod_Flower.MXPORB.itemID;
-       }
-    } 
-    public int quantityDropped(Random par1Random){return 2;}
+	public int idDropped(int par1, Random par2Random, int par3)
+	{
+		if (x==0){x++;return Block.cobblestone.blockID;}
+		else{
+			x=0;
+			return mod_Flower.MXPORB.itemID;
+		}
+	} 
+	public int quantityDropped(Random par1Random){return 2;}
 
-    @SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister ir)
-    {
-           
-            {
-            this.blockIcon = ir.registerIcon("cobblestone");
-            }
-    }
+	@SideOnly(Side.CLIENT)
+	public void registerIcons(IconRegister ir)
+	{
+
+		{
+			this.blockIcon = ir.registerIcon("cobblestone");
+		}
+	}
 }

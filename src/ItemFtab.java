@@ -34,23 +34,23 @@ public class ItemFtab extends Item {
 
 	public ItemFtab(int i) {
 		super(i);
-	    this.setCreativeTab(CreativeTabs.tabMaterials);
-		
+		this.setCreativeTab(CreativeTabs.tabMaterials);
+
 	}
 	public ItemStack onItemRightClick(ItemStack itemstack, World world,
 			EntityPlayer entityplayer){
-	
-		   entityplayer.setPositionAndUpdate(-843, 70, 963);
-		   --itemstack.stackSize;
+
+		entityplayer.setPositionAndUpdate(-843, 70, 963);
+		--itemstack.stackSize;
 		return itemstack;
-		
+
 	}
-    @SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister ir)
-    {
-            {
-            this.itemIcon = ir.registerIcon("ftab");
-            }
-    }
+	@SideOnly(Side.CLIENT)
+	public void registerIcons(IconRegister ir)
+	{
+		{
+			this.itemIcon = ir.registerIcon("ftab");
+		}
+	}
 
 }

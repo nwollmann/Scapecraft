@@ -14,33 +14,33 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 public class ItemAddylump extends Item {
 
-public ItemAddylump(int i)
-  {
-   super(i);
-   this.setCreativeTab(CreativeTabs.tabMaterials);
-  
-  }
-
-  public boolean hasEffect(ItemStack itemstack)
-  {
-   return false;
-  }
-
-  public ItemStack onItemRightClick(ItemStack itemstack, World world,
-			EntityPlayer entityplayer){
-	
+	public ItemAddylump(int i)
 	{
-	
-		return itemstack;}
-	}
-
-  @SideOnly(Side.CLIENT)
-  public void registerIcons(IconRegister ir)
-  {
-          if(itemID == mod_BlocksGalore.Addylump.itemID)
-          {
-          this.itemIcon = ir.registerIcon("Addylump");
-          }
-  }
+		super(i);
+		this.setCreativeTab(CreativeTabs.tabMaterials);
 
 	}
+
+	public boolean hasEffect(ItemStack itemstack)
+	{
+		return false;
+	}
+
+	public ItemStack onItemRightClick(ItemStack itemstack, World world,
+			EntityPlayer entityplayer){
+
+		{
+
+			return itemstack;}
+	}
+
+	@SideOnly(Side.CLIENT)
+	public void registerIcons(IconRegister ir)
+	{
+		if(itemID == mod_BlocksGalore.Addylump.itemID)
+		{
+			this.itemIcon = ir.registerIcon("Addylump");
+		}
+	}
+
+}

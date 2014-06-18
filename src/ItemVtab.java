@@ -40,37 +40,37 @@ public class ItemVtab extends Item {
 
 	public ItemVtab(int i) {
 		super(i);
-	    this.setCreativeTab(CreativeTabs.tabMaterials);
-		
+		this.setCreativeTab(CreativeTabs.tabMaterials);
+
 	}
 
 
-	 //synchronized
-	
-	
+	//synchronized
+
+
 	public ItemStack onItemRightClick(ItemStack itemstack, World world,
 			EntityPlayer entityplayer){
-	
-		   entityplayer.setPositionAndUpdate(-973, 70, 214);
-		   --itemstack.stackSize;
+
+		entityplayer.setPositionAndUpdate(-973, 70, 214);
+		--itemstack.stackSize;
 		return itemstack;
-		
+
 	}
-	
-	
-	
-
-		
-
-	
 
 
-    @SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister ir)
-    {
-            {
-            this.itemIcon = ir.registerIcon("vtab");
-            }
-    }
+
+
+
+
+
+
+
+	@SideOnly(Side.CLIENT)
+	public void registerIcons(IconRegister ir)
+	{
+		{
+			this.itemIcon = ir.registerIcon("vtab");
+		}
+	}
 
 }

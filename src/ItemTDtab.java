@@ -34,23 +34,23 @@ public class ItemTDtab extends Item {
 
 	public ItemTDtab(int i) {
 		super(i);
-	    this.setCreativeTab(CreativeTabs.tabMaterials);
-		
+		this.setCreativeTab(CreativeTabs.tabMaterials);
+
 	}
 	public ItemStack onItemRightClick(ItemStack itemstack, World world,
 			EntityPlayer entityplayer){
-	
-		   entityplayer.setPositionAndUpdate(-461, 94, 1360);
-		   --itemstack.stackSize;
+
+		entityplayer.setPositionAndUpdate(-461, 94, 1360);
+		--itemstack.stackSize;
 		return itemstack;
-		
+
 	}
-    @SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister ir)
-    {
-            {
-            this.itemIcon = ir.registerIcon("tdtab");
-            }
-    }
+	@SideOnly(Side.CLIENT)
+	public void registerIcons(IconRegister ir)
+	{
+		{
+			this.itemIcon = ir.registerIcon("tdtab");
+		}
+	}
 
 }

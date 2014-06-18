@@ -34,43 +34,43 @@ import cpw.mods.fml.common.FMLLog;
  */
 public class FMLRenderAccessLibrary
 {
-    public static Logger getLogger()
-    {
-        Logger l = Logger.getLogger("FMLRenderAccessLibrary");
-        l.setParent(FMLLog.getLogger());
-        return l;
-    }
+	public static Logger getLogger()
+	{
+		Logger l = Logger.getLogger("FMLRenderAccessLibrary");
+		l.setParent(FMLLog.getLogger());
+		return l;
+	}
 
-    public static void log(Level level, String message)
-    {
-        FMLLog.log("FMLRenderAccessLibrary", level, message);
-    }
+	public static void log(Level level, String message)
+	{
+		FMLLog.log("FMLRenderAccessLibrary", level, message);
+	}
 
-    public static void log(Level level, String message, Throwable throwable)
-    {
-        FMLLog.log(level, throwable, message);
-    }
+	public static void log(Level level, String message, Throwable throwable)
+	{
+		FMLLog.log(level, throwable, message);
+	}
 
-    @SuppressWarnings("deprecation")
-    public static boolean renderWorldBlock(RenderBlocks renderer, IBlockAccess world, int x, int y, int z, Block block, int modelId)
-    {
-        return RenderingRegistry.instance().renderWorldBlock(renderer, world, x, y, z, block, modelId);
-    }
+	@SuppressWarnings("deprecation")
+	public static boolean renderWorldBlock(RenderBlocks renderer, IBlockAccess world, int x, int y, int z, Block block, int modelId)
+	{
+		return RenderingRegistry.instance().renderWorldBlock(renderer, world, x, y, z, block, modelId);
+	}
 
-    @SuppressWarnings("deprecation")
-    public static void renderInventoryBlock(RenderBlocks renderer, Block block, int metadata, int modelID)
-    {
-        RenderingRegistry.instance().renderInventoryBlock(renderer, block, metadata, modelID);
-    }
+	@SuppressWarnings("deprecation")
+	public static void renderInventoryBlock(RenderBlocks renderer, Block block, int metadata, int modelID)
+	{
+		RenderingRegistry.instance().renderInventoryBlock(renderer, block, metadata, modelID);
+	}
 
-    @SuppressWarnings("deprecation")
-    public static boolean renderItemAsFull3DBlock(int modelId)
-    {
-        return RenderingRegistry.instance().renderItemAsFull3DBlock(modelId);
-    }
+	@SuppressWarnings("deprecation")
+	public static boolean renderItemAsFull3DBlock(int modelId)
+	{
+		return RenderingRegistry.instance().renderItemAsFull3DBlock(modelId);
+	}
 
-//    public static void doTextureCopy(Texture atlas, Texture source, int targetX, int targetY)
-//    {
-//        TextureFXManager.instance().getHelper().doTextureCopy(atlas, source, targetX, targetY);
-//    }
+	//    public static void doTextureCopy(Texture atlas, Texture source, int targetX, int targetY)
+	//    {
+	//        TextureFXManager.instance().getHelper().doTextureCopy(atlas, source, targetX, targetY);
+	//    }
 }

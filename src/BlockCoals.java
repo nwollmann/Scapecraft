@@ -19,30 +19,30 @@ import net.minecraftforge.common.MinecraftForge;
 
 public class BlockCoals extends Block
 {
-    public BlockCoals(int i, int j)
-    {
-        super(i, Material.rock);
-        this.setCreativeTab(CreativeTabs.tabBlock);
-		 MinecraftForge.setBlockHarvestLevel(mod_Flower.oreCoals, 0, "pickaxe", 1);
-    }
+	public BlockCoals(int i, int j)
+	{
+		super(i, Material.rock);
+		this.setCreativeTab(CreativeTabs.tabBlock);
+		MinecraftForge.setBlockHarvestLevel(mod_Flower.oreCoals, 0, "pickaxe", 1);
+	}
 	int x = 0;
-    public int idDropped(int par1, Random par2Random, int par3)
-    {
-        if (x==0){x++;return Item.coal.itemID;}
-        if (x==1){x++;return mod_Flower.MXPORB.itemID;}
-        else{
-        	x=0;
-        return mod_Flower.MXPORB.itemID;
-       }
-    } 
-    public int quantityDropped(Random par1Random){return 3;}
+	public int idDropped(int par1, Random par2Random, int par3)
+	{
+		if (x==0){x++;return Item.coal.itemID;}
+		if (x==1){x++;return mod_Flower.MXPORB.itemID;}
+		else{
+			x=0;
+			return mod_Flower.MXPORB.itemID;
+		}
+	} 
+	public int quantityDropped(Random par1Random){return 3;}
 
-    @SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister ir)
-    {
-           
-            {
-            this.blockIcon = ir.registerIcon("coal_ore");
-            }
-    }
+	@SideOnly(Side.CLIENT)
+	public void registerIcons(IconRegister ir)
+	{
+
+		{
+			this.blockIcon = ir.registerIcon("coal_ore");
+		}
+	}
 }

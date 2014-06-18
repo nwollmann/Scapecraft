@@ -12,22 +12,22 @@ import net.minecraftforge.common.MinecraftForge;
 
 public class BlockAddyore extends Block
 {
-    public BlockAddyore(int i, int j)
-    {
-    	  super(Material.rock);
-        this.setCreativeTab(CreativeTabs.tabBlock);
-        setHarvestLevel("pickaxe", 2);
-    }
-    public Block idDropped(int par1, Random par2Random, int par3)
-    {
-        return mod_BlocksGalore.Addyore;
-    }
-    @SideOnly(Side.CLIENT)
-    public void registerIcons(IIconRegister ir)
-    {
-           
-            {
-            this.blockIcon = ir.registerIcon("Addyore");
-            }
-    }
+	public BlockAddyore(int i, int j)
+	{
+		super(Material.rock);
+		this.setCreativeTab(CreativeTabs.tabBlock);
+		setHarvestLevel("pickaxe", 2);
+	}
+	public Block idDropped(int par1, Random par2Random, int par3)
+	{
+		return mod_BlocksGalore.Addyore;
+	}
+	@SideOnly(Side.CLIENT)
+	public void registerIcons(IIconRegister ir)
+	{
+
+		{
+			this.blockIcon = ir.registerIcon("Addyore");
+		}
+	}
 }

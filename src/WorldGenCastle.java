@@ -1,6 +1,6 @@
 /*
-*** MADE BY MITHION'S .SCHEMATIC TO JAVA CONVERTING TOOL v1.6 ***
-*/
+ *** MADE BY MITHION'S .SCHEMATIC TO JAVA CONVERTING TOOL v1.6 ***
+ */
 
 package net.minecraft.src;
 import java.util.Random;
@@ -16,31 +16,31 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 public class WorldGenCastle extends WorldGenerator
 {
 
-	
+
 	private static final WeightedRandomChestContent[] bonusChestContent = new WeightedRandomChestContent[]
-			{
-		
-			new WeightedRandomChestContent(mod_BlocksGalore.dlong.itemID, 0, 1, 1, 15),
-			new WeightedRandomChestContent(mod_BlocksGalore.Zammystaff.itemID, 0, 1, 1, 45),
-			new WeightedRandomChestContent(mod_BlocksGalore.BLKSpawn.blockID, 0, 1, 6, 50),
-			new WeightedRandomChestContent(mod_BlocksGalore.EliteBlackSpawn.blockID, 0, 1, 6, 10),
-			new WeightedRandomChestContent(Block.oreDiamond.blockID, 0, 1, 2, 30),
-			new WeightedRandomChestContent(Item.swordStone.itemID, 0, 1, 4, 40),
-			new WeightedRandomChestContent(Item.bow.itemID, 0, 1, 1, 20),
-			new WeightedRandomChestContent(mod_MagicBow.Magicbow.itemID, 0, 1, 1, 10),
-			new WeightedRandomChestContent(mod_phat.blackChestplate.itemID, 0, 1, 1, 30),
-			new WeightedRandomChestContent(mod_phat.blackLeggings.itemID, 0, 1, 1, 30),
-			new WeightedRandomChestContent(mod_phat.blackHelmet.itemID, 0, 1, 1, 30),
-			new WeightedRandomChestContent(mod_phat.blackBoots.itemID, 0, 1, 1, 30),
-			new WeightedRandomChestContent(Item.arrow.itemID, 500, 10, 20, 40),
-			};
+	{
+
+		new WeightedRandomChestContent(mod_BlocksGalore.dlong.itemID, 0, 1, 1, 15),
+		    new WeightedRandomChestContent(mod_BlocksGalore.Zammystaff.itemID, 0, 1, 1, 45),
+		    new WeightedRandomChestContent(mod_BlocksGalore.BLKSpawn.blockID, 0, 1, 6, 50),
+		    new WeightedRandomChestContent(mod_BlocksGalore.EliteBlackSpawn.blockID, 0, 1, 6, 10),
+		    new WeightedRandomChestContent(Block.oreDiamond.blockID, 0, 1, 2, 30),
+		    new WeightedRandomChestContent(Item.swordStone.itemID, 0, 1, 4, 40),
+		    new WeightedRandomChestContent(Item.bow.itemID, 0, 1, 1, 20),
+		    new WeightedRandomChestContent(mod_MagicBow.Magicbow.itemID, 0, 1, 1, 10),
+		    new WeightedRandomChestContent(mod_phat.blackChestplate.itemID, 0, 1, 1, 30),
+		    new WeightedRandomChestContent(mod_phat.blackLeggings.itemID, 0, 1, 1, 30),
+		    new WeightedRandomChestContent(mod_phat.blackHelmet.itemID, 0, 1, 1, 30),
+		    new WeightedRandomChestContent(mod_phat.blackBoots.itemID, 0, 1, 1, 30),
+		    new WeightedRandomChestContent(Item.arrow.itemID, 500, 10, 20, 40),
+	};
 
 
 
 	public WorldGenCastle() { }
 
 	public boolean generate(World world, Random rand, int i, int j, int k) {
-	
+
 
 		world.setBlock(i + 0, j + 0, k + 0, Block.obsidian.blockID);
 		world.setBlock(i + 0, j + 0, k + 1, Block.obsidian.blockID);
@@ -27098,7 +27098,7 @@ public class WorldGenCastle extends WorldGenerator
 		world.setBlock(i + 20, j + 4, k + 54, Block.lavaStill.blockID);
 		world.setBlock(i + 32, j + 4, k + 35, mod_BlocksGalore.KQ2Spawn.blockID);
 
-		
+
 		TileEntityChest chestEntity = (TileEntityChest)world.getBlockTileEntity(i + 8, j + 8, k + 34);
 
 		WeightedRandomChestContent.generateChestContents(rand, bonusChestContent, chestEntity, 13);
@@ -27106,7 +27106,7 @@ public class WorldGenCastle extends WorldGenerator
 		ItemStack dirtStack = new ItemStack(Block.stone, 64);
 
 		chestEntity.setInventorySlotContents(13, dirtStack);
-		
+
 		return true;
 	}
 }

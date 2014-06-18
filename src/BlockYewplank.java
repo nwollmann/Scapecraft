@@ -18,30 +18,30 @@ import net.minecraft.world.World;
 
 public class BlockYewplank extends Block
 {
-    public BlockYewplank(int i, int j)
-    {
-    	 super(i, Material.wood);
-        this.setCreativeTab(CreativeTabs.tabBlock);	
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    public int idDropped(int par1, Random par2Random, int par3)
-    {
-        return mod_YewTree.Yewplank.blockID;
-    }
-    @SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister ir)
-    {
-           
-            {
-            this.blockIcon = ir.registerIcon("yewplank");
-            }
-    }}
+	public BlockYewplank(int i, int j)
+	{
+		super(i, Material.wood);
+		this.setCreativeTab(CreativeTabs.tabBlock);	
+	}
+
+
+
+
+
+
+
+
+
+
+	public int idDropped(int par1, Random par2Random, int par3)
+	{
+		return mod_YewTree.Yewplank.blockID;
+	}
+	@SideOnly(Side.CLIENT)
+	public void registerIcons(IconRegister ir)
+	{
+
+		{
+			this.blockIcon = ir.registerIcon("yewplank");
+		}
+	}}

@@ -21,19 +21,19 @@ import net.minecraftforge.common.MinecraftForge;
 
 public class BlockYewlog extends Block {
 
-	
+
 	protected BlockYewlog(int i, int j) {
 		super(i, Material.wood);
-        this.setCreativeTab(CreativeTabs.tabBlock);
-		
-        MinecraftForge.setBlockHarvestLevel(mod_YewTree.Yewlog, 0, "axe", 2);
+		this.setCreativeTab(CreativeTabs.tabBlock);
+
+		MinecraftForge.setBlockHarvestLevel(mod_YewTree.Yewlog, 0, "axe", 2);
 		setTickRandomly(true);
 
 	}
 
 
-      
-	  
+
+
 	public int quantityDropped(Random random) {
 		return 1;
 	}
@@ -95,28 +95,28 @@ public class BlockYewlog extends Block {
 	private Icon field_94392_b;
 
 	public Icon getIcon(int par1, int par2) {
-	return par1 == 0 ? this.field_94392_b : (par1 == 1 ? this.field_94393_a
-	: this.blockIcon);
+		return par1 == 0 ? this.field_94392_b : (par1 == 1 ? this.field_94393_a
+				: this.blockIcon);
 	}
 
-    @SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister ir)
+	@SideOnly(Side.CLIENT)
+	public void registerIcons(IconRegister ir)
 	{
-    	   this.blockIcon = ir.registerIcon("yewlog0");//side
-	this.field_94393_a = ir.registerIcon("yewlog1");//Top
-	this.field_94392_b = ir.registerIcon("yewlog1");//Bottom
+		this.blockIcon = ir.registerIcon("yewlog0");//side
+		this.field_94393_a = ir.registerIcon("yewlog1");//Top
+		this.field_94392_b = ir.registerIcon("yewlog1");//Bottom
 	}
-	
-	
-	
-	
-	
-    @SideOnly(Side.CLIENT)
-    public void getSubBlocks(int par1, CreativeTabs par2CreativeTabs, List par3List)
-    {
-          for(int i = 0; i < 2; i++)
-          {
-                 par3List.add(new ItemStack(par1, 1, i));
-          }
-    }
+
+
+
+
+
+	@SideOnly(Side.CLIENT)
+	public void getSubBlocks(int par1, CreativeTabs par2CreativeTabs, List par3List)
+	{
+		for(int i = 0; i < 2; i++)
+		{
+			par3List.add(new ItemStack(par1, 1, i));
+		}
+	}
 }

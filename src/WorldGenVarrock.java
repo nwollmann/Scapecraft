@@ -16,4 +16,4 @@ public class WorldGenVarrock extends WorldGenerator
 	public boolean generate(World world, Random rand, int i, int j, int k) {
 		world.setBlock(i + 0, j + 0, k + 0, Block.dirt.blockID);
 		return true;
-}}
+	}}
