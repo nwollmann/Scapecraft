@@ -33,11 +33,11 @@ public class mod_Flower extends BaseMod
 	public static final String modid = "mod_Flower";
 	public static final Block cabbage = (new Blockcabbage(204, 90).setHardness(0.0F).setUnlocalizedName("cabbage").setStepSound(Block.soundGrassFootstep));
 	public static final Item cutcabbage = (new ItemFood(17008, 2, true)).setUnlocalizedName("cutcabbage").setTextureName("cutcabbage");
-	public static final Item cabbagepie = (new ItemModFood(17009, 4,3, true)).setAlwaysEdible().setUnlocalizedName("cabbagepie").setTextureName("cabbagepie");
-	public static final Item fishpie = (new ItemModFood(17011, 4,12, true)).setAlwaysEdible().setUnlocalizedName("fishpie").setTextureName("fishpie");        
-	public static final Item meatpie = (new ItemModFood(17012, 4,5, true)).setAlwaysEdible().setUnlocalizedName("meatpie").setTextureName("meatpie");
-	public static final Item applepie = (new ItemModFood(17013, 4,4, true)).setAlwaysEdible().setUnlocalizedName("applepie").setTextureName("applepie");
-	public static final Item beer = (new ItemModFood(17030, 1,2, true)).setAlwaysEdible().setUnlocalizedName("beer").setTextureName("beer");         
+	public static final Item cabbagepie = (new ItemModFood(17009, 4, 3, true)).setAlwaysEdible().setUnlocalizedName("cabbagepie").setTextureName("cabbagepie");
+	public static final Item fishpie = (new ItemModFood(17011, 4, 12, true)).setAlwaysEdible().setUnlocalizedName("fishpie").setTextureName("fishpie");        
+	public static final Item meatpie = (new ItemModFood(17012, 4, 5, true)).setAlwaysEdible().setUnlocalizedName("meatpie").setTextureName("meatpie");
+	public static final Item applepie = (new ItemModFood(17013, 4, 4, true)).setAlwaysEdible().setUnlocalizedName("applepie").setTextureName("applepie");
+	public static final Item beer = (new ItemModFood(17030, 1, 2, true)).setAlwaysEdible().setUnlocalizedName("beer").setTextureName("beer");         
 	public static final Item cabbagepieuncooked = new Item(17014).setUnlocalizedName("cabbagepieuncooked").setTextureName("cabbagepie");
 	public static final Item meatpieuncooked = new Item(17015).setUnlocalizedName("meatuncooked").setTextureName("meatpie");
 	public static final Item applepieuncooked = new Item(17016).setUnlocalizedName("applepieuncooked").setTextureName("applepie");
