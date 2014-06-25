@@ -5,7 +5,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
-import scapecraft.models.ModelBandosArmor;
+import scapecraft.client.model.ModelBandosArmor;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -16,7 +16,7 @@ public class ItemArmorBandos extends ItemArmorScapecraft
 	private static final ModelBandosArmor bandosChest = new ModelBandosArmor(1.0f);
 	@SideOnly(Side.CLIENT)
 	private static final ModelBandosArmor bandosLegs = new ModelBandosArmor(0.5f);
-	public ItemArmorBandos(ArmorMaterial par2EnumArmorMaterial, int par3, int par4, String armornamePrefix)
+	public ItemArmorBandos(ScapecraftArmorMaterial par2EnumArmorMaterial, int par3, int par4, String armornamePrefix)
 	{
 		super(par2EnumArmorMaterial, par3, par4, armornamePrefix);
 

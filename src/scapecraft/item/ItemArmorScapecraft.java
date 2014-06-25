@@ -1,9 +1,13 @@
 package scapecraft.item;
 
+import java.lang.reflect.Field;
+
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
 import scapecraft.Scapecraft;
 
@@ -11,11 +15,33 @@ public class ItemArmorScapecraft extends ItemArmor
 {
 	public String armorNamePrefix;	 
 	public String armorNameType;
+	protected ScapecraftArmorMaterial material;
 
-	public ItemArmorScapecraft(ArmorMaterial par2EnumArmorMaterial, int par3, int type, String armornamePrefix)
+	public ItemArmorScapecraft(ScapecraftArmorMaterial armorMaterial, int par3, int type, String armornamePrefix)
 	{
-		super(par2EnumArmorMaterial, par3, type);
-		this.setCreativeTab(Scapecraft.tabScapecraft);
+		super(ArmorMaterial.GOLD, par3, type);
+		this.material = armorMaterial;
+		
+		//Reflection to change final field
+		try
+		{
+			Field damageReduceAmountField = null;
+			try
+			{
+				damageReduceAmountField = ItemArmor.class.getDeclaredField("c");
+			} catch (NoSuchFieldException e) {
+				damageReduceAmountField = ItemArmor.class.getDeclaredField("damageReduceAmount");
+			}
+			damageReduceAmountField.setAccessible(true);
+			damageReduceAmountField.setInt(this, armorMaterial.getDamageReductionAmount(type));
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+
+		this.setMaxDamage(armorMaterial.getDurability(type));
+		this.setCreativeTab(Scapecraft.tabScapecraftArmor);
 		this.armorNamePrefix = armornamePrefix;
 		switch(type)
 		{
@@ -51,5 +77,80 @@ public class ItemArmorScapecraft extends ItemArmor
 	{
 		itemIcon = iconReg.registerIcon("scapecraft:" + this.armorNamePrefix + this.armorNameType);
 	}
-}
 
+	//Overriding ItemArmor for using ScapecraftArmorMaterial instead of ArmorMaterial
+
+
+	/**
+	 * Return the enchantability factor of the item, most of the time is based on material.
+	 */
+	public int getItemEnchantability()
+	{
+		return this.material.getEnchantability();
+	}
+
+	/**
+	 * Return whether this item is repairable in an anvil.
+	 */
+	public boolean getIsRepairable(ItemStack par1ItemStack, ItemStack par2ItemStack)
+	{
+		return this.material.customCraftingMaterial == par2ItemStack.getItem();
+	}
+	//Special armor effects
+
+	/**
+	 * Apply any effects to wearer's attacks
+	 */
+
+	public void onWearerAttack(LivingHurtEvent event)
+	{
+		switch(this.material)
+		{
+			case BANDOS:
+				switch(this.armorType)
+				{
+					case 0:
+						event.ammount += 3F;
+						break;
+					case 1:
+						event.ammount += 6F;
+						break;
+					case 3:
+						event.ammount += 4F;
+				}
+				break;
+			default:
+		}
+	}
+
+	public int getMinLevel()
+	{
+		return this.material.getMinLevel();
+	}
+
+	public double getMaxHealth()
+	{
+		return this.material.getMaxHealth();
+	}
+
+	public ScapecraftArmorMaterial getScapecraftArmorMaterial()
+	{
+		return this.material;
+	}
+
+	public static boolean isWearingFullSet(EntityPlayer entity, ScapecraftArmorMaterial material)
+	{
+		boolean fullSet = true;
+		for(int i = 0; i <= 3; i++)
+		{
+			if(entity.getCurrentArmor(i) == null || !(entity.getCurrentArmor(i).getItem() instanceof ItemArmorScapecraft) || ((ItemArmorScapecraft) entity.getCurrentArmor(i).getItem()).getScapecraftArmorMaterial() != material)
+				fullSet = false;
+		}
+		return fullSet;
+	}
+
+	public boolean isWearingFullSet(EntityPlayer entity)
+	{
+		return isWearingFullSet(entity, this.material);
+	}
+}

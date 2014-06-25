@@ -24,7 +24,10 @@ public class BlockSpawn extends Block
 	public BlockSpawn(Class<? extends Entity> entityClass, int tickInterval)
 	{
 		super(Material.rock);
-		this.setCreativeTab(Scapecraft.tabScapecraft);
+		this.setCreativeTab(Scapecraft.tabScapecraftBlock);
+		setHardness(200000.0F);
+		setResistance(5000.0F);
+		//setStepSound(soundStoneFootstep);
 	}
 
 	public BlockSpawn(Class<? extends Entity> entityClass, int tickInterval, boolean tickRandomly)

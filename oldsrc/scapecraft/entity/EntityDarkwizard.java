@@ -44,10 +44,6 @@ public class EntityDarkwizard extends EntityMob
 
 		this.moveSpeed = 0.4F;
 		this.isImmuneToFire = true;
-
-
-
-
 	}
 
 

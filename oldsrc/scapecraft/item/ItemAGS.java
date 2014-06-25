@@ -69,45 +69,47 @@ public class ItemAGS extends ItemSword
 		if (special == 1){
 			par1ItemStack.damageItem(1, par3EntityLivingBase);
 			par3EntityLivingBase.motionY = 1.30D;
-			par3EntityLivingBase.worldObj.spawnParticle("magicCrit", par3EntityLivingBase.posX, par3EntityLivingBase.posY, par3EntityLivingBase.posZ, 0.0D, 0.0D, 1.0D);
-			par3EntityLivingBase.worldObj.spawnParticle("magicCrit", par3EntityLivingBase.posX+1, par3EntityLivingBase.posY, par3EntityLivingBase.posZ, 0.0D, 0.0D, 1.0D);
-			par3EntityLivingBase.worldObj.spawnParticle("magicCrit", par3EntityLivingBase.posX-1, par3EntityLivingBase.posY, par3EntityLivingBase.posZ, 0.0D, 0.0D, 1.0D);
-			par3EntityLivingBase.worldObj.spawnParticle("magicCrit", par3EntityLivingBase.posX, par3EntityLivingBase.posY, par3EntityLivingBase.posZ+1, 0.0D, 0.0D, 1.0D);
-			par3EntityLivingBase.worldObj.spawnParticle("magicCrit", par3EntityLivingBase.posX, par3EntityLivingBase.posY, par3EntityLivingBase.posZ-1, 0.0D, 0.0D, 1.0D);
-			par3EntityLivingBase.worldObj.spawnParticle("magicCrit", par3EntityLivingBase.posX, par3EntityLivingBase.posY+1, par3EntityLivingBase.posZ, 0.0D, 0.0D, 1.0D);
-			par3EntityLivingBase.worldObj.spawnParticle("magicCrit", par3EntityLivingBase.posX+1, par3EntityLivingBase.posY+1, par3EntityLivingBase.posZ, 0.0D, 0.0D, 1.0D);
-			par3EntityLivingBase.worldObj.spawnParticle("magicCrit", par3EntityLivingBase.posX-1, par3EntityLivingBase.posY+1, par3EntityLivingBase.posZ, 0.0D, 0.0D, 1.0D);
-			par3EntityLivingBase.worldObj.spawnParticle("magicCrit", par3EntityLivingBase.posX, par3EntityLivingBase.posY+1, par3EntityLivingBase.posZ+1, 0.0D, 0.0D, 1.0D);
-			par3EntityLivingBase.worldObj.spawnParticle("magicCrit", par3EntityLivingBase.posX, par3EntityLivingBase.posY+1, par3EntityLivingBase.posZ-1, 0.0D, 0.0D, 1.0D);
-			par3EntityLivingBase.worldObj.spawnParticle("magicCrit", par3EntityLivingBase.posX, par3EntityLivingBase.posY-1, par3EntityLivingBase.posZ, 0.0D, 0.0D, 1.0D);
-			par3EntityLivingBase.worldObj.spawnParticle("magicCrit", par3EntityLivingBase.posX, par3EntityLivingBase.posY+2, par3EntityLivingBase.posZ, 0.0D, 0.0D, 1.0D);
-			par3EntityLivingBase.worldObj.spawnParticle("magicCrit", par3EntityLivingBase.posX+1, par3EntityLivingBase.posY+2, par3EntityLivingBase.posZ, 0.0D, 0.0D, 1.0D);
-			par3EntityLivingBase.worldObj.spawnParticle("magicCrit", par3EntityLivingBase.posX-1, par3EntityLivingBase.posY+2, par3EntityLivingBase.posZ, 0.0D, 0.0D, 1.0D);
-			par3EntityLivingBase.worldObj.spawnParticle("magicCrit", par3EntityLivingBase.posX, par3EntityLivingBase.posY+2, par3EntityLivingBase.posZ+1, 0.0D, 0.0D, 1.0D);
-			par3EntityLivingBase.worldObj.spawnParticle("magicCrit", par3EntityLivingBase.posX, par3EntityLivingBase.posY+2, par3EntityLivingBase.posZ-1, 0.0D, 0.0D, 1.0D);
-			par3EntityLivingBase.worldObj.spawnParticle("magicCrit", par3EntityLivingBase.posX, par3EntityLivingBase.posY+3, par3EntityLivingBase.posZ, 0.0D, 0.0D, 1.0D);
-			par3EntityLivingBase.worldObj.spawnParticle("magicCrit", par3EntityLivingBase.posX+1, par3EntityLivingBase.posY+3, par3EntityLivingBase.posZ, 0.0D, 0.0D, 1.0D);
-			par3EntityLivingBase.worldObj.spawnParticle("magicCrit", par3EntityLivingBase.posX-1, par3EntityLivingBase.posY+3, par3EntityLivingBase.posZ, 0.0D, 0.0D, 1.0D);
-			par3EntityLivingBase.worldObj.spawnParticle("magicCrit", par3EntityLivingBase.posX, par3EntityLivingBase.posY+3, par3EntityLivingBase.posZ+1, 0.0D, 0.0D, 1.0D);
-			par3EntityLivingBase.worldObj.spawnParticle("magicCrit", par3EntityLivingBase.posX, par3EntityLivingBase.posY+3, par3EntityLivingBase.posZ-1, 0.0D, 0.0D, 1.0D);
 
-			par3EntityLivingBase.worldObj.spawnParticle("magicCrit", par3EntityLivingBase.posX, par3EntityLivingBase.posY+2, par3EntityLivingBase.posZ, 0.0D, 0.0D, 1.0D);
-			par3EntityLivingBase.worldObj.spawnParticle("magicCrit", par3EntityLivingBase.posX+2, par3EntityLivingBase.posY+2, par3EntityLivingBase.posZ, 0.0D, 0.0D, 1.0D);
-			par3EntityLivingBase.worldObj.spawnParticle("magicCrit", par3EntityLivingBase.posX-2, par3EntityLivingBase.posY+2, par3EntityLivingBase.posZ, 0.0D, 0.0D, 1.0D);
-			par3EntityLivingBase.worldObj.spawnParticle("magicCrit", par3EntityLivingBase.posX, par3EntityLivingBase.posY+2, par3EntityLivingBase.posZ+2, 0.0D, 0.0D, 1.0D);
-			par3EntityLivingBase.worldObj.spawnParticle("magicCrit", par3EntityLivingBase.posX, par3EntityLivingBase.posY+2, par3EntityLivingBase.posZ-2, 0.0D, 0.0D, 1.0D);
-			par3EntityLivingBase.worldObj.spawnParticle("magicCrit", par3EntityLivingBase.posX, par3EntityLivingBase.posY+2, par3EntityLivingBase.posZ, 0.0D, 0.0D, 1.0D);
+			par3EntityLivingBase.worldObj.spawnParticle("magicCrit", par3EntityLivingBase.posX+1, par3EntityLivingBase.posY+1, par3EntityLivingBase.posZ, 0.0D, 0.0D, 1.0D);
 			par3EntityLivingBase.worldObj.spawnParticle("magicCrit", par3EntityLivingBase.posX+1, par3EntityLivingBase.posY+2, par3EntityLivingBase.posZ+1, 0.0D, 0.0D, 1.0D);
-			par3EntityLivingBase.worldObj.spawnParticle("magicCrit", par3EntityLivingBase.posX-1, par3EntityLivingBase.posY+2, par3EntityLivingBase.posZ-1, 0.0D, 0.0D, 1.0D);
+			par3EntityLivingBase.worldObj.spawnParticle("magicCrit", par3EntityLivingBase.posX+1, par3EntityLivingBase.posY+2, par3EntityLivingBase.posZ, 0.0D, 0.0D, 1.0D);
+			par3EntityLivingBase.worldObj.spawnParticle("magicCrit", par3EntityLivingBase.posX+1, par3EntityLivingBase.posY+3, par3EntityLivingBase.posZ, 0.0D, 0.0D, 1.0D);
+			par3EntityLivingBase.worldObj.spawnParticle("magicCrit", par3EntityLivingBase.posX+1, par3EntityLivingBase.posY, par3EntityLivingBase.posZ, 0.0D, 0.0D, 1.0D);
 			par3EntityLivingBase.worldObj.spawnParticle("magicCrit", par3EntityLivingBase.posX+2, par3EntityLivingBase.posY+2, par3EntityLivingBase.posZ+1, 0.0D, 0.0D, 1.0D);
+			par3EntityLivingBase.worldObj.spawnParticle("magicCrit", par3EntityLivingBase.posX+2, par3EntityLivingBase.posY+2, par3EntityLivingBase.posZ, 0.0D, 0.0D, 1.0D);
+			par3EntityLivingBase.worldObj.spawnParticle("magicCrit", par3EntityLivingBase.posX, par3EntityLivingBase.posY+1, par3EntityLivingBase.posZ+1, 0.0D, 0.0D, 1.0D);
+			par3EntityLivingBase.worldObj.spawnParticle("magicCrit", par3EntityLivingBase.posX, par3EntityLivingBase.posY+1, par3EntityLivingBase.posZ, 0.0D, 0.0D, 1.0D);
+			par3EntityLivingBase.worldObj.spawnParticle("magicCrit", par3EntityLivingBase.posX, par3EntityLivingBase.posY+1, par3EntityLivingBase.posZ-1, 0.0D, 0.0D, 1.0D);
+			par3EntityLivingBase.worldObj.spawnParticle("magicCrit", par3EntityLivingBase.posX, par3EntityLivingBase.posY+2, par3EntityLivingBase.posZ+1, 0.0D, 0.0D, 1.0D);
+			par3EntityLivingBase.worldObj.spawnParticle("magicCrit", par3EntityLivingBase.posX, par3EntityLivingBase.posY+2, par3EntityLivingBase.posZ+2, 0.0D, 0.0D, 1.0D);
+			par3EntityLivingBase.worldObj.spawnParticle("magicCrit", par3EntityLivingBase.posX, par3EntityLivingBase.posY+2, par3EntityLivingBase.posZ, 0.0D, 0.0D, 1.0D);
+			par3EntityLivingBase.worldObj.spawnParticle("magicCrit", par3EntityLivingBase.posX, par3EntityLivingBase.posY+2, par3EntityLivingBase.posZ, 0.0D, 0.0D, 1.0D);
+			par3EntityLivingBase.worldObj.spawnParticle("magicCrit", par3EntityLivingBase.posX, par3EntityLivingBase.posY+2, par3EntityLivingBase.posZ, 0.0D, 0.0D, 1.0D);
+			par3EntityLivingBase.worldObj.spawnParticle("magicCrit", par3EntityLivingBase.posX, par3EntityLivingBase.posY+2, par3EntityLivingBase.posZ-1, 0.0D, 0.0D, 1.0D);
+			par3EntityLivingBase.worldObj.spawnParticle("magicCrit", par3EntityLivingBase.posX, par3EntityLivingBase.posY+2, par3EntityLivingBase.posZ-2, 0.0D, 0.0D, 1.0D);
+			par3EntityLivingBase.worldObj.spawnParticle("magicCrit", par3EntityLivingBase.posX, par3EntityLivingBase.posY+3, par3EntityLivingBase.posZ+1, 0.0D, 0.0D, 1.0D);
+			par3EntityLivingBase.worldObj.spawnParticle("magicCrit", par3EntityLivingBase.posX, par3EntityLivingBase.posY+3, par3EntityLivingBase.posZ, 0.0D, 0.0D, 1.0D);
+			par3EntityLivingBase.worldObj.spawnParticle("magicCrit", par3EntityLivingBase.posX, par3EntityLivingBase.posY+3, par3EntityLivingBase.posZ-1, 0.0D, 0.0D, 1.0D);
+			par3EntityLivingBase.worldObj.spawnParticle("magicCrit", par3EntityLivingBase.posX, par3EntityLivingBase.posY, par3EntityLivingBase.posZ+1, 0.0D, 0.0D, 1.0D);
+			par3EntityLivingBase.worldObj.spawnParticle("magicCrit", par3EntityLivingBase.posX, par3EntityLivingBase.posY, par3EntityLivingBase.posZ, 0.0D, 0.0D, 1.0D);
+			par3EntityLivingBase.worldObj.spawnParticle("magicCrit", par3EntityLivingBase.posX, par3EntityLivingBase.posY, par3EntityLivingBase.posZ-1, 0.0D, 0.0D, 1.0D);
+			par3EntityLivingBase.worldObj.spawnParticle("magicCrit", par3EntityLivingBase.posX, par3EntityLivingBase.posY-1, par3EntityLivingBase.posZ, 0.0D, 0.0D, 1.0D);
+			par3EntityLivingBase.worldObj.spawnParticle("magicCrit", par3EntityLivingBase.posX-1, par3EntityLivingBase.posY+1, par3EntityLivingBase.posZ, 0.0D, 0.0D, 1.0D);
+			par3EntityLivingBase.worldObj.spawnParticle("magicCrit", par3EntityLivingBase.posX-1, par3EntityLivingBase.posY+2, par3EntityLivingBase.posZ, 0.0D, 0.0D, 1.0D);
+			par3EntityLivingBase.worldObj.spawnParticle("magicCrit", par3EntityLivingBase.posX-1, par3EntityLivingBase.posY+2, par3EntityLivingBase.posZ-1, 0.0D, 0.0D, 1.0D);
+			par3EntityLivingBase.worldObj.spawnParticle("magicCrit", par3EntityLivingBase.posX-1, par3EntityLivingBase.posY+3, par3EntityLivingBase.posZ, 0.0D, 0.0D, 1.0D);
+			par3EntityLivingBase.worldObj.spawnParticle("magicCrit", par3EntityLivingBase.posX-1, par3EntityLivingBase.posY, par3EntityLivingBase.posZ, 0.0D, 0.0D, 1.0D);
+			par3EntityLivingBase.worldObj.spawnParticle("magicCrit", par3EntityLivingBase.posX-2, par3EntityLivingBase.posY+2, par3EntityLivingBase.posZ, 0.0D, 0.0D, 1.0D);
 			par3EntityLivingBase.worldObj.spawnParticle("magicCrit", par3EntityLivingBase.posX-2, par3EntityLivingBase.posY+2, par3EntityLivingBase.posZ-1, 0.0D, 0.0D, 1.0D);
 			special = 0;
 
 
 
-			return true;}
+			return true;
+		}
 		else
-		{  par1ItemStack.damageItem(1, par3EntityLivingBase);
+		{
+			par1ItemStack.damageItem(1, par3EntityLivingBase);
 			return true;
 		}
 	}
