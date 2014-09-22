@@ -27,6 +27,8 @@ public class BlockSpawn extends Block
 		this.setCreativeTab(Scapecraft.tabScapecraftBlock);
 		setHardness(200000.0F);
 		setResistance(5000.0F);
+		this.entityClass = entityClass;
+		this.tickInterval = tickInterval;
 		//setStepSound(soundStoneFootstep);
 	}
 
@@ -47,15 +49,18 @@ public class BlockSpawn extends Block
 	{
 		par1World.scheduleBlockUpdate(par2, par3, par4, this, this.tickRate(par1World));
 	}
+
+	@Override
 	public int tickRate(World par1World)
 	{
 		return tickInterval;
 	}
 
+	@Override
 	public void updateTick(World world, int x, int y, int z, Random par5Random)
-
 	{
-		world.scheduleBlockUpdate(x, y, z, this, this.tickRate(world));
+		if(this.tickInterval != 0)
+			world.scheduleBlockUpdate(x, y, z, this, this.tickRate(world));
 		Entity entity = null;
 		try
 		{
@@ -64,12 +69,14 @@ public class BlockSpawn extends Block
 		catch (Exception e)
 		{
 			e.printStackTrace();
+			return;
 		}
 
 		entity.setLocationAndAngles(x, y + 1, z, world.rand.nextFloat() * 360.0F, 0.0F);
 		world.spawnEntityInWorld(entity);
 		world.setBlockToAir(x, y + 1, z);
 		world.setBlockToAir(x, y + 2, z);
+		world.setBlockToAir(x, y + 3, z);
 
 
 	}

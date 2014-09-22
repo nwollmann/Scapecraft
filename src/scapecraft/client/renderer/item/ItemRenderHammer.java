@@ -1,6 +1,6 @@
 package scapecraft.client.renderer.item;
 
-import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -18,6 +18,7 @@ public class ItemRenderHammer implements IItemRenderer {
 	public ItemRenderHammer(ResourceLocation texture)
 	{
 		WarHammerModel = new ModelWarhammer();		
+		this.texture = texture;
 	}
 
 	@Override
@@ -51,8 +52,7 @@ public class ItemRenderHammer implements IItemRenderer {
 
 					float scale = 1.7F;
 					GL11.glScalef(scale,scale,scale);
-					//FMLClientHandler.instance().getClient().renderEngine.bindTexture("/mods/whip.png");
-					Minecraft.getMinecraft().renderEngine.bindTexture(texture);
+					RenderManager.instance.renderEngine.bindTexture(texture);
 
 
 					GL11.glRotatef(90F, 1.0f, 0.0f, 0.0f);
@@ -74,7 +74,7 @@ public class ItemRenderHammer implements IItemRenderer {
 				{
 					GL11.glPushMatrix();
 
-					Minecraft.getMinecraft().renderEngine.bindTexture(texture);
+					RenderManager.instance.renderEngine.bindTexture(texture);
 
 					float scale = 0.85F;
 
@@ -105,7 +105,7 @@ public class ItemRenderHammer implements IItemRenderer {
 				{
 					GL11.glPushMatrix();
 
-					Minecraft.getMinecraft().renderEngine.bindTexture(texture);
+					RenderManager.instance.renderEngine.bindTexture(texture);
 
 					float scale = 0.85F;
 

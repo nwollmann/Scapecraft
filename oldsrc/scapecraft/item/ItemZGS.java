@@ -74,7 +74,8 @@ public class ItemZGS extends ItemSword
 			par2EntityLivingBase.addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 200, 5));
 
 			special = 0;
-			return true;}
+			return true;
+		}
 		else
 			par1ItemStack.damageItem(1, par3EntityLivingBase);    
 		return true;

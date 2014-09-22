@@ -162,6 +162,13 @@ public class mod_BlocksGalore {
 	public static final Block OakTreeSpawn = (new BlockOakTreeSpawn(2617, 29).setHardness(200000.0F).setResistance(5000.0F).setBlockName("OakTreeAnvilSpawn"));
 	public static final Block YewTreeSpawn = (new BlockYewTreeSpawn(2618, 29).setHardness(200000.0F).setResistance(5000.0F).setBlockName("YewTreeSpawn"));	
 
+	public static final Item Mithlump = new ItemMithlump(1590).setTextureName("mod_BlocksGalore:mithlump");
+	public static final Item Addylump = new ItemAddylump(1660).setTextureName("mod_BlocksGalore:Addylump");
+	public static final Item Runelump = new ItemRunelump(1730).setTextureName("mod_BlocksGalore:Runelump");
+	public static final Item Mithingot = new ItemMithingot(1600).setTextureName("mod_BlocksGalore:mithingot");
+	public static final Item Addyingot = new ItemAddyingot(1670).setTextureName("mod_BlocksGalore:Addyingot");
+	public static final Item Runeingot = new ItemRuneingot(1740).setTextureName("mod_BlocksGalore:Runeingot");
+
 	public static final Item pickaxeGalore = new ItemPickaxeGalore(1351, DRAGON).setTextureName("mod_BlocksGalore:pickaxegalore");
 	public static final Item PickaxeGaloreg = new ItemPickaxeGaloreg(1352, GALOREG).setTextureName("mod_BlocksGalore:pickaxegaloreg");
 	public static final Item Mithpickaxe = new ItemMithpickaxe(1540, MITH).setTextureName("mod_BlocksGalore:Mithpickaxe");
@@ -169,24 +176,18 @@ public class mod_BlocksGalore {
 	public static final Item Mithhoe = new ItemMithhoe(1560, MITH).setTextureName("mod_BlocksGalore:MithHoe");
 	public static final Item Mithshovel = new ItemMithshovel(1570, MITH).setTextureName("mod_BlocksGalore:Mithshovel");
 	public static final Item Mithaxe = new ItemMithaxe(1580,  MITH).setTextureName("mod_BlocksGalore:Mithaxe");
-	public static final Item Mithlump = new ItemMithlump(1590).setTextureName("mod_BlocksGalore:mithlump");
-	public static final Item Mithingot = new ItemMithingot(1600).setTextureName("mod_BlocksGalore:mithingot");
 
 	public static final Item Addypickaxe = new ItemAddypickaxe(1610,ADDY).setTextureName("mod_BlocksGalore:Addypickaxe");
 	public static final Item Addysword = new ItemAddysword(1620,ADDY).setTextureName("mod_BlocksGalore:Addysword");
 	public static final Item Addyhoe = new ItemAddyhoe(1630,  ADDY).setTextureName("mod_BlocksGalore:Addyhoe");
 	public static final Item Addyshovel = new ItemAddyshovel(1640,ADDY).setTextureName("mod_BlocksGalore:Addyshovel");
 	public static final Item Addyaxe = new ItemAddyaxe(1650, ADDY).setTextureName("mod_BlocksGalore:Addyaxe");
-	public static final Item Addylump = new ItemAddylump(1660).setTextureName("mod_BlocksGalore:Addylump");
-	public static final Item Addyingot = new ItemAddyingot(1670).setTextureName("mod_BlocksGalore:Addyingot");
 
 	public static final Item Runepickaxe = new ItemRunepickaxe(1680, RUNE).setTextureName("mod_BlocksGalore:Runepickaxe");
 	public static final Item Runesword = new ItemRunesword(1690, RUNE).setTextureName("mod_BlocksGalore:Runesword");
 	public static final Item Runehoe = new ItemRunehoe(1700, RUNE).setTextureName("mod_BlocksGalore:Runehoe");
 	public static final Item Runeshovel = new ItemRuneshovel(1710, RUNE).setTextureName("mod_BlocksGalore:Runeshovel");
 	public static final Item Runeaxe = new ItemRuneaxe(1720,  RUNE).setTextureName("mod_BlocksGalore:Runeaxe");
-	public static final Item Runelump = new ItemRunelump(1730).setTextureName("mod_BlocksGalore:Runelump");
-	public static final Item Runeingot = new ItemRuneingot(1740).setTextureName("mod_BlocksGalore:Runeingot");
 
 	public static final Item dlong = new Itemdlong(1350,  DRAGON).setTextureName("mod_BlocksGalore:dlong");
 	public static final Item Blacksword = new ItemBlacksword(1750, BLACK).setTextureName("mod_BlocksGalore:BlackSword");

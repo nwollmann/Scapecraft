@@ -21,68 +21,68 @@ public class Resources
 	public static final String ARMOR_SHEET_LOCATION = "/textures/armor/";	 
 
 	public static final ResourceLocation TEXTURE_AddyHammer = new ResourceLocation(
-			"minecraft", ENTITY_SHEET_LOCATION + "AddyWarhammer.png");
+			"scapecraft", ENTITY_SHEET_LOCATION + "AddyWarhammer.png");
 	public static final ResourceLocation TEXTURE_AGS = new ResourceLocation(
-			"minecraft", ENTITY_SHEET_LOCATION + "AGS.png");
+			"scapecraft", ENTITY_SHEET_LOCATION + "AGS.png");
 	public static final ResourceLocation TEXTURE_BGS = new ResourceLocation(
-			"minecraft", ENTITY_SHEET_LOCATION + "BGS.png");
+			"scapecraft", ENTITY_SHEET_LOCATION + "BGS.png");
 	public static final ResourceLocation TEXTURE_DBA = new ResourceLocation(
-			"minecraft", ENTITY_SHEET_LOCATION + "DBA.png");
+			"scapecraft", ENTITY_SHEET_LOCATION + "DBA.png");
 	public static final ResourceLocation TEXTURE_DD = new ResourceLocation(
-			"minecraft", ENTITY_SHEET_LOCATION + "DD.png");
+			"scapecraft", ENTITY_SHEET_LOCATION + "DD.png");
 	public static final ResourceLocation TEXTURE_DDS = new ResourceLocation(
-			"minecraft", ENTITY_SHEET_LOCATION + "DDS.png");
+			"scapecraft", ENTITY_SHEET_LOCATION + "DDS.png");
 	public static final ResourceLocation TEXTURE_GUTHIXSTAFF = new ResourceLocation(
-			"minecraft", ENTITY_SHEET_LOCATION + "guthixstaff.png");
+			"scapecraft", ENTITY_SHEET_LOCATION + "guthixstaff.png");
 	public static final ResourceLocation TEXTURE_MithHammer = new ResourceLocation(
-			"minecraft", ENTITY_SHEET_LOCATION + "MithirilWarhammer.png");
+			"scapecraft", ENTITY_SHEET_LOCATION + "MithrilWarhammer.png");
 	public static final ResourceLocation TEXTURE_RAPIER = new ResourceLocation(
-			"minecraft", ENTITY_SHEET_LOCATION + "rapier.png");
+			"scapecraft", ENTITY_SHEET_LOCATION + "rapier.png");
 	public static final ResourceLocation TEXTURE_RuneHammer = new ResourceLocation(
-			"minecraft", ENTITY_SHEET_LOCATION + "RuneWarhammer.png");
+			"scapecraft", ENTITY_SHEET_LOCATION + "RuneWarhammer.png");
 	public static final ResourceLocation TEXTURE_SARASTAFF = new ResourceLocation(
-			"minecraft", ENTITY_SHEET_LOCATION + "sarastaff.png");
+			"scapecraft", ENTITY_SHEET_LOCATION + "sarastaff.png");
 	public static final ResourceLocation TEXTURE_SGS = new ResourceLocation(
-			"minecraft", ENTITY_SHEET_LOCATION + "SGS.png");
+			"scapecraft", ENTITY_SHEET_LOCATION + "SGS.png");
 	public static final ResourceLocation TEXTURE_SteelHammer = new ResourceLocation(
-			"minecraft", ENTITY_SHEET_LOCATION + "SteelWarhammer.png");
+			"scapecraft", ENTITY_SHEET_LOCATION + "SteelWarhammer.png");
 	public static final ResourceLocation TEXTURE_Whip = new ResourceLocation(
-			"minecraft", ENTITY_SHEET_LOCATION + "whip.png");
+			"scapecraft", ENTITY_SHEET_LOCATION + "whip.png");
 	public static final ResourceLocation TEXTURE_ZAMMYSTAFF = new ResourceLocation(
-			"minecraft", ENTITY_SHEET_LOCATION + "zammystaff.png");
+			"scapecraft", ENTITY_SHEET_LOCATION + "zammystaff.png");
 	public static final ResourceLocation TEXTURE_ZGS = new ResourceLocation(
-			"minecraft", ENTITY_SHEET_LOCATION + "ZGS.png");
+			"scapecraft", ENTITY_SHEET_LOCATION + "ZGS.png");
 	public static final ResourceLocation TEXTURE_SS = new ResourceLocation(
-			"minecraft", ENTITY_SHEET_LOCATION + "SaradominSword.png");
+			"scapecraft", ENTITY_SHEET_LOCATION + "SaradominSword.png");
 	public static final ResourceLocation TEXTURE_TORAG = new ResourceLocation(
-			"minecraft", ENTITY_SHEET_LOCATION + "ToragHammer.png");
+			"scapecraft", ENTITY_SHEET_LOCATION + "ToragHammer.png");
 	public static final ResourceLocation TEXTURE_VERAC = new ResourceLocation(
-			"minecraft", ENTITY_SHEET_LOCATION + "Vercflail.png");
+			"scapecraft", ENTITY_SHEET_LOCATION + "Vercflail.png");
 	public static final ResourceLocation TEXTURE_GUTHAN = new ResourceLocation(
-			"minecraft", ENTITY_SHEET_LOCATION + "GuthanSpear.png");
+			"scapecraft", ENTITY_SHEET_LOCATION + "GuthanSpear.png");
 	public static final ResourceLocation TEXTURE_DHAROK = new ResourceLocation(
-			"minecraft", ENTITY_SHEET_LOCATION + "DharokAxe.png");
+			"scapecraft", ENTITY_SHEET_LOCATION + "DharokAxe.png");
 	public static final ResourceLocation TEXTURE_KARIL = new ResourceLocation(
-			"minecraft", ENTITY_SHEET_LOCATION + "KarilCBow.png");
+			"scapecraft", ENTITY_SHEET_LOCATION + "KarilCBow.png");
 	public static final ResourceLocation TEXTURE_AHRIM = new ResourceLocation(
-			"minecraft", ENTITY_SHEET_LOCATION + "AhrimStaff.png");
+			"scapecraft", ENTITY_SHEET_LOCATION + "AhrimStaff.png");
 	public static final ResourceLocation TEXTURE_AKRISAE = new ResourceLocation(
-			"minecraft", ENTITY_SHEET_LOCATION + "Akrisae Mace.png");
+			"scapecraft", ENTITY_SHEET_LOCATION + "Akrisae Mace.png");
 	public static final ResourceLocation TEXTURE_PITCHFORK = new ResourceLocation(
-			"minecraft", ENTITY_SHEET_LOCATION + "PitchFork.png");
+			"scapecraft", ENTITY_SHEET_LOCATION + "PitchFork.png");
 	public static final ResourceLocation TEXTURE_BLACKHALBERD = new ResourceLocation(
-			"minecraft", ENTITY_SHEET_LOCATION + "blackhalberd.png");
+			"scapecraft", ENTITY_SHEET_LOCATION + "blackhalberd.png");
 	public static final ResourceLocation TEXTURE_DARKBOW = new ResourceLocation(
-			"minecraft", ENTITY_SHEET_LOCATION + "DarkBow.png");
+			"scapecraft", ENTITY_SHEET_LOCATION + "DarkBow.png");
 	public static final ResourceLocation TEXTURE_FIRE = new ResourceLocation(
-			"minecraft", ENTITY_SHEET_LOCATION + "Fire.png");
+			"scapecraft", ENTITY_SHEET_LOCATION + "Fire.png");
 	public static final ResourceLocation TEXTURE_STALL = new ResourceLocation(
-			"minecraft", ENTITY_SHEET_LOCATION + "Stall.png");
+			"scapecraft", ENTITY_SHEET_LOCATION + "Stall.png");
 	public static final ResourceLocation TEXTURE_BLOCKSTALL = new ResourceLocation(
-			"minecraft", ENTITY_SHEET_LOCATION + "blockstall.png");
-	public static final ResourceLocation TEXTURE_CMAUL = new ResourceLocation("minecraft", ENTITY_SHEET_LOCATION + "cmaul.png");
-	public static final ResourceLocation TEXTURE_DRYRAPIER = new ResourceLocation("minecraft", ENTITY_SHEET_LOCATION + "DryRapier.png");
-	public static final ResourceLocation TEXTURE_DRYLONG = new ResourceLocation("minecraft", ENTITY_SHEET_LOCATION + "DryLong.png");
-	public static final ResourceLocation TEXTURE_DRYMACE = new ResourceLocation("minecraft", ENTITY_SHEET_LOCATION + "DryMace.png");
-	public static final ResourceLocation TEXTURE_D2H = new ResourceLocation("minecraft", ENTITY_SHEET_LOCATION + "d2h.png");
+			"scapecraft", ENTITY_SHEET_LOCATION + "blockstall.png");
+	public static final ResourceLocation TEXTURE_CMAUL = new ResourceLocation("scapecraft", ENTITY_SHEET_LOCATION + "cmaul.png");
+	public static final ResourceLocation TEXTURE_DRYRAPIER = new ResourceLocation("scapecraft", ENTITY_SHEET_LOCATION + "DryRapier.png");
+	public static final ResourceLocation TEXTURE_DRYLONG = new ResourceLocation("scapecraft", ENTITY_SHEET_LOCATION + "DryLong.png");
+	public static final ResourceLocation TEXTURE_DRYMACE = new ResourceLocation("scapecraft", ENTITY_SHEET_LOCATION + "DryMace.png");
+	public static final ResourceLocation TEXTURE_D2H = new ResourceLocation("scapecraft", ENTITY_SHEET_LOCATION + "d2h.png");
 }

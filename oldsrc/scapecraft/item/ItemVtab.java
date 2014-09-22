@@ -33,38 +33,25 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 
 
-public class ItemVtab extends Item {
-
-
-
-
-	public ItemVtab(int i) {
+public class ItemVtab extends Item 
+{
+	public ItemVtab(int i)
+	{
 		super(i);
 		this.setCreativeTab(CreativeTabs.tabMaterials);
 
 	}
 
-
 	//synchronized
-
-
-	public ItemStack onItemRightClick(ItemStack itemstack, World world,
-			EntityPlayer entityplayer){
+	public ItemStack onItemRightClick(ItemStack itemstack, World world, EntityPlayer entityplayer)
+	{
 
 		entityplayer.setPositionAndUpdate(-973, 70, 214);
 		--itemstack.stackSize;
 		return itemstack;
 
 	}
-
-
-
-
-
-
-
-
-
+	
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IconRegister ir)
 	{

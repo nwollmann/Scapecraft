@@ -1,7 +1,5 @@
 package scapecraft.item;
 
-import java.lang.reflect.Field;
-
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -9,6 +7,7 @@ import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
+import scapecraft.ReflectionHelper;
 import scapecraft.Scapecraft;
 
 public class ItemArmorScapecraft extends ItemArmor
@@ -22,23 +21,7 @@ public class ItemArmorScapecraft extends ItemArmor
 		super(ArmorMaterial.GOLD, par3, type);
 		this.material = armorMaterial;
 		
-		//Reflection to change final field
-		try
-		{
-			Field damageReduceAmountField = null;
-			try
-			{
-				damageReduceAmountField = ItemArmor.class.getDeclaredField("c");
-			} catch (NoSuchFieldException e) {
-				damageReduceAmountField = ItemArmor.class.getDeclaredField("damageReduceAmount");
-			}
-			damageReduceAmountField.setAccessible(true);
-			damageReduceAmountField.setInt(this, armorMaterial.getDamageReductionAmount(type));
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
+		ReflectionHelper.changeFinal(ItemArmor.class, this, armorMaterial.getDamageReductionAmount(type), "damageReduceAmount", "c");
 
 		this.setMaxDamage(armorMaterial.getDurability(type));
 		this.setCreativeTab(Scapecraft.tabScapecraftArmor);
@@ -117,6 +100,13 @@ public class ItemArmorScapecraft extends ItemArmor
 						break;
 					case 3:
 						event.ammount += 4F;
+				}
+				break;
+			case VERAC:
+				if(this.armorType == 0 && event.source.getEntity() instanceof EntityPlayer && this.isWearingFullSet((EntityPlayer) event.source.getEntity()) && ((EntityPlayer) event.source.getEntity()).getCurrentEquippedItem() != null && ((EntityPlayer) event.source.getEntity()).getCurrentEquippedItem().getItem() == Scapecraft.veracFlail)
+				{
+					System.out.println(event.ammount);
+					event.source.setDamageBypassesArmor().setDamageIsAbsolute();
 				}
 				break;
 			default:

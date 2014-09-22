@@ -5,6 +5,7 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
 import scapecraft.Scapecraft;
 
@@ -67,5 +68,9 @@ public class ItemWeapon extends ItemSword
 	public boolean getIsRepairable(ItemStack itemstack, ItemStack itemstack2)
 	{
 		return false; //TODO is this right?
+	}
+
+	public void onEntityHurt(LivingHurtEvent event)
+	{
 	}
 }

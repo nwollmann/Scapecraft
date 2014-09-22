@@ -1,16 +1,95 @@
 package scapecraft;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemFood;
 import net.minecraftforge.common.MinecraftForge;
 
+import scapecraft.block.BlockScapecraft;
 import scapecraft.block.BlockSpawn;
+import scapecraft.client.ClientProxy;
+import scapecraft.entity.EntityAbbyDemon;
+import scapecraft.entity.EntityAhrim;
+import scapecraft.entity.EntityAkrisae;
+import scapecraft.entity.EntityBandit;
+import scapecraft.entity.EntityBarbarian;
+import scapecraft.entity.EntityBlackDemon;
+import scapecraft.entity.EntityBlackDragon;
+import scapecraft.entity.EntityBlackGuard;
+import scapecraft.entity.EntityBlackGuard2;
+import scapecraft.entity.EntityBlackKnight;
+import scapecraft.entity.EntityBot;
+import scapecraft.entity.EntityBot2;
+import scapecraft.entity.EntityBot3;
+import scapecraft.entity.EntityCaveCrawler;
+import scapecraft.entity.EntityCook;
+import scapecraft.entity.EntityDarkwizard;
+import scapecraft.entity.EntityDharok;
+import scapecraft.entity.EntityDoctor;
+import scapecraft.entity.EntityDwarf;
+import scapecraft.entity.EntityEliteBlackKnight;
+import scapecraft.entity.EntityFarmer;
+import scapecraft.entity.EntityFireGiant;
+import scapecraft.entity.EntityFremGuard;
+import scapecraft.entity.EntityGeneralGraardor;
+import scapecraft.entity.EntityGhost;
+import scapecraft.entity.EntityGoblin;
+import scapecraft.entity.EntityGreenDragon;
+import scapecraft.entity.EntityGuard;
+import scapecraft.entity.EntityGuthan;
+import scapecraft.entity.EntityHellhound;
+import scapecraft.entity.EntityHeroKnight;
+import scapecraft.entity.EntityHighMage;
+import scapecraft.entity.EntityHillGiant;
+import scapecraft.entity.EntityIceGiant;
+import scapecraft.entity.EntityIronDragon;
+import scapecraft.entity.EntityKK;
+import scapecraft.entity.EntityKKspawn;
+import scapecraft.entity.EntityKQ;
+import scapecraft.entity.EntityKQ2;
+import scapecraft.entity.EntityKaril;
+import scapecraft.entity.EntityKing;
+import scapecraft.entity.EntityKingsGuard;
+import scapecraft.entity.EntityKos1;
+import scapecraft.entity.EntityKos2;
+import scapecraft.entity.EntityKos3;
+import scapecraft.entity.EntityKos4;
+import scapecraft.entity.EntityLavaBlock;
+import scapecraft.entity.EntityLesserDemon;
+import scapecraft.entity.EntityLesserDemon2;
+import scapecraft.entity.EntityLootChest;
+import scapecraft.entity.EntityMagicBoat;
+import scapecraft.entity.EntityMan;
+import scapecraft.entity.EntityMorgan;
+import scapecraft.entity.EntityMossGiant;
+import scapecraft.entity.EntityMugger;
+import scapecraft.entity.EntityRat;
+import scapecraft.entity.EntityRatSmall;
+import scapecraft.entity.EntityScapecraft;
+import scapecraft.entity.EntityScorpion;
+import scapecraft.entity.EntitySergeantGrimspike;
+import scapecraft.entity.EntitySergeantSteelwill;
+import scapecraft.entity.EntitySergeantStrongstack;
+import scapecraft.entity.EntityShopKeeper;
+import scapecraft.entity.EntityTD;
+import scapecraft.entity.EntityTNTXPrimed;
+import scapecraft.entity.EntityTheif;
+import scapecraft.entity.EntityTinyTNTPrimed;
+import scapecraft.entity.EntityTorag;
+import scapecraft.entity.EntityVampire;
+import scapecraft.entity.EntityVarze;
+import scapecraft.entity.EntityVerac;
+import scapecraft.entity.EntityWhiteKnight;
+import scapecraft.entity.EntityWizard;
 import scapecraft.item.ItemArmorBandos;
 import scapecraft.item.ItemArmorScapecraft;
 import scapecraft.item.ItemHammer;
 import scapecraft.item.ItemSetWeapon;
+import scapecraft.item.ItemSpecialWeapon;
+import scapecraft.item.ItemWeapon;
 import scapecraft.item.ScapecraftArmorMaterial;
 import scapecraft.item.ScapecraftToolMaterial;
 
@@ -20,6 +99,7 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
+import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 @Mod(modid = "Scapecraft", name = "Scapecraft")
@@ -38,39 +118,18 @@ public class Scapecraft
 	};
 
 	public static final Item santaHelmet = new ItemArmorScapecraft(ScapecraftArmorMaterial.SANTA, 0, 0,"santa");
-	//public static final Item santaChestplate = new ItemArmorScapecraft(ScapecraftArmorMaterial.SANTA,1, 1,"santa");
-	//public static final Item santaLeggings = new ItemArmorScapecraft(ScapecraftArmorMaterial.SANTA, 2, 2,"santa");
-	//public static final Item santaBoots = new ItemArmorScapecraft(ScapecraftArmorMaterial.SANTA, 3, 3,"santa");
 
 	public static final Item phatHelmet = new ItemArmorScapecraft(ScapecraftArmorMaterial.PHAT, 0, 0,"phat");
-	//public static final Item phatChestplate = new ItemArmorScapecraft(ScapecraftArmorMaterial.PHAT,1, 1,"phat");
-	//public static final Item phatLeggings = new ItemArmorScapecraft(ScapecraftArmorMaterial.PHAT, 2, 2,"phat");
-	//public static final Item phatBoots = new ItemArmorScapecraft(ScapecraftArmorMaterial.PHAT, 3, 3,"phat");
 
 	public static final Item wphatHelmet = new ItemArmorScapecraft(ScapecraftArmorMaterial.WPHAT, 0, 0,"whitephat");
-	//public static final Item wphatChestplate = new ItemArmorScapecraft(ScapecraftArmorMaterial.WPHAT,1, 1,"whitephat");
-	//public static final Item wphatLeggings = new ItemArmorScapecraft(ScapecraftArmorMaterial.WPHAT, 2, 2,"whitephat");
-	//public static final Item wphatBoots = new ItemArmorScapecraft(ScapecraftArmorMaterial.WPHAT, 3, 3,"whitephat");
 
 	public static final Item yphatHelmet = new ItemArmorScapecraft(ScapecraftArmorMaterial.YPHAT, 0, 0,"yellowphat");
-	//public static final Item yphatChestplate = new ItemArmorScapecraft(ScapecraftArmorMaterial.YPHAT,1, 1,"yellowphat");
-	//public static final Item yphatLeggings = new ItemArmorScapecraft(ScapecraftArmorMaterial.YPHAT, 2, 2,"yellowphat");
-	//public static final Item yphatBoots = new ItemArmorScapecraft(ScapecraftArmorMaterial.YPHAT, 3, 3,"yellowphat");
 
 	public static final Item gphatHelmet = new ItemArmorScapecraft(ScapecraftArmorMaterial.GPHAT, 0, 0,"greenphat");
-	//public static final Item gphatChestplate = new ItemArmorScapecraft(ScapecraftArmorMaterial.GPHAT,1, 1,"greenphat");
-	//public static final Item gphatLeggings = new ItemArmorScapecraft(ScapecraftArmorMaterial.GPHAT, 2, 2,"greenphat");
-	//public static final Item gphatBoots = new ItemArmorScapecraft(ScapecraftArmorMaterial.GPHAT, 3, 3,"greenphat");
 
 	public static final Item rphatHelmet = new ItemArmorScapecraft(ScapecraftArmorMaterial.RPHAT, 0, 0,"redphat");
-	//public static final Item rphatChestplate = new ItemArmorScapecraft(ScapecraftArmorMaterial.RPHAT,1, 1,"redphat");
-	//public static final Item rphatLeggings = new ItemArmorScapecraft(ScapecraftArmorMaterial.RPHAT, 2, 2,"redphat");
-	//public static final Item rphatBoots = new ItemArmorScapecraft(ScapecraftArmorMaterial.RPHAT, 3, 3,"redphat");
 
 	public static final Item pphatHelmet = new ItemArmorScapecraft(ScapecraftArmorMaterial.PPHAT, 0, 0,"purplephat");
-	//public static final Item pphatChestplate = new ItemArmorScapecraft(ScapecraftArmorMaterial.PPHAT,1, 1,"purplephat");
-	//public static final Item pphatLeggings = new ItemArmorScapecraft(ScapecraftArmorMaterial.PPHAT, 2, 2,"purplephat");
-	//public static final Item pphatBoots = new ItemArmorScapecraft(ScapecraftArmorMaterial.PPHAT, 3, 3,"purplephat");
 
 	public static final Item dragonHelmet = new ItemArmorScapecraft(ScapecraftArmorMaterial.DRAGON, 0, 0,"dragon");
 	public static final Item dragonChestplate = new ItemArmorScapecraft(ScapecraftArmorMaterial.DRAGON,1, 1,"dragon");
@@ -199,16 +258,64 @@ public class Scapecraft
 		}
 	};
 
-	public static final Block VeracSpawn = new BlockSpawn(Entity.class, 80);
-	public static final Block ToragSpawn = new BlockSpawn(Entity.class, 80);
-	public static final Block DharokSpawn = new BlockSpawn(Entity.class, 80);
-	public static final Block KarilSpawn = new BlockSpawn(Entity.class, 80);
-	public static final Block AhrimSpawn = new BlockSpawn(Entity.class, 80);
-	public static final Block AkrisaeSpawn = new BlockSpawn(Entity.class, 80);
-	public static final Block GuthanSpawn = new BlockSpawn(Entity.class, 80);
+	public static final Block barbarianSpawn = new BlockSpawn(EntityBarbarian.class, 0, true).setBlockName("barbarianSpawn");
+	public static final Block botSpawn = new BlockSpawn(EntityBot.class, 0, true).setBlockName("botSpawn");
+	public static final Block darkwizardSpawn = new BlockSpawn(EntityDarkwizard.class, 0, true).setBlockName("darkwizardSpawn");
+	public static final Block dwarfSpawn = new BlockSpawn(EntityDwarf.class, 0, true).setBlockName("dwarfSpawn");
+	public static final Block goblinSpawn = new BlockSpawn(EntityGoblin.class, 0, true).setBlockName("goblinSpawn");
+	public static final Block guardSpawn = new BlockSpawn(EntityGuard.class, 0, true).setBlockName("guardSpawn");
+	public static final Block iceGiantSpawn = new BlockSpawn(EntityIceGiant.class, 0, true).setBlockName("iceGiantSpawn");
+	//TODO there's something special with this one
+	public static final Block ironDragonSpawn = new BlockSpawn(EntityIronDragon.class, 0, true).setBlockName("ironDragonSpawn");
+	public static final Block lesserSpawn = new BlockSpawn(EntityLesserDemon.class, 0, true).setBlockName("lesserSpawn");
+	public static final Block manSpawn = new BlockSpawn(EntityMan.class, 0, true).setBlockName("manSpawn");
+	public static final Block muggerSpawn = new BlockSpawn(EntityMugger.class, 0, true).setBlockName("muggerSpawn");
+	public static final Block ratSpawn = new BlockSpawn(EntityRat.class, 0, true).setBlockName("ratSpawn");
+	public static final Block smallRatSpawn = new BlockSpawn(EntityRatSmall.class, 0, true).setBlockName("smallRatSpawn");
+	public static final Block theifSpawn = new BlockSpawn(EntityTheif.class, 0, true).setBlockName("theifSpawn");
+	public static final Block whiteKnightSpawn = new BlockSpawn(EntityWhiteKnight.class, 0, true).setBlockName("whiteKnightSpawn");
+	public static final Block wizardSpawn = new BlockSpawn(EntityWizard.class, 0, true).setBlockName("wizardSpawn");
+	public static final Block abbyDemonSpawn = new BlockSpawn(EntityAbbyDemon.class, 0, true).setBlockName("abbyDemonSpawn");
+	public static final Block blackDemonSpawn = new BlockSpawn(EntityBlackDemon.class, 0, true).setBlockName("blackDemonSpawn");
+	public static final Block blackDragonSpawn = new BlockSpawn(EntityBlackDragon.class, 0, true).setBlockName("blackDragonSpawn");
+	public static final Block blackKnightSpawn = new BlockSpawn(EntityBlackKnight.class, 0, true).setBlockName("blackKnightSpawn");
+	public static final Block caveCrawlerSpawn = new BlockSpawn(EntityCaveCrawler.class, 0, true).setBlockName("caveCrawlerSpawn");
+	public static final Block fireGiantSpawn = new BlockSpawn(EntityFireGiant.class, 0, true).setBlockName("fireGiantSpawn");
+	public static final Block ghostSpawn = new BlockSpawn(EntityGhost.class, 0, true).setBlockName("ghostSpawn");
+	public static final Block greenDragonSpawn = new BlockSpawn(EntityGreenDragon.class, 0, true).setBlockName("greenDragonSpawn");
+	public static final Block hillGiantSpawn = new BlockSpawn(EntityHillGiant.class, 0, true).setBlockName("hillGiantSpawn");
+	public static final Block kq2Spawn = new BlockSpawn(EntityKQ2.class, 0, true).setBlockName("kq2Spawn");
+	public static final Block mossGiantSpawn = new BlockSpawn(EntityMossGiant.class, 0, true).setBlockName("mossGiantSpawn");
+	public static final Block scorpionSpawn = new BlockSpawn(EntityScorpion.class, 0, true).setBlockName("scorpionSpawn");
+	public static final Block kingGuardSpawn = new BlockSpawn(EntityKingsGuard.class, 5, true).setBlockName("kingGuardSpawn");
+	public static final Block kosSpawn = new BlockSpawn(EntityKos1.class, 20).setBlockName("kosSpawn");
+	public static final Block tdSpawn = new BlockSpawn(EntityTD.class, 20).setBlockName("tdSpawn");
+	public static final Block cookSpawn = new BlockSpawn(EntityCook.class, 200).setBlockName("cookSpawn");
+	public static final Block doctorSpawn = new BlockSpawn(EntityDoctor.class, 200).setBlockName("doctorSpawn");
+	public static final Block fremGuardSpawn = new BlockSpawn(EntityFremGuard.class, 200).setBlockName("fremGuardSpawn");
+	public static final Block morganSpawn = new BlockSpawn(EntityMorgan.class, 200).setBlockName("morganSpawn");
+	public static final Block shopKeeperSpawn = new BlockSpawn(EntityShopKeeper.class, 200).setBlockName("shopKeeperSpawn");
+	public static final Block varzeSpawn = new BlockSpawn(EntityVarze.class, 200).setBlockName("varzeSpawn");
+	public static final Block blackGuard2Spawn = new BlockSpawn(EntityBlackGuard2.class, 1800).setBlockName("blackGuard2Spawn");
+	public static final Block heroKnightSpawn = new BlockSpawn(EntityHeroKnight.class, 4000).setBlockName("heroKnightSpawn");
+	public static final Block ahrimSpawn = new BlockSpawn(EntityAhrim.class, 6000).setBlockName("ahrimSpawn");
+	public static final Block akrisaeSpawn = new BlockSpawn(EntityAkrisae.class, 6000).setBlockName("akrisaeSpawn");
+	public static final Block dharokSpawn = new BlockSpawn(EntityDharok.class, 6000).setBlockName("dharokSpawn");
+	public static final Block eliteBlackKnightSpawn = new BlockSpawn(EntityEliteBlackKnight.class, 6000).setBlockName("eliteBlackKnightSpawn");
+	public static final Block guthanSpawn = new BlockSpawn(EntityGuthan.class, 6000).setBlockName("guthanSpawn");
+	public static final Block karilSpawn = new BlockSpawn(EntityKaril.class, 6000).setBlockName("karilSpawn");
+	public static final Block toragSpawn = new BlockSpawn(EntityTorag.class, 6000).setBlockName("toragSpawn");
+	public static final Block veracSpawn = new BlockSpawn(EntityVerac.class, 6000).setBlockName("veracSpawn");
+	public static final Block banditSpawn = new BlockSpawn(EntityBandit.class, 8000).setBlockName("banditSpawn");
+	public static final Block highMageSpawn = new BlockSpawn(EntityHighMage.class, 12000).setBlockName("highMageSpawn");
+	public static final Block kingSpawn = new BlockSpawn(EntityKing.class, 12000).setBlockName("kingSpawn");
+	public static final Block kqSpawn = new BlockSpawn(EntityKQ.class, 12000).setBlockName("kqSpawn");
+	public static final Block kkSpawn = new BlockSpawn(EntityKK.class, 24000).setBlockName("kkSpawn");
+	public static final Block hellhoundSpawn = new BlockSpawn(EntityHellhound.class, 72000).setBlockName("hellhoundSpawn");
 
-	public static final Block MuggerSpawn = new BlockSpawn(Entity.class, 80);
-	public static final Block BanditSpawn = new BlockSpawn(Entity.class, 80);
+	public static final Block addyOre = new BlockScapecraft(Material.rock).setBlockTextureName("scapecraft:AddyOre").setHardness(30.0F).setResistance(5.0F).setBlockName("addyOre");
+	public static final Block mithOre = new BlockScapecraft(Material.rock).setBlockTextureName("scapecraft:MithOre").setHardness(60.0F).setResistance(5.0F).setBlockName("mithOre");
+	public static final Block runeOre = new BlockScapecraft(Material.rock).setBlockTextureName("scapecraft:RuneOre").setHardness(80.0F).setResistance(50.0F).setBlockName("runeOre");
 
 	public static final CreativeTabs tabScapecraftWeapon = new CreativeTabs("tabScapecraftWeapon")
 	{
@@ -219,16 +326,78 @@ public class Scapecraft
 		}
 	};
 
+	public static final Item mithSword = new ItemWeapon(ScapecraftToolMaterial.MITH, 4, "MithSword");
+	public static final Item addySword = new ItemWeapon(ScapecraftToolMaterial.ADDY, 4, "AddySword");
+	public static final Item runeSword = new ItemWeapon(ScapecraftToolMaterial.RUNE, 4, "RuneSword");
+	public static final Item blackSword = new ItemWeapon(ScapecraftToolMaterial.BLACK, 4, "BlackSword");
+	public static final Item whiteSword = new ItemWeapon(ScapecraftToolMaterial.BLACK, 4, "WhiteSword");
+	public static final Item blackHalberd = new ItemWeapon(ScapecraftToolMaterial.BLACKH, 4, "BlackHalberd");
+	public static final Item chicken = new ItemWeapon(ScapecraftToolMaterial.CHICKEN, 4, "Chicken");
+	public static final Item D2H = new ItemWeapon(ScapecraftToolMaterial.WHIP, 4, "D2H");
+	public static final Item dragonLongsword = new ItemWeapon(ScapecraftToolMaterial.DRAGON, 4, "DragonLongsword");
+	public static final Item dragonCScimmy = new ItemWeapon(ScapecraftToolMaterial.DRAGONC, 4, "DragonCScimmy");
+	public static final Item pitchFork = new ItemWeapon(ScapecraftToolMaterial.PITCHFORK, 4, "PitchFork");
+
 	public static final Item steelHammer = new ItemHammer(ScapecraftToolMaterial.STEEL, "SteelHammer");
 	public static final Item mithHammer = new ItemHammer(ScapecraftToolMaterial.MITH, "MithHammer");
 	public static final Item addyHammer = new ItemHammer(ScapecraftToolMaterial.ADDY, "AddyHammer");
 	public static final Item runeHammer = new ItemHammer(ScapecraftToolMaterial.RUNE, "RuneHammer");
+
+	public static final Item whip = new ItemSpecialWeapon(ScapecraftToolMaterial.WHIP, 4F, "Whip", 5000);
+	public static final Item dragonScimmy = new ItemSpecialWeapon(ScapecraftToolMaterial.DRAGONS, 5F, "DragonScimmy", 5500);
 
 	public static final Item toragHammer = new ItemSetWeapon(ScapecraftToolMaterial.TORAG, ScapecraftArmorMaterial.TORAG, "ToragHammerinv");
 	public static final Item veracFlail = new ItemSetWeapon(ScapecraftToolMaterial.VERAC, ScapecraftArmorMaterial.VERAC, "VeracFlailinv");
 	public static final Item guthanSpear = new ItemSetWeapon(ScapecraftToolMaterial.GUTHAN, ScapecraftArmorMaterial.GUTHAN, "GuthanSpearinv");
 	public static final Item dharokAxe = new ItemSetWeapon(ScapecraftToolMaterial.DHAROK, ScapecraftArmorMaterial.DHAROK, "DharokAxeinv");
 	public static final Item akrisaeMace = new ItemSetWeapon(ScapecraftToolMaterial.AKRISAE, ScapecraftArmorMaterial.AKRISAE, "AkrisaeMaceinv");
+
+	public static final CreativeTabs tabScapecraftMisc = new CreativeTabs("tabScapecraftMisc")
+	{
+		@Override
+		public Item getTabIconItem()
+		{
+			return questPoint;
+		}
+	};
+
+	public static final Item mithlump = new Item().setTextureName("scapecraft:mithlump").setUnlocalizedName("mithlump");
+	public static final Item addylump = new Item().setTextureName("scapecraft:Addylump").setUnlocalizedName("addylump");
+	public static final Item runelump = new Item().setTextureName("scapecraft:Runelump").setUnlocalizedName("runelump");
+	public static final Item mithingot = new Item().setTextureName("scapecraft:mithingot").setUnlocalizedName("mithingot");
+	public static final Item addyingot = new Item().setTextureName("scapecraft:Addyingot").setUnlocalizedName("addyingot");
+	public static final Item runeingot = new Item().setTextureName("scapecraft:Runeingot").setUnlocalizedName("runeingot");
+	public static final Item graniteLump = new Item().setUnlocalizedName("graniteLump").setTextureName("scapecraft:GraniteLump").setCreativeTab(tabScapecraftMisc);
+	public static final Item magicFruit = new ItemFood(20, false).setUnlocalizedName("magicFruit").setTextureName("scapecraft:MagicFruit").setCreativeTab(tabScapecraftMisc);
+	public static final Item saradominHilt = new ItemFood(20, false).setUnlocalizedName("saradominHilt").setTextureName("scapecraft:MagicFruit").setCreativeTab(tabScapecraftMisc);
+	public static final Item cabbagepieuncooked = new Item().setUnlocalizedName("cabbagepieuncooked").setTextureName("scapecraft:CabbagePie").setCreativeTab(tabScapecraftMisc);
+	public static final Item meatpieuncooked = new Item().setUnlocalizedName("meatuncooked").setTextureName("scapecraft:MeatPie").setCreativeTab(tabScapecraftMisc);
+	public static final Item applepieuncooked = new Item().setUnlocalizedName("applepieuncooked").setTextureName("scapecraft:ApplePie").setCreativeTab(tabScapecraftMisc);
+	public static final Item fishpieuncooked = new Item().setUnlocalizedName("fishpieuncooked").setTextureName("scapecraft:FishPie").setCreativeTab(tabScapecraftMisc);
+	public static final Item shard1 = new Item().setUnlocalizedName("shard1").setTextureName("scapecraft:Shard1").setCreativeTab(tabScapecraftMisc);
+	public static final Item shard2 = new Item().setUnlocalizedName("shard2").setTextureName("scapecraft:Shard2").setCreativeTab(tabScapecraftMisc);
+	public static final Item shard3 = new Item().setUnlocalizedName("shard3").setTextureName("scapecraft:Shard3").setCreativeTab(tabScapecraftMisc);
+	public static final Item ratTail = new Item().setUnlocalizedName("ratTail").setTextureName("scapecraft:RatTail").setCreativeTab(tabScapecraftMisc);
+	public static final Item questPoint = new Item().setUnlocalizedName("questPoint").setTextureName("scapecraft:QuestPoint").setCreativeTab(tabScapecraftMisc);
+	public static final Item questPoint1 = new Item().setUnlocalizedName("questPoint1").setTextureName("scapecraft:QuestPoint").setCreativeTab(tabScapecraftMisc);
+	public static final Item questPoint2 = new Item().setUnlocalizedName("questPoint2").setTextureName("scapecraft:QuestPoint").setCreativeTab(tabScapecraftMisc);
+	public static final Item questPoint3 = new Item().setUnlocalizedName("questPoint3").setTextureName("scapecraft:QuestPoint").setCreativeTab(tabScapecraftMisc);
+	public static final Item zamorakHilt = new Item().setUnlocalizedName("zamorakHilt").setTextureName("scapecraft:ZamorakHilt").setCreativeTab(tabScapecraftMisc);
+	public static final Item armadylHilt = new Item().setUnlocalizedName("armadylHilt").setTextureName("scapecraft:ArmadylHilt").setCreativeTab(tabScapecraftMisc);
+	public static final Item bandosHilt = new Item().setUnlocalizedName("bandosHilt").setTextureName("scapecraft:BandosHilt").setCreativeTab(tabScapecraftMisc);
+	public static final Item veracKey = new Item().setUnlocalizedName("VeracKey").setTextureName("scapecraft:Key1").setCreativeTab(tabScapecraftMisc);
+	public static final Item toragKey = new Item().setUnlocalizedName("ToragKey").setTextureName("scapecraft:Key1").setCreativeTab(tabScapecraftMisc);
+	public static final Item dharokKey = new Item().setUnlocalizedName("DharokKey").setTextureName("scapecraft:Key1").setCreativeTab(tabScapecraftMisc);
+	public static final Item karilKey = new Item().setUnlocalizedName("KarilKey").setTextureName("scapecraft:Key1").setCreativeTab(tabScapecraftMisc);
+	public static final Item ahrimKey = new Item().setUnlocalizedName("AhrimKey").setTextureName("scapecraft:Key1").setCreativeTab(tabScapecraftMisc);
+	public static final Item guthanKey = new Item().setUnlocalizedName("GuthanKey").setTextureName("scapecraft:Key1").setCreativeTab(tabScapecraftMisc);
+	public static final Item akrisaeKey = new Item().setUnlocalizedName("AkrisaeKey").setTextureName("scapecraft:Key1").setCreativeTab(tabScapecraftMisc);
+	//public static final Item TombKey = new ItemTombKey().setUnlocalizedName("scapecraft:TombKey").setCreativeTab(tabScapecraftMisc);
+	//public static final Item DoorKey = new ItemDoorKey().setUnlocalizedName("scapecraft:DoorKey").setCreativeTab(tabScapecraftMisc);
+	//public static final Item RewardChest = new ItemRewardChest().setUnlocalizedName("scapecraft:RewardChest").setCreativeTab(tabScapecraftMisc);
+
+	public static Item addyOreSpawn, ahrimStaff, armaStaff, Armastaff, bandosTab, beer, blackDhide, boltRack, bTab, cabbageSpawn, cMaul, coalOreSpawn, coalSpawn, crystalBow, cTab, darkBow, DBA, DD, DDS, diamondOreSpawn, doorKey, dragonaxe, dragonAxe, DragonScimmy, dryLong, dryMace, dryRapier, fishPie, fremsword, fremswordf, fTab, greenDhide, guthixStaff, hTab, invincibilityPotion, KarilBow, keris, korasis, lTab, magicBoat, magicLog, magicSapling, mithAxe, mithOreSpawn, pickaxeGalore, pickaxeGaloreg, QuestPoint3, rapier, RewardChest, runeOreSpawn, sandSpawn, saraStaff, sarasword, saraSword, SGS, stake, tdTab, vTab, zammyStaff = new Item();
+	private static int currentEntityIdOffset = 0;
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event)
@@ -238,34 +407,26 @@ public class Scapecraft
 	@EventHandler
 	public void load(FMLInitializationEvent event)
 	{
+		addyOre.setHarvestLevel("pickaxe", 2);
+		if(event.getSide().isClient())
+		{
+			ClientProxy.registerRenderers();
+		}
+
+		GameRegistry.registerItem(mithlump, "mithlump");
+		GameRegistry.registerItem(addylump, "addylump");
+		GameRegistry.registerItem(runelump, "runelump");
+		GameRegistry.registerItem(mithingot, "mithingot");
+		GameRegistry.registerItem(addyingot, "addyingot");
+		GameRegistry.registerItem(runeingot, "runeingot");
+
 		GameRegistry.registerItem(santaHelmet, "santaHelmet");
-		//GameRegistry.registerItem(santaChestplate, "santaChestplate");
-		//GameRegistry.registerItem(santaLeggings, "santaLeggings");
-		//GameRegistry.registerItem(santaBoots, "santaBoots");
 		GameRegistry.registerItem(phatHelmet, "phatHelmet");
-		//GameRegistry.registerItem(phatChestplate, "phatChestplate");
-		//GameRegistry.registerItem(phatLeggings, "phatLeggings");
-		//GameRegistry.registerItem(phatBoots, "phatBoots");
 		GameRegistry.registerItem(wphatHelmet, "wphatHelmet");
-		//GameRegistry.registerItem(wphatChestplate, "wphatChestplate");
-		//GameRegistry.registerItem(wphatLeggings, "wphatLeggings");
-		//GameRegistry.registerItem(wphatBoots, "wphatBoots");
 		GameRegistry.registerItem(yphatHelmet, "yphatHelmet");
-		//GameRegistry.registerItem(yphatChestplate, "yphatChestplate");
-		//GameRegistry.registerItem(yphatLeggings, "yphatLeggings");
-		//GameRegistry.registerItem(yphatBoots, "yphatBoots");
 		GameRegistry.registerItem(gphatHelmet, "gphatHelmet");
-		//GameRegistry.registerItem(gphatChestplate, "gphatChestplate");
-		//GameRegistry.registerItem(gphatLeggings, "gphatLeggings");
-		//GameRegistry.registerItem(gphatBoots, "gphatBoots");
 		GameRegistry.registerItem(rphatHelmet, "rphatHelmet");
-		//GameRegistry.registerItem(rphatChestplate, "rphatChestplate");
-		//GameRegistry.registerItem(rphatLeggings, "rphatLeggings");
-		//GameRegistry.registerItem(rphatBoots, "rphatBoots");
 		GameRegistry.registerItem(pphatHelmet, "pphatHelmet");
-		//GameRegistry.registerItem(pphatChestplate, "pphatChestplate");
-		//GameRegistry.registerItem(pphatLeggings, "pphatLeggings");
-		//GameRegistry.registerItem(pphatBoots, "pphatBoots");
 		GameRegistry.registerItem(dragonHelmet, "dragonHelmet");
 		GameRegistry.registerItem(dragonChestplate, "dragonChestplate");
 		GameRegistry.registerItem(dragonLeggings, "dragonLeggings");
@@ -313,7 +474,7 @@ public class Scapecraft
 		GameRegistry.registerItem(veracHelmet, "VeracHelmet");
 		GameRegistry.registerItem(veracChestplate, "VeracChestplate");
 		GameRegistry.registerItem(veracLeggings, "VeracLeggings");
-		GameRegistry.registerItem(veracBoots, "VeracBoots");
+		GameRegistry.registerItem(veracBoots, "veracBoots");
 		GameRegistry.registerItem(guthanHelmet, "GuthanHelmet");
 		GameRegistry.registerItem(guthanChestplate, "GuthanChestplate");
 		GameRegistry.registerItem(guthanLeggings, "GuthanLeggings");
@@ -359,6 +520,15 @@ public class Scapecraft
 		GameRegistry.registerItem(dragonCLeggings, "dragonCLeggings");
 		GameRegistry.registerItem(dragonCBoots, "dragonCBoots");
 
+		GameRegistry.registerItem(addySword, "AddySword");
+		GameRegistry.registerItem(runeSword, "RuneSword");
+		GameRegistry.registerItem(blackSword, "BlackSword");
+		GameRegistry.registerItem(whiteSword, "WhiteSword");
+		GameRegistry.registerItem(chicken, "Chicken");
+		GameRegistry.registerItem(D2H, "D2H");
+		GameRegistry.registerItem(dragonLongsword, "DragonLongsword");
+		GameRegistry.registerItem(dragonCScimmy, "DragonCScimmy");
+		GameRegistry.registerItem(pitchFork, "PitchFork");
 		GameRegistry.registerItem(steelHammer, "SteelHammer");
 		GameRegistry.registerItem(mithHammer, "MithHammer");
 		GameRegistry.registerItem(addyHammer, "AddyHammer");
@@ -369,18 +539,170 @@ public class Scapecraft
 		GameRegistry.registerItem(dharokAxe, "DharokAxe");
 		GameRegistry.registerItem(akrisaeMace, "AkrisaeMace");
 
-		GameRegistry.registerBlock(VeracSpawn, "VeracSpawn");
-		GameRegistry.registerBlock(ToragSpawn, "ToragSpawn");
-		GameRegistry.registerBlock(DharokSpawn, "DharokSpawn");
-		GameRegistry.registerBlock(KarilSpawn, "KarilSpawn");
-		GameRegistry.registerBlock(AhrimSpawn, "AhrimSpawn");
-		GameRegistry.registerBlock(AkrisaeSpawn, "AkrisaeSpawn");
-		GameRegistry.registerBlock(GuthanSpawn, "GuthanSpawn");
-		GameRegistry.registerBlock(MuggerSpawn, "MuggerSpawn");
-		GameRegistry.registerBlock(BanditSpawn, "BanditSpawn");
+		GameRegistry.registerItem(graniteLump, "graniteLump");
+		GameRegistry.registerItem(magicFruit, "magicFruit");
+		GameRegistry.registerItem(saradominHilt, "saradominHilt");
+		GameRegistry.registerItem(cabbagepieuncooked, "cabbagepieuncooked");
+		GameRegistry.registerItem(meatpieuncooked, "meatuncooked");
+		GameRegistry.registerItem(applepieuncooked, "applepieuncooked");
+		GameRegistry.registerItem(fishpieuncooked, "fishpieuncooked");
+		GameRegistry.registerItem(shard1, "shard1");
+		GameRegistry.registerItem(shard2, "shard2");
+		GameRegistry.registerItem(shard3, "shard3");
+		GameRegistry.registerItem(ratTail, "ratTail");
+		GameRegistry.registerItem(questPoint, "questPoint");
+		GameRegistry.registerItem(questPoint1, "questPoint1");
+		GameRegistry.registerItem(questPoint2, "questPoint2");
+		GameRegistry.registerItem(questPoint3, "questPoint3");
+		GameRegistry.registerItem(zamorakHilt, "zamorakHilt");
+		GameRegistry.registerItem(armadylHilt, "armadylHilt");
+		GameRegistry.registerItem(bandosHilt, "bandosHilt");
+		GameRegistry.registerItem(veracKey, "VeracKey");
+		GameRegistry.registerItem(toragKey, "ToragKey");
+		GameRegistry.registerItem(dharokKey, "DharokKey");
+		GameRegistry.registerItem(karilKey, "KarilKey");
+		GameRegistry.registerItem(ahrimKey, "AhrimKey");
+		GameRegistry.registerItem(guthanKey, "GuthanKey");
+		GameRegistry.registerItem(akrisaeKey, "AkrisaeKey");
+
+		GameRegistry.registerBlock(barbarianSpawn, "barbarianSpawn");
+		GameRegistry.registerBlock(botSpawn, "botSpawn");
+		GameRegistry.registerBlock(darkwizardSpawn, "darkwizardSpawn");
+		GameRegistry.registerBlock(dwarfSpawn, "dwarfSpawn");
+		GameRegistry.registerBlock(goblinSpawn, "goblinSpawn");
+		GameRegistry.registerBlock(guardSpawn, "guardSpawn");
+		GameRegistry.registerBlock(iceGiantSpawn, "iceGiantSpawn");
+		GameRegistry.registerBlock(ironDragonSpawn, "ironDragonSpawn");
+		GameRegistry.registerBlock(lesserSpawn, "lesserSpawn");
+		GameRegistry.registerBlock(manSpawn, "manSpawn");
+		GameRegistry.registerBlock(muggerSpawn, "muggerSpawn");
+		GameRegistry.registerBlock(ratSpawn, "ratSpawn");
+		GameRegistry.registerBlock(smallRatSpawn, "smallRatSpawn");
+		GameRegistry.registerBlock(theifSpawn, "theifSpawn");
+		GameRegistry.registerBlock(whiteKnightSpawn, "whiteKnightSpawn");
+		GameRegistry.registerBlock(wizardSpawn, "wizardSpawn");
+		GameRegistry.registerBlock(abbyDemonSpawn, "abbyDemonSpawn");
+		GameRegistry.registerBlock(blackDemonSpawn, "blackDemonSpawn");
+		GameRegistry.registerBlock(blackDragonSpawn, "blackDragonSpawn");
+		GameRegistry.registerBlock(blackKnightSpawn, "blackKnightSpawn");
+		GameRegistry.registerBlock(caveCrawlerSpawn, "caveCrawlerSpawn");
+		GameRegistry.registerBlock(fireGiantSpawn, "fireGiantSpawn");
+		GameRegistry.registerBlock(ghostSpawn, "ghostSpawn");
+		GameRegistry.registerBlock(greenDragonSpawn, "greenDragonSpawn");
+		GameRegistry.registerBlock(hillGiantSpawn, "hillGiantSpawn");
+		GameRegistry.registerBlock(kq2Spawn, "kq2Spawn");
+		GameRegistry.registerBlock(mossGiantSpawn, "mossGiantSpawn");
+		GameRegistry.registerBlock(scorpionSpawn, "scorpionSpawn");
+		GameRegistry.registerBlock(kingGuardSpawn, "kingGuardSpawn");
+		GameRegistry.registerBlock(kosSpawn, "kosSpawn");
+		GameRegistry.registerBlock(tdSpawn, "tdSpawn");
+		GameRegistry.registerBlock(cookSpawn, "cookSpawn");
+		GameRegistry.registerBlock(doctorSpawn, "doctorSpawn");
+		GameRegistry.registerBlock(fremGuardSpawn, "fremGuardSpawn");
+		GameRegistry.registerBlock(morganSpawn, "morganSpawn");
+		GameRegistry.registerBlock(shopKeeperSpawn, "shopKeeperSpawn");
+		GameRegistry.registerBlock(varzeSpawn, "varzeSpawn");
+		GameRegistry.registerBlock(blackGuard2Spawn, "blackGuard2Spawn");
+		GameRegistry.registerBlock(heroKnightSpawn, "heroKnightSpawn");
+		GameRegistry.registerBlock(ahrimSpawn, "ahrimSpawn");
+		GameRegistry.registerBlock(akrisaeSpawn, "akrisaeSpawn");
+		GameRegistry.registerBlock(dharokSpawn, "dharokSpawn");
+		GameRegistry.registerBlock(eliteBlackKnightSpawn, "eliteBlackKnightSpawn");
+		GameRegistry.registerBlock(guthanSpawn, "guthanSpawn");
+		GameRegistry.registerBlock(karilSpawn, "karilSpawn");
+		GameRegistry.registerBlock(toragSpawn, "toragSpawn");
+		GameRegistry.registerBlock(veracSpawn, "veracSpawn");
+		GameRegistry.registerBlock(banditSpawn, "banditSpawn");
+		GameRegistry.registerBlock(highMageSpawn, "highMageSpawn");
+		GameRegistry.registerBlock(kingSpawn, "kingSpawn");
+		GameRegistry.registerBlock(kqSpawn, "kqSpawn");
+		GameRegistry.registerBlock(kkSpawn, "kkSpawn");
+		GameRegistry.registerBlock(hellhoundSpawn, "hellhoundSpawn");
+
+		GameRegistry.registerBlock(addyOre, "addyOre");
+		GameRegistry.registerBlock(mithOre, "mithOre");
+		GameRegistry.registerBlock(runeOre, "runeOre");
+
+		registerEntity(EntityAbbyDemon.class, "AbbyDemon");
+		registerEntity(EntityAhrim.class, "Ahrim");
+		registerEntity(EntityAkrisae.class, "Akrisae");
+		registerEntity(EntityBandit.class, "Bandit");
+		registerEntity(EntityBarbarian.class, "Barbarian");
+		registerEntity(EntityBlackDemon.class, "BlackDemon");
+		registerEntity(EntityBlackDragon.class, "BlackDragon");
+		registerEntity(EntityBlackGuard2.class, "BlackGuard2");
+		registerEntity(EntityBlackGuard.class, "BlackGuard");
+		registerEntity(EntityBlackKnight.class, "BlackKnight");
+		registerEntity(EntityBot2.class, "Bot2");
+		registerEntity(EntityBot3.class, "Bot3");
+		registerEntity(EntityBot.class, "Bot");
+		registerEntity(EntityCaveCrawler.class, "CaveCrawler");
+		registerEntity(EntityCook.class, "Cook");
+		registerEntity(EntityDarkwizard.class, "Darkwizard");
+		registerEntity(EntityDharok.class, "Dharok");
+		registerEntity(EntityDoctor.class, "Doctor");
+		registerEntity(EntityDwarf.class, "Dwarf");
+		registerEntity(EntityEliteBlackKnight.class, "EliteBlackKnight");
+		registerEntity(EntityFarmer.class, "Farmer");
+		registerEntity(EntityFireGiant.class, "FireGiant");
+		registerEntity(EntityFremGuard.class, "FremGuard");
+		registerEntity(EntityGeneralGraardor.class, "GeneralGraardor");
+		registerEntity(EntityGhost.class, "Ghost");
+		registerEntity(EntityGoblin.class, "Goblin");
+		registerEntity(EntityGreenDragon.class, "GreenDragon");
+		registerEntity(EntityGuard.class, "Guard");
+		registerEntity(EntityGuthan.class, "Guthan");
+		registerEntity(EntityHellhound.class, "Hellhound");
+		registerEntity(EntityHeroKnight.class, "HeroKnight");
+		registerEntity(EntityHighMage.class, "HighMage");
+		registerEntity(EntityHillGiant.class, "HillGiant");
+		registerEntity(EntityIceGiant.class, "IceGiant");
+		registerEntity(EntityIronDragon.class, "IronDragon");
+		registerEntity(EntityKaril.class, "Karil");
+		registerEntity(EntityKing.class, "King");
+		registerEntity(EntityKingsGuard.class, "KingsGuard");
+		registerEntity(EntityKK.class, "KK");
+		registerEntity(EntityKKspawn.class, "KKspawn");
+		registerEntity(EntityKos1.class, "Kos1");
+		registerEntity(EntityKos2.class, "Kos2");
+		registerEntity(EntityKos3.class, "Kos3");
+		registerEntity(EntityKos4.class, "Kos4");
+		registerEntity(EntityKQ2.class, "KQ2");
+		registerEntity(EntityKQ.class, "KQ");
+		registerEntity(EntityLavaBlock.class, "LavaBlock");
+		registerEntity(EntityLesserDemon2.class, "LesserDemon2");
+		registerEntity(EntityLesserDemon.class, "LesserDemon");
+		registerEntity(EntityLootChest.class, "LootChest");
+		registerEntity(EntityMagicBoat.class, "MagicBoat");
+		registerEntity(EntityMan.class, "Man");
+		registerEntity(EntityMorgan.class, "Morgan");
+		registerEntity(EntityMossGiant.class, "MossGiant");
+		registerEntity(EntityMugger.class, "Mugger");
+		registerEntity(EntityRat.class, "Rat");
+		registerEntity(EntityRatSmall.class, "RatSmall");
+		registerEntity(EntityScapecraft.class, "Scapecraft");
+		registerEntity(EntityScorpion.class, "Scorpion");
+		registerEntity(EntitySergeantGrimspike.class, "SergeantGrimspike");
+		registerEntity(EntitySergeantSteelwill.class, "SergeantSteelwill");
+		registerEntity(EntitySergeantStrongstack.class, "SergeantStrongstack");
+		registerEntity(EntityShopKeeper.class, "ShopKeeper");
+		registerEntity(EntityTD.class, "TD");
+		registerEntity(EntityTheif.class, "Theif");
+		registerEntity(EntityTinyTNTPrimed.class, "TinyTNTPrimed");
+		registerEntity(EntityTNTXPrimed.class, "TNTXPrimed");
+		registerEntity(EntityTorag.class, "Torag");
+		registerEntity(EntityVampire.class, "Vampire");
+		registerEntity(EntityVarze.class, "Varze");
+		registerEntity(EntityVerac.class, "Verac");
+		registerEntity(EntityWhiteKnight.class, "WhiteKnight");
+		registerEntity(EntityWizard.class, "Wizard");
 
 		MinecraftForge.EVENT_BUS.register(new ScapecraftEventHandler());
 	}
 
-
+	public void registerEntity(Class<? extends Entity> entityClass, String name)
+	{
+		EntityRegistry.registerModEntity(entityClass, name, currentEntityIdOffset, this, 80, 3, true);
+		currentEntityIdOffset++;
+	}
 }
