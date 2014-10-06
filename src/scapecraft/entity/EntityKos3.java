@@ -238,7 +238,7 @@ public class EntityKos3 extends EntityScapecraft
 
 	static
 	{
-		defaultHeldItem = new ItemStack(Scapecraft.fremswordf, 1);
+		defaultHeldItem = new ItemStack(Scapecraft.fremSwordf, 1);
 	}
 
 
@@ -288,8 +288,8 @@ public class EntityKos3 extends EntityScapecraft
 		if(quickvar3 <= 2){entityDropItem(new ItemStack(Scapecraft.diamondOreSpawn), 1);}
 		if(quickvar4 <= 1){entityDropItem(new ItemStack(Scapecraft.cabbageSpawn), 1);}
 		if(quickvar5 <= 1){entityDropItem(new ItemStack(Scapecraft.mithChestplate), 1);}
-		if(quickvar6 <= 1){entityDropItem(new ItemStack(Scapecraft.fremsword), 1);}
-		if(quickvar7 <= 1){entityDropItem(new ItemStack(Scapecraft.fremswordf), 1);}
+		if(quickvar6 <= 1){entityDropItem(new ItemStack(Scapecraft.fremSword), 1);}
+		if(quickvar7 <= 1){entityDropItem(new ItemStack(Scapecraft.fremSwordf), 1);}
 		if(quickvar8 <= 1){entityDropItem(new ItemStack(Scapecraft.runegBoots), 1);}
 		if(quickvar9 <= 1){entityDropItem(new ItemStack(Scapecraft.dragonLeggings), 1);}
 		if(quickvar10 <= 1){entityDropItem(new ItemStack(Scapecraft.mithOreSpawn), 1);}

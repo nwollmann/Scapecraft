@@ -229,7 +229,7 @@ public class EntityKingsGuard extends EntityScapecraft
 		}
 		if(quickvar1 <= 1){
 
-			entityDropItem(new ItemStack(Scapecraft.sarasword), 1);
+			entityDropItem(new ItemStack(Scapecraft.saraSword), 1);
 
 
 
@@ -287,7 +287,7 @@ public class EntityKingsGuard extends EntityScapecraft
 
 	static
 	{
-		defaultHeldItem = new ItemStack(Scapecraft.sarasword, 1);
+		defaultHeldItem = new ItemStack(Scapecraft.saraSword, 1);
 	}
 
 

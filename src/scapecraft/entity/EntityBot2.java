@@ -121,7 +121,7 @@ public class EntityBot2 extends EntityScapecraft
 		}
 		if(quickvar2 <= 1){
 
-			entityDropItem(new ItemStack(Scapecraft.dragonaxe), 1);
+			entityDropItem(new ItemStack(Scapecraft.dragonAxe), 1);
 
 		}
 		if(quickvar3 <= 1){
@@ -169,7 +169,7 @@ public class EntityBot2 extends EntityScapecraft
 
 	static
 	{
-		defaultHeldItem = new ItemStack(Scapecraft.dragonaxe, 1);
+		defaultHeldItem = new ItemStack(Scapecraft.dragonAxe, 1);
 	}
 
 

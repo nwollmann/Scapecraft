@@ -227,7 +227,7 @@ public class EntityKos4 extends EntityScapecraft
 
 	static
 	{
-		defaultHeldItem = new ItemStack(Scapecraft.fremsword, 1);
+		defaultHeldItem = new ItemStack(Scapecraft.fremSword, 1);
 	}
 
 

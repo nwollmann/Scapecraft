@@ -22,7 +22,7 @@ public class ItemWeapon extends ItemSword
 	{
 		super(ToolMaterial.GOLD);
 		this.toolMaterial = toolMaterial;
-		this.setMaxDamage(toolMaterial.getMaxUses());
+		this.setMaxDurability(toolMaterial.getMaxUses());
 		this.weaponDamage = baseDamage + toolMaterial.getDamageVsEntity();
 		System.out.println(weaponDamage);
 		this.name = name;
@@ -35,7 +35,7 @@ public class ItemWeapon extends ItemSword
 		public Multimap getItemAttributeModifiers()
 		{
 			Multimap multimap = HashMultimap.create();
-			multimap.put(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(), new AttributeModifier(field_111210_e, "Weapon modifier", (double)this.weaponDamage, 0));
+			multimap.put(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(), new AttributeModifier(itemModifierUUID, "Weapon modifier", (double)this.weaponDamage, 0));
 			return multimap;
 		}
 

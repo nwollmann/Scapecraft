@@ -27,6 +27,7 @@ public enum ScapecraftToolMaterial
 	RAPIER(3, 30000, 15.0F, 14.0F, 30),
 	MAUL(3, 30000, 15.0F, 21.0F, 30),	 
 	DRAGOND(3, 2500, 15.0F, 3.0F, 30),
+	DRAGONDS(3, 2500, 15.0F, 3.0F, 30),
 	DRAGONB(3, 2500, 15.0F, 8.0F, 30),
 	DRAGONS(3, 2500, 15.0F, 7.0F, 30),
 	WHIP(3, 30000, 15.0F, 9.0F, 30),
@@ -99,5 +100,10 @@ public enum ScapecraftToolMaterial
 	public int getMinLevel()
 	{
 		return minLevel;
+	}
+
+	public Item getBaseItemForRepair()
+	{
+		return customCraftingMaterial;
 	}
 }

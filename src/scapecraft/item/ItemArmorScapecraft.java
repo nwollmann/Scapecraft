@@ -23,7 +23,7 @@ public class ItemArmorScapecraft extends ItemArmor
 		
 		ReflectionHelper.changeFinal(ItemArmor.class, this, armorMaterial.getDamageReductionAmount(type), "damageReduceAmount", "c");
 
-		this.setMaxDamage(armorMaterial.getDurability(type));
+		this.setMaxDurability(armorMaterial.getDurability(type));
 		this.setCreativeTab(Scapecraft.tabScapecraftArmor);
 		this.armorNamePrefix = armornamePrefix;
 		switch(type)

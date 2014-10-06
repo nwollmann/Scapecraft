@@ -281,7 +281,7 @@ public class EntityKing extends EntityScapecraft
 		}
 		if(quickvar1 <= 1){
 
-			entityDropItem(new ItemStack(Scapecraft.sarasword), 1);
+			entityDropItem(new ItemStack(Scapecraft.saraSword), 1);
 
 		}
 		if(quickvar2 <= 1){

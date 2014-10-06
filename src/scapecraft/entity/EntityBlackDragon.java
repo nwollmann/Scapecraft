@@ -278,7 +278,7 @@ public class EntityBlackDragon extends EntityScapecraft
 
 		if(quickvar8 <= 1){
 
-			entityDropItem(new ItemStack(Scapecraft.blackDhide), 1);
+			entityDropItem(new ItemStack(Scapecraft.blackDHide), 1);
 
 		}
 	}

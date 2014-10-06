@@ -202,7 +202,7 @@ public class EntityKos2 extends EntityScapecraft
 
 	static
 	{
-		defaultHeldItem = new ItemStack(Scapecraft.fremswordf, 1);
+		defaultHeldItem = new ItemStack(Scapecraft.fremSwordf, 1);
 	}
 
 

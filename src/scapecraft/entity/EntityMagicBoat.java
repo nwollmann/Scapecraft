@@ -463,7 +463,7 @@ public class EntityMagicBoat extends Entity
 					}
 					else if (block == Blocks.waterlily)
 					{
-						this.worldObj.func_147480_a(i1, l1, j1, true);
+						this.worldObj.breakBlock(i1, l1, j1, true);
 					}
 					}
 				}

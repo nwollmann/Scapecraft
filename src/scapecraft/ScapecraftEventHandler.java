@@ -39,27 +39,27 @@ public class ScapecraftEventHandler
 		{
 			EntityPlayer player = (EntityPlayer) event.entity;
 
-			if(ExtendedPlayer.getEnergy(player) < 10000)
+			if(Stats.getEnergy(player) < 10000)
 			{
-				ExtendedPlayer.addEnergy(player, 2);
-				if(ExtendedPlayer.getEnergy(player) >= 10000)
+				Stats.addEnergy(player, 2);
+				if(Stats.getEnergy(player) >= 10000)
 					player.addChatMessage(new ChatComponentText("Your Special Attack bar is full"));
 			}
 
-			if(ExtendedPlayer.getAgilityLevel(player) > 20) //TODO change these to levels
+			if(Stats.getAgilityLevel(player) > 20) //TODO change these to levels
 			{
 				player.addPotionEffect(new PotionEffect(Potion.jump.id, 50, 1));
 			}
-			else if(ExtendedPlayer.getAgilityLevel(player) > 10)
+			else if(Stats.getAgilityLevel(player) > 10)
 			{
 				player.addPotionEffect(new PotionEffect(Potion.jump.id, 50, 0));
 			}
-			if(ExtendedPlayer.getAgilityLevel(player) > 25)
+			if(Stats.getAgilityLevel(player) > 25)
 			{
 				//player.addPotionEffect(new PotionEffect(Potion.moveSpeed.id, 50, 1));
 				player.capabilities.setPlayerWalkSpeed(.14F);
 			}
-			else if(ExtendedPlayer.getAgilityxp(player) > 15)
+			else if(Stats.getAgilityxp(player) > 15)
 			{
 				//player.addPotionEffect(new PotionEffect(Potion.moveSpeed.id, 50, 0));
 				player.capabilities.setPlayerWalkSpeed(.12F);

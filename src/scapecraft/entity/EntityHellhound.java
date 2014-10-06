@@ -393,14 +393,14 @@ public class EntityHellhound extends EntityTameable
 				{
 					ItemFood itemfood = (ItemFood)itemstack.getItem();
 
-					if (itemfood.isWolfsFavoriteMeat() && this.dataWatcher.getWatchableObjectFloat(18) < 20.0F)
+					if (itemfood.isWolfsFavoriteMeat() && this.dataWatcher.getWatchableObjectFloat(18) < this.getEntityAttribute(SharedMonsterAttributes.maxHealth).getAttributeValue())
 					{
 						if (!par1EntityPlayer.capabilities.isCreativeMode)
 						{
 							--itemstack.stackSize;
 						}
 
-						this.heal((float) itemfood.func_150905_g(itemstack));
+						this.heal((float) itemfood.getHealAmount(itemstack));
 
 						if (itemstack.stackSize <= 0)
 						{
@@ -412,7 +412,7 @@ public class EntityHellhound extends EntityTameable
 				}
 				else if (itemstack.getItem() == Items.dye)
 				{
-					int i = BlockColored.func_150032_b(itemstack.getItemDamage());
+					int i = BlockColored.func_150032_b(itemstack.getMetadata());
 
 					if (i != this.getCollarColor())
 					{

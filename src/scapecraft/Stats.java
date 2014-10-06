@@ -3,7 +3,7 @@ package scapecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 
-public class ExtendedPlayer
+public class Stats
 {
 	public final static String EXT_PROP_NAME = "ExtendedPlayer";
 	public final static int[] oldLevels = 
@@ -104,7 +104,6 @@ public class ExtendedPlayer
 	{
 		addStat(player, "energy", amount);
 	}
-
 
 	public static int getCombatLevel(EntityPlayer player)
 	{

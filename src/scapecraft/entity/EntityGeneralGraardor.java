@@ -122,18 +122,6 @@ public class EntityGeneralGraardor extends EntityScapecraft
 		this.dataWatcher.addObject(16, new Byte((byte)0));
 	}
 
-	/**
-	 * Called to update the entity's position/logic.
-	 */
-	public void onUpdate()
-	{
-		super.onUpdate();
-
-
-	}
-
-
-
 	protected Entity findPlayerToAttack()
 	{
 		float var1 = this.getBrightness(1.0F);

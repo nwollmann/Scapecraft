@@ -237,7 +237,7 @@ public class EntityGreenDragon extends EntityScapecraft
 		}
 		if(quickvar1 <= 1){
 
-			entityDropItem(new ItemStack(Scapecraft.DragonScimmy), 1);
+			entityDropItem(new ItemStack(Scapecraft.dragonScimmy), 1);
 
 		}
 		if(quickvar2 <= 1){
@@ -276,7 +276,7 @@ public class EntityGreenDragon extends EntityScapecraft
 
 		if(quickvar8 <= 1){
 
-			entityDropItem(new ItemStack(Scapecraft.greenDhide), 1);
+			entityDropItem(new ItemStack(Scapecraft.greenDHide), 1);
 
 		}
 	}

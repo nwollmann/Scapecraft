@@ -2,6 +2,7 @@ package scapecraft.item;
 
 import java.util.Random;
 
+import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
@@ -10,7 +11,7 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
-import scapecraft.ExtendedPlayer;
+import scapecraft.Stats;
 
 public class ItemSpecialWeapon extends ItemWeapon
 {
@@ -27,10 +28,10 @@ public class ItemSpecialWeapon extends ItemWeapon
 	{
 
 
-		if (ExtendedPlayer.getEnergy(player) >  specialCost)
+		if (Stats.getEnergy(player) >  specialCost)
 		{
 			itemStack.getTagCompound().setBoolean("special", true);
-			ExtendedPlayer.addEnergy(player, -specialCost);		
+			Stats.addEnergy(player, -specialCost);		
 			if (world.isRemote)
 				player.addChatMessage(new ChatComponentText("\u00a7ESpecial Activated"));
 		}
@@ -77,6 +78,28 @@ public class ItemSpecialWeapon extends ItemWeapon
 						break;
 					case WHIP:
 						event.ammount += 8F;
+						break;
+					case DRAGONB:
+						player.addPotionEffect(new PotionEffect(Potion.damageBoost.id, 800, 0));
+						for(int x = -2; x <= 1; x++)
+							for(int y = -1; y <= 3; y++)
+								for(int z = -2; z <= 1; z++)
+									if(rand.nextFloat() > .6F)
+										player.worldObj.spawnParticle("reddust", player.posX + x, player.posY + y, player.posZ + z, 0D, 0D, 1D);
+						break;
+					case DRAGONDS:
+						event.entityLiving.addPotionEffect(new PotionEffect(Potion.poison.id, 100, 0));
+					case DRAGOND:
+						player.addPotionEffect(new PotionEffect(Potion.moveSpeed.id, 20, 5));
+						chatMessage = "Double Strike";
+						event.ammount += event.ammount + 8;
+						break;
+					case SS:
+						event.entityLiving.motionX = 0D;
+						event.entityLiving.motionY = 0D;
+						event.entityLiving.motionZ = 0D;
+						event.entityLiving.setFire(100);
+						event.entityLiving.worldObj.addWeatherEffect(new EntityLightningBolt(event.entityLiving.worldObj, event.entityLiving.posX, event.entityLiving.posY, event.entityLiving.posZ)); 
 						break;
 					default:
 				}
