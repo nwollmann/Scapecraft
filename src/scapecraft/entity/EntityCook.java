@@ -25,7 +25,7 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-import scapecraft.Scapecraft;
+import scapecraft.item.ScapecraftItems;
 
 public class EntityCook extends EntityScapecraft
 {
@@ -222,13 +222,13 @@ public class EntityCook extends EntityScapecraft
 		{
 			if (itemstack.stackSize-- == 1)
 			{
-				par1EntityPlayer.inventory.setInventorySlotContents(par1EntityPlayer.inventory.currentItem, new ItemStack(Scapecraft.questPoint2));
+				par1EntityPlayer.inventory.setInventorySlotContents(par1EntityPlayer.inventory.currentItem, new ItemStack(ScapecraftItems.questPoint2));
 				par1EntityPlayer.addChatComponentMessage(new ChatComponentText("\u00a7ELumbridge Cook: Thank you, I don't actually have any reward for you, but I never promised one, next time be more careful with who you help"));
 
 			}
-			else if (!par1EntityPlayer.inventory.addItemStackToInventory(new ItemStack(Scapecraft.questPoint2)))
+			else if (!par1EntityPlayer.inventory.addItemStackToInventory(new ItemStack(ScapecraftItems.questPoint2)))
 			{
-				par1EntityPlayer.entityDropItem(new ItemStack(Scapecraft.questPoint2, 1, 0), 0.5F);
+				par1EntityPlayer.entityDropItem(new ItemStack(ScapecraftItems.questPoint2, 1, 0), 0.5F);
 			}
 			return true;
 		}

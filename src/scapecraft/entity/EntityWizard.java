@@ -28,7 +28,7 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.World;
 
-import scapecraft.Scapecraft;
+import scapecraft.item.ScapecraftItems;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -39,20 +39,7 @@ public class EntityWizard extends EntityScapecraft implements IRangedAttackMob
 	private EntityAIAttackOnCollide aiAttackOnCollide = new EntityAIAttackOnCollide(this, EntityPlayer.class, 0.31F, false);
 	private float moveSpeed;
 
-	static
-	{
-		addDrop(EntityWizard.class, 1000, new ItemStack(Scapecraft.saraStaff));
-		addDrop(EntityWizard.class, 1000, new ItemStack(Scapecraft.guthixStaff));
-		addDrop(EntityWizard.class, 8, new ItemStack(Scapecraft.vTab));
-		addDrop(EntityWizard.class, 8, new ItemStack(Scapecraft.fTab));
-		addDrop(EntityWizard.class, 8, new ItemStack(Scapecraft.bTab));
-		addDrop(EntityWizard.class, 8, new ItemStack(Scapecraft.tdTab));
-		addDrop(EntityWizard.class, 8, new ItemStack(Scapecraft.cTab));
-		addDrop(EntityWizard.class, 8, new ItemStack(Scapecraft.bandosTab));
-		addDrop(EntityWizard.class, 8, new ItemStack(Scapecraft.hTab));
-		addDrop(EntityWizard.class, 8, new ItemStack(Scapecraft.lTab));
-		addDrop(EntityWizard.class, 5000, new ItemStack(Scapecraft.saradominHilt));
-	}
+	
 
 	public EntityWizard(World par1World)
 	{
@@ -172,7 +159,7 @@ public class EntityWizard extends EntityScapecraft implements IRangedAttackMob
 
 	static
 	{
-		defaultHeldItem = new ItemStack(Scapecraft.chicken, /*Scapecraft.Sarastaff,*/ 1); //TODO fix when staffs are added
+		defaultHeldItem = new ItemStack(ScapecraftItems.chicken, /*ScapecraftItems.Sarastaff,*/ 1); //TODO fix when staffs are added
 	}
 
 
@@ -184,7 +171,7 @@ public class EntityWizard extends EntityScapecraft implements IRangedAttackMob
 		this.tasks.removeTask(this.aiArrowAttack);
 		ItemStack itemstack = this.getHeldItem();
 
-		if (itemstack != null/* && itemstack == Scapecraft.Sarastaff*/) //TODO fix when staffs are added
+		if (itemstack != null/* && itemstack == ScapecraftItems.Sarastaff*/) //TODO fix when staffs are added
 		{
 			this.tasks.addTask(4, this.aiArrowAttack);
 		}

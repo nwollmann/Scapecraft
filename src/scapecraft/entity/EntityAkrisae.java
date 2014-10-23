@@ -14,17 +14,16 @@ import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.passive.EntityOcelot;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
-
-import scapecraft.Scapecraft;
 
 
 public class EntityAkrisae extends EntityScapecraft
 {
 	private float moveSpeed;
+	
+
 	public EntityAkrisae(World par1World)
 	{
 		super(par1World);
@@ -181,52 +180,6 @@ public class EntityAkrisae extends EntityScapecraft
 	}
 
 
-	protected void dropFewItems(boolean par1, int par2){
-
-		int quickvar = rand.nextInt(400) + 1;
-		int quickvar1 = rand.nextInt(800) + 1;
-		int quickvar2 = rand.nextInt(300) + 1;
-		int quickvar3 = rand.nextInt(300) + 1;
-		int quickvar4 = rand.nextInt(300) + 1;
-		int quickvar5 = rand.nextInt(300) + 1;
-		int quickvar6 = rand.nextInt(1) + 1;
-
-		if(quickvar <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.akrisaeMace), 1);
-
-		}
-		if(quickvar1 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.dragonLeggings), 1);
-
-		}
-		if(quickvar2 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.akrisaeLeggings), 1);
-
-		}
-		if(quickvar3 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.akrisaeBoots), 1);
-
-		}
-		if(quickvar4 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.akrisaeHelmet), 1);
-
-		}
-		if(quickvar5 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.akrisaeChestplate), 1);
-
-		}
-		if(quickvar6 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.akrisaeKey), 1);
-
-		}
-	}
 
 
 

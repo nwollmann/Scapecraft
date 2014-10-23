@@ -2,15 +2,15 @@ package scapecraft.entity;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
-import scapecraft.Scapecraft;
+import scapecraft.item.ScapecraftItems;
 
 public class EntityBot2 extends EntityScapecraft
 {
+	
 	public EntityBot2(World par1World)
 	{
 		super(par1World);
@@ -98,56 +98,6 @@ public class EntityBot2 extends EntityScapecraft
 		return 0.4F;
 	}
 
-
-
-	protected void dropFewItems(boolean par1, int par2){
-
-		int quickvar = rand.nextInt(15000) + 1;
-		int quickvar1 = rand.nextInt(20000) + 1;
-		int quickvar2 = rand.nextInt(20000) + 1;
-		int quickvar3 = rand.nextInt(25000) + 1;
-		int quickvar4 = rand.nextInt(35) + 1;
-		int quickvar5 = rand.nextInt(35) + 1;
-
-		if(quickvar <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.korasis), 1);
-
-		}
-		if(quickvar1 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.dragonLongsword), 1);
-
-		}
-		if(quickvar2 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.dragonAxe), 1);
-
-		}
-		if(quickvar3 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.dragonHelmet), 1);
-
-		}
-		if(quickvar4 <= 1){
-
-			entityDropItem(new ItemStack(Items.stone_axe), 1);
-
-		}
-		if(quickvar5 <= 1){
-
-			entityDropItem(new ItemStack(Items.stone_axe), 1);}
-
-
-	}
-
-	public int getAttackStrength(Entity par1Entity)
-	{
-		return 7;
-	}
-
-
-
 	@Override
 	protected boolean canDespawn()
 	{
@@ -169,7 +119,7 @@ public class EntityBot2 extends EntityScapecraft
 
 	static
 	{
-		defaultHeldItem = new ItemStack(Scapecraft.dragonAxe, 1);
+		defaultHeldItem = new ItemStack(ScapecraftItems.dragonAxe, 1);
 	}
 
 

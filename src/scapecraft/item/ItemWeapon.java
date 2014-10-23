@@ -73,4 +73,35 @@ public class ItemWeapon extends ItemSword
 	public void onEntityHurt(LivingHurtEvent event)
 	{
 	}
+
+	//Don't swing the weapon normally, this is also where custom attacking will start
+	/*@Override
+	public boolean onEntitySwing(EntityLivingBase entityLiving, ItemStack stack)
+	{
+		if(entityLiving instanceof EntityPlayer)
+		{
+			if(!entityLiving.isSwingInProgress)
+				entityLiving.isSwingInProgress = true;
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public void onUpdate(ItemStack stack, World world, Entity entityHolder, int i1, boolean b1)
+	{
+		if(!(entityHolder instanceof EntityPlayer))
+			return;
+		EntityPlayer player = (EntityPlayer) entityHolder;
+		if(player.swingProgressInt == 1)
+		{
+			for(Object o : world.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(4D, 4D, 4D)))
+			{
+				Entity entity = (Entity) o;
+				if(entity instanceof EntityLivingBase)
+					player.attackTargetEntityWithCurrentItem(entity);
+			}
+
+		}
+	}*/ //TODO Make weapon swing with collision boxes
 }

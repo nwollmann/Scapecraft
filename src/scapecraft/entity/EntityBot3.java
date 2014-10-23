@@ -21,11 +21,13 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-import scapecraft.Scapecraft;
+import scapecraft.item.ScapecraftItems;
 
 public class EntityBot3 extends EntityScapecraft
 {
 	private float moveSpeed;
+
+	
 	public EntityBot3(World par1World)
 	{
 		super(par1World);
@@ -178,39 +180,6 @@ public class EntityBot3 extends EntityScapecraft
 		}
 	}
 
-
-	protected void dropFewItems(boolean par1, int par2){
-
-		int quickvar = rand.nextInt(30) + 1;
-		int quickvar1 = rand.nextInt(1750) + 1;
-		int quickvar4 = rand.nextInt(60) + 1;
-		int quickvar5 = rand.nextInt(1500) + 1;
-
-		if(quickvar <= 1){
-
-			entityDropItem(new ItemStack(Items.stone_sword), 1);
-
-		}
-		if(quickvar1 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.dragonBoots), 1);
-
-
-
-
-		}
-		if(quickvar4 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.addyHelmet), 1);
-
-		}
-		if(quickvar5 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.runegChestplate), 1);
-
-		}
-	}
-
 	@Override
 	protected Item getDropItem()
 	{
@@ -237,9 +206,9 @@ public class EntityBot3 extends EntityScapecraft
 
 	public void func_82163_bD()
 	{
-		this.setCurrentItemOrArmor(4, new ItemStack(Scapecraft.addyHelmet));
-		this.setCurrentItemOrArmor(2, new ItemStack(Scapecraft.runeLeggings));
-		this.setCurrentItemOrArmor(3, new ItemStack(Scapecraft.runeChestplate));
+		this.setCurrentItemOrArmor(4, new ItemStack(ScapecraftItems.addyHelmet));
+		this.setCurrentItemOrArmor(2, new ItemStack(ScapecraftItems.runeLeggings));
+		this.setCurrentItemOrArmor(3, new ItemStack(ScapecraftItems.runeChestplate));
 		this.equipmentDropChances[4] = 0.0F;
 	}
 
@@ -251,7 +220,7 @@ public class EntityBot3 extends EntityScapecraft
 
 	static
 	{
-		defaultHeldItem = new ItemStack(Scapecraft.whip, 1);
+		defaultHeldItem = new ItemStack(ScapecraftItems.whip, 1);
 	}
 
 

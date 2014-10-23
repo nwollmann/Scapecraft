@@ -24,7 +24,7 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-import scapecraft.Scapecraft;
+import scapecraft.item.ScapecraftItems;
 
 public class EntityVarze extends EntityScapecraft
 {
@@ -216,17 +216,17 @@ public class EntityVarze extends EntityScapecraft
 
 		ItemStack itemstack = par1EntityPlayer.inventory.getCurrentItem();
 
-		if (itemstack != null && itemstack.getItem() == Scapecraft.invincibilityPotion)
+		if (itemstack != null && itemstack.getItem() == ScapecraftItems.invincibilityPotion)
 		{
 			if (itemstack.stackSize-- == 1)
 			{
-				par1EntityPlayer.inventory.setInventorySlotContents(par1EntityPlayer.inventory.currentItem, new ItemStack(Scapecraft.RewardChest));
+				par1EntityPlayer.inventory.setInventorySlotContents(par1EntityPlayer.inventory.currentItem, new ItemStack(ScapecraftItems.RewardChest));
 				par1EntityPlayer.addChatComponentMessage(new ChatComponentText("\u00a7ESir Amik Varze: Thanks for your help! Take this treasure chest as a reward."));
 
 			}
-			else if (!par1EntityPlayer.inventory.addItemStackToInventory(new ItemStack(Scapecraft.RewardChest)))
+			else if (!par1EntityPlayer.inventory.addItemStackToInventory(new ItemStack(ScapecraftItems.RewardChest)))
 			{
-				par1EntityPlayer.entityDropItem(new ItemStack(Scapecraft.RewardChest, 1, 0), 0.5F);
+				par1EntityPlayer.entityDropItem(new ItemStack(ScapecraftItems.RewardChest, 1, 0), 0.5F);
 			}
 
 			return true;
@@ -267,9 +267,9 @@ public class EntityVarze extends EntityScapecraft
 	@Override
 	public void addRandomArmor()
 	{
-			this.setCurrentItemOrArmor(1, new ItemStack(Scapecraft.dragonBoots));
-			this.setCurrentItemOrArmor(2, new ItemStack(Scapecraft.whiteLeggings));
-			this.setCurrentItemOrArmor(3, new ItemStack(Scapecraft.whiteChestplate));
+			this.setCurrentItemOrArmor(1, new ItemStack(ScapecraftItems.dragonBoots));
+			this.setCurrentItemOrArmor(2, new ItemStack(ScapecraftItems.whiteLeggings));
+			this.setCurrentItemOrArmor(3, new ItemStack(ScapecraftItems.whiteChestplate));
 	}
 
 	private static final ItemStack defaultHeldItem;
@@ -280,7 +280,7 @@ public class EntityVarze extends EntityScapecraft
 
 	static
 	{
-		defaultHeldItem = new ItemStack(Scapecraft.whiteSword, 1);
+		defaultHeldItem = new ItemStack(ScapecraftItems.whiteSword, 1);
 	}
 
 

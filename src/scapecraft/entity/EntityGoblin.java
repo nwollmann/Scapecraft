@@ -1,7 +1,6 @@
 package scapecraft.entity;
 
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
@@ -13,30 +12,17 @@ import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.passive.EntityOcelot;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-
-import scapecraft.Scapecraft;
 
 
 public class EntityGoblin extends EntityScapecraft
 {
 	private float moveSpeed;
 
-	static
-	{
-		addDrop(EntityGoblin.class, 15, new ItemStack(Items.wooden_sword));
-		addDrop(EntityGoblin.class, 30000, new ItemStack(Scapecraft.crystalBow)); 
-		addDrop(EntityGoblin.class, 3000, new ItemStack(Scapecraft.runegBoots));
-		addDrop(EntityGoblin.class, 100, new ItemStack(Scapecraft.magicFruit)); 
-		addDrop(EntityGoblin.class, 400, new ItemStack(Scapecraft.runeSword));
-		addDrop(EntityGoblin.class, 6, new ItemStack(Items.gold_nugget));
-		addDrop(EntityGoblin.class, 200, new ItemStack(Scapecraft.graniteLump));
-	}
+	
 
 	public EntityGoblin(World par1World)
 	{
@@ -185,16 +171,6 @@ public class EntityGoblin extends EntityScapecraft
 				super.attackEntity(par1Entity, par2);
 			}
 		}
-	}
-
-	public int getAttackStrength(Entity par1Entity)
-	{
-		return 1;
-	}
-
-	public EnumCreatureAttribute getCreatureAttribute()
-	{
-		return EnumCreatureAttribute.UNDEAD;
 	}
 
 	public boolean isPotionApplicable(PotionEffect par1PotionEffect)

@@ -18,7 +18,6 @@ import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.passive.EntityOcelot;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
@@ -26,7 +25,7 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-import scapecraft.Scapecraft;
+import scapecraft.item.ScapecraftItems;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -34,6 +33,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class EntityBarbarian extends EntityScapecraft
 {
 	private float moveSpeed;
+	
 	public EntityBarbarian(World par1World)
 	{
 		super(par1World);
@@ -209,29 +209,6 @@ public class EntityBarbarian extends EntityScapecraft
 		}
 	}
 
-	@Override
-	protected void dropFewItems(boolean par1, int par2){
-
-		int quickvar = rand.nextInt(141) + 1;
-		int quickvar1 = rand.nextInt(3500) + 1;
-		int quickvar2 = rand.nextInt(160) + 1;
-		int quickvar3 = rand.nextInt(140) + 1;
-		int quickvar4 = rand.nextInt(140) + 1;
-		int quickvar5 = rand.nextInt(160) + 1;
-		int quickvar6 = rand.nextInt(16) + 1;
-		int quickvar7 = rand.nextInt(500) + 1;
-
-		if(quickvar <= 1){entityDropItem(new ItemStack(Scapecraft.whiteSword), 1);}
-		if(quickvar1 <= 1){entityDropItem(new ItemStack(Scapecraft.dragonLeggings), 1);}
-		if(quickvar2 <= 1){entityDropItem(new ItemStack(Scapecraft.whiteLeggings), 1);}
-		if(quickvar3 <= 1){	entityDropItem(new ItemStack(Scapecraft.whiteBoots), 1);}
-		if(quickvar4 <= 1){	entityDropItem(new ItemStack(Scapecraft.whiteHelmet), 1);}
-		if(quickvar5 <= 1){entityDropItem(new ItemStack(Scapecraft.whiteChestplate), 1);}
-		if(quickvar6 <= 1){entityDropItem(new ItemStack(Items.gold_nugget), 1);}
-		if(quickvar7 <= 1){	entityDropItem(new ItemStack(Scapecraft.bandosHelmet), 1);}
-	}
-
-
 
 	@Override
 	public boolean isPotionApplicable(PotionEffect par1PotionEffect)
@@ -256,7 +233,7 @@ public class EntityBarbarian extends EntityScapecraft
 
 	static
 	{
-		defaultHeldItem = new ItemStack(Scapecraft.dharokAxe, 1);
+		defaultHeldItem = new ItemStack(ScapecraftItems.dharokAxe, 1);
 	}
 
 	@Override

@@ -20,7 +20,7 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 
-import scapecraft.Scapecraft;
+import scapecraft.item.ScapecraftItems;
 
 
 public class EntityKos2 extends EntityScapecraft
@@ -202,7 +202,7 @@ public class EntityKos2 extends EntityScapecraft
 
 	static
 	{
-		defaultHeldItem = new ItemStack(Scapecraft.fremSwordf, 1);
+		defaultHeldItem = new ItemStack(ScapecraftItems.fremSwordf, 1);
 	}
 
 

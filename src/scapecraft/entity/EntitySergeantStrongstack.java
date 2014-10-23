@@ -13,20 +13,17 @@ import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.passive.EntityOcelot;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-
-import scapecraft.Scapecraft;
 
 
 public class EntitySergeantStrongstack extends EntityScapecraft
 {
 	private float moveSpeed;
 
+	
 
 	public EntitySergeantStrongstack(World par1World)
 	{
@@ -198,49 +195,6 @@ public class EntitySergeantStrongstack extends EntityScapecraft
 			}
 		}
 	}
-
-
-	protected void dropFewItems(boolean par1, int par2){
-
-		int quickvar = rand.nextInt(15) + 1;
-		int quickvar1 = rand.nextInt(5000) + 1;
-		int quickvar2 = rand.nextInt(500) + 1;
-		int quickvar3 = rand.nextInt(100) + 1;
-		int quickvar4 = rand.nextInt(1000) + 1;
-
-		if(quickvar <= 1){
-
-			entityDropItem(new ItemStack(Items.wooden_sword), 1);
-
-		}
-		if(quickvar1 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.crystalBow), 1);
-
-		}
-		if(quickvar2 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.dragonBoots), 1);
-
-		}
-		if(quickvar3 <= 2){
-
-			entityDropItem(new ItemStack(Scapecraft.magicFruit), 1);
-
-		}
-		if(quickvar4 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.shard3), 1);
-
-		}
-	}
-	public int getAttackStrength(Entity par1Entity)
-	{
-		return 1;
-	}
-
-
-
 
 	public EnumCreatureAttribute getCreatureAttribute()
 	{

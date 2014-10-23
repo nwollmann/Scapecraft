@@ -4,18 +4,16 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.projectile.EntityLargeFireball;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-import scapecraft.Scapecraft;
-
 public class EntitySergeantSteelwill extends EntityScapecraft
 {
 	private int field_40152_d;
+
+	
 
 	public EntitySergeantSteelwill(World par1World)
 	{
@@ -136,53 +134,6 @@ public class EntitySergeantSteelwill extends EntityScapecraft
 			rotationYaw = (float)((Math.atan2(d2, d) * 180D) / Math.PI) - 90F;
 			hasAttacked = true;
 		}
-	}
-
-
-
-
-	protected void dropFewItems(boolean par1, int par2){
-
-		int quickvar = rand.nextInt(15) + 1;
-		int quickvar1 = rand.nextInt(10000) + 1;
-		int quickvar2 = rand.nextInt(500) + 1;
-		int quickvar3 = rand.nextInt(100) + 1;
-		int quickvar4 = rand.nextInt(1000) + 1;
-
-		if(quickvar <= 1){
-
-			entityDropItem(new ItemStack(Items.wooden_sword), 1);
-
-		}
-		if(quickvar1 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.crystalBow), 1);
-
-		}
-		if(quickvar2 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.dragonBoots), 1);
-
-		}
-		if(quickvar3 <= 2){
-
-			entityDropItem(new ItemStack(Scapecraft.magicFruit), 1);
-
-		}
-		if(quickvar4 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.shard2), 1);
-
-		}
-	}
-
-
-
-
-
-	public int getAttackStrength(Entity par1Entity)
-	{
-		return 5;
 	}
 
 	public boolean isBurning()

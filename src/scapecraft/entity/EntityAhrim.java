@@ -14,28 +14,15 @@ import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.passive.EntityOcelot;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
-
-import scapecraft.Scapecraft;
 
 
 public class EntityAhrim extends EntityScapecraft
 {
 	private float moveSpeed;
-	static
-	{
-
-		addDrop(EntityAhrim.class, 400, new ItemStack(Scapecraft.ahrimStaff));
-		addDrop(EntityAhrim.class, 800, new ItemStack(Scapecraft.dragonLeggings));
-		addDrop(EntityAhrim.class, 300, new ItemStack(Scapecraft.ahrimLeggings));
-		addDrop(EntityAhrim.class, 300, new ItemStack(Scapecraft.ahrimBoots));
-		addDrop(EntityAhrim.class, 300, new ItemStack(Scapecraft.ahrimHelmet));
-		addDrop(EntityAhrim.class, 300, new ItemStack(Scapecraft.ahrimChestplate));
-		addDrop(EntityAhrim.class, 1, new ItemStack(Scapecraft.ahrimKey));
-	}
+	
 	public EntityAhrim(World par1World)
 	{
 		super(par1World);

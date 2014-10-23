@@ -7,11 +7,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
-import scapecraft.Scapecraft;
-
 public class EntityBot extends EntityScapecraft
 {
 	private static final ItemStack defaultHeldItem = new ItemStack(Items.wooden_axe, 1);
+
+	
+
 	public EntityBot(World par1World)
 	{
 		super(par1World);
@@ -96,54 +97,6 @@ public class EntityBot extends EntityScapecraft
 	protected float getSoundVolume()
 	{
 		return 0.4F;
-	}
-
-
-
-	protected void dropFewItems(boolean par1, int par2){
-
-		int quickvar = rand.nextInt(30000) + 1;
-		int quickvar1 = rand.nextInt(33000) + 1;
-		int quickvar2 = rand.nextInt(80000) + 1;
-		int quickvar3 = rand.nextInt(1000) + 1;
-		int quickvar4 = rand.nextInt(30) + 1;
-		int quickvar5 = rand.nextInt(30) + 1;
-
-		if(quickvar <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.korasis), 1);
-
-		}
-		if(quickvar1 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.dragonLongsword), 1);
-
-		}
-		if(quickvar2 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.pickaxeGalore), 1);
-
-		}
-		if(quickvar3 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.magicSapling), 1);
-
-		}
-		if(quickvar4 <= 1){
-
-			entityDropItem(new ItemStack(Items.wooden_axe), 1);
-
-		}
-		if(quickvar5 <= 1){
-
-			entityDropItem(new ItemStack(Items.wooden_hoe), 1);
-
-		}
-	}
-
-	public int getAttackStrength(Entity par1Entity)
-	{
-		return 5;
 	}
 
 	@Override

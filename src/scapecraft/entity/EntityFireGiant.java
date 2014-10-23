@@ -13,16 +13,11 @@ import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.passive.EntityOcelot;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-
-import scapecraft.Scapecraft;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -31,6 +26,7 @@ public class EntityFireGiant extends EntityScapecraft
 {
 	private float moveSpeed;
 
+	
 
 	public EntityFireGiant(World par1World)
 	{
@@ -169,36 +165,6 @@ public class EntityFireGiant extends EntityScapecraft
 				super.attackEntity(par1Entity, par2);
 			}
 		}
-	}
-
-
-	protected void dropFewItems(boolean par1, int par2){
-
-		int quickvar = rand.nextInt(300) + 1;
-		int quickvar1 = rand.nextInt(2000) + 1;
-		int quickvar2 = rand.nextInt(8) + 1;
-		int quickvar3 = rand.nextInt(40) + 1;
-		int quickvar4 = rand.nextInt(400) + 1;
-		int quickvar5 = rand.nextInt(60) + 1;
-		int quickvar6 = rand.nextInt(1) + 1;
-		int quickvar7 = rand.nextInt(10) + 1;
-		int quickvar8 = rand.nextInt(5) + 1;
-		int quickvar9 = rand.nextInt(7) + 1;
-		int quickvar10 = rand.nextInt(1000) + 1;
-		int quickvar11 = rand.nextInt(20) + 1;
-
-		if(quickvar <= 1){entityDropItem(new ItemStack(Scapecraft.dragonLongsword), 1);}
-		if(quickvar1 <= 1){entityDropItem(new ItemStack(Scapecraft.dragonLeggings), 1);}
-		if(quickvar2 <= 1){entityDropItem(new ItemStack(Scapecraft.mithOre), 1);}
-		if(quickvar3 <= 1){entityDropItem(new ItemStack(Scapecraft.runeBoots), 1);}
-		if(quickvar4 <= 1){entityDropItem(new ItemStack(Scapecraft.dragonHelmet), 1);}
-		if(quickvar5 <= 1){entityDropItem(new ItemStack(Scapecraft.addyChestplate), 1);}
-		if(quickvar6 <= 1){entityDropItem(new ItemStack(Items.gold_nugget), 1);}
-		if(quickvar7 <= 1){entityDropItem(new ItemStack(Scapecraft.blackChestplate), 1);}
-		if(quickvar8 <= 1){entityDropItem(new ItemStack(Blocks.obsidian), 1);}
-		if(quickvar9 <= 1){entityDropItem(new ItemStack(Scapecraft.whiteBoots), 1);}
-		if(quickvar10 <= 1){entityDropItem(new ItemStack(Scapecraft.darkBow), 1);}
-		if(quickvar11 <= 1){entityDropItem(new ItemStack(Scapecraft.graniteLump), 1);}
 	}
 
 	public boolean isPotionApplicable(PotionEffect par1PotionEffect)

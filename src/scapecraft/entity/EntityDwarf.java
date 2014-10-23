@@ -13,7 +13,6 @@ import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.passive.EntityOcelot;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
@@ -21,7 +20,7 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-import scapecraft.Scapecraft;
+import scapecraft.item.ScapecraftItems;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -30,6 +29,9 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class EntityDwarf extends EntityScapecraft
 {
 	private float moveSpeed;
+
+	
+
 	public EntityDwarf(World par1World)
 	{
 		super(par1World);
@@ -166,38 +168,6 @@ public class EntityDwarf extends EntityScapecraft
 		}
 	}
 
-
-	protected void dropFewItems(boolean par1, int par2){
-
-		int quickvar = rand.nextInt(15) + 1;
-		int quickvar1 = rand.nextInt(100) + 1;
-		int quickvar2 = rand.nextInt(2400) + 1;
-		int quickvar3 = rand.nextInt(100) + 1;
-
-		if(quickvar <= 1){
-
-			entityDropItem(new ItemStack(Items.wooden_pickaxe), 1);
-
-		}
-		if(quickvar1 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.blackLeggings), 1);
-
-		}
-		if(quickvar2 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.pickaxeGalore), 1);
-
-		}
-		if(quickvar3 <= 2){
-
-			entityDropItem(new ItemStack(Scapecraft.magicFruit), 1);
-
-		}
-	}
-
-
-
 	public EnumCreatureAttribute getCreatureAttribute()
 	{
 		return EnumCreatureAttribute.UNDEAD;
@@ -223,7 +193,7 @@ public class EntityDwarf extends EntityScapecraft
 
 	static
 	{
-		defaultHeldItem = new ItemStack(Scapecraft.pickaxeGalore, 1);
+		defaultHeldItem = new ItemStack(ScapecraftItems.pickaxeGalore, 1);
 	}
 
 

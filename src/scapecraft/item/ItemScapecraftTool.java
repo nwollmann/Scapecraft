@@ -8,15 +8,16 @@ import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
 
-import scapecraft.ReflectionHelper;
 import scapecraft.Scapecraft;
 
+import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Multimap;
 
 public class ItemScapecraftTool extends ItemTool
 {
 	protected ScapecraftToolMaterial toolMaterial;
 	protected float damageVsEntity;
+	protected String toolClass;
 
 	public ItemScapecraftTool(float damageVsEntity, ScapecraftToolMaterial toolMaterial, Set<Block> effectiveBlocks)
 	{
@@ -26,10 +27,27 @@ public class ItemScapecraftTool extends ItemTool
 		this.damageVsEntity = damageVsEntity + toolMaterial.getDamageVsEntity();
 		this.setCreativeTab(Scapecraft.tabScapecraftTool);
 	}
-
-	protected void setToolClass(String toolClass)
+	
+	//Code copied from ItemTool, looks the same but uses variables declared here instead
+	@Override
+	public int getHarvestLevel(ItemStack stack, String toolClass)
 	{
-		ReflectionHelper.changeFinal(ItemTool.class, this, toolClass, "toolClass", "toolClass");
+		int level = super.getHarvestLevel(stack, toolClass);
+		if (level == -1 && toolClass != null && toolClass.equals(this.toolClass))
+		{
+			return this.toolMaterial.getHarvestLevel();
+		}
+		else
+		{
+			return level;
+		}
+	}
+
+	//Code copied from ItemTool, looks the same but uses variables declared here instead
+	@Override
+	public Set<String> getToolClasses(ItemStack stack)
+	{
+		return toolClass != null ? ImmutableSet.of(toolClass) : super.getToolClasses(stack);
 	}
 
 	public ScapecraftToolMaterial getScapecraftToolMaterial()
@@ -59,12 +77,12 @@ public class ItemScapecraftTool extends ItemTool
 	 * Gets a map of item attribute modifiers, used by ItemSword to increase hit damage.
 	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	@Override
-	public Multimap getItemAttributeModifiers()
-	{
-		Multimap multimap = super.getItemAttributeModifiers();
-		multimap.put(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(), new AttributeModifier(itemModifierUUID, "Tool modifier", (double)this.damageVsEntity, 0));
-		return multimap;
-	}
+		@Override
+		public Multimap getItemAttributeModifiers()
+		{
+			Multimap multimap = super.getItemAttributeModifiers();
+			multimap.put(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(), new AttributeModifier(itemModifierUUID, "Tool modifier", (double)this.damageVsEntity, 0));
+			return multimap;
+		}
 
 }

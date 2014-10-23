@@ -13,20 +13,17 @@ import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.passive.EntityOcelot;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-
-import scapecraft.Scapecraft;
 
 
 public class EntityCaveCrawler extends EntityScapecraft
 {
 	private float moveSpeed;
 
+	
 
 	public EntityCaveCrawler(World par1World)
 	{
@@ -71,7 +68,7 @@ public class EntityCaveCrawler extends EntityScapecraft
 		// Movement Speed - default 0.699D - min 0.0D - max Double.MAX_VALUE
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.450D);
 		// Attack Damage - default 2.0D - min 0.0D - max Doubt.MAX_VALUE
-		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(6.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(1.0D);
 	}
 
 
@@ -178,51 +175,6 @@ public class EntityCaveCrawler extends EntityScapecraft
 			}
 		}
 	}
-
-
-	protected void dropFewItems(boolean par1, int par2){
-
-		int quickvar = rand.nextInt(15) + 1;
-		int quickvar1 = rand.nextInt(30000) + 1;
-		int quickvar2 = rand.nextInt(3000) + 1;
-		int quickvar3 = rand.nextInt(100) + 1;
-		int quickvar4 = rand.nextInt(400) + 1;
-		int quickvar5 = rand.nextInt(6) + 1;
-
-		if(quickvar <= 1){
-
-			entityDropItem(new ItemStack(Items.wooden_sword), 1);
-
-		}
-		if(quickvar1 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.crystalBow), 1);
-
-		}
-		if(quickvar2 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.runegBoots), 1);
-
-		}
-		if(quickvar3 <= 2){
-
-			entityDropItem(new ItemStack(Scapecraft.magicFruit), 1);
-
-		}
-		if(quickvar4 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.runeSword), 1);}
-
-		if(quickvar5 <= 1){entityDropItem(new ItemStack(Items.gold_nugget), 1);}
-
-	}
-	public int getAttackStrength(Entity par1Entity)
-	{
-		return 1;
-	}
-
-
-
 
 	public EnumCreatureAttribute getCreatureAttribute()
 	{

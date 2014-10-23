@@ -20,7 +20,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-import scapecraft.Scapecraft;
+import scapecraft.item.ScapecraftItems;
 
 
 public class EntityKos1 extends EntityScapecraft
@@ -91,7 +91,7 @@ public class EntityKos1 extends EntityScapecraft
 
 	static
 	{
-		defaultHeldItem = new ItemStack(Scapecraft.fremSword, 1);
+		defaultHeldItem = new ItemStack(ScapecraftItems.fremSword, 1);
 	}
 
 

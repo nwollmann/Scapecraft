@@ -14,7 +14,7 @@ public class ItemScapecraftShovel extends ItemScapecraftTool
 	public ItemScapecraftShovel(ScapecraftToolMaterial toolMaterial)
 	{
 		super(1F, toolMaterial, effectiveBlocks);
-		setToolClass("shovel");
+		this.toolClass = "shovel";
 	}
 	public boolean canItemHarvestBlock(Block block)
 	{

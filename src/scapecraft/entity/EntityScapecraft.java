@@ -1,14 +1,18 @@
 package scapecraft.entity;
 
-import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map.Entry;
 
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 import scapecraft.Stats;
@@ -16,7 +20,7 @@ import scapecraft.Stats;
 public abstract class EntityScapecraft extends EntityMob implements XpDropper
 {
 	protected HashMap<EntityPlayer, Float> attackers = new HashMap<EntityPlayer, Float>();
-	protected static HashMap<Class<? extends EntityScapecraft>, ArrayList<AbstractMap.SimpleEntry<Integer, ItemStack>>> drops = new HashMap<Class<? extends EntityScapecraft>, ArrayList<AbstractMap.SimpleEntry<Integer, ItemStack>>>();
+	public static HashMap<Class<? extends EntityScapecraft>, ArrayList<Drop>> drops = new HashMap<Class<? extends EntityScapecraft>, ArrayList<Drop>>();
 	protected int lifespan;
 
 	public EntityScapecraft(World par1World) 
@@ -38,17 +42,22 @@ public abstract class EntityScapecraft extends EntityMob implements XpDropper
 	protected void dropFewItems(boolean par1, int par2)
 	{
 		if(drops.get(this.getClass()) != null)
-			for(AbstractMap.SimpleEntry<Integer, ItemStack> drop : drops.get(this.getClass()))
-				if(rand.nextInt(drop.getKey()) == 0)
-					entityDropItem(drop.getValue().copy(), 1);
+			for(Drop drop : drops.get(this.getClass()))
+				if(rand.nextInt(drop.chance) == 0)
+					entityDropItem(drop.stack.copy(), 1);
 	}
 
-	public static void addDrop(Class<? extends EntityScapecraft> entityClass, int chance, ItemStack drop)
+	public static void addDrop(Class<? extends EntityScapecraft> entityClass, int chance, ItemStack stack)
 	{
-		ArrayList<AbstractMap.SimpleEntry<Integer, ItemStack>> list = drops.get(entityClass);
+		addDrop(entityClass, new Drop(stack, chance, false));
+	}
+
+	public static void addDrop(Class<? extends EntityScapecraft> entityClass, Drop drop)
+	{
+		ArrayList<Drop> list = drops.get(entityClass);
 		if(list == null)
-			list = new ArrayList<AbstractMap.SimpleEntry<Integer, ItemStack>>();
-		list.add(new AbstractMap.SimpleEntry<Integer, ItemStack>(chance, drop));
+			list = new ArrayList<Drop>();
+		list.add(drop);
 		drops.put(entityClass, list);
 	}
 
@@ -68,5 +77,44 @@ public abstract class EntityScapecraft extends EntityMob implements XpDropper
 			this.attackTime = 20;
 			this.attackEntityAsMob(entity);
 		}
+	}
+
+	public float getAttackStrength(Entity entity)
+	{
+		float damage = (float)this.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue();
+
+		if(entity instanceof EntityLivingBase)
+			damage += EnchantmentHelper.getEnchantmentModifierLiving(this, (EntityLivingBase)entity);
+
+		return damage;
+	}
+
+	@Override
+	public boolean attackEntityAsMob(Entity entity)
+	{
+		if(entity.attackEntityFrom(DamageSource.causeMobDamage(this), getAttackStrength(entity)))
+		{
+			if(entity instanceof EntityLivingBase)
+			{
+				int knockback = EnchantmentHelper.getKnockbackModifier(this, (EntityLivingBase) entity);
+				if(knockback > 0)
+				{
+					entity.addVelocity((double)(-MathHelper.sin(this.rotationYaw * (float)Math.PI / 180.0F) * (float)knockback* 0.5F), 0.1D, (double)(MathHelper.cos(this.rotationYaw * (float)Math.PI / 180.0F) * (float)knockback* 0.5F));
+					this.motionX *= 0.6D;
+					this.motionZ *= 0.6D;
+				}
+
+				EnchantmentHelper.func_151384_a((EntityLivingBase) entity, this);
+			}
+
+			int fire = EnchantmentHelper.getFireAspectModifier(this) * 4;
+			if(fire > 0)
+				entity.setFire(fire);
+
+			EnchantmentHelper.func_151385_b(this, entity);
+
+			return true;
+		}
+		return false;
 	}
 }

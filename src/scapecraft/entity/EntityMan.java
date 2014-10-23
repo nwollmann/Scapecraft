@@ -20,14 +20,11 @@ import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-
-import scapecraft.Scapecraft;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -35,6 +32,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class EntityMan extends EntityScapecraft
 {
 	private float moveSpeed;
+	
 	public EntityMan(World par1World)
 	{
 		super(par1World);
@@ -227,44 +225,6 @@ public class EntityMan extends EntityScapecraft
 				super.attackEntity(par1Entity, par2);
 			}
 		}
-	}
-
-
-	protected void dropFewItems(boolean par1, int par2){
-
-		int quickvar = rand.nextInt(150) + 1;
-		int quickvar1 = rand.nextInt(5000) + 1;
-		int quickvar4 = rand.nextInt(140) + 1;
-		int quickvar5 = rand.nextInt(160) + 1;
-		int quickvar6 = rand.nextInt(8) + 1;
-
-		if(quickvar <= 1){
-
-			entityDropItem(new ItemStack(Items.stone_sword), 1);
-
-		}
-		if(quickvar1 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.DD), 1);
-
-
-
-
-		}
-		if(quickvar4 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.guardHelmet), 1);
-
-		}
-		if(quickvar5 <= 1){entityDropItem(new ItemStack(Scapecraft.guardChestplate), 1);}
-		if(quickvar6 <= 1){entityDropItem(new ItemStack(Items.gold_nugget), 1);}
-
-	}
-
-
-	public int getAttackStrength(Entity par1Entity)
-	{
-		return 3;
 	}
 
 	@Override

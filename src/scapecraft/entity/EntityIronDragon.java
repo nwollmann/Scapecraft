@@ -4,18 +4,15 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.projectile.EntityLargeFireball;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-import scapecraft.Scapecraft;
-
 public class EntityIronDragon extends EntityScapecraft
 {
 	private int field_40152_d;
+	
 
 	public EntityIronDragon(World par1World)
 	{
@@ -143,64 +140,6 @@ public class EntityIronDragon extends EntityScapecraft
 			rotationYaw = (float)((Math.atan2(d2, d) * 180D) / Math.PI) - 90F;
 			hasAttacked = true;
 		}
-	}
-
-
-
-
-	protected void dropFewItems(boolean par1, int par2){
-
-		int quickvar = rand.nextInt(500) + 1;
-		int quickvar1 = rand.nextInt(200) + 1;
-		int quickvar2 = rand.nextInt(3) + 1;
-		int quickvar3 = rand.nextInt(50) + 1;
-		int quickvar4 = rand.nextInt(5) + 1;
-		int quickvar5 = rand.nextInt(2000) + 1;
-		int quickvar6 = rand.nextInt(20) + 1;
-
-		if(quickvar <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.dragonLeggings), 1);
-
-		}
-		if(quickvar1 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.DD), 1);
-
-		}
-		if(quickvar2 <= 1){
-
-			entityDropItem(new ItemStack(Items.iron_sword), 2);
-
-		}
-		if(quickvar3 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.runeChestplate), 1);
-
-		}
-
-		if(quickvar4 <= 1){
-
-			entityDropItem(new ItemStack(Items.iron_chestplate), 1);
-
-		}
-		if(quickvar5 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.shard2), 1);
-
-		}
-		if(quickvar6 <= 1){
-
-			entityDropItem(new ItemStack(Items.gold_ingot), 1);
-
-		}
-
-	}
-
-
-	public int getAttackStrength(Entity par1Entity)
-	{
-		return 20;
 	}
 
 	public boolean isBurning()

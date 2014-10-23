@@ -16,7 +16,7 @@ public class ItemScapecraftAxe extends ItemScapecraftTool
 	public ItemScapecraftAxe(ScapecraftToolMaterial material)
 	{
 		super(3F, material, effectiveBlocks);
-		setToolClass("axe");
+		this.toolClass = "axe";
 	}
 
 	@Override

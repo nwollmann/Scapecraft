@@ -1,17 +1,29 @@
 package scapecraft;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map.Entry;
 
+import net.minecraft.entity.EntityList;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.nbt.CompressedStreamTools;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ChatComponentText;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.event.world.WorldEvent;
 
+import scapecraft.entity.Drop;
+import scapecraft.entity.EntityScapecraft;
 import scapecraft.item.ItemArmorScapecraft;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -101,4 +113,37 @@ public class ScapecraftEventHandler
 	{
 	}
 
+	@SubscribeEvent
+	public void onWorldSave(WorldEvent.Load event)
+	{
+		if(event.world.provider.dimensionId != 0)
+			return;
+
+		File dataFile = event.world.getSaveHandler().getMapFileFromName("ScapecraftData");
+		if(dataFile != null)
+		{
+			NBTTagCompound nbt = new NBTTagCompound();
+			NBTTagCompound drops = new NBTTagCompound();
+
+			//Save drops
+			for (Entry<Class<? extends EntityScapecraft>, ArrayList<Drop>> dropEntry : EntityScapecraft.drops.entrySet())
+			{
+				NBTTagList list = new NBTTagList();
+				for(Drop drop : dropEntry.getValue())
+					list.appendTag(drop.toNBT());
+				drops.setTag((String) EntityList.classToStringMapping.get(dropEntry.getKey()), list);
+
+			}
+
+			drops.setString("version", Scapecraft.version);
+
+			nbt.setTag("drops", drops);
+
+			try {
+				CompressedStreamTools.writeCompressed(nbt, new FileOutputStream(dataFile));
+			} catch(IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 }

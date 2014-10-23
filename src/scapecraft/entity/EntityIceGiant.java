@@ -13,19 +13,16 @@ import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.passive.EntityOcelot;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-import scapecraft.Scapecraft;
-
 public class EntityIceGiant extends EntityScapecraft
 {
 	private float moveSpeed;
 
+	
 
 	public EntityIceGiant(World par1World)
 	{
@@ -193,56 +190,6 @@ public class EntityIceGiant extends EntityScapecraft
 				super.attackEntity(par1Entity, par2);
 			}
 		}
-	}
-
-
-	protected void dropFewItems(boolean par1, int par2){
-
-		int quickvar = rand.nextInt(700) + 1;
-		int quickvar1 = rand.nextInt(500) + 1;
-		int quickvar2 = rand.nextInt(60) + 1;
-		int quickvar3 = rand.nextInt(40) + 1;
-		int quickvar4 = rand.nextInt(30) + 1;
-		int quickvar5 = rand.nextInt(60) + 1;
-		int quickvar6 = rand.nextInt(1) + 1;
-		int quickvar7 = rand.nextInt(13) + 1;
-
-		if(quickvar <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.dragonLongsword), 1);
-
-		}
-		if(quickvar1 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.dragonLeggings), 1);
-
-		}
-		if(quickvar2 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.mithLeggings), 1);
-
-		}
-		if(quickvar3 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.runeBoots), 1);
-
-		}
-		if(quickvar4 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.blackHelmet), 1);
-
-		}
-		if(quickvar5 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.addyChestplate), 1);
-
-		}
-		if(quickvar6 <= 1){
-
-			entityDropItem(new ItemStack(Items.snowball), 1);
-
-		}
-		if(quickvar7 <= 1){entityDropItem(new ItemStack(Scapecraft.graniteLump), 1);}
 	}
 
 

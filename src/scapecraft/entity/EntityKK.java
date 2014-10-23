@@ -19,18 +19,15 @@ import net.minecraft.entity.passive.EntityOcelot;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
-
-import scapecraft.Scapecraft;
 
 public class EntityKK extends EntityScapecraft 
 {
 	private float moveSpeed;
 
+	
 
 	public EntityKK(World par1World)
 	{
@@ -231,40 +228,6 @@ public class EntityKK extends EntityScapecraft
 	protected float getSoundVolume()
 	{
 		return 0.4F;
-	}
-
-
-
-	protected void dropFewItems(boolean par1, int par2){
-
-		int quickvar = rand.nextInt(50) + 1;
-		int quickvar1 = rand.nextInt(100) + 1;
-		int quickvar2 = rand.nextInt(1) + 1;
-		int quickvar3 = rand.nextInt(150) + 1;
-		int quickvar4 = rand.nextInt(4) + 1;
-		int quickvar5 = rand.nextInt(4) + 1;
-		int quickvar6 = rand.nextInt(4) + 1;
-		int quickvar7 = rand.nextInt(4) + 1;
-		int quickvar8 = rand.nextInt(30) + 1;
-		int quickvar9 = rand.nextInt(20) + 1;
-		int quickvar10 = rand.nextInt(15) + 1;
-		int quickvar11 = rand.nextInt(15) + 1;
-
-		if(quickvar  <= 1){entityDropItem(new ItemStack(Scapecraft.dryMace), 1);}
-		if(quickvar1 <= 1){entityDropItem(new ItemStack(Scapecraft.dryRapier), 1);}
-		if(quickvar2 <= 1){          
-			entityDropItem(new ItemStack(Scapecraft.addyOre), 2);
-			entityDropItem(new ItemStack(Items.gold_ingot), 2);}
-		if(quickvar3 <= 1){entityDropItem(new ItemStack(Scapecraft.dryLong), 1);}
-		if(quickvar4 <= 1){entityDropItem(new ItemStack(Scapecraft.runeLeggings), 1);}
-		if(quickvar5 <= 1){entityDropItem(new ItemStack(Scapecraft.runeChestplate), 1);}
-		if(quickvar7 <= 1){entityDropItem(new ItemStack(Scapecraft.runeHelmet), 1);}
-		if(quickvar6 <= 1){entityDropItem(new ItemStack(Scapecraft.runeBoots), 1);}
-		if(quickvar8 <= 1){entityDropItem(new ItemStack(Scapecraft.DDS), 1);}
-		if(quickvar9 <= 1){entityDropItem(new ItemStack(Scapecraft.sandSpawn), 1);}
-		if(quickvar10 <= 1){entityDropItem(new ItemStack(Scapecraft.dragonAxe), 1);}
-		if(quickvar11 <= 1){entityDropItem(new ItemStack(Scapecraft.dragonBoots), 1);}
-
 	}
 
 

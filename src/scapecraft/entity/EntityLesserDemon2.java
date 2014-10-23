@@ -12,16 +12,14 @@ import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.passive.EntityOcelot;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
-
-import scapecraft.Scapecraft;
 
 public class EntityLesserDemon2 extends EntityScapecraft
 {
 	private float moveSpeed;
 
+	
 
 	public EntityLesserDemon2(World par1World)
 	{
@@ -191,53 +189,6 @@ public class EntityLesserDemon2 extends EntityScapecraft
 	{
 		return 0.4F;
 	}
-
-
-
-	protected void dropFewItems(boolean par1, int par2){
-
-		int quickvar = rand.nextInt(4000) + 1;
-		int quickvar1 = rand.nextInt(1400) + 1;
-		int quickvar2 = rand.nextInt(10) + 1;
-		int quickvar3 = rand.nextInt(5) + 1;
-		int quickvar4 = rand.nextInt(5) + 1;
-		int quickvar5 = rand.nextInt(1000) + 1;
-
-		if(quickvar <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.rapier), 1);
-
-		}
-		if(quickvar1 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.DBA), 1);
-
-		}
-		if(quickvar2 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.mithOre), 1);
-
-		}
-		if(quickvar3 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.whiteChestplate), 1);
-
-		}
-
-		if(quickvar4 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.mithHelmet), 1);
-
-		}
-		if(quickvar5 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.shard3), 1);
-
-		}
-	}
-
-
-
 
 	@Override
 	protected boolean canDespawn()

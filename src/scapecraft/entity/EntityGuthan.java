@@ -14,17 +14,16 @@ import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.passive.EntityOcelot;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
-
-import scapecraft.Scapecraft;
 
 
 public class EntityGuthan extends EntityScapecraft
 {
 	private float moveSpeed;
+	
+
 	public EntityGuthan(World par1World)
 	{
 		super(par1World);
@@ -172,58 +171,6 @@ public class EntityGuthan extends EntityScapecraft
 			return false;
 		}
 	}
-
-
-	protected void dropFewItems(boolean par1, int par2){
-
-		int quickvar = rand.nextInt(400) + 1;
-		int quickvar1 = rand.nextInt(400) + 1;
-		int quickvar2 = rand.nextInt(300) + 1;
-		int quickvar3 = rand.nextInt(300) + 1;
-		int quickvar4 = rand.nextInt(300) + 1;
-		int quickvar5 = rand.nextInt(300) + 1;
-		int quickvar6 = rand.nextInt(1) + 1;
-
-		if(quickvar <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.guthanSpear), 1);
-
-		}
-		if(quickvar1 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.dragonLeggings), 1);
-
-		}
-		if(quickvar2 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.guthanLeggings), 1);
-
-		}
-		if(quickvar3 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.guthanBoots), 1);
-
-		}
-		if(quickvar4 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.guthanHelmet), 1);
-
-		}
-		if(quickvar5 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.guthanChestplate), 1);
-
-		}
-		if(quickvar6 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.guthanKey), 1);
-
-		}
-	}
-
-
-
-
 
 	public EnumCreatureAttribute getCreatureAttribute()
 	{

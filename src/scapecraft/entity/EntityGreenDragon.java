@@ -16,18 +16,12 @@ import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.passive.EntityOcelot;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
-
-import scapecraft.Scapecraft;
 
 public class EntityGreenDragon extends EntityScapecraft
 {
 	private float moveSpeed;
-
-
 	public EntityGreenDragon(World par1World)
 	{
 		super(par1World);
@@ -215,72 +209,6 @@ public class EntityGreenDragon extends EntityScapecraft
 	{
 		return 0.4F;
 	}
-
-
-
-	protected void dropFewItems(boolean par1, int par2){
-
-		int quickvar = rand.nextInt(500000) + 1;
-		int quickvar1 = rand.nextInt(1000) + 1;
-		int quickvar2 = rand.nextInt(5) + 1;
-		int quickvar3 = rand.nextInt(1000) + 1;
-		int quickvar4 = rand.nextInt(15) + 1;
-		int quickvar5 = rand.nextInt(1000) + 1;
-		int quickvar6 = rand.nextInt(2000) + 1;
-		int quickvar7 = rand.nextInt(3) + 1;
-		int quickvar8 = rand.nextInt(1) + 1;
-
-		if(quickvar <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.dragonChestplate), 1);
-
-		}
-		if(quickvar1 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.dragonScimmy), 1);
-
-		}
-		if(quickvar2 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.addyOre), 2);
-
-		}
-		if(quickvar3 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.runeChestplate), 1);
-
-		}
-
-		if(quickvar4 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.mithBoots), 1);
-
-		}
-
-		if(quickvar5 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.shard1), 1);
-
-		}
-		if(quickvar6 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.armadylHilt), 1);
-
-		}
-
-		if(quickvar7 <= 1){
-
-			entityDropItem(new ItemStack(Items.gold_ingot), 1);
-
-		}
-
-		if(quickvar8 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.greenDHide), 1);
-
-		}
-	}
-
 
 
 

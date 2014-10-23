@@ -13,35 +13,19 @@ import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.passive.EntityOcelot;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-import scapecraft.Scapecraft;
+import scapecraft.item.ScapecraftItems;
 
 
 public class EntityBandit extends EntityScapecraft
 {
 	private float moveSpeed;
-	static
-	{
-
-		addDrop(EntityBandit.class, 1, new ItemStack(Scapecraft.blackSword));
-		addDrop(EntityBandit.class, 40, new ItemStack(Scapecraft.blackgLeggings));
-		addDrop(EntityBandit.class, 300, new ItemStack(Scapecraft.keris));
-		addDrop(EntityBandit.class, 1, new ItemStack(Scapecraft.fishPie, 3));
-		addDrop(EntityBandit.class, 30, new ItemStack(Scapecraft.dragonLongsword));
-		addDrop(EntityBandit.class, 10, new ItemStack(Scapecraft.blackHalberd));
-		addDrop(EntityBandit.class, 10, new ItemStack(Blocks.coal_block));
-		addDrop(EntityBandit.class, 10, new ItemStack(Scapecraft.addySword));
-		addDrop(EntityBandit.class, 10, new ItemStack(Scapecraft.addyHammer));
-		addDrop(EntityBandit.class, 10, new ItemStack(Items.gold_ingot));
-
-	}
+	
 	public EntityBandit(World par1World)
 	{
 		super(par1World);
@@ -223,7 +207,7 @@ public class EntityBandit extends EntityScapecraft
 		super.onLivingUpdate();
 	}
 
-	private static final ItemStack defaultHeldItem = new ItemStack(Scapecraft.blackSword, 1);
+	private static final ItemStack defaultHeldItem = new ItemStack(ScapecraftItems.blackSword, 1);
 
 	@Override
 	public ItemStack getHeldItem()
@@ -239,9 +223,9 @@ public class EntityBandit extends EntityScapecraft
 		if (this.getEquipmentInSlot(4) == null){
 
 
-			this.setCurrentItemOrArmor(1, new ItemStack(Scapecraft.blackgBoots));
-			this.setCurrentItemOrArmor(2, new ItemStack(Scapecraft.blackgLeggings));
-			this.setCurrentItemOrArmor(3, new ItemStack(Scapecraft.guardChestplate));
+			this.setCurrentItemOrArmor(1, new ItemStack(ScapecraftItems.blackgBoots));
+			this.setCurrentItemOrArmor(2, new ItemStack(ScapecraftItems.blackgLeggings));
+			this.setCurrentItemOrArmor(3, new ItemStack(ScapecraftItems.guardChestplate));
 			this.equipmentDropChances[4] = 0.0F;
 		}
 	}*/ //Why does this exist

@@ -1,0 +1,19 @@
+[
+    {
+        "name": "Scapecraft", 
+        "parent": "", 
+        "updateUrl": "http://ci.mraof.com/job/Scapecraft/", 
+        "version": "${version}", 
+        "modid": "Minestuck", 
+        "authors": [
+            "Mraof", 
+            "999134fishy"
+        ], 
+        "mcversion": "${mcversion}", 
+        "screenshots": [], 
+        "dependencies": [
+            "Forge"
+        ], 
+        "description": ""
+    }
+]

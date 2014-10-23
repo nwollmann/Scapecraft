@@ -15,7 +15,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-import scapecraft.Scapecraft;
+import scapecraft.item.ScapecraftItems;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -135,7 +135,7 @@ public class EntityMagicBoat extends Entity
 
 				if (!flag)
 				{
-					this.entityDropItem(new ItemStack(Scapecraft.magicBoat, 1), 0.0F);
+					this.entityDropItem(new ItemStack(ScapecraftItems.magicBoat, 1), 0.0F);
 				}
 
 				this.setDead();

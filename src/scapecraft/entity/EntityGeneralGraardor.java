@@ -2,6 +2,7 @@ package scapecraft.entity;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
@@ -10,20 +11,14 @@ import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
-import net.minecraft.entity.passive.EntityOcelot;
-import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-
-import scapecraft.Scapecraft;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -32,6 +27,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class EntityGeneralGraardor extends EntityScapecraft
 {
 	private float moveSpeed;
+
+	
 
 
 	public EntityGeneralGraardor(World par1World)
@@ -58,24 +55,7 @@ public class EntityGeneralGraardor extends EntityScapecraft
 		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityWhiteKnight.class, 0, true));
 		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityWizard.class, 0, true));
 		this.tasks.addTask(1, new EntityAISwimming(this));
-		this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityBlackDragon.class, this.moveSpeed, false));
-		this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityGreenDragon.class, this.moveSpeed, false));
-		this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityGuard.class, this.moveSpeed, false));
-		this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityHellhound.class, this.moveSpeed, false));
-		this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityHeroKnight.class, this.moveSpeed, false));
-		this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityKQ.class, this.moveSpeed, false));
-		this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityKQ2.class, this.moveSpeed, false));
-		this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityKing.class, this.moveSpeed, false));
-		this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityKingsGuard.class, this.moveSpeed, false));
-		this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityKos1.class, this.moveSpeed, false));
-		this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityKos2.class, this.moveSpeed, false));
-		this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityKos3.class, this.moveSpeed, false));
-		this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityOcelot.class, this.moveSpeed, false));
-		this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityPlayer.class, this.moveSpeed, false));
-		this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityTD.class, this.moveSpeed, false));
-		this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityWhiteKnight.class, this.moveSpeed, false));
-		this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityWizard.class, this.moveSpeed, false));
-		this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityWolf.class, this.moveSpeed, false));
+		this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityLivingBase.class, this.moveSpeed, false));
 		this.tasks.addTask(5, new EntityAIWander(this, this.moveSpeed));
 		this.tasks.addTask(6, new EntityAILookIdle(this));
 		this.tasks.addTask(6, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
@@ -199,46 +179,6 @@ public class EntityGeneralGraardor extends EntityScapecraft
 		}
 	}
 
-
-	protected void dropFewItems(boolean par1, int par2){
-
-		int quickvar = rand.nextInt(4) + 1;
-		int quickvar1 = rand.nextInt(2000) + 1;
-		int quickvar2 = rand.nextInt(100) + 1;
-		int quickvar3 = rand.nextInt(1) + 1;
-		int quickvar4 = rand.nextInt(100) + 1;
-		int quickvar5 = rand.nextInt(3) + 1;
-		int quickvar6 = rand.nextInt(4) + 1;
-		int quickvar7 = rand.nextInt(100) + 1;
-		int quickvar8 = rand.nextInt(20) + 1;
-		int quickvar9 = rand.nextInt(30) + 1;
-		int quickvar10 = rand.nextInt(100) + 1;
-		int quickvar11 = rand.nextInt(200) + 1;
-		int quickvar12 = rand.nextInt(1000) + 1;
-		int quickvar13 = rand.nextInt(500) + 1;
-		int quickvar14 = rand.nextInt(75) + 1;
-		int quickvar15 = rand.nextInt(75) + 1;
-
-		if(quickvar <= 1){entityDropItem(new ItemStack(Scapecraft.addyOre), 1);}
-		if(quickvar <= 1){entityDropItem(new ItemStack(Items.gold_ingot), 2);}
-		if(quickvar1 <= 1){entityDropItem(new ItemStack(Scapecraft.crystalBow), 1);}
-		if(quickvar2 <= 1){entityDropItem(new ItemStack(Scapecraft.dragonHelmet), 1);}
-		if(quickvar3 <= 2){entityDropItem(new ItemStack(Scapecraft.magicFruit), 1);}
-		if(quickvar4 <= 1){entityDropItem(new ItemStack(Scapecraft.bandosHilt), 1);}
-		if(quickvar5 <= 1){entityDropItem(new ItemStack(Scapecraft.mithChestplate), 1);}
-		if(quickvar6 <= 1){entityDropItem(new ItemStack(Scapecraft.addyChestplate), 1);}
-		if(quickvar7 <= 1){entityDropItem(new ItemStack(Scapecraft.dragonBoots), 1);}
-		if(quickvar8 <= 1){entityDropItem(new ItemStack(Scapecraft.runegHelmet), 1);}
-		if(quickvar9 <= 1){entityDropItem(new ItemStack(Scapecraft.runegLeggings), 1);}
-		if(quickvar10 <= 1){entityDropItem(new ItemStack(Scapecraft.mithOreSpawn), 1);}
-		if(quickvar11 <= 1){entityDropItem(new ItemStack(Scapecraft.addyOreSpawn), 1);}
-		if(quickvar12 <= 1){entityDropItem(new ItemStack(Scapecraft.runeOreSpawn), 1);}
-		if(quickvar13 <= 1){entityDropItem(new ItemStack(Scapecraft.coalOreSpawn), 1);}
-		if(quickvar14 <= 1){entityDropItem(new ItemStack(Scapecraft.bandosChestplate), 1);}
-		if(quickvar15 <= 1){entityDropItem(new ItemStack(Scapecraft.bandosBoots), 1);}
-		// if(quickvar15 <= 1){entityDropItem(new ItemStack(Scapecraft.legs), 1);}
-
-	}
 
 
 	protected EntityGoblin createInstance()

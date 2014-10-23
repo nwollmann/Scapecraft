@@ -25,7 +25,7 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-import scapecraft.Scapecraft;
+import scapecraft.item.ScapecraftItems;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -33,6 +33,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class EntityWhiteKnight extends EntityScapecraft
 {
 	private float moveSpeed;
+	
 	public EntityWhiteKnight(World par1World)
 	{
 		super(par1World);
@@ -225,55 +226,6 @@ public class EntityWhiteKnight extends EntityScapecraft
 		}
 	}
 
-
-	protected void dropFewItems(boolean par1, int par2){
-
-		int quickvar = rand.nextInt(141) + 1;
-		int quickvar1 = rand.nextInt(3500) + 1;
-		int quickvar2 = rand.nextInt(160) + 1;
-		int quickvar3 = rand.nextInt(140) + 1;
-		int quickvar4 = rand.nextInt(140) + 1;
-		int quickvar5 = rand.nextInt(160) + 1;
-
-		if(quickvar <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.whiteSword), 1);
-
-		}
-		if(quickvar1 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.dragonLeggings), 1);
-
-		}
-		if(quickvar2 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.whiteLeggings), 1);
-
-		}
-		if(quickvar3 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.whiteBoots), 1);
-
-		}
-		if(quickvar4 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.whiteHelmet), 1);
-
-		}
-		if(quickvar5 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.whiteChestplate), 1);
-
-		}
-
-	}
-
-
-
-
-
-
-
 	public boolean isPotionApplicable(PotionEffect par1PotionEffect)
 	{
 		return par1PotionEffect.getPotionID() == Potion.poison.id ? false : super.isPotionApplicable(par1PotionEffect);
@@ -289,10 +241,10 @@ public class EntityWhiteKnight extends EntityScapecraft
 	@Override
 	public void addRandomArmor()
 	{
-			this.setCurrentItemOrArmor(4, new ItemStack(Scapecraft.whiteHelmet));
-			this.setCurrentItemOrArmor(1, new ItemStack(Scapecraft.whiteBoots));
-			this.setCurrentItemOrArmor(2, new ItemStack(Scapecraft.whiteLeggings));
-			this.setCurrentItemOrArmor(3, new ItemStack(Scapecraft.whiteChestplate));
+			this.setCurrentItemOrArmor(4, new ItemStack(ScapecraftItems.whiteHelmet));
+			this.setCurrentItemOrArmor(1, new ItemStack(ScapecraftItems.whiteBoots));
+			this.setCurrentItemOrArmor(2, new ItemStack(ScapecraftItems.whiteLeggings));
+			this.setCurrentItemOrArmor(3, new ItemStack(ScapecraftItems.whiteChestplate));
 	}
 
 	private static final ItemStack defaultHeldItem;
@@ -303,7 +255,7 @@ public class EntityWhiteKnight extends EntityScapecraft
 
 	static
 	{
-		defaultHeldItem = new ItemStack(Scapecraft.whiteSword, 1);
+		defaultHeldItem = new ItemStack(ScapecraftItems.whiteSword, 1);
 	}
 
 	@SideOnly(Side.CLIENT)	

@@ -26,7 +26,7 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 
-import scapecraft.Scapecraft;
+import scapecraft.item.ScapecraftItems;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -34,6 +34,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class EntityKingsGuard extends EntityScapecraft
 {
 	private float moveSpeed;
+	
 	public EntityKingsGuard(World par1World)
 	{
 		super(par1World);
@@ -214,39 +215,6 @@ public class EntityKingsGuard extends EntityScapecraft
 		return super.attackEntityFrom(par1DamageSource, par2);
 	}
 
-
-	protected void dropFewItems(boolean par1, int par2){
-
-		int quickvar = rand.nextInt(100) + 1;
-		int quickvar1 = rand.nextInt(10000) + 1;
-		int quickvar4 = rand.nextInt(10) + 1;
-		int quickvar5 = rand.nextInt(10) + 1;
-
-		if(quickvar <= 1){
-
-			entityDropItem(new ItemStack(Items.golden_sword), 1);
-
-		}
-		if(quickvar1 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.saraSword), 1);
-
-
-
-
-		}
-		if(quickvar4 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.guardHelmet), 1);
-
-		}
-		if(quickvar5 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.guardChestplate), 1);
-
-		}
-	}
-
 	@Override
 	protected Item getDropItem()
 	{
@@ -271,8 +239,8 @@ public class EntityKingsGuard extends EntityScapecraft
 	public void addRandomArmor()
 	{
 
-		this.setCurrentItemOrArmor(4, new ItemStack(Scapecraft.guardHelmet));
-		this.setCurrentItemOrArmor(3, new ItemStack(Scapecraft.guardChestplate));
+		this.setCurrentItemOrArmor(4, new ItemStack(ScapecraftItems.guardHelmet));
+		this.setCurrentItemOrArmor(3, new ItemStack(ScapecraftItems.guardChestplate));
 		this.setCurrentItemOrArmor(2, new ItemStack(Items.golden_leggings));
 		this.equipmentDropChances[4] = 0.0F;
 		//    System.out.println("Test");
@@ -287,7 +255,7 @@ public class EntityKingsGuard extends EntityScapecraft
 
 	static
 	{
-		defaultHeldItem = new ItemStack(Scapecraft.saraSword, 1);
+		defaultHeldItem = new ItemStack(ScapecraftItems.saraSword, 1);
 	}
 
 

@@ -5,23 +5,27 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
-import scapecraft.ReflectionHelper;
 import scapecraft.Scapecraft;
+
+import cpw.mods.fml.common.ObfuscationReflectionHelper;
 
 public class ItemArmorScapecraft extends ItemArmor
 {
 	public String armorNamePrefix;	 
 	public String armorNameType;
 	protected ScapecraftArmorMaterial material;
+	private static ArmorMaterial fakeMaterial = EnumHelper.addArmorMaterial("SCAPECRAFTARMOR", 1000, new int[] {1, 1, 1, 1}, 1); //Values are all totally arbitrary
 
 	public ItemArmorScapecraft(ScapecraftArmorMaterial armorMaterial, int par3, int type, String armornamePrefix)
 	{
-		super(ArmorMaterial.GOLD, par3, type);
+		super(fakeMaterial, par3, type);
 		this.material = armorMaterial;
 		
-		ReflectionHelper.changeFinal(ItemArmor.class, this, armorMaterial.getDamageReductionAmount(type), "damageReduceAmount", "c");
+		ObfuscationReflectionHelper.setPrivateValue(ItemArmor.class, this, armorMaterial.getDamageReductionAmount(type), "damageReduceAmount", "field_77879_b");
+		//damageReduceAmount = ;
 
 		this.setMaxDurability(armorMaterial.getDurability(type));
 		this.setCreativeTab(Scapecraft.tabScapecraftArmor);
@@ -103,7 +107,7 @@ public class ItemArmorScapecraft extends ItemArmor
 				}
 				break;
 			case VERAC:
-				if(this.armorType == 0 && event.source.getEntity() instanceof EntityPlayer && this.isWearingFullSet((EntityPlayer) event.source.getEntity()) && ((EntityPlayer) event.source.getEntity()).getCurrentEquippedItem() != null && ((EntityPlayer) event.source.getEntity()).getCurrentEquippedItem().getItem() == Scapecraft.veracFlail)
+				if(this.armorType == 0 && event.source.getEntity() instanceof EntityPlayer && this.isWearingFullSet((EntityPlayer) event.source.getEntity()) && ((EntityPlayer) event.source.getEntity()).getCurrentEquippedItem() != null && ((EntityPlayer) event.source.getEntity()).getCurrentEquippedItem().getItem() == ScapecraftItems.veracFlail)
 				{
 					System.out.println(event.ammount);
 					event.source.setDamageBypassesArmor().setDamageIsAbsolute();

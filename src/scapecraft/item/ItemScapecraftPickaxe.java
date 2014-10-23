@@ -14,7 +14,7 @@ public class ItemScapecraftPickaxe extends ItemScapecraftTool
 	public ItemScapecraftPickaxe(ScapecraftToolMaterial material)
 	{
 		super(2F, material, effectiveBlocks);
-		setToolClass("pickaxe");
+		this.toolClass = "pickaxe";
 	}
 
 	public boolean canItemHarvestBlock(Block block)

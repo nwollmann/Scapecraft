@@ -18,7 +18,6 @@ import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.passive.EntityOcelot;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
@@ -26,7 +25,7 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-import scapecraft.Scapecraft;
+import scapecraft.item.ScapecraftItems;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -34,6 +33,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class EntityHeroKnight extends EntityScapecraft
 {
 	private float moveSpeed;
+	
+
 	public EntityHeroKnight(World par1World)
 	{
 		super(par1World);
@@ -231,61 +232,6 @@ public class EntityHeroKnight extends EntityScapecraft
 		}
 	}
 
-
-	protected void dropFewItems(boolean par1, int par2){
-
-		int quickvar = rand.nextInt(14) + 1;
-		int quickvar1 = rand.nextInt(15500) + 1;
-		int quickvar2 = rand.nextInt(60) + 1;
-		int quickvar3 = rand.nextInt(40) + 1;
-		int quickvar4 = rand.nextInt(40) + 1;
-		int quickvar5 = rand.nextInt(60) + 1;
-
-		if(quickvar <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.whiteSword), 1);
-
-		}
-		if(quickvar1 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.dragonLeggings), 1);
-
-		}
-		if(quickvar2 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.whiteLeggings), 1);
-
-		}
-		if(quickvar3 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.whiteBoots), 1);
-
-		}
-		if(quickvar4 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.whiteHelmet), 1);
-
-		}
-		if(quickvar5 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.whiteChestplate), 1);
-
-		}
-
-		if(quickvar5 <= 1){
-
-			entityDropItem(new ItemStack(Items.gold_nugget), 2);
-
-		}
-	}
-
-
-
-
-
-
-
-
 	public boolean isPotionApplicable(PotionEffect par1PotionEffect)
 	{
 		return par1PotionEffect.getPotionID() == Potion.poison.id ? false : super.isPotionApplicable(par1PotionEffect);
@@ -301,10 +247,10 @@ public class EntityHeroKnight extends EntityScapecraft
 	public void func_82163_bD()
 	{
 
-			this.setCurrentItemOrArmor(4, new ItemStack(Scapecraft.whiteHelmet));
-			this.setCurrentItemOrArmor(1, new ItemStack(Scapecraft.dragonBoots));
-			this.setCurrentItemOrArmor(2, new ItemStack(Scapecraft.whiteLeggings));
-			this.setCurrentItemOrArmor(3, new ItemStack(Scapecraft.guardChestplate));
+			this.setCurrentItemOrArmor(4, new ItemStack(ScapecraftItems.whiteHelmet));
+			this.setCurrentItemOrArmor(1, new ItemStack(ScapecraftItems.dragonBoots));
+			this.setCurrentItemOrArmor(2, new ItemStack(ScapecraftItems.whiteLeggings));
+			this.setCurrentItemOrArmor(3, new ItemStack(ScapecraftItems.guardChestplate));
 			this.equipmentDropChances[4] = 0.0F;
 	}
 
@@ -316,7 +262,7 @@ public class EntityHeroKnight extends EntityScapecraft
 
 	static
 	{
-		defaultHeldItem = new ItemStack(Scapecraft.SGS, 1);
+		defaultHeldItem = new ItemStack(ScapecraftItems.SGS, 1);
 	}
 
 	@SideOnly(Side.CLIENT)	

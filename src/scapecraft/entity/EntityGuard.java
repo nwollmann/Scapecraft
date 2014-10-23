@@ -27,7 +27,7 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-import scapecraft.Scapecraft;
+import scapecraft.item.ScapecraftItems;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -35,6 +35,9 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class EntityGuard extends EntityScapecraft
 {
 	private float moveSpeed;
+
+	
+
 	public EntityGuard(World par1World)
 	{
 		super(par1World);
@@ -229,39 +232,6 @@ public class EntityGuard extends EntityScapecraft
 		}
 	}
 
-
-	protected void dropFewItems(boolean par1, int par2){
-
-		int quickvar = rand.nextInt(150) + 1;
-		int quickvar1 = rand.nextInt(5000) + 1;
-		int quickvar4 = rand.nextInt(140) + 1;
-		int quickvar5 = rand.nextInt(160) + 1;
-
-		if(quickvar <= 1){
-
-			entityDropItem(new ItemStack(Items.stone_sword), 1);
-
-		}
-		if(quickvar1 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.DD), 1);
-
-
-
-
-		}
-		if(quickvar4 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.guardHelmet), 1);
-
-		}
-		if(quickvar5 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.guardChestplate), 1);
-
-		}
-	}
-
 	@Override
 	protected Item getDropItem()
 	{
@@ -285,8 +255,8 @@ public class EntityGuard extends EntityScapecraft
 	@Override
 	public void addRandomArmor()
 	{
-			this.setCurrentItemOrArmor(4, new ItemStack(Scapecraft.guardHelmet));
-			this.setCurrentItemOrArmor(3, new ItemStack(Scapecraft.guardChestplate));
+			this.setCurrentItemOrArmor(4, new ItemStack(ScapecraftItems.guardHelmet));
+			this.setCurrentItemOrArmor(3, new ItemStack(ScapecraftItems.guardChestplate));
 			this.equipmentDropChances[4] = 0.0F;
 	}
 

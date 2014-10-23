@@ -1,6 +1,5 @@
 package scapecraft.entity;
 
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
@@ -16,13 +15,9 @@ import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
-
-import scapecraft.Scapecraft;
 
 
 public class EntitySergeantGrimspike extends EntityScapecraft implements IRangedAttackMob
@@ -30,6 +25,8 @@ public class EntitySergeantGrimspike extends EntityScapecraft implements IRanged
 	private EntityAIArrowAttack aiArrowAttack = new EntityAIArrowAttack(this, 0.25F, 60, 10.0F);
 	private EntityAIAttackOnCollide aiAttackOnCollide = new EntityAIAttackOnCollide(this, EntityPlayer.class, 0.31F, false);
 	private float moveSpeed;
+
+	
 
 	public EntitySergeantGrimspike(World par1World)
 	{
@@ -149,53 +146,6 @@ public class EntitySergeantGrimspike extends EntityScapecraft implements IRanged
 	{
 		this.worldObj.playSoundAtEntity(this, "mob.villager.default", 0.15F, 1.0F);
 	}
-
-	/**
-	 * Basic mob attack. Default to touch of death in EntityCreature. Overridden by each mob to define their attack.
-	 */
-
-
-	protected void dropFewItems(boolean par1, int par2){
-
-		int quickvar = rand.nextInt(15) + 1;
-		int quickvar1 = rand.nextInt(10000) + 1;
-		int quickvar2 = rand.nextInt(500) + 1;
-		int quickvar3 = rand.nextInt(100) + 1;
-		int quickvar4 = rand.nextInt(1000) + 1;
-
-		if(quickvar <= 1){
-
-			entityDropItem(new ItemStack(Items.wooden_sword), 1);
-
-		}
-		if(quickvar1 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.crystalBow), 1);
-
-		}
-		if(quickvar2 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.dragonBoots), 1);
-
-		}
-		if(quickvar3 <= 2){
-
-			entityDropItem(new ItemStack(Scapecraft.magicFruit), 1);
-
-		}
-		if(quickvar4 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.shard1), 1);
-
-		}
-	}
-	public int getAttackStrength(Entity par1Entity)
-	{
-		return 1;
-	}
-
-
-
 
 	public EnumCreatureAttribute getCreatureAttribute()
 	{

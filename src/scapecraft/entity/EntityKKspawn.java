@@ -17,17 +17,14 @@ import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.passive.EntityOcelot;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
-
-import scapecraft.Scapecraft;
 
 public class EntityKKspawn extends EntityScapecraft
 {
 	private float moveSpeed;
 
+	
 
 	public EntityKKspawn(World par1World)
 	{
@@ -221,43 +218,6 @@ public class EntityKKspawn extends EntityScapecraft
 	{
 		return 0.4F;
 	}
-
-
-
-	protected void dropFewItems(boolean par1, int par2){
-
-		int quickvar = rand.nextInt(400) + 1;
-		int quickvar1 = rand.nextInt(1000) + 1;
-		int quickvar2 = rand.nextInt(3000) + 1;
-		int quickvar3 = rand.nextInt(30) + 1;
-
-		if(quickvar <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.korasis), 1);
-
-		}
-		if(quickvar1 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.dragonLongsword), 1);
-
-		}
-		if(quickvar2 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.pickaxeGalore), 1);
-
-		}
-		if(quickvar3 <= 3){
-
-			entityDropItem(new ItemStack(Items.coal), 2);
-
-		}
-	}
-
-	public int getAttackStrength(Entity par1Entity)
-	{
-		return 1;
-	}   
-
 
 	public void onLivingUpdate()
 	{

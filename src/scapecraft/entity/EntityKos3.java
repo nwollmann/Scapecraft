@@ -14,20 +14,20 @@ import net.minecraft.entity.passive.EntityOcelot;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 
-import scapecraft.Scapecraft;
+import scapecraft.item.ScapecraftItems;
 
 
 public class EntityKos3 extends EntityScapecraft
 {
 	private float moveSpeed;
 
+	
 
 	public EntityKos3(World par1World)
 	{
@@ -238,7 +238,7 @@ public class EntityKos3 extends EntityScapecraft
 
 	static
 	{
-		defaultHeldItem = new ItemStack(Scapecraft.fremSwordf, 1);
+		defaultHeldItem = new ItemStack(ScapecraftItems.fremSwordf, 1);
 	}
 
 
@@ -260,48 +260,6 @@ public class EntityKos3 extends EntityScapecraft
 
 		return super.attackEntityFrom(par1DamageSource, par2);
 	}
-
-
-
-
-	protected void dropFewItems(boolean par1, int par2){
-
-		int quickvar = rand.nextInt(1) + 1;
-		int quickvar1 = rand.nextInt(100) + 1;
-		int quickvar2 = rand.nextInt(10) + 1;
-		int quickvar3 = rand.nextInt(40) + 1;
-		int quickvar4 = rand.nextInt(15) + 1;
-		int quickvar5 = rand.nextInt(3) + 1;
-		int quickvar6 = rand.nextInt(2) + 1;
-		int quickvar7 = rand.nextInt(50) + 1;
-		int quickvar8 = rand.nextInt(30) + 1;
-		int quickvar9 = rand.nextInt(20) + 1;
-		int quickvar10 = rand.nextInt(30) + 1;
-		int quickvar11 = rand.nextInt(60) + 1;
-		int quickvar12 = rand.nextInt(200) + 1;
-		int quickvar13 = rand.nextInt(100) + 1;
-
-		if(quickvar <= 1){entityDropItem(new ItemStack(Scapecraft.runeOre), 1);}
-		if(quickvar <= 1){entityDropItem(new ItemStack(Items.gold_ingot), 2);}
-		if(quickvar1 <= 1){entityDropItem(new ItemStack(Scapecraft.crystalBow), 1);}
-		if(quickvar2 <= 1){entityDropItem(new ItemStack(Scapecraft.dragonHelmet), 1);}
-		if(quickvar3 <= 2){entityDropItem(new ItemStack(Scapecraft.diamondOreSpawn), 1);}
-		if(quickvar4 <= 1){entityDropItem(new ItemStack(Scapecraft.cabbageSpawn), 1);}
-		if(quickvar5 <= 1){entityDropItem(new ItemStack(Scapecraft.mithChestplate), 1);}
-		if(quickvar6 <= 1){entityDropItem(new ItemStack(Scapecraft.fremSword), 1);}
-		if(quickvar7 <= 1){entityDropItem(new ItemStack(Scapecraft.fremSwordf), 1);}
-		if(quickvar8 <= 1){entityDropItem(new ItemStack(Scapecraft.runegBoots), 1);}
-		if(quickvar9 <= 1){entityDropItem(new ItemStack(Scapecraft.dragonLeggings), 1);}
-		if(quickvar10 <= 1){entityDropItem(new ItemStack(Scapecraft.mithOreSpawn), 1);}
-		if(quickvar11 <= 1){entityDropItem(new ItemStack(Scapecraft.addyOreSpawn), 1);}
-		if(quickvar12 <= 1){entityDropItem(new ItemStack(Scapecraft.runeOreSpawn), 1);}
-		if(quickvar13 <= 1){entityDropItem(new ItemStack(Scapecraft.coalSpawn), 1);}
-
-
-
-	}
-
-
 
 	public boolean isPotionApplicable(PotionEffect par1PotionEffect)
 	{

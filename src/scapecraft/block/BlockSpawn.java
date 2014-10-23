@@ -11,26 +11,27 @@ import net.minecraft.item.Item;
 import net.minecraft.world.World;
 
 import scapecraft.Scapecraft;
+import scapecraft.entity.ScapecraftEntities;
 
 public class BlockSpawn extends Block
 {
 	int tickInterval;
-	Class<? extends Entity> entityClass;
+	String entityName;
 
-	public BlockSpawn(Class<? extends Entity> entityClass, int tickInterval)
+	public BlockSpawn(String entityName, int tickInterval)
 	{
 		super(Material.rock);
 		this.setCreativeTab(Scapecraft.tabScapecraftBlock);
 		setHardness(200000.0F);
 		setResistance(5000.0F);
-		this.entityClass = entityClass;
+		this.entityName = entityName;
 		this.tickInterval = tickInterval;
 		//setStepSound(soundStoneFootstep);
 	}
 
-	public BlockSpawn(Class<? extends Entity> entityClass, int tickInterval, boolean tickRandomly)
+	public BlockSpawn(String entityName, int tickInterval, boolean tickRandomly)
 	{
-		this(entityClass, tickInterval);
+		this(entityName, tickInterval);
 		setTickRandomly(tickRandomly);
 	}
 
@@ -57,13 +58,10 @@ public class BlockSpawn extends Block
 	{
 		if(this.tickInterval != 0)
 			world.scheduleBlockUpdate(x, y, z, this, this.tickRate(world));
-		Entity entity = null;
-		try
-		{
-			entity = entityClass.getConstructor(World.class).newInstance(world);
-		} 
-		catch (Exception e)
-		{
+                Entity entity;
+		try {
+			entity = (Entity) ScapecraftEntities.entityNames.get(entityName).getConstructor(new Class[] { World.class }).newInstance(new Object[] { world });
+		} catch (Exception e) {
 			e.printStackTrace();
 			return;
 		}

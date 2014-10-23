@@ -19,7 +19,6 @@ import net.minecraft.entity.passive.EntityOcelot;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
@@ -28,7 +27,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-import scapecraft.Scapecraft;
+import scapecraft.item.ScapecraftItems;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -36,6 +35,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class EntityKing extends EntityScapecraft
 {
 	private float moveSpeed;
+	
+
 	public EntityKing(World par1World)
 	{
 		super(par1World);
@@ -264,53 +265,6 @@ public class EntityKing extends EntityScapecraft
 		return super.attackEntityFrom(par1DamageSource, par2);
 	}
 
-	protected void dropFewItems(boolean par1, int par2){
-
-		int quickvar = rand.nextInt(14) + 1;
-		int quickvar1 = rand.nextInt(100) + 1;
-		int quickvar2 = rand.nextInt(60) + 1;
-		int quickvar3 = rand.nextInt(30) + 1;
-		int quickvar4 = rand.nextInt(4) + 1;
-		int quickvar5 = rand.nextInt(6) + 1;
-		int quickvar6 = rand.nextInt(1) + 1;
-
-		if(quickvar <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.runeSword), 1);
-
-		}
-		if(quickvar1 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.saraSword), 1);
-
-		}
-		if(quickvar2 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.runeLeggings), 1);
-
-		}
-		if(quickvar3 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.DD), 1);
-
-		}
-		if(quickvar4 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.whiteHelmet), 1);
-
-		}
-		if(quickvar5 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.whiteChestplate), 1);
-
-		}
-		if(quickvar6 <= 1){
-
-			entityDropItem(new ItemStack(Items.gold_ingot), 4);
-
-		}
-	}
-
 
 
 	@Override
@@ -343,7 +297,7 @@ public class EntityKing extends EntityScapecraft
 
 	static
 	{
-		defaultHeldItem = new ItemStack(Scapecraft.rapier, 1);
+		defaultHeldItem = new ItemStack(ScapecraftItems.rapier, 1);
 	}
 	@SideOnly(Side.CLIENT)	 
 	public boolean interact(EntityPlayer par1EntityPlayer)

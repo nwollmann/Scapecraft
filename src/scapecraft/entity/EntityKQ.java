@@ -19,18 +19,15 @@ import net.minecraft.entity.passive.EntityOcelot;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
-
-import scapecraft.Scapecraft;
 
 public class EntityKQ extends EntityScapecraft 
 {
 	private float moveSpeed;
 
+	
 
 	public EntityKQ(World par1World)
 	{
@@ -237,53 +234,6 @@ public class EntityKQ extends EntityScapecraft
 		return 0.4F;
 	}
 
-
-
-	protected void dropFewItems(boolean par1, int par2){
-
-		int quickvar = rand.nextInt(60) + 1;
-		int quickvar1 = rand.nextInt(10) + 1;
-		int quickvar2 = rand.nextInt(1) + 1;
-		int quickvar3 = rand.nextInt(50) + 1;
-		int quickvar4 = rand.nextInt(2) + 1;
-		int quickvar5 = rand.nextInt(50) + 1;
-
-
-		if(quickvar <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.dragonChestplate), 1);
-
-		}
-		if(quickvar1 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.dragonLongsword), 1);
-
-		}
-		if(quickvar2 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.addyOre), 2);
-			entityDropItem(new ItemStack(Items.gold_ingot), 2);
-
-		}
-		if(quickvar3 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.crystalBow), 1);
-
-		}
-
-		if(quickvar4 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.mithLeggings), 1);
-
-		}
-
-		if(quickvar5 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.D2H), 1);
-
-		}
-
-	}
 
 
 

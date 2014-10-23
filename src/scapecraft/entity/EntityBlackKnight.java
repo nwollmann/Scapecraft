@@ -13,18 +13,21 @@ import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.passive.EntityOcelot;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-import scapecraft.Scapecraft;
+import scapecraft.item.ScapecraftItems;
 
 public class EntityBlackKnight extends EntityScapecraft
 {
 	private float moveSpeed;
+
+	
+
+
 	public EntityBlackKnight(World par1World)
 	{
 		super(par1World);
@@ -195,54 +198,6 @@ public class EntityBlackKnight extends EntityScapecraft
 	}
 
 
-	protected void dropFewItems(boolean par1, int par2){
-
-		int quickvar = rand.nextInt(141) + 1;
-		int quickvar1 = rand.nextInt(3000) + 1;
-		int quickvar2 = rand.nextInt(160) + 1;
-		int quickvar3 = rand.nextInt(140) + 1;
-		int quickvar4 = rand.nextInt(140) + 1;
-		int quickvar5 = rand.nextInt(160) + 1;
-		int quickvar6 = rand.nextInt(4) + 1;
-
-		if(quickvar <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.blackSword), 1);
-
-		}
-		if(quickvar1 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.dragonLeggings), 1);
-
-		}
-		if(quickvar2 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.blackLeggings), 1);
-
-		}
-		if(quickvar3 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.blackBoots), 1);
-
-		}
-		if(quickvar4 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.blackHelmet), 1);
-
-		}
-		if(quickvar5 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.blackChestplate), 1);
-
-		}
-		if(quickvar6 <= 1){
-
-			entityDropItem(new ItemStack(Items.gold_nugget), 1);
-
-		}
-	}
-
-
 
 	public EnumCreatureAttribute getCreatureAttribute()
 	{
@@ -264,10 +219,10 @@ public class EntityBlackKnight extends EntityScapecraft
 	@Override
 	public void addRandomArmor()
 	{
-			this.setCurrentItemOrArmor(1, new ItemStack(Scapecraft.blackBoots));
-			this.setCurrentItemOrArmor(2, new ItemStack(Scapecraft.blackLeggings));
-			this.setCurrentItemOrArmor(3, new ItemStack(Scapecraft.blackChestplate));
-			this.setCurrentItemOrArmor(4, new ItemStack(Scapecraft.blackHelmet));
+			this.setCurrentItemOrArmor(1, new ItemStack(ScapecraftItems.blackBoots));
+			this.setCurrentItemOrArmor(2, new ItemStack(ScapecraftItems.blackLeggings));
+			this.setCurrentItemOrArmor(3, new ItemStack(ScapecraftItems.blackChestplate));
+			this.setCurrentItemOrArmor(4, new ItemStack(ScapecraftItems.blackHelmet));
 			this.equipmentDropChances[4] = 0.0F;
 	}
 
@@ -279,7 +234,7 @@ public class EntityBlackKnight extends EntityScapecraft
 
 	static
 	{
-		defaultHeldItem = new ItemStack(Scapecraft.blackSword, 1);
+		defaultHeldItem = new ItemStack(ScapecraftItems.blackSword, 1);
 	}
 
 

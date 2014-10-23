@@ -13,30 +13,17 @@ import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.passive.EntityOcelot;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-
-import scapecraft.Scapecraft;
 
 
 public class EntityAbbyDemon extends EntityScapecraft
 {
 	private float moveSpeed;
 
-	static
-	{
-
-		addDrop(EntityAbbyDemon.class, 1000, new ItemStack(Scapecraft.whip));
-		addDrop(EntityAbbyDemon.class, 3000, new ItemStack(Scapecraft.dragonScimmy));
-		addDrop(EntityAbbyDemon.class, 50, new ItemStack(Scapecraft.addyOre));
-		addDrop(EntityAbbyDemon.class, 30, new ItemStack(Scapecraft.blackChestplate));
-		addDrop(EntityAbbyDemon.class, 50, new ItemStack(Scapecraft.mithLeggings));
-		addDrop(EntityAbbyDemon.class, 2, new ItemStack(Items.gold_nugget));
-	}
+	
 
 	public EntityAbbyDemon(World par1World)
 	{

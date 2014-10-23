@@ -7,6 +7,8 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.util.MathHelper;
 
+import scapecraft.entity.EntityHellhound;
+
 public class ModelHellhound extends ModelBase
 {
 	//fields
@@ -169,7 +171,7 @@ public class ModelHellhound extends ModelBase
 
 	public void setLivingAnimations(EntityLiving par1EntityLiving, float par2, float par3, float par4)
 	{
-		/*EntityHellhound entitywolf = (EntityHellhound)par1EntityLiving;
+		EntityHellhound entitywolf = (EntityHellhound)par1EntityLiving;
 
 		if (entitywolf.isAngry())
 		{
@@ -211,7 +213,7 @@ public class ModelHellhound extends ModelBase
 		this.Mane.rotateAngleZ = entitywolf.getShakeAngle(par4, -0.08F);
 		this.Body.rotateAngleZ = entitywolf.getShakeAngle(par4, -0.16F);
 		this.Tail.rotateAngleZ = entitywolf.getShakeAngle(par4, -0.2F);
-		*/ 
+		 
 		//TODO Uncomment Hellhound model when EntityHellhound exists
 	}
 

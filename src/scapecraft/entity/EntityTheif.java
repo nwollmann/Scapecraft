@@ -19,12 +19,13 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-import scapecraft.Scapecraft;
+import scapecraft.item.ScapecraftItems;
 
 
 public class EntityTheif extends EntityScapecraft
 {
 	private float moveSpeed;
+	
 	public EntityTheif(World par1World)
 	{
 		super(par1World);
@@ -190,36 +191,6 @@ public class EntityTheif extends EntityScapecraft
 	}
 
 
-	protected void dropFewItems(boolean par1, int par2){
-
-		int quickvar = rand.nextInt(7) + 1;
-		int quickvar1 = rand.nextInt(100) + 1;
-		int quickvar2 = rand.nextInt(3000) + 1;
-		int quickvar3 = rand.nextInt(30) + 1;
-
-		if(quickvar <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.blackSword), 1);
-
-		}
-		if(quickvar1 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.blackLeggings), 1);
-
-		}
-		if(quickvar2 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.dragonBoots), 1);
-
-		}
-		if(quickvar3 <= 2){
-
-			entityDropItem(new ItemStack(Scapecraft.magicFruit), 1);
-
-		}
-	}
-
-
 
 
 	public EnumCreatureAttribute getCreatureAttribute()
@@ -247,7 +218,7 @@ public class EntityTheif extends EntityScapecraft
 
 	static
 	{
-		defaultHeldItem = new ItemStack(Scapecraft.blackSword, 1);
+		defaultHeldItem = new ItemStack(ScapecraftItems.blackSword, 1);
 	}
 
 

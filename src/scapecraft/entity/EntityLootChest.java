@@ -17,18 +17,16 @@ import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.passive.EntityOcelot;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-import scapecraft.Scapecraft;
-
 public class EntityLootChest extends EntityScapecraft
 {
 	private float moveSpeed;
+	
+
 	public EntityLootChest(World par1World)
 	{
 		super(par1World);
@@ -216,43 +214,4 @@ public class EntityLootChest extends EntityScapecraft
 	{
 		return par1PotionEffect.getPotionID() == Potion.poison.id ? false : super.isPotionApplicable(par1PotionEffect);
 	}
-
-
-
-	protected void dropFewItems(boolean par1, int par2){
-
-		int quickvar = rand.nextInt(1) + 1;
-		int quickvar1 = rand.nextInt(1) + 1;
-		int quickvar2 = rand.nextInt(1) + 1;
-		int quickvar3 = rand.nextInt(1) + 1;
-		int quickvar4 = rand.nextInt(1) + 1;
-		int quickvar5 = rand.nextInt(1) + 1;
-		int quickvar6 = rand.nextInt(1) + 1;
-		int quickvar7 = rand.nextInt(1) + 1;
-		int quickvar8 = rand.nextInt(1) + 1;
-
-
-		if(quickvar <= 1){entityDropItem(new ItemStack(Items.gold_ingot), 1);}
-		if(quickvar1 <= 1){entityDropItem(new ItemStack(Items.gold_ingot), 1);}
-		if(quickvar2 <= 1){entityDropItem(new ItemStack(Scapecraft.fishpieuncooked), 1);}
-		if(quickvar2 <= 1){entityDropItem(new ItemStack(Scapecraft.fishpieuncooked), 1);}
-		if(quickvar2 <= 1){entityDropItem(new ItemStack(Scapecraft.fishpieuncooked), 1);}
-		if(quickvar2 <= 1){entityDropItem(new ItemStack(Scapecraft.fishpieuncooked), 1);}
-		if(quickvar2 <= 1){entityDropItem(new ItemStack(Scapecraft.fishpieuncooked), 1);}
-		if(quickvar2 <= 1){entityDropItem(new ItemStack(Scapecraft.fishpieuncooked), 1);}
-		if(quickvar2 <= 1){entityDropItem(new ItemStack(Scapecraft.fishpieuncooked), 1);}
-		if(quickvar2 <= 1){entityDropItem(new ItemStack(Scapecraft.fishpieuncooked), 1);}
-		if(quickvar2 <= 1){entityDropItem(new ItemStack(Scapecraft.fishpieuncooked), 1);}
-		if(quickvar2 <= 1){entityDropItem(new ItemStack(Scapecraft.fishpieuncooked), 1);}
-		if(quickvar3 <= 2){entityDropItem(new ItemStack(Scapecraft.QuestPoint3), 1);}
-		if(quickvar4 <= 1){entityDropItem(new ItemStack(Scapecraft.whiteSword), 1);}
-		if(quickvar5 <= 1){entityDropItem(new ItemStack(Scapecraft.whiteChestplate), 1);}
-		if(quickvar6 <= 1){entityDropItem(new ItemStack(Scapecraft.whiteLeggings), 1);}
-		if(quickvar7 <= 1){entityDropItem(new ItemStack(Scapecraft.whiteBoots), 1);}
-		if(quickvar8 <= 1){entityDropItem(new ItemStack(Scapecraft.whiteHelmet), 1);}
-
-	}
-
-
-
 }

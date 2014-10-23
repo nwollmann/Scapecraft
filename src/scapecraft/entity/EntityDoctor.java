@@ -24,7 +24,7 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-import scapecraft.Scapecraft;
+import scapecraft.item.ScapecraftItems;
 
 public class EntityDoctor extends EntityScapecraft
 {
@@ -217,17 +217,17 @@ public class EntityDoctor extends EntityScapecraft
 
 		ItemStack itemstack = par1EntityPlayer.inventory.getCurrentItem();
 
-		if (itemstack != null && itemstack.getItem() == Scapecraft.beer && !par1EntityPlayer.capabilities.isCreativeMode)
+		if (itemstack != null && itemstack.getItem() == ScapecraftItems.beer && !par1EntityPlayer.capabilities.isCreativeMode)
 		{
 			if (itemstack.stackSize-- == 1)
 			{
-				par1EntityPlayer.inventory.setInventorySlotContents(par1EntityPlayer.inventory.currentItem, new ItemStack(Scapecraft.stake));
+				par1EntityPlayer.inventory.setInventorySlotContents(par1EntityPlayer.inventory.currentItem, new ItemStack(ScapecraftItems.stake));
 				par1EntityPlayer.addChatComponentMessage(new ChatComponentText("\u00a7EDr Harlow: Take this, it should allow you to kill the vampire, but you will still need your best armor"));
 
 			}
-			else if (!par1EntityPlayer.inventory.addItemStackToInventory(new ItemStack(Scapecraft.stake)))
+			else if (!par1EntityPlayer.inventory.addItemStackToInventory(new ItemStack(ScapecraftItems.stake)))
 			{
-				par1EntityPlayer.entityDropItem(new ItemStack(Scapecraft.stake, 1, 0), 0.5F);
+				par1EntityPlayer.entityDropItem(new ItemStack(ScapecraftItems.stake, 1, 0), 0.5F);
 			}
 
 			return true;

@@ -15,18 +15,16 @@ import net.minecraft.entity.passive.EntityOcelot;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
-import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 
-import scapecraft.Scapecraft;
-
 
 public class EntityTorag extends EntityScapecraft
 {
 	private float moveSpeed;
+	
 	public EntityTorag(World par1World)
 	{
 		super(par1World);
@@ -73,6 +71,7 @@ public class EntityTorag extends EntityScapecraft
 		this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityHeroKnight.class, this.moveSpeed, false));
 		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityFarmer.class, 0, true));
 		this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityFarmer.class, this.moveSpeed, false));
+		lifespan = 6000;
 	}
 	protected void applyEntityAttributes()
 	{
@@ -108,11 +107,7 @@ public class EntityTorag extends EntityScapecraft
 	public void onUpdate()
 	{
 		super.onUpdate();
-
-
 	}
-
-
 
 	protected Entity findPlayerToAttack()
 	{
@@ -168,11 +163,7 @@ public class EntityTorag extends EntityScapecraft
 		{
 			if (par1Entity instanceof EntityLivingBase)
 			{
-
-
-
 				((EntityLivingBase)par1Entity).addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 200, 1));
-
 			}
 
 			return true;
@@ -182,58 +173,6 @@ public class EntityTorag extends EntityScapecraft
 			return false;
 		}
 	}
-
-
-	protected void dropFewItems(boolean par1, int par2){
-
-		int quickvar = rand.nextInt(400) + 1;
-		int quickvar1 = rand.nextInt(400) + 1;
-		int quickvar2 = rand.nextInt(300) + 1;
-		int quickvar3 = rand.nextInt(300) + 1;
-		int quickvar4 = rand.nextInt(300) + 1;
-		int quickvar5 = rand.nextInt(300) + 1;
-		int quickvar6 = rand.nextInt(1) + 1;
-
-		if(quickvar <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.toragHammer), 1);
-
-		}
-		if(quickvar1 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.dragonLeggings), 1);
-
-		}
-		if(quickvar2 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.toragLeggings), 1);
-
-		}
-		if(quickvar3 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.toragBoots), 1);
-
-		}
-		if(quickvar4 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.toragHelmet), 1);
-
-		}
-		if(quickvar5 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.toragChestplate), 1);
-
-		}
-		if(quickvar6 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.toragKey), 1);
-
-		}
-	}
-
-
-
-
 
 	public EnumCreatureAttribute getCreatureAttribute()
 	{
@@ -245,19 +184,19 @@ public class EntityTorag extends EntityScapecraft
 		return par1PotionEffect.getPotionID() == Potion.poison.id ? false : super.isPotionApplicable(par1PotionEffect);
 	}
 
-
-	public void onLivingUpdate()
-	{
-		if(ticksExisted > 300 * 20) setDead(); 
-		super.onLivingUpdate();
-	}
-
-
 	public int getTotalArmorValue()
 	{
 		return 18;
 	}
 
-	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2){Entity entity;entity = par1DamageSource.getSourceOfDamage();if (entity instanceof EntityArrow){return false;}return super.attackEntityFrom(par1DamageSource, par2);}
-
+	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
+	{
+		Entity entity;
+		entity = par1DamageSource.getSourceOfDamage();
+		if(entity instanceof EntityArrow)
+		{
+			return false;
+		}
+		return super.attackEntityFrom(par1DamageSource, par2);
+	}
 }

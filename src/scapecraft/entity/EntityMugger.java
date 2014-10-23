@@ -13,19 +13,19 @@ import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.passive.EntityOcelot;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-import scapecraft.Scapecraft;
+import scapecraft.item.ScapecraftItems;
 
 
 public class EntityMugger extends EntityScapecraft
 {
 	private float moveSpeed;
+	
 	public EntityMugger(World par1World)
 	{
 		super(par1World);
@@ -190,46 +190,6 @@ public class EntityMugger extends EntityScapecraft
 		}
 	}
 
-
-	protected void dropFewItems(boolean par1, int par2){
-
-		int quickvar = rand.nextInt(2) + 1;
-		int quickvar1 = rand.nextInt(100) + 1;
-		int quickvar2 = rand.nextInt(3000) + 1;
-		int quickvar3 = rand.nextInt(30) + 1;
-		int quickvar4 = rand.nextInt(15) + 1;
-		int quickvar5 = rand.nextInt(15) + 1;
-		int quickvar6 = rand.nextInt(15) + 1;
-
-		if(quickvar <= 1){
-
-			entityDropItem(new ItemStack(Items.gold_nugget), 1);
-
-		}
-		if(quickvar1 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.blackLeggings), 1);
-
-		}
-		if(quickvar2 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.dragonBoots), 1);
-
-		}
-		if(quickvar3 <= 2){
-
-			entityDropItem(new ItemStack(Scapecraft.magicFruit), 1);
-
-		}
-		if(quickvar4 <= 1){entityDropItem(new ItemStack(Scapecraft.mithAxe), 1);}
-		if(quickvar5 <= 1){entityDropItem(new ItemStack(Scapecraft.mithSword), 1);}
-		if(quickvar6 <= 1){entityDropItem(new ItemStack(Scapecraft.mithHammer), 1);}
-
-	}
-
-
-
-
 	public EnumCreatureAttribute getCreatureAttribute()
 	{
 		return EnumCreatureAttribute.UNDEAD;
@@ -255,7 +215,7 @@ public class EntityMugger extends EntityScapecraft
 
 	static
 	{
-		defaultHeldItem = new ItemStack(Scapecraft.blackSword, 1);
+		defaultHeldItem = new ItemStack(ScapecraftItems.blackSword, 1);
 	}
 
 

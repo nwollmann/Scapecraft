@@ -25,7 +25,7 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-import scapecraft.Scapecraft;
+import scapecraft.item.ScapecraftItems;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -230,8 +230,8 @@ public class EntityFremGuard extends EntityScapecraft
 	public void func_82163_bD()
 	{
 
-			this.setCurrentItemOrArmor(3, new ItemStack(Scapecraft.runegChestplate));
-			this.setCurrentItemOrArmor(2, new ItemStack(Scapecraft.runegLeggings));
+			this.setCurrentItemOrArmor(3, new ItemStack(ScapecraftItems.runegChestplate));
+			this.setCurrentItemOrArmor(2, new ItemStack(ScapecraftItems.runegLeggings));
 			this.equipmentDropChances[4] = 0.0F;
 	}
 
@@ -243,7 +243,7 @@ public class EntityFremGuard extends EntityScapecraft
 
 	static
 	{
-		defaultHeldItem = new ItemStack(Scapecraft.fremSword, 1);
+		defaultHeldItem = new ItemStack(ScapecraftItems.fremSword, 1);
 	}
 
 

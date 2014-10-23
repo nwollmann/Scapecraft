@@ -4,18 +4,19 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.projectile.EntityLargeFireball;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-import scapecraft.Scapecraft;
+import scapecraft.item.ScapecraftItems;
 
 public class EntityDarkwizard extends EntityScapecraft
 {
 	private int field_40152_d;
+	
+
 
 	public EntityDarkwizard(World par1World)
 	{
@@ -140,62 +141,6 @@ public class EntityDarkwizard extends EntityScapecraft
 		}
 	}
 
-
-
-
-	protected void dropFewItems(boolean par1, int par2){
-
-		int quickvar = rand.nextInt(600) + 1;
-		int quickvar1 = rand.nextInt(1100) + 1;
-		int quickvar11 = rand.nextInt(5000) + 1;
-		int quickvar3 = rand.nextInt(8) + 1;
-		int quickvar4 = rand.nextInt(8) + 1;
-		int quickvar5 = rand.nextInt(8) + 1;
-		int quickvar6 = rand.nextInt(8) + 1;
-		int quickvar7 = rand.nextInt(8) + 1;
-		int quickvar8 = rand.nextInt(8) + 1;
-		int quickvar9 = rand.nextInt(8) + 1;
-		int quickvar10 = rand.nextInt(8) + 1;
-		int quickvar12 = rand.nextInt(8) + 1;
-
-
-
-		if(quickvar <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.zammyStaff), 1);
-
-		}
-		if(quickvar1 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.guthixStaff), 1);
-
-		}
-		if(quickvar11 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.zamorakHilt), 1);
-
-		}
-		if(quickvar12 <= 1){
-
-			entityDropItem(new ItemStack(Items.gold_nugget), 1);
-
-		}
-		if(quickvar3 <= 1){entityDropItem(new ItemStack(Scapecraft.vTab), 1);}
-		if(quickvar4 <= 1){entityDropItem(new ItemStack(Scapecraft.fTab), 1);}
-		if(quickvar5 <= 1){entityDropItem(new ItemStack(Scapecraft.bTab), 1);}
-		if(quickvar6 <= 1){entityDropItem(new ItemStack(Scapecraft.tdTab), 1);}
-		if(quickvar7 <= 1){entityDropItem(new ItemStack(Scapecraft.cTab), 1);}
-		if(quickvar8 <= 1){entityDropItem(new ItemStack(Scapecraft.bandosTab), 1);}
-		if(quickvar9 <= 1){entityDropItem(new ItemStack(Scapecraft.hTab), 1);}
-		if(quickvar10 <= 1){entityDropItem(new ItemStack(Scapecraft.lTab), 1);}
-	}
-
-
-	public int getAttackStrength(Entity par1Entity)
-	{
-		return 5;
-	}
-
 	public boolean isBurning()
 	{
 		return false;
@@ -230,7 +175,7 @@ public class EntityDarkwizard extends EntityScapecraft
 
 	static
 	{
-		defaultHeldItem = new ItemStack(Scapecraft.zammyStaff, 1);
+		defaultHeldItem = new ItemStack(ScapecraftItems.zammyStaff, 1);
 	}
 
 

@@ -1,10 +1,9 @@
 package scapecraft.client;
 
-import net.minecraft.client.renderer.entity.RenderTNTPrimed;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.MinecraftForgeClient;
 
-import scapecraft.Scapecraft;
+import scapecraft.CommonProxy;
 import scapecraft.client.model.ModelAbbyDemon;
 import scapecraft.client.model.ModelAhrim;
 import scapecraft.client.model.ModelAkrisae;
@@ -40,6 +39,7 @@ import scapecraft.client.model.ModelSergeantStrongStack;
 import scapecraft.client.model.ModelTD;
 import scapecraft.client.model.ModelTorag;
 import scapecraft.client.model.ModelVerac;
+import scapecraft.client.model.ModelZilyana;
 import scapecraft.client.renderer.RenderBipedScapecraft;
 import scapecraft.client.renderer.RenderEntityScapecraft;
 import scapecraft.client.renderer.item.ItemRenderHammer;
@@ -106,29 +106,29 @@ import scapecraft.entity.EntitySergeantSteelwill;
 import scapecraft.entity.EntitySergeantStrongstack;
 import scapecraft.entity.EntityShopKeeper;
 import scapecraft.entity.EntityTD;
-import scapecraft.entity.EntityTNTXPrimed;
 import scapecraft.entity.EntityTheif;
-import scapecraft.entity.EntityTinyTNTPrimed;
 import scapecraft.entity.EntityTorag;
 import scapecraft.entity.EntityVampire;
 import scapecraft.entity.EntityVarze;
 import scapecraft.entity.EntityVerac;
 import scapecraft.entity.EntityWhiteKnight;
 import scapecraft.entity.EntityWizard;
+import scapecraft.entity.EntityZilyana;
+import scapecraft.item.ScapecraftItems;
 
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class ClientProxy
+public class ClientProxy extends CommonProxy
 {
-	public static void registerRenderers()
+	public void registerRenderers()
 	{
-		MinecraftForgeClient.registerItemRenderer(Scapecraft.steelHammer, new ItemRenderHammer(Resources.TEXTURE_SteelHammer));
-		MinecraftForgeClient.registerItemRenderer(Scapecraft.mithHammer, new ItemRenderHammer(Resources.TEXTURE_MithHammer));
-		MinecraftForgeClient.registerItemRenderer(Scapecraft.addyHammer, new ItemRenderHammer(Resources.TEXTURE_AddyHammer));
-		MinecraftForgeClient.registerItemRenderer(Scapecraft.runeHammer, new ItemRenderHammer(Resources.TEXTURE_RuneHammer));
+		MinecraftForgeClient.registerItemRenderer(ScapecraftItems.steelHammer, new ItemRenderHammer(Resources.TEXTURE_SteelHammer));
+		MinecraftForgeClient.registerItemRenderer(ScapecraftItems.mithHammer, new ItemRenderHammer(Resources.TEXTURE_MithHammer));
+		MinecraftForgeClient.registerItemRenderer(ScapecraftItems.addyHammer, new ItemRenderHammer(Resources.TEXTURE_AddyHammer));
+		MinecraftForgeClient.registerItemRenderer(ScapecraftItems.runeHammer, new ItemRenderHammer(Resources.TEXTURE_RuneHammer));
 
 		RenderingRegistry.registerEntityRenderingHandler(EntityBandit.class, new RenderBipedScapecraft(new ResourceLocation("scapecraft", "textures/entity/bandit.png")));
 		RenderingRegistry.registerEntityRenderingHandler(EntityBarbarian.class, new RenderBipedScapecraft(new ResourceLocation("scapecraft", "textures/entity/barbarian.png")));
@@ -198,9 +198,8 @@ public class ClientProxy
 		RenderingRegistry.registerEntityRenderingHandler(EntitySergeantSteelwill.class, new RenderEntityScapecraft(new ModelSergeantSteelWill(), 0.5F, new ResourceLocation("scapecraft", "textures/entity/SergeantSteelwill.png")));
 		RenderingRegistry.registerEntityRenderingHandler(EntitySergeantStrongstack.class, new RenderEntityScapecraft(new ModelSergeantStrongStack(), 0.5F, new ResourceLocation("scapecraft", "textures/entity/SergeantStrongstack.png")));
 		RenderingRegistry.registerEntityRenderingHandler(EntityTD.class, new RenderEntityScapecraft(new ModelTD(), 0.5F, new ResourceLocation("scapecraft", "textures/entity/TD.png")));
-		RenderingRegistry.registerEntityRenderingHandler(EntityTNTXPrimed.class, new RenderTNTPrimed());
-		RenderingRegistry.registerEntityRenderingHandler(EntityTinyTNTPrimed.class, new RenderTNTPrimed());
 		RenderingRegistry.registerEntityRenderingHandler(EntityTorag.class, new RenderEntityScapecraft(new ModelTorag(), 0.5F, new ResourceLocation("scapecraft", "textures/entity/ToragWHammers.png")));
 		RenderingRegistry.registerEntityRenderingHandler(EntityVerac.class, new RenderEntityScapecraft(new ModelVerac(), 0.5F, new ResourceLocation("scapecraft", "textures/entity/Verac.png")));
+		RenderingRegistry.registerEntityRenderingHandler(EntityZilyana.class, new RenderEntityScapecraft(new ModelZilyana(), 0.5F, new ResourceLocation("scapecraft", "textures/entity/Zilyana.png")));
 	}
 }

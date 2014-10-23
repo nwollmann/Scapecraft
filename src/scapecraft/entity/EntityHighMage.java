@@ -18,20 +18,20 @@ import net.minecraft.entity.passive.EntityOcelot;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 
-import scapecraft.Scapecraft;
+import scapecraft.item.ScapecraftItems;
 
 public class EntityHighMage extends EntityScapecraft implements IRangedAttackMob
 {
 	private EntityAIArrowAttack aiArrowAttack = new EntityAIArrowAttack(this, 0.25F, 40, 10.0F);
 	private EntityAIAttackOnCollide aiAttackOnCollide = new EntityAIAttackOnCollide(this, EntityPlayer.class, 0.31F, false);
 	private float moveSpeed;
+	
 
 	public EntityHighMage(World par1World)
 	{
@@ -181,48 +181,6 @@ public class EntityHighMage extends EntityScapecraft implements IRangedAttackMob
 		return 13;
 	}
 
-	protected void dropFewItems(boolean par1, int par2){
-
-		int quickvar4 = rand.nextInt(100) + 1;
-		int quickvar5 = rand.nextInt(200) + 1;
-		int quickvar7 = rand.nextInt(500) + 1;
-		int quickvar6 = rand.nextInt(1000) + 1;
-		int quickvar8 = rand.nextInt(20) + 1;
-		int quickvar9 = rand.nextInt(4) + 1;
-		int quickvar = rand.nextInt(1500) + 1;
-		int quickvar1 = rand.nextInt(2) + 1;
-		int quickvar2 = rand.nextInt(5) + 1;
-		int quickvar3 = rand.nextInt(1) + 1;
-
-
-		if(quickvar <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.armaStaff), 1);
-
-		}
-		if(quickvar1 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.saraStaff), 1);
-
-		}
-
-		if(quickvar2 <= 1){
-
-			entityDropItem(new ItemStack(Scapecraft.dragonLongsword), 1);
-
-		}
-
-		if(quickvar3 <= 1){entityDropItem(new ItemStack(Items.gold_ingot), 4);}
-		if(quickvar4 <= 1){entityDropItem(new ItemStack(Scapecraft.mithOreSpawn), 1);}
-		if(quickvar5 <= 1){entityDropItem(new ItemStack(Scapecraft.addyOreSpawn), 1);}
-		if(quickvar6 <= 1){entityDropItem(new ItemStack(Scapecraft.runeOreSpawn), 1);}
-		if(quickvar7 <= 1){entityDropItem(new ItemStack(Scapecraft.coalOreSpawn), 1);}
-		if(quickvar8 <= 1){entityDropItem(new ItemStack(Scapecraft.pickaxeGaloreg), 1);}
-		if(quickvar9 <= 1){entityDropItem(new ItemStack(Items.golden_apple), 1);}
-
-
-
-	}
 
 	public boolean isPotionApplicable(PotionEffect par1PotionEffect)
 	{
@@ -237,7 +195,7 @@ public class EntityHighMage extends EntityScapecraft implements IRangedAttackMob
 
 	static
 	{
-		defaultHeldItem = new ItemStack(Scapecraft.Armastaff, 1);
+		defaultHeldItem = new ItemStack(ScapecraftItems.Armastaff, 1);
 	}
 
 
@@ -248,7 +206,7 @@ public class EntityHighMage extends EntityScapecraft implements IRangedAttackMob
 		this.tasks.removeTask(this.aiArrowAttack);
 		ItemStack itemstack = this.getHeldItem();
 
-		if (itemstack != null && itemstack.getItem() == Scapecraft.Armastaff)
+		if (itemstack != null && itemstack.getItem() == ScapecraftItems.Armastaff)
 		{
 			this.tasks.addTask(4, this.aiArrowAttack);
 		}

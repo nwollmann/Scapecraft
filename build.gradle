@@ -22,9 +22,12 @@ group = "scapecraft"
 archivesBaseName = "Scapecraft"
 
 minecraft {
-    version = "1.7.10-10.13.1.1217"
-    runDir = "eclipse/assets"
+    version = "1.7.10-10.13.2.1230"
+    runDir = "eclipse"
     mappings = "stable_9"
+
+    replace "@VERSION@", project.version
+    replaceIn "Scapecraft.java"
 }
 sourceSets {
     main {
@@ -49,6 +52,16 @@ processResources
     // copy everything else, thats not the mcmod.info
     from(sourceSets.main.resources.srcDirs) {
         exclude 'mcmod.info'
+    }
+}
+task copyReobf(type: Copy) {
+}
+build {
+    doLast{
+        copy{
+            from 'build/libs/' + project.archivesBaseName + ".jar"
+            into 'build/release/'
+        }
     }
 }
 
