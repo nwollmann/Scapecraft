@@ -15,6 +15,7 @@ public class ItemScapecraftPickaxe extends ItemScapecraftTool
 	{
 		super(2F, material, effectiveBlocks);
 		this.toolClass = "pickaxe";
+		this.setUnlocalizedName(toolMaterial + "Pickaxe");
 	}
 
 	public boolean canItemHarvestBlock(Block block)

@@ -1,32 +1,33 @@
 package scapecraft.item;
 
+import java.util.List;
+
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.StatCollector;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
-import scapecraft.client.model.ModelBandosArmor;
+import scapecraft.client.ClientProxy;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemArmorBandos extends ItemArmorScapecraft
 {
-	@SideOnly(Side.CLIENT)
-	private static final ModelBandosArmor bandosChest = new ModelBandosArmor(1.0f);
-	@SideOnly(Side.CLIENT)
-	private static final ModelBandosArmor bandosLegs = new ModelBandosArmor(0.5f);
-	public ItemArmorBandos(ScapecraftArmorMaterial par2EnumArmorMaterial, int par3, int par4, String armornamePrefix)
-	{
-		super(par2EnumArmorMaterial, par3, par4, armornamePrefix);
+	public int[] damageBoosts = {3, 6, 2, 3};
 
+	public ItemArmorBandos(ScapecraftArmorMaterial armorMaterial, int par3, int par4, String armornamePrefix)
+	{
+		super(armorMaterial, par3, par4, armornamePrefix);
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, int armorSlot) 
 	{
-		ModelBiped armorModel = (this.armorType == 1 || this.armorType == 3) ? bandosChest : bandosLegs;
+		ModelBiped armorModel = (this.armorType == 1 || this.armorType == 3) ? ClientProxy.bandosChest : ClientProxy.bandosLegs;
 
 		armorModel.bipedHead.showModel = armorSlot == 0;
 		armorModel.bipedHeadwear.showModel = armorSlot == 0;
@@ -45,5 +46,20 @@ public class ItemArmorBandos extends ItemArmorScapecraft
 			armorModel.aimedBow = ((EntityPlayer)entityLiving).getItemInUseDuration() > 2;
 		}
 		return armorModel;
+	}
+	
+	@Override
+	public void onWearerAttack(LivingHurtEvent event)
+	{
+		event.ammount += damageBoosts[armorType];
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public void addInformation(ItemStack itemStack, EntityPlayer player, List lines, boolean advancedTooltips)
+	{
+		super.addInformation(itemStack, player, lines, advancedTooltips);
+		lines.add(StatCollector.translateToLocal("armor.attackboost") +" +" + damageBoosts[this.armorType]);
 	}
 }

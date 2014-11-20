@@ -314,7 +314,7 @@ public class ModelZilyana extends ModelBase
 		rightWing = new ModelRenderer(this, "Wing");
 		rightWing.mirror = true;
 		rightWing.setRotationPoint(-3F, -24F, 7F);
-		setRotation(rightWing, 0F, -0.4363323F, 0.4363323F);
+		setRotation(rightWing, 0F, 0.4363323F, 0.4363323F);
 		rightWing.addBox("Main", -25F, 0F, 0F, 25, 3, 1);
 		rightWing.addBox("Part", -25F, 0F, 0F, 2, 45, 1);
 		rightWing.addBox("Part", -19F, 0F, 0F, 2, 37, 1);
@@ -420,8 +420,9 @@ public class ModelZilyana extends ModelBase
 	{
 		float pi = 3.1415926536F;
 		moveTime *= 3;
-		rightUpperLeg.rotateAngleX = MathHelper.sin(moveTime / 40 * pi) / 2 * speed;
-		leftUpperLeg.rotateAngleX = -rightUpperLeg.rotateAngleX;
+		rightUpperLeg.rotateAngleX = (MathHelper.sin(moveTime / 40 * pi) / 2 - pi / 15) * speed;
+		leftUpperLeg.rotateAngleX = (-MathHelper.sin(moveTime / 40 * pi) - pi / 15) * speed;
+
 		float kneeAngle = MathHelper.sin((moveTime + 20) / 40 * pi) * speed;
 		switch(((int) moveTime % 80) / 20)
 		{
@@ -437,9 +438,9 @@ public class ModelZilyana extends ModelBase
 				break;
 		}
 
-		leftLeg.rotationPointZ = leftUpperLeg.rotationPointZ - MathHelper.sin(-leftUpperLeg.rotateAngleX) * 10.8F;
+		leftLeg.rotationPointZ = leftUpperLeg.rotationPointZ + MathHelper.sin(leftUpperLeg.rotateAngleX) * 10.8F;
 		leftLeg.rotationPointY = leftUpperLeg.rotationPointY + MathHelper.cos(leftUpperLeg.rotateAngleX) * 10.8F;
-		rightLeg.rotationPointZ = rightUpperLeg.rotationPointZ - MathHelper.sin(-rightUpperLeg.rotateAngleX) * 10.8F;
+		rightLeg.rotationPointZ = rightUpperLeg.rotationPointZ + MathHelper.sin(rightUpperLeg.rotateAngleX) * 10.8F;
 		rightLeg.rotationPointY = rightUpperLeg.rotationPointY + MathHelper.cos(rightUpperLeg.rotateAngleX) * 10.8F;
 		leftKneecap.rotationPointZ = leftLeg.rotationPointZ - 4;
 		leftKneecap.rotationPointY = leftLeg.rotationPointY - 1;

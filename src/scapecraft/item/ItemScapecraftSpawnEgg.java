@@ -5,9 +5,13 @@ import java.util.List;
 
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EntityDamageSource;
 import net.minecraft.util.Facing;
 import net.minecraft.world.World;
 
@@ -21,11 +25,14 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class ItemScapecraftSpawnEgg extends Item
 {
 	public static ArrayList<String> entities = new ArrayList<String>();
+	public static ArrayList<Entity> entityObjects = new ArrayList<Entity>();
+	
 
 	public ItemScapecraftSpawnEgg()
 	{
 		this.setUnlocalizedName("scapecraftSpawnEgg");
 		this.setCreativeTab(Scapecraft.tabScapecraftMisc);
+		this.setHasSubtypes(true);
 	}
 
 	@Override
@@ -58,24 +65,35 @@ public class ItemScapecraftSpawnEgg extends Item
 		return true;
 	}
 
-	public void addEntity(String entityName)
+	public static void addEntity(String entityName)
 	{
 		entities.add(entityName);
+		try
+		{
+			entityObjects.add(ScapecraftEntities.entityNames.get(entityName).getConstructor(new Class[] { World.class }).newInstance(new Object[] { null }));
+		} catch(Exception e) {e.printStackTrace(); };
 		System.out.println(entityName);
 	}
 
+	@SideOnly(Side.CLIENT)
+	@Override
 	@SuppressWarnings({"unchecked", "rawtypes"})
-		@SideOnly(Side.CLIENT)
-		@Override
-		public void getSubItems(Item item, CreativeTabs tab, List subItems)
-		{
-			for(int id = 0; id < entities.size(); id++)
-				subItems.add(new ItemStack(this, 1, id));
-		}
+	public void getSubItems(Item item, CreativeTabs tab, List subItems)
+	{
+		for(int id = 0; id < entities.size(); id++)
+			subItems.add(new ItemStack(this, 1, id));
+	}
 
 	@Override
 	public String getUnlocalizedName(ItemStack par1ItemStack) 
 	{
 		return getUnlocalizedName() + "." + entities.get(par1ItemStack.getMetadata());
 	}
+	@Override
+	public boolean hitEntity(ItemStack stack, EntityLivingBase target, EntityLivingBase attacker)
+	{
+		target.attackEntityFrom(new EntityDamageSource("player", attacker), (float) ((EntityScapecraft)entityObjects.get(stack.getMetadata())).getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue());
+		return true;
+	}
+
 }

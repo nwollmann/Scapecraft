@@ -11,5 +11,6 @@ public class ItemScapecraftHoe extends ItemHoe
 		super(ToolMaterial.GOLD);
 		this.setCreativeTab(Scapecraft.tabScapecraftTool);
 		this.setMaxDurability(toolMaterial.getMaxUses());
+		this.setUnlocalizedName(toolMaterial + "Hoe");
 	}
 }

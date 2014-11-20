@@ -2,6 +2,7 @@ package scapecraft.util;
 
 import java.util.HashMap;
 
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.EntityBlaze;
 import net.minecraft.entity.monster.EntityCaveSpider;
@@ -32,5 +33,11 @@ public class CombatXpHelper
 		amounts.put(EntityCreeper.class, 25);
 		amounts.put(EntityWitch.class, 30);
 		amounts.put(EntityGhast.class, 30);
+	}
+
+	public static int getAmount(Entity entity)
+	{
+		Integer amount = amounts.get(entity.getClass());
+		return amount != null ? amount : 0;
 	}
 }

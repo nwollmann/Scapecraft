@@ -36,7 +36,7 @@ public enum ScapecraftToolMaterial
 	VESTA(3, 100, 15.0F, 12.0F, 1),
 	AGILITY(3, 500, 15.0F, 4.0F, 10),
 	DRYGORE(3, 30000, 15.0F, 12.0F, 15),
-	STEEL(2, 200, 5.5F, 2.0F, 10),
+	IRON(2, 200, 5.5F, 2.0F, 10),
 	TORAG(3, 10000, 15.0F, 11.0F, 8),
 	VERAC(3, 10000, 15.0F, 7.0F, 8),
 	GUTHAN(3, 10000, 15.0F, 8.0F, 8),

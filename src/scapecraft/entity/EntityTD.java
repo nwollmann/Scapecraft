@@ -272,9 +272,9 @@ public class EntityTD extends EntityScapecraft
 		super.onLivingUpdate();
 	}
 
-
-
-
-
-
+	@Override
+	public int getXpValue()
+	{
+		return 1312; //TODO Good value?
+	}
 }

@@ -229,9 +229,8 @@ public class EntityGeneralGraardor extends EntityScapecraft
 	}
 
 	@Override
-	public int getXpValue() {
-		// TODO Auto-generated method stub
-		return 0;
+	public int getXpValue()
+	{
+		return 1800;
 	}
-
 }

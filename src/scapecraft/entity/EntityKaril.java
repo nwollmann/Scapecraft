@@ -176,6 +176,4 @@ public class EntityKaril extends EntityScapecraft implements IRangedAttackMob
 		if(ticksExisted > 300 * 20) setDead(); 
 		super.onLivingUpdate();
 	}	
-
-
 }

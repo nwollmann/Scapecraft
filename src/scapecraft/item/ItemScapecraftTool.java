@@ -10,6 +10,7 @@ import net.minecraft.item.ItemTool;
 
 import scapecraft.Scapecraft;
 
+import com.google.common.collect.HashMultimap;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Multimap;
 
@@ -26,20 +27,20 @@ public class ItemScapecraftTool extends ItemTool
 		this.efficiencyOnProperMaterial = toolMaterial.getEfficiencyOnProperMaterial();
 		this.damageVsEntity = damageVsEntity + toolMaterial.getDamageVsEntity();
 		this.setCreativeTab(Scapecraft.tabScapecraftTool);
+		this.toolMaterial = toolMaterial;
 	}
 	
 	//Code copied from ItemTool, looks the same but uses variables declared here instead
 	@Override
 	public int getHarvestLevel(ItemStack stack, String toolClass)
 	{
-		int level = super.getHarvestLevel(stack, toolClass);
-		if (level == -1 && toolClass != null && toolClass.equals(this.toolClass))
+		if (toolClass != null && toolClass.equals(this.toolClass))
 		{
 			return this.toolMaterial.getHarvestLevel();
 		}
 		else
 		{
-			return level;
+			return -1;
 		}
 	}
 
@@ -76,13 +77,13 @@ public class ItemScapecraftTool extends ItemTool
 	/**
 	 * Gets a map of item attribute modifiers, used by ItemSword to increase hit damage.
 	 */
+	@Override
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-		@Override
-		public Multimap getItemAttributeModifiers()
-		{
-			Multimap multimap = super.getItemAttributeModifiers();
-			multimap.put(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(), new AttributeModifier(itemModifierUUID, "Tool modifier", (double)this.damageVsEntity, 0));
-			return multimap;
-		}
+	public Multimap getAttributeModifiers(ItemStack stack)
+	{
+		Multimap multimap = HashMultimap.create();
+		multimap.put(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(), new AttributeModifier(itemModifierUUID, "Tool modifier", (double)this.damageVsEntity, 0));
+		return multimap;
+	}
 
 }

@@ -193,6 +193,11 @@ public class EntityCaveCrawler extends EntityScapecraft
 		super.onLivingUpdate();
 	}
 
+	@Override
+	public int getXpValue()
+	{
+		return 46;
+	}
 
 
 

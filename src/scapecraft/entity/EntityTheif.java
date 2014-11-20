@@ -221,7 +221,9 @@ public class EntityTheif extends EntityScapecraft
 		defaultHeldItem = new ItemStack(ScapecraftItems.blackSword, 1);
 	}
 
-
-
-
+	@Override
+	public int getXpValue()
+	{
+		return 32;
+	}
 }

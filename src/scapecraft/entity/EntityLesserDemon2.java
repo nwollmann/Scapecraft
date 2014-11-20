@@ -196,9 +196,9 @@ public class EntityLesserDemon2 extends EntityScapecraft
 		return false;
 	}
 
-
-
-
-
-
+	@Override
+	public int getXpValue()
+	{
+		return 250;
+	}
 }

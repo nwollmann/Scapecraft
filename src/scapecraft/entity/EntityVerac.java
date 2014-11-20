@@ -202,6 +202,4 @@ public class EntityVerac extends EntityScapecraft
 	{
 		return 15;
 	}
-
-
 }

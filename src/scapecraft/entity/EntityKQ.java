@@ -112,7 +112,7 @@ public class EntityKQ extends EntityScapecraft
 	{
 		super.applyEntityAttributes();
 		// Max Health - default 20.0D - min 0.0D - max Double.MAX_VALUE
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(300.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(500.0D);
 		// Follow Range - default 32.0D - min 0.0D - max 2048.0D
 		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(32.0D);
 		// Movement Speed - default 0.699D - min 0.0D - max Double.MAX_VALUE
@@ -310,4 +310,9 @@ public class EntityKQ extends EntityScapecraft
 		return EnumCreatureAttribute.ARTHROPOD;
 	}
 
+	@Override
+	public int getXpValue()
+	{
+		return 2404;
+	}
 }

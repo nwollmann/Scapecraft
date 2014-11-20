@@ -255,6 +255,11 @@ public class EntityFarmer extends EntityScapecraft
 		defaultHeldItem = new ItemStack(ScapecraftItems.pitchFork, 1);
 	}
 
+	@Override
+	public int getXpValue()
+	{
+		return 30;
+	}
 
 
 

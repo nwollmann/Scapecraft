@@ -186,4 +186,10 @@ public class EntityGhost extends EntityScapecraft
 		Minecraft.getMinecraft().thePlayer.addChatComponentMessage(new ChatComponentText("\u00a7EGhost: wooooooooo!"));
 		return super.interact(par1EntityPlayer);
 	}
+
+	@Override
+	public int getXpValue()
+	{
+		return 40;
+	}
 }

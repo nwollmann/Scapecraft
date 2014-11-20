@@ -185,9 +185,8 @@ public class EntityGoblin extends EntityScapecraft
 	}
 
 	@Override
-	public int getXpValue() {
-		// TODO Auto-generated method stub
-		return 0;
+	public int getXpValue()
+	{
+		return 25;
 	}
-
 }

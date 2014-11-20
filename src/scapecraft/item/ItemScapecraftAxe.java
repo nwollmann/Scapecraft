@@ -17,6 +17,7 @@ public class ItemScapecraftAxe extends ItemScapecraftTool
 	{
 		super(3F, material, effectiveBlocks);
 		this.toolClass = "axe";
+		this.setUnlocalizedName(toolMaterial + "Axe");
 	}
 
 	@Override

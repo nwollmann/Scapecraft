@@ -210,6 +210,11 @@ public class EntityIceGiant extends EntityScapecraft
 		super.onLivingUpdate();
 	}
 
+	@Override
+	public int getXpValue()
+	{
+		return 190;
+	}
 
 
 

@@ -191,4 +191,9 @@ public class EntityRatSmall extends EntityScapecraft
 		return super.interact(par1EntityPlayer);
 	}
 
+	@Override
+	public int getXpValue()
+	{
+		return 2;
+	}
 }

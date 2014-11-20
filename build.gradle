@@ -54,14 +54,14 @@ processResources
         exclude 'mcmod.info'
     }
 }
-task copyReobf(type: Copy) {
-}
 build {
     doLast{
+        String filename = project.archivesBaseName + "-" + project.version + ".jar"
         copy{
-            from 'build/libs/' + project.archivesBaseName + ".jar"
+            from 'build/libs/' + filename
             into 'build/release/'
         }
+        file("build/release/" + filename).renameTo(file("build/release/Scapecraft.jar"))
     }
 }
 

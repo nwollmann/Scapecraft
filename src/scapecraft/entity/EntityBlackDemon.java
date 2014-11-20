@@ -202,6 +202,11 @@ public class EntityBlackDemon extends EntityScapecraft
 		return false;
 	}
 
+	@Override
+	public int getXpValue()
+	{
+		return 661;
+	}
 
 
 

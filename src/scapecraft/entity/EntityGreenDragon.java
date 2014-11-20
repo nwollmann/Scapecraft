@@ -218,6 +218,11 @@ public class EntityGreenDragon extends EntityScapecraft
 		super.onLivingUpdate();
 	}
 
+	@Override
+	public int getXpValue()
+	{
+		return 198;
+	}
 
 
 

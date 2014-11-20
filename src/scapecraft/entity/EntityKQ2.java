@@ -232,6 +232,11 @@ public class EntityKQ2 extends EntityScapecraft
 		return true;
 	}
 
+	@Override
+	public int getXpValue()
+	{
+		return 5;
+	}
 
 
 

@@ -214,4 +214,10 @@ public class EntityLootChest extends EntityScapecraft
 	{
 		return par1PotionEffect.getPotionID() == Potion.poison.id ? false : super.isPotionApplicable(par1PotionEffect);
 	}
+
+	@Override
+	public int getXpValue()
+	{
+		return 0;
+	}
 }

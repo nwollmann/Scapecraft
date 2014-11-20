@@ -231,8 +231,8 @@ public class EntityBandit extends EntityScapecraft
 	}*/ //Why does this exist
 
 	@Override
-	public int getXpValue() {
-		// TODO Auto-generated method stub
-		return 0;
+	public int getXpValue()
+	{
+		return 113;
 	}
 }

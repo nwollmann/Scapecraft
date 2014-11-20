@@ -23,8 +23,6 @@ public class EntityScorpion extends EntityScapecraft
 {
 	private float moveSpeed;
 
-	
-
 	public EntityScorpion(World par1World)
 	{
 		super(par1World);
@@ -178,7 +176,7 @@ public class EntityScorpion extends EntityScapecraft
 
 	public EnumCreatureAttribute getCreatureAttribute()
 	{
-		return EnumCreatureAttribute.UNDEAD;
+		return EnumCreatureAttribute.ARTHROPOD;
 	}
 
 	public boolean isPotionApplicable(PotionEffect par1PotionEffect)
@@ -193,9 +191,9 @@ public class EntityScorpion extends EntityScapecraft
 		super.onLivingUpdate();
 	}
 
-
-
-
-
-
+	@Override
+	public int getXpValue()
+	{
+		return 30;
+	}
 }

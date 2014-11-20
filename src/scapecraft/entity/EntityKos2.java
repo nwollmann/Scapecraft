@@ -294,6 +294,11 @@ public class EntityKos2 extends EntityScapecraft
 		super.onLivingUpdate();
 	}
 
+	@Override
+	public int getXpValue()
+	{
+		return 250;
+	}
 
 
 

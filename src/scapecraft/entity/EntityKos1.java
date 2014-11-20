@@ -266,6 +266,11 @@ public class EntityKos1 extends EntityScapecraft
 		return false;
 	}
 
+	@Override
+	public int getXpValue()
+	{
+		return 100;
+	}
 
 
 

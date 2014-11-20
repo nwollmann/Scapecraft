@@ -166,15 +166,9 @@ public class EntityIronDragon extends EntityScapecraft
 		super.onLivingUpdate();
 	}
 
-
-
-
-
-
-
-
-
-
-
-
+	@Override
+	public int getXpValue()
+	{
+		return 100;
+	}
 }

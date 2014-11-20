@@ -196,6 +196,6 @@ public class EntityAbbyDemon extends EntityScapecraft
 	@Override
 	public int getXpValue()
 	{
-		return 600;
+		return 650;
 	}
 }

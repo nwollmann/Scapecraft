@@ -1,10 +1,16 @@
 package scapecraft.item;
 
+import java.util.List;
+
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.StatCollector;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemSetWeapon extends ItemWeapon
 {
@@ -40,6 +46,15 @@ public class ItemSetWeapon extends ItemWeapon
 			}
 		}
 		return super.hitEntity(itemstack, target, attacker);
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public void addInformation(ItemStack itemStack, EntityPlayer player, List lines, boolean advancedTooltips)
+	{
+		super.addInformation(itemStack, player, lines, advancedTooltips);
+		lines.add(StatCollector.translateToLocal("weapon.fullseteffect") + " " + StatCollector.translateToLocal(this.getUnlocalizedName() + ".fullseteffect"));
 	}
 }
 

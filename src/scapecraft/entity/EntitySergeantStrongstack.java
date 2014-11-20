@@ -213,9 +213,9 @@ public class EntitySergeantStrongstack extends EntityScapecraft
 		super.onLivingUpdate();
 	}
 
-
-
-
-
-
+	@Override
+	public int getXpValue()
+	{
+		return 100;
+	}
 }

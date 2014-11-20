@@ -297,7 +297,7 @@ public class EntityKing extends EntityScapecraft
 
 	static
 	{
-		defaultHeldItem = new ItemStack(ScapecraftItems.rapier, 1);
+		defaultHeldItem = new ItemStack(ScapecraftItems.chaoticRapier, 1);
 	}
 	@SideOnly(Side.CLIENT)	 
 	public boolean interact(EntityPlayer par1EntityPlayer)
@@ -309,5 +309,11 @@ public class EntityKing extends EntityScapecraft
 	public int getTotalArmorValue()
 	{
 		return 13;
+	}
+
+	@Override
+	public int getXpValue()
+	{
+		return 400; //TODO Make this value better
 	}
 }

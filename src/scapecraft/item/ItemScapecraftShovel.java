@@ -15,6 +15,7 @@ public class ItemScapecraftShovel extends ItemScapecraftTool
 	{
 		super(1F, toolMaterial, effectiveBlocks);
 		this.toolClass = "shovel";
+		this.setUnlocalizedName(toolMaterial + "Shovel");
 	}
 	public boolean canItemHarvestBlock(Block block)
 	{

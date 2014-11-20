@@ -187,5 +187,4 @@ public class EntityGuthan extends EntityScapecraft
 	{
 		return 15;
 	}
-
 }

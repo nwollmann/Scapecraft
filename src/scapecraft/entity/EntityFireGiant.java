@@ -185,4 +185,10 @@ public class EntityFireGiant extends EntityScapecraft
 		Minecraft.getMinecraft().thePlayer.addChatComponentMessage(new ChatComponentText("\u00a7EFire Giant: Smash!"));
 		return super.interact(par1EntityPlayer);
 	}
+
+	@Override
+	public int getXpValue()
+	{
+		return 344;
+	}
 }

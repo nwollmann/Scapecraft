@@ -1,7 +1,10 @@
 package scapecraft;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
+
+import scapecraft.network.StatsPacket;
 
 public class Stats
 {
@@ -71,33 +74,33 @@ public class Stats
 	public static int getAgilityLevelFromXp(int xp)
 	{
 		int level = 0;
-		for(; level < oldLevels.length && oldLevels[level] > xp; level++);
+		for(; level < oldLevels.length && oldLevels[level] <= xp; level++);
 		return level;
 	}
 
 	public static int getMiningLevelFromXp(int xp)
 	{
 		int level = 0;
-		for(; level < oldLevels.length && oldLevels[level] > xp; level++);
+		for(; level < oldLevels.length && oldLevels[level] <= xp; level++);
 		return level;
 	}
 
 	public static void addXp(EntityPlayer player, int amount)
 	{
+		setStat(player, "combatLevel", getLevelFromXp(getStat(player, "combatxp") + amount));
 		addStat(player, "combatxp", amount);
-		addStat(player, "combatLevel", getLevelFromXp(getStat(player, "combatxp")));
 	}
 
 	public static void addAXp(EntityPlayer player, int amount) 
 	{
+		setStat(player, "agilityLevel", getAgilityLevelFromXp(getStat(player, "agilityxp") + amount));
 		addStat(player, "agilityxp", amount);
-		addStat(player, "agilityLevel", getAgilityLevelFromXp(getStat(player, "agilityxp")));
 	}
 
 	public static void addMXp(EntityPlayer player, int amount) 
 	{ 
+		setStat(player, "miningLevel", getMiningLevelFromXp(getStat(player, "miningxp") + amount));
 		addStat(player, "miningxp", amount);
-		addStat(player, "miningLevel", getMiningLevelFromXp(getStat(player, "miningxp")));
 	}
 
 	public static void addEnergy(EntityPlayer player, int amount)
@@ -122,7 +125,6 @@ public class Stats
 
 	public static int getAgilityxp(EntityPlayer player)
 	{
-
 		return getStat(player, "agilityxp");
 	}
 
@@ -143,16 +145,28 @@ public class Stats
 
 	public static int getStat(EntityPlayer player, String stat)
 	{
-		if(player.getEntityData().getCompoundTag(EntityPlayer.PERSISTED_NBT_TAG) == null)
-			player.getEntityData().setTag(EntityPlayer.PERSISTED_NBT_TAG, new NBTTagCompound());
 		return player.getEntityData().getCompoundTag(EntityPlayer.PERSISTED_NBT_TAG).getInteger(stat);
 	}
 
 	public static void addStat(EntityPlayer player, String stat, int amount)
 	{
-		if(player.getEntityData().getCompoundTag(EntityPlayer.PERSISTED_NBT_TAG) == null)
-			player.getEntityData().setTag(EntityPlayer.PERSISTED_NBT_TAG, new NBTTagCompound());
-		player.getEntityData().getCompoundTag(EntityPlayer.PERSISTED_NBT_TAG).setInteger(stat, player.getEntityData().getCompoundTag(EntityPlayer.PERSISTED_NBT_TAG).getInteger(stat) + amount);
+		addStat(player, stat, amount, true);
+	}
+
+	public static void addStat(EntityPlayer player, String stat, int amount, boolean update) //Should only be used on the server
+	{
+		NBTTagCompound persistedNBT = player.getEntityData().getCompoundTag(EntityPlayer.PERSISTED_NBT_TAG);
+		persistedNBT.setInteger(stat, persistedNBT.getInteger(stat) + amount);
+		player.getEntityData().setTag(EntityPlayer.PERSISTED_NBT_TAG, persistedNBT);
+		if(update && !player.worldObj.isRemote)
+			Scapecraft.network.sendTo(new StatsPacket(player), (EntityPlayerMP) player);
+	}
+	
+	public static void setStat(EntityPlayer player, String stat, int amount)
+	{
+		NBTTagCompound persistedNBT = player.getEntityData().getCompoundTag(EntityPlayer.PERSISTED_NBT_TAG);
+		persistedNBT.setInteger(stat, amount);
+		player.getEntityData().setTag(EntityPlayer.PERSISTED_NBT_TAG, persistedNBT);
 	}
 
 }

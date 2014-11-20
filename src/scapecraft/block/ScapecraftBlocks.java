@@ -2,6 +2,9 @@ package scapecraft.block;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.init.Blocks;
+
+import scapecraft.tileentity.TileEntityBlockSpawner;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 
@@ -62,72 +65,115 @@ public class ScapecraftBlocks
 	public static Block kkSpawn;
 	public static Block hellhoundSpawn;
 
+	public static Block blueCobble;
+	public static Block blueCobbleCompressed;
+
 	public static Block addyOre;
 	public static Block mithOre;
 	public static Block runeOre;
+
+	public static Block addyBlock;
+	public static Block mithBlock;
+	public static Block runeBlock;
 	
-	public static Block addyOreSpawn, coalOreSpawn, diamondOreSpawn, mithOreSpawn, runeOreSpawn;
+	public static Block addyOreSpawn;
+	public static Block mithOreSpawn;
+	public static Block runeOreSpawn;
+	public static Block coalOreSpawn;
+	public static Block diamondOreSpawn;
+	public static Block cobblestoneSpawn;
+	public static Block redstoneOreSpawn;
+	public static Block goldOreSpawn;
+	public static Block emeraldOreSpawn;
+	public static Block ironOreSpawn;
+	public static Block sandstoneSpawn;
+	public static Block sandSpawn;
+	public static Block dirtSpawn;
+	public static Block gravelSpawn;
+	public static Block blueCobbleSpawn;
 
 	public static void registerBlocks()
 	{
-		barbarianSpawn = new BlockSpawn("EntityBarbarian", 0, true).setUnlocalizedName("barbarianSpawn");
-		botSpawn = new BlockSpawn("EntityBot", 0, true).setUnlocalizedName("botSpawn");
-		darkwizardSpawn = new BlockSpawn("EntityDarkwizard", 0, true).setUnlocalizedName("darkwizardSpawn");
-		dwarfSpawn = new BlockSpawn("EntityDwarf", 0, true).setUnlocalizedName("dwarfSpawn");
-		goblinSpawn = new BlockSpawn("EntityGoblin", 0, true).setUnlocalizedName("goblinSpawn");
-		guardSpawn = new BlockSpawn("EntityGuard", 0, true).setUnlocalizedName("guardSpawn");
-		iceGiantSpawn = new BlockSpawn("EntityIceGiant", 0, true).setUnlocalizedName("iceGiantSpawn");
+		barbarianSpawn = new BlockSpawn("EntityBarbarian", 0, true);
+		botSpawn = new BlockSpawn("EntityBot", 0, true);
+		darkwizardSpawn = new BlockSpawn("EntityDarkwizard", 0, true);
+		dwarfSpawn = new BlockSpawn("EntityDwarf", 0, true);
+		goblinSpawn = new BlockSpawn("EntityGoblin", 0, true);
+		guardSpawn = new BlockSpawn("EntityGuard", 0, true);
+		iceGiantSpawn = new BlockSpawn("EntityIceGiant", 0, true);
 		//TODO there's something special with this one
-		ironDragonSpawn = new BlockSpawn("EntityIronDragon", 0, true).setUnlocalizedName("ironDragonSpawn");
-		lesserSpawn = new BlockSpawn("EntityLesserDemon", 0, true).setUnlocalizedName("lesserSpawn");
-		manSpawn = new BlockSpawn("EntityMan", 0, true).setUnlocalizedName("manSpawn");
-		muggerSpawn = new BlockSpawn("EntityMugger", 0, true).setUnlocalizedName("muggerSpawn");
-		ratSpawn = new BlockSpawn("EntityRat", 0, true).setUnlocalizedName("ratSpawn");
-		smallRatSpawn = new BlockSpawn("EntityRatSmall", 0, true).setUnlocalizedName("smallRatSpawn");
-		theifSpawn = new BlockSpawn("EntityTheif", 0, true).setUnlocalizedName("theifSpawn");
-		whiteKnightSpawn = new BlockSpawn("EntityWhiteKnight", 0, true).setUnlocalizedName("whiteKnightSpawn");
-		wizardSpawn = new BlockSpawn("EntityWizard", 0, true).setUnlocalizedName("wizardSpawn");
-		abbyDemonSpawn = new BlockSpawn("EntityAbbyDemon", 0, true).setUnlocalizedName("abbyDemonSpawn");
-		blackDemonSpawn = new BlockSpawn("EntityBlackDemon", 0, true).setUnlocalizedName("blackDemonSpawn");
-		blackDragonSpawn = new BlockSpawn("EntityBlackDragon", 0, true).setUnlocalizedName("blackDragonSpawn");
-		blackKnightSpawn = new BlockSpawn("EntityBlackKnight", 0, true).setUnlocalizedName("blackKnightSpawn");
-		caveCrawlerSpawn = new BlockSpawn("EntityCaveCrawler", 0, true).setUnlocalizedName("caveCrawlerSpawn");
-		fireGiantSpawn = new BlockSpawn("EntityFireGiant", 0, true).setUnlocalizedName("fireGiantSpawn");
-		ghostSpawn = new BlockSpawn("EntityGhost", 0, true).setUnlocalizedName("ghostSpawn");
-		greenDragonSpawn = new BlockSpawn("EntityGreenDragon", 0, true).setUnlocalizedName("greenDragonSpawn");
-		hillGiantSpawn = new BlockSpawn("EntityHillGiant", 0, true).setUnlocalizedName("hillGiantSpawn");
-		kq2Spawn = new BlockSpawn("EntityKQ2", 0, true).setUnlocalizedName("kq2Spawn");
-		mossGiantSpawn = new BlockSpawn("EntityMossGiant", 0, true).setUnlocalizedName("mossGiantSpawn");
-		scorpionSpawn = new BlockSpawn("EntityScorpion", 0, true).setUnlocalizedName("scorpionSpawn");
-		kingGuardSpawn = new BlockSpawn("EntityKingsGuard", 5, true).setUnlocalizedName("kingGuardSpawn");
-		kosSpawn = new BlockSpawn("EntityKos1", 20).setUnlocalizedName("kosSpawn");
-		tdSpawn = new BlockSpawn("EntityTD", 20).setUnlocalizedName("tdSpawn");
-		cookSpawn = new BlockSpawn("EntityCook", 200).setUnlocalizedName("cookSpawn");
-		doctorSpawn = new BlockSpawn("EntityDoctor", 200).setUnlocalizedName("doctorSpawn");
-		fremGuardSpawn = new BlockSpawn("EntityFremGuard", 200).setUnlocalizedName("fremGuardSpawn");
-		morganSpawn = new BlockSpawn("EntityMorgan", 200).setUnlocalizedName("morganSpawn");
-		shopKeeperSpawn = new BlockSpawn("EntityShopKeeper", 200).setUnlocalizedName("shopKeeperSpawn");
-		varzeSpawn = new BlockSpawn("EntityVarze", 200).setUnlocalizedName("varzeSpawn");
-		blackGuard2Spawn = new BlockSpawn("EntityBlackGuard2", 1800).setUnlocalizedName("blackGuard2Spawn");
-		heroKnightSpawn = new BlockSpawn("EntityHeroKnight", 4000).setUnlocalizedName("heroKnightSpawn");
-		ahrimSpawn = new BlockSpawn("EntityAhrim", 6000).setUnlocalizedName("ahrimSpawn");
-		akrisaeSpawn = new BlockSpawn("EntityAkrisae", 6000).setUnlocalizedName("akrisaeSpawn");
-		dharokSpawn = new BlockSpawn("EntityDharok", 6000).setUnlocalizedName("dharokSpawn");
-		eliteBlackKnightSpawn = new BlockSpawn("EntityEliteBlackKnight", 6000).setUnlocalizedName("eliteBlackKnightSpawn");
-		guthanSpawn = new BlockSpawn("EntityGuthan", 6000).setUnlocalizedName("guthanSpawn");
-		karilSpawn = new BlockSpawn("EntityKaril", 6000).setUnlocalizedName("karilSpawn");
-		toragSpawn = new BlockSpawn("EntityTorag", 6000).setUnlocalizedName("toragSpawn");
-		veracSpawn = new BlockSpawn("EntityVerac", 6000).setUnlocalizedName("veracSpawn");
-		banditSpawn = new BlockSpawn("EntityBandit", 8000).setUnlocalizedName("banditSpawn");
-		highMageSpawn = new BlockSpawn("EntityHighMage", 12000).setUnlocalizedName("highMageSpawn");
-		kingSpawn = new BlockSpawn("EntityKing", 12000).setUnlocalizedName("kingSpawn");
-		kqSpawn = new BlockSpawn("EntityKQ", 12000).setUnlocalizedName("kqSpawn");
-		kkSpawn = new BlockSpawn("EntityKK", 24000).setUnlocalizedName("kkSpawn");
-		hellhoundSpawn = new BlockSpawn("EntityHellhound", 72000).setUnlocalizedName("hellhoundSpawn");
+		ironDragonSpawn = new BlockSpawn("EntityIronDragon", 0, true);
+		lesserSpawn = new BlockSpawn("EntityLesserDemon", 0, true);
+		manSpawn = new BlockSpawn("EntityMan", 0, true);
+		muggerSpawn = new BlockSpawn("EntityMugger", 0, true);
+		ratSpawn = new BlockSpawn("EntityRat", 0, true);
+		smallRatSpawn = new BlockSpawn("EntityRatSmall", 0, true);
+		theifSpawn = new BlockSpawn("EntityTheif", 0, true);
+		whiteKnightSpawn = new BlockSpawn("EntityWhiteKnight", 0, true);
+		wizardSpawn = new BlockSpawn("EntityWizard", 0, true);
+		abbyDemonSpawn = new BlockSpawn("EntityAbbyDemon", 0, true);
+		blackDemonSpawn = new BlockSpawn("EntityBlackDemon", 0, true);
+		blackDragonSpawn = new BlockSpawn("EntityBlackDragon", 0, true);
+		blackKnightSpawn = new BlockSpawn("EntityBlackKnight", 0, true);
+		caveCrawlerSpawn = new BlockSpawn("EntityCaveCrawler", 0, true);
+		fireGiantSpawn = new BlockSpawn("EntityFireGiant", 0, true);
+		ghostSpawn = new BlockSpawn("EntityGhost", 0, true);
+		greenDragonSpawn = new BlockSpawn("EntityGreenDragon", 0, true);
+		hillGiantSpawn = new BlockSpawn("EntityHillGiant", 0, true);
+		kq2Spawn = new BlockSpawn("EntityKQ2", 0, true);
+		mossGiantSpawn = new BlockSpawn("EntityMossGiant", 0, true);
+		scorpionSpawn = new BlockSpawn("EntityScorpion", 0, true);
+		kingGuardSpawn = new BlockSpawn("EntityKingsGuard", 5, true);
+		kosSpawn = new BlockSpawn("EntityKos1", 20);
+		tdSpawn = new BlockSpawn("EntityTD", 20);
+		cookSpawn = new BlockSpawn("EntityCook", 200);
+		doctorSpawn = new BlockSpawn("EntityDoctor", 200);
+		fremGuardSpawn = new BlockSpawn("EntityFremGuard", 200);
+		morganSpawn = new BlockSpawn("EntityMorgan", 200);
+		shopKeeperSpawn = new BlockSpawn("EntityShopKeeper", 200);
+		varzeSpawn = new BlockSpawn("EntityVarze", 200);
+		blackGuard2Spawn = new BlockSpawn("EntityBlackGuard2", 1800);
+		heroKnightSpawn = new BlockSpawn("EntityHeroKnight", 4000);
+		ahrimSpawn = new BlockSpawn("EntityAhrim", 6000);
+		akrisaeSpawn = new BlockSpawn("EntityAkrisae", 6000);
+		dharokSpawn = new BlockSpawn("EntityDharok", 6000);
+		eliteBlackKnightSpawn = new BlockSpawn("EntityEliteBlackKnight", 6000);
+		guthanSpawn = new BlockSpawn("EntityGuthan", 6000);
+		karilSpawn = new BlockSpawn("EntityKaril", 6000);
+		toragSpawn = new BlockSpawn("EntityTorag", 6000);
+		veracSpawn = new BlockSpawn("EntityVerac", 6000);
+		banditSpawn = new BlockSpawn("EntityBandit", 8000);
+		highMageSpawn = new BlockSpawn("EntityHighMage", 12000);
+		kingSpawn = new BlockSpawn("EntityKing", 12000);
+		kqSpawn = new BlockSpawn("EntityKQ", 12000);
+		kkSpawn = new BlockSpawn("EntityKK", 24000);
+		hellhoundSpawn = new BlockSpawn("EntityHellhound", 72000);
 
-		addyOre = new BlockScapecraft(Material.rock).setTextureName("scapecraft:addyOre").setHardness(30.0F).setResistance(5.0F).setUnlocalizedName("addyOre");
-		mithOre = new BlockScapecraft(Material.rock).setTextureName("scapecraft:mithOre").setHardness(60.0F).setResistance(5.0F).setUnlocalizedName("mithOre");
-		runeOre = new BlockScapecraft(Material.rock).setTextureName("scapecraft:runeOre").setHardness(80.0F).setResistance(50.0F).setUnlocalizedName("runeOre");
+		blueCobble = new BlockScapecraft(Material.rock).setTextureName("scapecraft:BlueCobblestone").setUnlocalizedName("blueCobble");
+		blueCobbleCompressed = new BlockScapecraft(Material.rock).setTextureName("scapecraft:BlueCobblestonec").setUnlocalizedName("blueCobbleCompressed");
+
+		mithOre = new BlockScapecraft(Material.rock).setTextureName("scapecraft:MithOre").setHardness(30.0F).setResistance(5.0F).setUnlocalizedName("mithOre");
+		addyOre = new BlockScapecraft(Material.rock).setTextureName("scapecraft:AddyOre").setHardness(60.0F).setResistance(5.0F).setUnlocalizedName("addyOre");
+		runeOre = new BlockScapecraft(Material.rock).setTextureName("scapecraft:RuneOre").setHardness(80.0F).setResistance(50.0F).setUnlocalizedName("runeOre");
+		mithBlock = new BlockScapecraft(Material.rock).setBeaconBase(true).setTextureName("scapecraft:MithrilBlock").setHardness(30.0F).setResistance(5.0F).setUnlocalizedName("mithBlock");
+		addyBlock = new BlockScapecraft(Material.rock).setBeaconBase(true).setTextureName("scapecraft:AdamantBlock").setHardness(60.0F).setResistance(25.0F).setUnlocalizedName("addyBlock");
+		runeBlock = new BlockScapecraft(Material.rock).setBeaconBase(true).setTextureName("scapecraft:RuneBlock").setHardness(80.0F).setResistance(50.0F).setUnlocalizedName("runeBlock");
+
+		mithOreSpawn = new BlockBlockSpawner(mithOre, 1200, 5);
+		addyOreSpawn = new BlockBlockSpawner(addyOre, 2400, 10);
+		runeOreSpawn = new BlockBlockSpawner(runeOre, 3600, 20);
+		coalOreSpawn = new BlockBlockSpawner(Blocks.coal_ore, 120, 2);
+		diamondOreSpawn = new BlockBlockSpawner(Blocks.diamond_ore, 1800, 8);
+		redstoneOreSpawn = new BlockBlockSpawner(Blocks.redstone_ore, 600, 3);
+		goldOreSpawn = new BlockBlockSpawner(Blocks.gold_ore, 1200, 4);
+		ironOreSpawn = new BlockBlockSpawner(Blocks.iron_ore, 300, 2);
+		emeraldOreSpawn = new BlockBlockSpawner(Blocks.emerald_ore, 4500, 25);
+		cobblestoneSpawn = new BlockBlockSpawner(Blocks.cobblestone, 10, 1);
+		sandstoneSpawn = new BlockBlockSpawner(Blocks.sandstone, 3);
+		sandSpawn = new BlockBlockSpawner(Blocks.sand, 2);
+		dirtSpawn = new BlockBlockSpawner(Blocks.dirt, 2);
+		gravelSpawn = new BlockBlockSpawner(Blocks.gravel, 20);
+		blueCobbleSpawn = new BlockBlockSpawner(blueCobble, 10800);
 
 		addyOre.setHarvestLevel("pickaxe", 2);
 
@@ -185,9 +231,33 @@ public class ScapecraftBlocks
 		GameRegistry.registerBlock(kkSpawn, "kkSpawn");
 		GameRegistry.registerBlock(hellhoundSpawn, "hellhoundSpawn");
 
+		GameRegistry.registerBlock(blueCobble, "blueCobble");
+
 		GameRegistry.registerBlock(addyOre, "addyOre");
 		GameRegistry.registerBlock(mithOre, "mithOre");
 		GameRegistry.registerBlock(runeOre, "runeOre");
 
+		GameRegistry.registerBlock(addyBlock, "addyBlock");
+		GameRegistry.registerBlock(mithBlock, "mithBlock");
+		GameRegistry.registerBlock(runeBlock, "runeBlock");
+
+		GameRegistry.registerBlock(addyOreSpawn, "addyOreSpawn");
+		GameRegistry.registerBlock(mithOreSpawn, "mithOreSpawn");
+		GameRegistry.registerBlock(runeOreSpawn, "runeOreSpawn");
+		GameRegistry.registerBlock(coalOreSpawn, "coalOreSpawn");
+		GameRegistry.registerBlock(diamondOreSpawn, "diamondOreSpawn");
+		GameRegistry.registerBlock(cobblestoneSpawn, "cobblestoneSpawn");
+		GameRegistry.registerBlock(redstoneOreSpawn, "redstoneOreSpawn");
+		GameRegistry.registerBlock(goldOreSpawn, "goldOreSpawn");
+		GameRegistry.registerBlock(emeraldOreSpawn, "emeraldOreSpawn");
+		GameRegistry.registerBlock(ironOreSpawn, "ironOreSpawn");
+		GameRegistry.registerBlock(sandstoneSpawn, "sandstoneSpawn");
+		GameRegistry.registerBlock(sandSpawn, "sandSpawn");
+		GameRegistry.registerBlock(dirtSpawn, "dirtSpawn");
+		GameRegistry.registerBlock(gravelSpawn, "gravelSpawn");
+		GameRegistry.registerBlock(blueCobbleSpawn, "blueCobbleSpawn");
+
+
+		GameRegistry.registerTileEntity(TileEntityBlockSpawner.class, "blockSpawner");
 	}
 }

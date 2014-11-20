@@ -116,4 +116,10 @@ public class EntityBot extends EntityScapecraft
 	{
 		return defaultHeldItem;
 	}
+
+	@Override
+	public int getXpValue()
+	{
+		return 0;
+	}
 }

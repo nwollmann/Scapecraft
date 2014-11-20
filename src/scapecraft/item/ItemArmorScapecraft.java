@@ -1,16 +1,21 @@
 package scapecraft.item;
 
+import java.util.List;
+
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
 import scapecraft.Scapecraft;
 
 import cpw.mods.fml.common.ObfuscationReflectionHelper;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemArmorScapecraft extends ItemArmor
 {
@@ -25,7 +30,6 @@ public class ItemArmorScapecraft extends ItemArmor
 		this.material = armorMaterial;
 		
 		ObfuscationReflectionHelper.setPrivateValue(ItemArmor.class, this, armorMaterial.getDamageReductionAmount(type), "damageReduceAmount", "field_77879_b");
-		//damageReduceAmount = ;
 
 		this.setMaxDurability(armorMaterial.getDurability(type));
 		this.setCreativeTab(Scapecraft.tabScapecraftArmor);
@@ -122,9 +126,9 @@ public class ItemArmorScapecraft extends ItemArmor
 		return this.material.getMinLevel();
 	}
 
-	public double getMaxHealth()
+	public double getHealthBoost()
 	{
-		return this.material.getMaxHealth();
+		return this.material.getHealthBoost() / 4;
 	}
 
 	public ScapecraftArmorMaterial getScapecraftArmorMaterial()
@@ -146,5 +150,15 @@ public class ItemArmorScapecraft extends ItemArmor
 	public boolean isWearingFullSet(EntityPlayer entity)
 	{
 		return isWearingFullSet(entity, this.material);
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public void addInformation(ItemStack itemStack, EntityPlayer player, List lines, boolean advancedTooltips)
+	{
+		super.addInformation(itemStack, player, lines, advancedTooltips);
+		lines.add(StatCollector.translateToLocal("weapon.minlevel") + " " + material.getMinLevel());
+		lines.add(StatCollector.translateToLocal("armor.healthboost") + " " + this.getHealthBoost());
 	}
 }

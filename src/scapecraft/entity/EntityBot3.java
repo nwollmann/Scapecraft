@@ -223,6 +223,11 @@ public class EntityBot3 extends EntityScapecraft
 		defaultHeldItem = new ItemStack(ScapecraftItems.whip, 1);
 	}
 
+	@Override
+	public int getXpValue()
+	{
+		return 0;
+	}
 
 
 

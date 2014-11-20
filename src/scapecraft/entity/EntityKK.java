@@ -115,6 +115,7 @@ public class EntityKK extends EntityScapecraft
 		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(32.0D);   
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.50D);
 		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(40.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(0.5D);
 	}
 	public int getTotalArmorValue()
 	{
@@ -295,9 +296,15 @@ public class EntityKK extends EntityScapecraft
 
 	}
 
+	@Override
 	public EnumCreatureAttribute getCreatureAttribute()
 	{
 		return EnumCreatureAttribute.ARTHROPOD;
 	}
 
+	@Override
+	public int getXpValue()
+	{
+		return 5292;
+	}
 }

@@ -193,7 +193,7 @@ public class EntityDwarf extends EntityScapecraft
 
 	static
 	{
-		defaultHeldItem = new ItemStack(ScapecraftItems.pickaxeGalore, 1);
+		defaultHeldItem = new ItemStack(ScapecraftItems.dragonPickaxe, 1);
 	}
 
 
@@ -204,5 +204,10 @@ public class EntityDwarf extends EntityScapecraft
 		return super.interact(par1EntityPlayer);
 	}
 
+	@Override
+	public int getXpValue()
+	{
+		return 30;
+	}
 
 }

@@ -265,4 +265,10 @@ public class EntityWhiteKnight extends EntityScapecraft
 		return super.interact(par1EntityPlayer);
 	}
 
+	@Override
+	public int getXpValue()
+	{
+		return 40;
+	}
+
 }

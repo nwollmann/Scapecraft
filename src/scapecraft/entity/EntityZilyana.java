@@ -30,7 +30,7 @@ public class EntityZilyana extends EntityScapecraft
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(600D);
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(900D);
 		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(32D);
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.3D);
 		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(50D);
@@ -57,4 +57,11 @@ public class EntityZilyana extends EntityScapecraft
 			this.attackEntityAsMob(entity);
 		}
 	}
+
+	@Override
+	public int getXpValue()
+	{
+		return 2000;
+	}
+
 }

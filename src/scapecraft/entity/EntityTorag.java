@@ -199,4 +199,5 @@ public class EntityTorag extends EntityScapecraft
 		}
 		return super.attackEntityFrom(par1DamageSource, par2);
 	}
+
 }

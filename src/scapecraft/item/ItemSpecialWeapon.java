@@ -1,22 +1,28 @@
 package scapecraft.item;
 
+import java.util.List;
 import java.util.Random;
 
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
 import scapecraft.Stats;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
 public class ItemSpecialWeapon extends ItemWeapon
 {
-	int specialCost;
-	Random rand = new Random();
+	protected int specialCost;
+	protected Random rand = new Random();
 
 	public ItemSpecialWeapon(ScapecraftToolMaterial toolMaterial, float baseDamage, String name, int specialCost)
 	{
@@ -26,10 +32,10 @@ public class ItemSpecialWeapon extends ItemWeapon
 
 	public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player)
 	{
-
-
 		if (Stats.getEnergy(player) >  specialCost)
 		{
+			if(itemStack.getTagCompound() == null)
+				itemStack.setTagCompound(new NBTTagCompound());
 			itemStack.getTagCompound().setBoolean("special", true);
 			Stats.addEnergy(player, -specialCost);		
 			if (world.isRemote)
@@ -38,6 +44,7 @@ public class ItemSpecialWeapon extends ItemWeapon
 
 		return itemStack;
 	}
+
 	public void onEntityHurt(LivingHurtEvent event)
 	{
 		if(event.source.getEntity() instanceof EntityPlayer)
@@ -61,7 +68,7 @@ public class ItemSpecialWeapon extends ItemWeapon
 						break;
 					case BGS:
 						event.entityLiving.motionY = 1.25D;
-						event.ammount += 5F;
+						event.ammount += 13F;
 						event.entityLiving.addPotionEffect(new PotionEffect(Potion.weakness.id, 200, 0));
 						//TODO some sort of potion effect that decreases armor?
 						break;
@@ -108,5 +115,15 @@ public class ItemSpecialWeapon extends ItemWeapon
 			}
 
 		}
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public void addInformation(ItemStack itemStack, EntityPlayer player, List lines, boolean advancedTooltips)
+	{
+		super.addInformation(itemStack, player, lines, advancedTooltips);
+		lines.add(StatCollector.translateToLocal("weapon.special") + " " + StatCollector.translateToLocal(this.getUnlocalizedName() + ".special"));
+		lines.add(StatCollector.translateToLocal("weapon.specialcost") + " " + specialCost);
 	}
 }

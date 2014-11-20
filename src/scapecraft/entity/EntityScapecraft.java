@@ -37,7 +37,10 @@ public abstract class EntityScapecraft extends EntityMob implements XpDropper
 			Stats.addXp(entry.getKey(), (int) (damageTaken / entry.getValue() * this.getXpValue()));
 	}
 
-	public int getXpValue(){return 0;};//TODO make this abstract
+	public int getXpValue()
+	{
+		return 0;
+	}
 
 	protected void dropFewItems(boolean par1, int par2)
 	{
@@ -116,5 +119,20 @@ public abstract class EntityScapecraft extends EntityMob implements XpDropper
 			return true;
 		}
 		return false;
+	}
+
+	@Override
+	public void damageEntity(DamageSource source, float damage)
+	{
+		float oldHealth = this.getHealth();
+		super.damageEntity(source, damage);
+		if(source.getSourceOfDamage() instanceof EntityPlayer)
+		{
+			EntityPlayer attacker = (EntityPlayer) source.getSourceOfDamage();
+			if(attackers.get(attacker) == null)
+				attackers.put(attacker, oldHealth - this.getHealth());
+			else
+				attackers.put(attacker, attackers.get(attacker) + oldHealth - this.getHealth());
+		}
 	}
 }

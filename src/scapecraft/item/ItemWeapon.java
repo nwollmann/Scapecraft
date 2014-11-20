@@ -1,16 +1,25 @@
 package scapecraft.item;
 
+import java.util.List;
+
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
+import net.minecraft.util.StatCollector;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
 import scapecraft.Scapecraft;
+import scapecraft.Stats;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemWeapon extends ItemSword
 {
@@ -30,14 +39,14 @@ public class ItemWeapon extends ItemSword
 		this.setCreativeTab(Scapecraft.tabScapecraftWeapon);
 	}
 
+	@Override
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-		@Override
-		public Multimap getItemAttributeModifiers()
-		{
-			Multimap multimap = HashMultimap.create();
-			multimap.put(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(), new AttributeModifier(itemModifierUUID, "Weapon modifier", (double)this.weaponDamage, 0));
-			return multimap;
-		}
+	public Multimap getItemAttributeModifiers()
+	{
+		Multimap multimap = HashMultimap.create();
+		multimap.put(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(), new AttributeModifier(itemModifierUUID, "Weapon modifier", (double)this.weaponDamage, 0));
+		return multimap;
+	}
 
 	@Override
 	public void registerIcons(IIconRegister iconRegister)
@@ -74,34 +83,24 @@ public class ItemWeapon extends ItemSword
 	{
 	}
 
-	//Don't swing the weapon normally, this is also where custom attacking will start
-	/*@Override
+	@Override
+	@SideOnly(Side.CLIENT)
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public void addInformation(ItemStack itemStack, EntityPlayer player, List lines, boolean advancedTooltips)
+	{
+		super.addInformation(itemStack, player, lines, advancedTooltips);
+		lines.add(StatCollector.translateToLocal("weapon.minlevel") + " " + toolMaterial.getMinLevel());
+	}
+
+	//Don't swing the weapon normally, this is also where custom attacking can start
+	@Override
 	public boolean onEntitySwing(EntityLivingBase entityLiving, ItemStack stack)
 	{
 		if(entityLiving instanceof EntityPlayer)
 		{
-			if(!entityLiving.isSwingInProgress)
-				entityLiving.isSwingInProgress = true;
-			return true;
+			if(Scapecraft.requireLevels && Stats.getCombatLevel((EntityPlayer) entityLiving) < this.toolMaterial.getMinLevel())
+				return true;
 		}
 		return false;
 	}
-
-	@Override
-	public void onUpdate(ItemStack stack, World world, Entity entityHolder, int i1, boolean b1)
-	{
-		if(!(entityHolder instanceof EntityPlayer))
-			return;
-		EntityPlayer player = (EntityPlayer) entityHolder;
-		if(player.swingProgressInt == 1)
-		{
-			for(Object o : world.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.expand(4D, 4D, 4D)))
-			{
-				Entity entity = (Entity) o;
-				if(entity instanceof EntityLivingBase)
-					player.attackTargetEntityWithCurrentItem(entity);
-			}
-
-		}
-	}*/ //TODO Make weapon swing with collision boxes
 }

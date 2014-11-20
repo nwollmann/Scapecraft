@@ -269,5 +269,10 @@ public class EntityHighMage extends EntityScapecraft implements IRangedAttackMob
 		super.onLivingUpdate();
 	}	
 
+	@Override
+	public int getXpValue()
+	{
+		return 800; //TODO Make a better value
+	}
 
 }

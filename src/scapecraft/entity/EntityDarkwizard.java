@@ -178,6 +178,11 @@ public class EntityDarkwizard extends EntityScapecraft
 		defaultHeldItem = new ItemStack(ScapecraftItems.zammyStaff, 1);
 	}
 
+	@Override
+	public int getXpValue()
+	{
+		return 50;
+	}
 
 
 

@@ -278,4 +278,9 @@ public class EntityGuard extends EntityScapecraft
 		return super.interact(par1EntityPlayer);
 	}
 
+	@Override
+	public int getXpValue()
+	{
+		return 35;
+	}
 }

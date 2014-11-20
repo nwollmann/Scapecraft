@@ -235,6 +235,11 @@ public class EntityBlackGuard2 extends EntityScapecraft
 		defaultHeldItem = new ItemStack(ScapecraftItems.blackHalberd, 1);
 	}
 
+	@Override
+	public int getXpValue()
+	{
+		return 75;
+	}
 
 
 

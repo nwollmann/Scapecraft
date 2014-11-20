@@ -283,5 +283,9 @@ public class EntityVarze extends EntityScapecraft
 		defaultHeldItem = new ItemStack(ScapecraftItems.whiteSword, 1);
 	}
 
-
+	@Override
+	public int getXpValue()
+	{
+		return 0;
+	}
 }

@@ -258,6 +258,11 @@ public class EntityKingsGuard extends EntityScapecraft
 		defaultHeldItem = new ItemStack(ScapecraftItems.saraSword, 1);
 	}
 
+	@Override
+	public int getXpValue()
+	{
+		return 10;
+	}
 
 
 

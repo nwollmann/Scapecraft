@@ -10,23 +10,33 @@ import java.util.Map.Entry;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.nbt.CompressedStreamTools;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.ChatComponentText;
+import net.minecraft.server.MinecraftServer;
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.world.WorldEvent;
 
+import scapecraft.client.ClientProxy;
 import scapecraft.entity.Drop;
 import scapecraft.entity.EntityScapecraft;
+import scapecraft.entity.XpDropper;
 import scapecraft.item.ItemArmorScapecraft;
+import scapecraft.item.ItemWeapon;
+import scapecraft.network.StatsPacket;
+import scapecraft.util.CombatXpHelper;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.gameevent.PlayerEvent;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ScapecraftEventHandler
 {
@@ -41,24 +51,24 @@ public class ScapecraftEventHandler
 			for(int i = 0; i <= 3; i++)
 				if(player.getCurrentArmor(i) != null && player.getCurrentArmor(i).getItem() instanceof ItemArmorScapecraft)
 					((ItemArmorScapecraft) player.getCurrentArmor(i).getItem()).onWearerAttack(event);
+			if(player.getHeldItem() != null && player.getHeldItem().getItem() instanceof ItemWeapon)
+				((ItemWeapon) player.getHeldItem().getItem()).onEntityHurt(event);
 		}
 	}
 
 	@SubscribeEvent
 	public void onLivingUpdateEvent(LivingUpdateEvent event)
 	{
-		if(event.entity instanceof EntityPlayer)
+		if(event.entity instanceof EntityPlayer && !event.entity.worldObj.isRemote)
 		{
 			EntityPlayer player = (EntityPlayer) event.entity;
 
-			if(Stats.getEnergy(player) < 10000)
+			if(Stats.getEnergy(player) < 100 && MinecraftServer.getServer().getEntityWorld().getTotalWorldTime() % 50 == 0)
 			{
-				Stats.addEnergy(player, 2);
-				if(Stats.getEnergy(player) >= 10000)
-					player.addChatMessage(new ChatComponentText("Your Special Attack bar is full"));
+				Stats.addEnergy(player, 1);
 			}
 
-			if(Stats.getAgilityLevel(player) > 20) //TODO change these to levels
+			if(Stats.getAgilityLevel(player) > 20) 
 			{
 				player.addPotionEffect(new PotionEffect(Potion.jump.id, 50, 1));
 			}
@@ -68,13 +78,11 @@ public class ScapecraftEventHandler
 			}
 			if(Stats.getAgilityLevel(player) > 25)
 			{
-				//player.addPotionEffect(new PotionEffect(Potion.moveSpeed.id, 50, 1));
-				player.capabilities.setPlayerWalkSpeed(.14F);
+				setMoveSpeed(player, .14F);
 			}
 			else if(Stats.getAgilityxp(player) > 15)
 			{
-				//player.addPotionEffect(new PotionEffect(Potion.moveSpeed.id, 50, 0));
-				player.capabilities.setPlayerWalkSpeed(.12F);
+				setMoveSpeed(player, .12F);
 			}
 
 			boolean invChanged = false;
@@ -90,19 +98,19 @@ public class ScapecraftEventHandler
 			}
 			if(invChanged)
 			{
+				double maxHealth = 20;
 				Item[] newInv = new Item[4];
-				for(int i = 0; i < 3; i++)
+				for(int i = 0; i < 4; i++)
+				{
 					newInv[i] = player.getCurrentArmor(i) != null ? player.getCurrentArmor(i).getItem() : null;
+					if(newInv[i] != null && newInv[i] instanceof ItemArmorScapecraft)
+						maxHealth += ((ItemArmorScapecraft) newInv[i]).getHealthBoost(); 
+				}
 				inventories.put(player.getCommandSenderName(), newInv);
-
-				if(player.getCurrentArmor(1) != null && player.getCurrentArmor(1).getItem() instanceof ItemArmorScapecraft && ((ItemArmorScapecraft) player.getCurrentArmor(1).getItem()).isWearingFullSet(player))
-				{
-					player.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(((ItemArmorScapecraft) player.getCurrentArmor(1).getItem()).getMaxHealth());
-				}
-				else
-				{
-					player.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(20D);
-				}
+				player.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(maxHealth);
+				if(player.getHealth() > maxHealth)
+					player.setHealth((float) maxHealth);
+				System.out.println(maxHealth + " " + player.getHealth());
 
 			}
 		}
@@ -111,6 +119,14 @@ public class ScapecraftEventHandler
 	@SubscribeEvent
 	public void onLivingDeathEvent(LivingDeathEvent event)
 	{
+		if(event.source.getEntity() != null && event.source.getEntity() instanceof EntityPlayer)
+		{
+			EntityPlayer player = (EntityPlayer) event.source.getEntity();
+			if(event.entityLiving instanceof XpDropper)
+				((XpDropper) event.entityLiving).giveXp();
+			else
+				Stats.addXp(player, CombatXpHelper.getAmount(event.entityLiving));
+		}
 	}
 
 	@SubscribeEvent
@@ -145,5 +161,32 @@ public class ScapecraftEventHandler
 				e.printStackTrace();
 			}
 		}
+	}
+
+	@SubscribeEvent
+	public void onPlayerSpawn(PlayerEvent.PlayerRespawnEvent event)
+	{
+		Scapecraft.network.sendTo(new StatsPacket(event.player), (EntityPlayerMP) event.player);
+	}
+
+	@SideOnly(Side.CLIENT)
+	@SubscribeEvent
+	public void onHealthRender(RenderGameOverlayEvent.Pre event)
+	{
+		if(event != null && (event.type == RenderGameOverlayEvent.ElementType.HEALTH || event.type == RenderGameOverlayEvent.ElementType.ARMOR))
+		{
+			event.setCanceled(true);
+			ClientProxy.guiHealth.drawHealthBar(event.resolution);
+		}
+	}
+	
+	public void setMoveSpeed(EntityPlayer player, float speed)
+	{
+		if(player.capabilities.getWalkSpeed() == speed)
+			return;
+		NBTTagCompound capabilities = new NBTTagCompound();
+		player.capabilities.writeCapabilitiesToNBT(capabilities);
+		capabilities.getCompoundTag("abilities").setFloat("walkSpeed", speed);
+		player.capabilities.readCapabilitiesFromNBT(capabilities);
 	}
 }

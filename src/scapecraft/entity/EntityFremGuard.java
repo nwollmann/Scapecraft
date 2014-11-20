@@ -267,6 +267,11 @@ public class EntityFremGuard extends EntityScapecraft
 		return 999;
 	}
 
+	@Override
+	public int getXpValue()
+	{
+		return 0;
+	}
 
 
 

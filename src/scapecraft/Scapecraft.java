@@ -19,6 +19,7 @@ import scapecraft.entity.Drop;
 import scapecraft.entity.EntityScapecraft;
 import scapecraft.entity.ScapecraftEntities;
 import scapecraft.item.ScapecraftItems;
+import scapecraft.network.StatsPacket;
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -28,12 +29,14 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
+import cpw.mods.fml.relauncher.Side;
 
 @Mod(modid = "Scapecraft", name = "Scapecraft", version = Scapecraft.version)
 public class Scapecraft
 {
 	public static final String version = "@VERSION@";
 	public static SimpleNetworkWrapper netHandler = NetworkRegistry.INSTANCE.newSimpleChannel("Scapecraft");
+	public static boolean requireLevels = false;
 
 	/*start armor*/
 	public static final CreativeTabs tabScapecraftArmor = new CreativeTabs("tabScapecraftArmor")
@@ -85,6 +88,8 @@ public class Scapecraft
 	public static CommonProxy proxy;
 
 	public static Scapecraft instance;
+	
+	public static SimpleNetworkWrapper network;
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event)
@@ -105,6 +110,8 @@ public class Scapecraft
 
 		MinecraftForge.EVENT_BUS.register(new ScapecraftEventHandler());
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
+		network = NetworkRegistry.INSTANCE.newSimpleChannel("scapecraft");
+		network.registerMessage(StatsPacket.class, StatsPacket.class, 0, Side.CLIENT);
 	}
 
 	@EventHandler

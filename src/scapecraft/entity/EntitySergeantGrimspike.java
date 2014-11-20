@@ -196,8 +196,9 @@ public class EntitySergeantGrimspike extends EntityScapecraft implements IRanged
 
 	}
 
-
-
-
-
+	@Override
+	public int getXpValue()
+	{
+		return 100;
+	}
 }

@@ -218,7 +218,9 @@ public class EntityVampire extends EntityScapecraft
 		defaultHeldItem = new ItemStack(ScapecraftItems.blackSword, 1);
 	}
 
-
-
-
+	@Override
+	public int getXpValue()
+	{
+		return 100;
+	}
 }

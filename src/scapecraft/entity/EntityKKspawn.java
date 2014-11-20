@@ -1,6 +1,7 @@
 package scapecraft.entity;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
@@ -232,9 +233,15 @@ public class EntityKKspawn extends EntityScapecraft
 		return true;
 	}
 
+	@Override
+	public int getXpValue()
+	{
+		return 15; //TODO Use a real value
+	}
 
-
-
-
-
+	@Override
+	public EnumCreatureAttribute getCreatureAttribute()
+	{
+		return EnumCreatureAttribute.ARTHROPOD;
+	}
 }

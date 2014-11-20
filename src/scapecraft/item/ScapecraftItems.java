@@ -152,9 +152,9 @@ public class ScapecraftItems
 	public static Item pitchFork;
 	public static Item fremSword;
 	public static Item fremSwordf;
-	public static Item rapier;
+	public static Item chaoticRapier;
 
-	public static Item steelHammer;
+	public static Item ironHammer;
 	public static Item mithHammer;
 	public static Item addyHammer;
 	public static Item runeHammer;
@@ -182,9 +182,12 @@ public class ScapecraftItems
 	public static Item mithShovel;
 	public static Item addyShovel;
 	public static Item runeShovel;
+	public static Item dragonShovel;
 	public static Item mithPickaxe;
 	public static Item addyPickaxe;
 	public static Item runePickaxe;
+	public static Item dragonPickaxe;
+	public static Item dragonPickaxeg;
 	public static Item mithAxe;
 	public static Item addyAxe;
 	public static Item runeAxe;
@@ -192,6 +195,7 @@ public class ScapecraftItems
 	public static Item mithHoe;
 	public static Item addyHoe;
 	public static Item runeHoe;
+	public static Item dragonHoe;
 
 	public static Item mithLump;
 	public static Item addyLump;
@@ -233,14 +237,23 @@ public class ScapecraftItems
 	public static Item ahrimKey;
 	public static Item guthanKey;
 	public static Item akrisaeKey;
+	public static Item tombKey;
 	public static Item scapecraftSpawnEgg;
 	//public static Item tombKey = new itemTombKey().setUnlocalizedName("scapecraft:tombKey").setCreativeTab(Scapecraft.tabScapecraftMisc);
 	//public static Item doorKey = new itemDoorKey().setUnlocalizedName("scapecraft:doorKey").setCreativeTab(Scapecraft.tabScapecraftMisc);
 	//public static Item RewardChest = new ItemRewardChest().setUnlocalizedName("scapecraft:RewardChest").setCreativeTab(Scapecraft.tabScapecraftMisc);
 
+	//TODO melee weapons
+	public static Item keris;
+	public static Item korasis;
+	public static Item stake;
+	public static Item chaoticMaul;
+	public static Item vestaSword;
+	public static Item agilitySword;
+
 	public static Item
-		beer, keris, korasis, stake, Armastaff, magicBoat, crystalBow, darkBow, pickaxeGalore, pickaxeGaloreg, KarilBow, doorKey, magicLog, cMaul, fishPie, invincibilityPotion, boltRack, RewardChest, magicSapling, cabbageSpawn, coalSpawn, sandSpawn, ahrimStaff, armaStaff, guthixStaff, saraStaff, zammyStaff, bandosTab, bTab, cTab, fTab, hTab, lTab, tdTab, vTab
-			= new Item(); //TODO This does look messy, but it should not exist at all, it's to prevent errors in mobs that drop these */
+		beer, Armastaff, magicBoat, crystalBow, darkBow,  KarilBow, doorKey, magicLog, fishPie, invincibilityPotion, boltRack, RewardChest, magicSapling, cabbageSpawn, coalSpawn, sandSpawn, ahrimStaff, armaStaff, guthixStaff, saraStaff, zammyStaff, bandosTab, bTab, cTab, fTab, hTab, lTab, tdTab, vTab
+		= new Item(); //TODO This does look messy, but it should not exist at all, it's to prevent errors in mobs that drop these */
 
 	public static void registerItems()
 	{
@@ -389,10 +402,10 @@ public class ScapecraftItems
 		dragonCScimmy = new ItemWeapon(ScapecraftToolMaterial.DRAGONC, 4, "DragonCScimmy");
 		pitchFork = new ItemWeapon(ScapecraftToolMaterial.PITCHFORK, 4, "PitchFork");
 		fremSword = new ItemWeapon(ScapecraftToolMaterial.FREM, 5F, "FremSword");
-		fremSwordf = new ItemWeapon(ScapecraftToolMaterial.FREMF, 5F, "FremSword");
-		rapier = new ItemWeapon(ScapecraftToolMaterial.RAPIER, 4F, "Rapier");
+		fremSwordf = new ItemWeapon(ScapecraftToolMaterial.FREMF, 5F, "FremSwordf");
+		chaoticRapier = new ItemWeapon(ScapecraftToolMaterial.RAPIER, 4F, "ChaoticRapier");
 
-		steelHammer = new ItemHammer(ScapecraftToolMaterial.STEEL, "SteelHammer");
+		ironHammer = new ItemHammer(ScapecraftToolMaterial.IRON, "IronHammer");
 		mithHammer = new ItemHammer(ScapecraftToolMaterial.MITH, "MithHammer");
 		addyHammer = new ItemHammer(ScapecraftToolMaterial.ADDY, "AddyHammer");
 		runeHammer = new ItemHammer(ScapecraftToolMaterial.RUNE, "RuneHammer");
@@ -401,45 +414,50 @@ public class ScapecraftItems
 		dryRapier = new ItemDryWeapon(10F, "DryRapier");
 		dryLong = new ItemDryWeapon(15F, "DryLong");
 
-		whip = new ItemSpecialWeapon(ScapecraftToolMaterial.WHIP, 4F, "Whip", 5000);
-		dragonScimmy = new ItemSpecialWeapon(ScapecraftToolMaterial.DRAGONS, 5F, "DragonScimmy", 5500);
-		DBA = new ItemSpecialWeapon(ScapecraftToolMaterial.DRAGONB, 6F, "DBA", 9900);
-		DD = new ItemSpecialWeapon(ScapecraftToolMaterial.DRAGOND, 1F, "DD", 2500);
-		DDS = new ItemSpecialWeapon(ScapecraftToolMaterial.DRAGONDS, 1F, "DDS", 2500);
-		saraSword = new ItemSpecialWeapon(ScapecraftToolMaterial.SS, 7F, "SaraSword", 9900);
-		AGS = new ItemSpecialWeapon(ScapecraftToolMaterial.AGS, 12F, "AGS", 5000);
-		BGS = new ItemSpecialWeapon(ScapecraftToolMaterial.BGS, 10F, "BGS", 9900);
-		SGS = new ItemSpecialWeapon(ScapecraftToolMaterial.SGS, 9F, "SGS", 5500);
-		ZGS = new ItemSpecialWeapon(ScapecraftToolMaterial.ZGS, 9F, "ZGS", 7500);
+		whip = new ItemSpecialWeapon(ScapecraftToolMaterial.WHIP, 4F, "Whip", 50);
+		dragonScimmy = new ItemSpecialWeapon(ScapecraftToolMaterial.DRAGONS, 5F, "DragonScimmy", 55);
+		DBA = new ItemSpecialWeapon(ScapecraftToolMaterial.DRAGONB, 6F, "DragonBattleAxe", 99);
+		DD = new ItemSpecialWeapon(ScapecraftToolMaterial.DRAGOND, 1F, "DragonDagger", 25);
+		DDS = new ItemSpecialWeapon(ScapecraftToolMaterial.DRAGONDS, 1F, "DragonDaggerS", 25);
+		saraSword = new ItemSpecialWeapon(ScapecraftToolMaterial.SS, 7F, "SaraSword", 99);
+		AGS = new ItemSpecialWeapon(ScapecraftToolMaterial.AGS, 12F, "ArmadylGodsword", 50);
+		BGS = new ItemSpecialWeapon(ScapecraftToolMaterial.BGS, 10F, "BandosGodsword", 99);
+		SGS = new ItemSpecialWeapon(ScapecraftToolMaterial.SGS, 9F, "SaradominGodsword", 55);
+		ZGS = new ItemSpecialWeapon(ScapecraftToolMaterial.ZGS, 9F, "ZamorakGodsword", 75);
 
 		toragHammer = new ItemSetWeapon(ScapecraftToolMaterial.TORAG, ScapecraftArmorMaterial.TORAG, "ToragHammerinv");
 		veracFlail = new ItemSetWeapon(ScapecraftToolMaterial.VERAC, ScapecraftArmorMaterial.VERAC, "VeracFlailinv");
 		guthanSpear = new ItemSetWeapon(ScapecraftToolMaterial.GUTHAN, ScapecraftArmorMaterial.GUTHAN, "GuthanSpearinv");
 		dharokAxe = new ItemSetWeapon(ScapecraftToolMaterial.DHAROK, ScapecraftArmorMaterial.DHAROK, "DharokAxeinv");
 		akrisaeMace = new ItemSetWeapon(ScapecraftToolMaterial.AKRISAE, ScapecraftArmorMaterial.AKRISAE, "AkrisaeMaceinv");
-		mithShovel = new ItemScapecraftShovel(ScapecraftToolMaterial.MITH).setTextureName("scapecraft:mithShovel");
-		addyShovel = new ItemScapecraftShovel(ScapecraftToolMaterial.ADDY).setTextureName("scapecraft:addyShovel");
-		runeShovel = new ItemScapecraftShovel(ScapecraftToolMaterial.RUNE).setTextureName("scapecraft:runeShovel");
-		mithPickaxe = new ItemScapecraftPickaxe(ScapecraftToolMaterial.MITH).setTextureName("scapecraft:mithPickaxe");
-		addyPickaxe = new ItemScapecraftPickaxe(ScapecraftToolMaterial.ADDY).setTextureName("scapecraft:addyPickaxe");
-		runePickaxe = new ItemScapecraftPickaxe(ScapecraftToolMaterial.RUNE).setTextureName("scapecraft:runePickaxe");
-		mithAxe = new ItemScapecraftAxe(ScapecraftToolMaterial.MITH).setTextureName("scapecraft:mithAxe");
-		addyAxe = new ItemScapecraftAxe(ScapecraftToolMaterial.ADDY).setTextureName("scapecraft:addyAxe");
-		runeAxe = new ItemScapecraftAxe(ScapecraftToolMaterial.RUNE).setTextureName("scapecraft:runeAxe");
+		mithShovel = new ItemScapecraftShovel(ScapecraftToolMaterial.MITH).setTextureName("scapecraft:MithShovel");
+		addyShovel = new ItemScapecraftShovel(ScapecraftToolMaterial.ADDY).setTextureName("scapecraft:AddyShovel");
+		runeShovel = new ItemScapecraftShovel(ScapecraftToolMaterial.RUNE).setTextureName("scapecraft:RuneShovel");
+		dragonShovel = new ItemScapecraftShovel(ScapecraftToolMaterial.DRAGON).setTextureName("scapecraft:DragonShovel");
+		mithPickaxe = new ItemScapecraftPickaxe(ScapecraftToolMaterial.MITH).setTextureName("scapecraft:MithPickaxe");
+		addyPickaxe = new ItemScapecraftPickaxe(ScapecraftToolMaterial.ADDY).setTextureName("scapecraft:AddyPickaxe");
+		runePickaxe = new ItemScapecraftPickaxe(ScapecraftToolMaterial.RUNE).setTextureName("scapecraft:RunePickaxe");
+		dragonPickaxe = new ItemScapecraftPickaxe(ScapecraftToolMaterial.DRAGON).setTextureName("scapecraft:DragonPickaxe");
+		dragonPickaxeg = new ItemScapecraftPickaxe(ScapecraftToolMaterial.GALOREG).setTextureName("scapecraft:DragonPickaxeg");
+		runePickaxe = new ItemScapecraftPickaxe(ScapecraftToolMaterial.RUNE).setTextureName("scapecraft:RunePickaxe");
+		mithAxe = new ItemScapecraftAxe(ScapecraftToolMaterial.MITH).setTextureName("scapecraft:MithAxe");
+		addyAxe = new ItemScapecraftAxe(ScapecraftToolMaterial.ADDY).setTextureName("scapecraft:AddyAxe");
+		runeAxe = new ItemScapecraftAxe(ScapecraftToolMaterial.RUNE).setTextureName("scapecraft:RuneAxe");
 		dragonAxe = new ItemScapecraftAxe(ScapecraftToolMaterial.DRAGONB).setTextureName("scapecraft:DragonAxe");
-		mithHoe = new ItemScapecraftHoe(ScapecraftToolMaterial.MITH).setTextureName("scapecraft:mithHoe");
-		addyHoe = new ItemScapecraftHoe(ScapecraftToolMaterial.ADDY).setTextureName("scapecraft:addyHoe");
-		runeHoe = new ItemScapecraftHoe(ScapecraftToolMaterial.RUNE).setTextureName("scapecraft:runeHoe");
+		mithHoe = new ItemScapecraftHoe(ScapecraftToolMaterial.MITH).setTextureName("scapecraft:MithHoe");
+		addyHoe = new ItemScapecraftHoe(ScapecraftToolMaterial.ADDY).setTextureName("scapecraft:AddyHoe");
+		runeHoe = new ItemScapecraftHoe(ScapecraftToolMaterial.RUNE).setTextureName("scapecraft:RuneHoe");
+		dragonHoe = new ItemScapecraftHoe(ScapecraftToolMaterial.DRAGON).setTextureName("scapecraft:DragonHoe");
 
-		mithLump = new Item().setTextureName("scapecraft:mithLump").setUnlocalizedName("mithLump");
-		addyLump = new Item().setTextureName("scapecraft:addyLump").setUnlocalizedName("addyLump");
-		runeLump = new Item().setTextureName("scapecraft:runeLump").setUnlocalizedName("runeLump");
-		mithIngot = new Item().setTextureName("scapecraft:mithIngot").setUnlocalizedName("mithIngot");
-		addyIngot = new Item().setTextureName("scapecraft:addyIngot").setUnlocalizedName("addyIngot");
-		runeIngot = new Item().setTextureName("scapecraft:runeIngot").setUnlocalizedName("runeIngot");
+		mithLump = new Item().setTextureName("scapecraft:MithLump").setUnlocalizedName("mithLump").setCreativeTab(Scapecraft.tabScapecraftMisc);
+		addyLump = new Item().setTextureName("scapecraft:AddyLump").setUnlocalizedName("addyLump").setCreativeTab(Scapecraft.tabScapecraftMisc);
+		runeLump = new Item().setTextureName("scapecraft:RuneLump").setUnlocalizedName("runeLump").setCreativeTab(Scapecraft.tabScapecraftMisc);
+		mithIngot = new Item().setTextureName("scapecraft:MithIngot").setUnlocalizedName("mithIngot").setCreativeTab(Scapecraft.tabScapecraftMisc);
+		addyIngot = new Item().setTextureName("scapecraft:AddyIngot").setUnlocalizedName("addyIngot").setCreativeTab(Scapecraft.tabScapecraftMisc);
+		runeIngot = new Item().setTextureName("scapecraft:RuneIngot").setUnlocalizedName("runeIngot").setCreativeTab(Scapecraft.tabScapecraftMisc);
 		graniteLump = new Item().setUnlocalizedName("graniteLump").setTextureName("scapecraft:GraniteLump").setCreativeTab(Scapecraft.tabScapecraftMisc);
 		greenDLeather = new Item().setUnlocalizedName("greenDLeather").setTextureName("scapecraft:GreenDLeather").setCreativeTab(Scapecraft.tabScapecraftMisc);
-		greenDHide = new Item().setUnlocalizedName("blackDHide").setTextureName("scapecraft:BlackDHide").setCreativeTab(Scapecraft.tabScapecraftMisc);
+		greenDHide = new Item().setUnlocalizedName("greenDHide").setTextureName("scapecraft:GreenDHide").setCreativeTab(Scapecraft.tabScapecraftMisc);
 		blackDLeather = new Item().setUnlocalizedName("blackDLeather").setTextureName("scapecraft:BlackDLeather").setCreativeTab(Scapecraft.tabScapecraftMisc);
 		blackDHide = new Item().setUnlocalizedName("blackDHide").setTextureName("scapecraft:BlackDHide").setCreativeTab(Scapecraft.tabScapecraftMisc);
 		yewStick = new Item().setUnlocalizedName("yewStick").setTextureName("scapecraft:YewStick").setCreativeTab(Scapecraft.tabScapecraftMisc);
@@ -471,7 +489,7 @@ public class ScapecraftItems
 		ahrimKey = new Item().setUnlocalizedName("ahrimKey").setTextureName("scapecraft:Key1").setCreativeTab(Scapecraft.tabScapecraftMisc);
 		guthanKey = new Item().setUnlocalizedName("guthanKey").setTextureName("scapecraft:Key1").setCreativeTab(Scapecraft.tabScapecraftMisc);
 		akrisaeKey = new Item().setUnlocalizedName("akrisaeKey").setTextureName("scapecraft:Key1").setCreativeTab(Scapecraft.tabScapecraftMisc);
-		scapecraftSpawnEgg = new ItemScapecraftSpawnEgg();
+		scapecraftSpawnEgg = new ItemScapecraftSpawnEgg().setTextureName("minecraft:spawn_egg");
 
 		GameRegistry.registerItem(santaHelmet, "santaHelmet");
 
@@ -616,9 +634,9 @@ public class ScapecraftItems
 		GameRegistry.registerItem(pitchFork, "pitchFork");
 		GameRegistry.registerItem(fremSword, "fremSword");
 		GameRegistry.registerItem(fremSwordf, "fremSwordf");
-		GameRegistry.registerItem(rapier, "rapier");
+		GameRegistry.registerItem(chaoticRapier, "chaoticRapier");
 
-		GameRegistry.registerItem(steelHammer, "steelHammer");
+		GameRegistry.registerItem(ironHammer, "ironHammer");
 		GameRegistry.registerItem(mithHammer, "mithHammer");
 		GameRegistry.registerItem(addyHammer, "addyHammer");
 		GameRegistry.registerItem(runeHammer, "runeHammer");
@@ -646,9 +664,12 @@ public class ScapecraftItems
 		GameRegistry.registerItem(mithShovel, "mithShovel");
 		GameRegistry.registerItem(addyShovel, "addyShovel");
 		GameRegistry.registerItem(runeShovel, "runeShovel");
+		GameRegistry.registerItem(dragonShovel, "dragonShovel");
 		GameRegistry.registerItem(mithPickaxe, "mithPickaxe");
 		GameRegistry.registerItem(addyPickaxe, "addyPickaxe");
 		GameRegistry.registerItem(runePickaxe, "runePickaxe");
+		GameRegistry.registerItem(dragonPickaxe, "dragonPickaxe");;
+		GameRegistry.registerItem(dragonPickaxeg, "dragonPickaxeg");;
 		GameRegistry.registerItem(mithAxe, "mithAxe");
 		GameRegistry.registerItem(addyAxe, "addyAxe");
 		GameRegistry.registerItem(runeAxe, "runeAxe");
@@ -656,6 +677,7 @@ public class ScapecraftItems
 		GameRegistry.registerItem(mithHoe, "mithHoe");
 		GameRegistry.registerItem(addyHoe, "addyHoe");
 		GameRegistry.registerItem(runeHoe, "runeHoe");
+		GameRegistry.registerItem(dragonHoe, "dragonHoe");
 
 		GameRegistry.registerItem(mithLump, "mithLump");
 		GameRegistry.registerItem(addyLump, "addyLump");

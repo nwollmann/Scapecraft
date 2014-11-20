@@ -207,6 +207,9 @@ public class EntityWizard extends EntityScapecraft implements IRangedAttackMob
 		return super.interact(entityPlayer);
 	}
 
-
-
+	@Override
+	public int getXpValue()
+	{
+		return 36;
+	}
 }

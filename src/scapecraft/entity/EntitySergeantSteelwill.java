@@ -160,14 +160,9 @@ public class EntitySergeantSteelwill extends EntityScapecraft
 		super.onLivingUpdate();
 	}
 
-
-
-
-
-
-
-
-
-
-
+	@Override
+	public int getXpValue()
+	{
+		return 100;
+	}
 }

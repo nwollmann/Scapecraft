@@ -185,4 +185,10 @@ public class EntityMossGiant extends EntityScapecraft
 		Minecraft.getMinecraft().thePlayer.addChatComponentMessage(new ChatComponentText("\u00a7EMoss Giant: Smash!"));
 		return super.interact(par1EntityPlayer);
 	}
+
+	@Override
+	public int getXpValue()
+	{
+		return 136;
+	}
 }

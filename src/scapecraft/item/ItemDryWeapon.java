@@ -1,7 +1,14 @@
 package scapecraft.item;
 
+import java.util.List;
+
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.StatCollector;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemDryWeapon extends ItemWeapon
  {
@@ -17,5 +24,14 @@ public class ItemDryWeapon extends ItemWeapon
 	{
 		if(!(event.entityLiving instanceof EntityPlayer))
 			event.ammount += extraDamage;
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public void addInformation(ItemStack itemStack, EntityPlayer player, List lines, boolean advancedTooltips)
+	{
+		super.addInformation(itemStack, player, lines, advancedTooltips);
+		lines.add("+" + extraDamage + " " + StatCollector.translateToLocal("weapon.dryboost"));
 	}
 }

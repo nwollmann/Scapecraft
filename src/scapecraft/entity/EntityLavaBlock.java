@@ -190,5 +190,10 @@ public class EntityLavaBlock extends EntityScapecraft implements IRangedAttackMo
 		super.onLivingUpdate();
 	}	
 
+	@Override
+	public int getXpValue()
+	{
+		return 1;
+	}
 
 }

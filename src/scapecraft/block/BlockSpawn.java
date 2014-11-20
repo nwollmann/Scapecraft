@@ -27,6 +27,8 @@ public class BlockSpawn extends Block
 		this.entityName = entityName;
 		this.tickInterval = tickInterval;
 		//setStepSound(soundStoneFootstep);
+		this.setUnlocalizedName(entityName + "Spawn");
+		this.setTextureName("minecraft:stone");
 	}
 
 	public BlockSpawn(String entityName, int tickInterval, boolean tickRandomly)

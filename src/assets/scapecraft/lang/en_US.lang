@@ -99,3 +99,11 @@ item.whitephatHelmet.name=White partyhat
 item.yellowphatHelmet.name=Yellow partyhat
 
 itemGroup.tabScapecraft=Scapecraft
+
+weapon.minlevel=Level Required:
+weapon.fullseteffect=Full Set Effect:
+weapon.special=Special: 
+weapon.specialcost=Energy Required:
+weapon.dryboost=against mobs
+
+armor.attackboost=Damage
