@@ -77,8 +77,8 @@ public class ModelBlackDemon extends ModelBase
 
 	public ModelBlackDemon()
 	{
-		textureWidth = 133;
-		textureHeight = 79;
+		textureWidth = 128;
+		textureHeight = 64;
 
 		shape_1 = new ModelRenderer(this, 0, 16);
 		shape_1.addBox(4F, 0F, 0F, 1, 1, 10);

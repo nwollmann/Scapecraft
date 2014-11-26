@@ -3,6 +3,7 @@ package scapecraft.block;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 
 import scapecraft.tileentity.TileEntityBlockSpawner;
 
@@ -92,6 +93,10 @@ public class ScapecraftBlocks
 	public static Block gravelSpawn;
 	public static Block blueCobbleSpawn;
 
+	public static Block miningLevelWall;
+	public static Block agilityLevelWall;
+	public static Block combatLevelWall;
+
 	public static void registerBlocks()
 	{
 		barbarianSpawn = new BlockSpawn("EntityBarbarian", 0, true);
@@ -177,6 +182,10 @@ public class ScapecraftBlocks
 
 		addyOre.setHarvestLevel("pickaxe", 2);
 
+		miningLevelWall = new BlockStatWall("miningLevel");
+		agilityLevelWall = new BlockStatWall("agilityLevel");
+		combatLevelWall = new BlockStatWall("combatLevel");
+
 		GameRegistry.registerBlock(barbarianSpawn, "barbarianSpawn");
 		GameRegistry.registerBlock(botSpawn, "botSpawn");
 		GameRegistry.registerBlock(darkwizardSpawn, "darkwizardSpawn");
@@ -257,6 +266,29 @@ public class ScapecraftBlocks
 		GameRegistry.registerBlock(gravelSpawn, "gravelSpawn");
 		GameRegistry.registerBlock(blueCobbleSpawn, "blueCobbleSpawn");
 
+		GameRegistry.registerBlock(miningLevelWall, "miningLevelWall");
+		GameRegistry.registerBlock(agilityLevelWall, "agilityLevelWall");
+		GameRegistry.registerBlock(combatLevelWall, "combatLevelWall");
+
+		Item.getItemFromBlock(addyOreSpawn).setHasSubtypes(true);
+		Item.getItemFromBlock(mithOreSpawn).setHasSubtypes(true);
+		Item.getItemFromBlock(runeOreSpawn).setHasSubtypes(true);
+		Item.getItemFromBlock(coalOreSpawn).setHasSubtypes(true);
+		Item.getItemFromBlock(diamondOreSpawn).setHasSubtypes(true);
+		Item.getItemFromBlock(cobblestoneSpawn).setHasSubtypes(true);
+		Item.getItemFromBlock(redstoneOreSpawn).setHasSubtypes(true);
+		Item.getItemFromBlock(goldOreSpawn).setHasSubtypes(true);
+		Item.getItemFromBlock(emeraldOreSpawn).setHasSubtypes(true);
+		Item.getItemFromBlock(ironOreSpawn).setHasSubtypes(true);
+		Item.getItemFromBlock(sandstoneSpawn).setHasSubtypes(true);
+		Item.getItemFromBlock(sandSpawn).setHasSubtypes(true);
+		Item.getItemFromBlock(dirtSpawn).setHasSubtypes(true);
+		Item.getItemFromBlock(gravelSpawn).setHasSubtypes(true);
+		Item.getItemFromBlock(blueCobbleSpawn).setHasSubtypes(true);
+
+		Item.getItemFromBlock(miningLevelWall).setHasSubtypes(true);
+		Item.getItemFromBlock(agilityLevelWall).setHasSubtypes(true);
+		Item.getItemFromBlock(combatLevelWall).setHasSubtypes(true);
 
 		GameRegistry.registerTileEntity(TileEntityBlockSpawner.class, "blockSpawner");
 	}

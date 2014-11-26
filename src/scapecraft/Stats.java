@@ -1,5 +1,7 @@
 package scapecraft;
 
+import java.util.HashMap;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
@@ -8,7 +10,8 @@ import scapecraft.network.StatsPacket;
 
 public class Stats
 {
-	public final static String EXT_PROP_NAME = "ExtendedPlayer";
+	public final static String oldStorageName = "ExtendedPlayer";
+
 	public final static int[] oldLevels = 
 	{
 
@@ -63,6 +66,8 @@ public class Stats
 		336757,
 		404108,
 	};
+
+	public static HashMap<String, Integer> clientStats = new HashMap<String, Integer>();
 
 	public static int getLevelFromXp(int xp)
 	{
@@ -145,7 +150,10 @@ public class Stats
 
 	public static int getStat(EntityPlayer player, String stat)
 	{
-		return player.getEntityData().getCompoundTag(EntityPlayer.PERSISTED_NBT_TAG).getInteger(stat);
+		if(player.worldObj.isRemote && clientStats.get(stat) != null)
+			return clientStats.get(stat);
+		else
+			return player.getEntityData().getCompoundTag(EntityPlayer.PERSISTED_NBT_TAG).getInteger(stat);
 	}
 
 	public static void addStat(EntityPlayer player, String stat, int amount)
@@ -164,9 +172,14 @@ public class Stats
 	
 	public static void setStat(EntityPlayer player, String stat, int amount)
 	{
-		NBTTagCompound persistedNBT = player.getEntityData().getCompoundTag(EntityPlayer.PERSISTED_NBT_TAG);
-		persistedNBT.setInteger(stat, amount);
-		player.getEntityData().setTag(EntityPlayer.PERSISTED_NBT_TAG, persistedNBT);
+		if(player.worldObj.isRemote)
+			clientStats.put(stat, amount);
+		else
+		{
+			NBTTagCompound persistedNBT = player.getEntityData().getCompoundTag(EntityPlayer.PERSISTED_NBT_TAG);
+			persistedNBT.setInteger(stat, amount);
+			player.getEntityData().setTag(EntityPlayer.PERSISTED_NBT_TAG, persistedNBT);
+		}
 	}
 
 }

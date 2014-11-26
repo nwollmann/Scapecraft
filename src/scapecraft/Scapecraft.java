@@ -15,12 +15,14 @@ import net.minecraftforge.common.util.Constants;
 
 import scapecraft.block.ScapecraftBlocks;
 import scapecraft.client.gui.GuiHandler;
+import scapecraft.economy.EconomyHandler;
 import scapecraft.entity.Drop;
 import scapecraft.entity.EntityScapecraft;
 import scapecraft.entity.ScapecraftEntities;
 import scapecraft.item.ScapecraftItems;
 import scapecraft.network.StatsPacket;
 
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.SidedProxy;
@@ -108,7 +110,9 @@ public class Scapecraft
 
 		ScapecraftRecipes.registerRecipes();
 
-		MinecraftForge.EVENT_BUS.register(new ScapecraftEventHandler());
+		ScapecraftEventHandler eventHandler = new ScapecraftEventHandler();
+		MinecraftForge.EVENT_BUS.register(eventHandler);
+		FMLCommonHandler.instance().bus().register(eventHandler);
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
 		network = NetworkRegistry.INSTANCE.newSimpleChannel("scapecraft");
 		network.registerMessage(StatsPacket.class, StatsPacket.class, 0, Side.CLIENT);
@@ -117,6 +121,8 @@ public class Scapecraft
 	@EventHandler
 	public void serverStarting(FMLServerStartingEvent event)
 	{
+		EconomyHandler.initEconomy();
+
 		File dataFile = event.getServer().worldServers[0].getSaveHandler().getMapFileFromName("ScapecraftData");
 		if(dataFile != null && dataFile.exists())
 		{
@@ -146,5 +152,4 @@ public class Scapecraft
 				}
 		}
 	}
-
 }

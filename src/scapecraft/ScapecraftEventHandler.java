@@ -22,9 +22,11 @@ import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.world.WorldEvent;
 
 import scapecraft.client.ClientProxy;
+import scapecraft.economy.EconomyHandler;
 import scapecraft.entity.Drop;
 import scapecraft.entity.EntityScapecraft;
 import scapecraft.entity.XpDropper;
@@ -34,7 +36,7 @@ import scapecraft.network.StatsPacket;
 import scapecraft.util.CombatXpHelper;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.gameevent.PlayerEvent;
+import cpw.mods.fml.common.gameevent.PlayerEvent.PlayerChangedDimensionEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -164,16 +166,32 @@ public class ScapecraftEventHandler
 	}
 
 	@SubscribeEvent
-	public void onPlayerSpawn(PlayerEvent.PlayerRespawnEvent event)
+	public void onPlayerSpawn(PlayerEvent.StartTracking event)
 	{
-		Scapecraft.network.sendTo(new StatsPacket(event.player), (EntityPlayerMP) event.player);
+		Scapecraft.network.sendTo(new StatsPacket(event.entityPlayer), (EntityPlayerMP) event.entityPlayer);
+		event.entityPlayer.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(event.entityPlayer.getEntityAttribute(SharedMonsterAttributes.maxHealth).getBaseValue());
+		event.entityPlayer.setHealth(event.entityPlayer.getHealth()); //Make sure client has the right health
+
+		if(EconomyHandler.economy != null)
+			System.out.println(EconomyHandler.economy.getBalance(event.entityPlayer.getUniqueID()));
+	}
+
+	@SubscribeEvent
+	public void onPlayerChangeDimension(PlayerChangedDimensionEvent event)
+	{
+		double maxHealth = event.player.getEntityAttribute(SharedMonsterAttributes.maxHealth).getBaseValue();
+		float health = event.player.getHealth();
+		event.player.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(0); //ModifiableAttributeInstance won't update unless value is changed
+		event.player.setHealth(0); //DataWatcher won't update unless value is changed (Won't kill the player because it's restored immediately)
+		event.player.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(maxHealth);
+		event.player.setHealth(health); //Make sure client has the right health
 	}
 
 	@SideOnly(Side.CLIENT)
 	@SubscribeEvent
 	public void onHealthRender(RenderGameOverlayEvent.Pre event)
 	{
-		if(event != null && (event.type == RenderGameOverlayEvent.ElementType.HEALTH || event.type == RenderGameOverlayEvent.ElementType.ARMOR))
+		if(event != null && (event.type == RenderGameOverlayEvent.ElementType.HEALTH))
 		{
 			event.setCanceled(true);
 			ClientProxy.guiHealth.drawHealthBar(event.resolution);
