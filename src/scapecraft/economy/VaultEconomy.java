@@ -1,5 +1,7 @@
 package scapecraft.economy;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
@@ -7,8 +9,15 @@ import org.bukkit.OfflinePlayer;
 
 public class VaultEconomy implements Economy
 {
-	public Object economy; 
-	public Class<?> economyClass;
+	private Object economy; 
+	private Class<?> economyClass;
+	private Class<?> econResponseClass;
+	private Method getBalanceMethod;
+	private Method depositPlayerMethod;
+	private Method bankBalanceMethod;
+	private Method bankDepositMethod;
+	private Field balanceField;
+	private Field amountField;
 
 	public VaultEconomy()
 	{
@@ -17,6 +26,20 @@ public class VaultEconomy implements Economy
 			{
 				economy = clazz.cast(Bukkit.getServer().getServicesManager().getRegistration(clazz).getProvider());
 				economyClass = clazz;
+
+				try
+				{
+					getBalanceMethod = economyClass.getMethod("getBalance", new Class[] { OfflinePlayer.class });
+					depositPlayerMethod = economyClass.getMethod("depositPlayer", new Class[] { OfflinePlayer.class, int.class});
+					bankBalanceMethod = economyClass.getMethod("bankBalance", new Class[] { String.class });
+					bankDepositMethod = economyClass.getMethod("bankDeposit", new Class[] { String.class, int.class});
+					econResponseClass = bankBalanceMethod.getReturnType();
+					balanceField = econResponseClass.getField("balance");
+					amountField = econResponseClass.getField("amount");
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				break;
 			}
 	}
 
@@ -24,52 +47,45 @@ public class VaultEconomy implements Economy
 	public double getBalance(UUID uuid)
 	{
 		OfflinePlayer player = Bukkit.getOfflinePlayer(uuid);
-		try {
-			return (Double) economyClass.getMethod("getBalance", new Class[] { OfflinePlayer.class }).invoke(economy, player);
+		try
+		{
+			return (Double) getBalanceMethod.invoke(economy, player);
 		} catch (Exception e) {
-			//e.printStackTrace();
 			return 0;
 		}
 	}
 
 	@Override
-	public double deposit(UUID uuid, double amount) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public double getBankBalance(String bankname) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public double depositBank(String bankname, double amount) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	//TODO get these working with the reflection I need
-	/*@Override
 	public double deposit(UUID uuid, double amount)
 	{
 		OfflinePlayer player = Bukkit.getOfflinePlayer(uuid);
-		EconomyResponse response = economy.depositPlayer(player, amount);
-		return response.amount;
+		try
+		{
+			return (Double) amountField.get(depositPlayerMethod.invoke(economy, player, amount));
+		} catch (Exception e) {
+			return 0;
+		}
 	}
 
 	@Override
 	public double getBankBalance(String bankname)
 	{
-		EconomyResponse response = economy.bankBalance(bankname);
-		return response.balance;
+		try
+		{
+			return (Double) balanceField.get(bankBalanceMethod.invoke(economy, bankname));
+		} catch (Exception e) {
+			return 0;
+		}
 	}
 
 	@Override
 	public double depositBank(String bankname, double amount)
 	{
-		EconomyResponse response = economy.bankDeposit(bankname, amount);
-		return response.amount;
-	}*/
+		try
+		{
+			return (Double) amountField.get(bankDepositMethod.invoke(economy, bankname, amount));
+		} catch (Exception e) {
+			return 0;
+		}
+	}
 }
