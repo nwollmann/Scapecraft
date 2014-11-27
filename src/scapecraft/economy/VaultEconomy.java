@@ -30,9 +30,9 @@ public class VaultEconomy implements Economy
 				try
 				{
 					getBalanceMethod = economyClass.getMethod("getBalance", new Class[] { OfflinePlayer.class });
-					depositPlayerMethod = economyClass.getMethod("depositPlayer", new Class[] { OfflinePlayer.class, int.class});
+					depositPlayerMethod = economyClass.getMethod("depositPlayer", new Class[] { OfflinePlayer.class, double.class});
 					bankBalanceMethod = economyClass.getMethod("bankBalance", new Class[] { String.class });
-					bankDepositMethod = economyClass.getMethod("bankDeposit", new Class[] { String.class, int.class});
+					bankDepositMethod = economyClass.getMethod("bankDeposit", new Class[] { String.class, double.class});
 					econResponseClass = bankBalanceMethod.getReturnType();
 					balanceField = econResponseClass.getField("balance");
 					amountField = econResponseClass.getField("amount");
