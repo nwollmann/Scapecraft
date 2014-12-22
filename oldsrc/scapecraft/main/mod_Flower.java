@@ -31,7 +31,6 @@ public class mod_Flower extends BaseMod
 {
 	public static final StepSound soundStoneFootstep = new StepSound("stone",1.0F, 1.0F);
 	public static final String modid = "mod_Flower";
-	public static final Block cabbage = (new Blockcabbage(204, 90).setHardness(0.0F).setUnlocalizedName("cabbage").setStepSound(Block.soundGrassFootstep));
 	public static final Item cutcabbage = (new ItemFood(17008, 2, true)).setUnlocalizedName("cutcabbage").setTextureName("cutcabbage");
 	public static final Item cabbagepie = (new ItemModFood(17009, 4, 3, true)).setAlwaysEdible().setUnlocalizedName("cabbagepie").setTextureName("cabbagepie");
 	public static final Item fishpie = (new ItemModFood(17011, 4, 12, true)).setAlwaysEdible().setUnlocalizedName("fishpie").setTextureName("fishpie");        
@@ -55,6 +54,7 @@ public class mod_Flower extends BaseMod
 	public static final Item Stats = new ItemStats(17028).setUnlocalizedName("mod_Flower:Stats");
 
 
+	public static final Block cabbage = (new Blockcabbage(204, 90).setHardness(0.0F).setUnlocalizedName("cabbage").setStepSound(Block.soundGrassFootstep));
 	public static final Block VeracSpawn = (new BlockVeracSpawn(232, 80).setHardness(200000.0F).setResistance(5000.0F).setStepSound(soundStoneFootstep).setUnlocalizedName("VeracSpawn"));
 	public static final Block ToragSpawn = (new BlockToragSpawn(233, 80).setHardness(200000.0F).setResistance(5000.0F).setStepSound(soundStoneFootstep).setUnlocalizedName("ToragSpawn"));
 	public static final Block DharokSpawn = (new BlockDharokSpawn(234, 80).setHardness(200000.0F).setResistance(5000.0F).setStepSound(soundStoneFootstep).setUnlocalizedName("DharokSpawn"));

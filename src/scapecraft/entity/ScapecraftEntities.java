@@ -96,6 +96,10 @@ public class ScapecraftEntities
 		registerEntity(EntityWhiteKnight.class, "WhiteKnight");
 		registerEntity(EntityWizard.class, "Wizard");
 		registerEntity(EntityZilyana.class, "Zilyana");
+		registerEntity(EntityZaklnGritch.class, "ZaklnGritch");
+		registerEntity(EntityTstanonKarlak.class, "TstanonKarlak");
+		registerEntity(EntityKrilTsutsaroth.class, "KrilTsutsaroth");
+		registerEntity(EntityBalfrugKreeyath.class, "BalfrugKreeyath");
 
 		CombatXpHelper.addVanilla();
 	}
@@ -187,7 +191,7 @@ public class ScapecraftEntities
 		addDrop(EntityBlackKnight.class, 160, new ItemStack(ScapecraftItems.blackLeggings));
 		addDrop(EntityBlackKnight.class, 3000, new ItemStack(ScapecraftItems.dragonLeggings));
 		addDrop(EntityBlackKnight.class, 4, new ItemStack(Items.gold_nugget));
-		addDrop(EntityBot.class, 1000, new ItemStack(ScapecraftItems.magicSapling));
+		addDrop(EntityBot.class, 1000, new ItemStack(ScapecraftBlocks.magicSapling));
 		addDrop(EntityBot.class, 30, new ItemStack(Items.wooden_axe));
 		addDrop(EntityBot.class, 30, new ItemStack(Items.wooden_hoe));
 		addDrop(EntityBot.class, 30000, new ItemStack(ScapecraftItems.korasis));
@@ -213,14 +217,14 @@ public class ScapecraftEntities
 		addDrop(EntityDarkwizard.class, 5000, new ItemStack(ScapecraftItems.zamorakHilt));
 		addDrop(EntityDarkwizard.class, 600, new ItemStack(ScapecraftItems.zammyStaff));
 		addDrop(EntityDarkwizard.class, 8, new ItemStack(Items.gold_nugget));
-		addDrop(EntityDarkwizard.class, 8, new ItemStack(ScapecraftItems.bTab));
+		addDrop(EntityDarkwizard.class, 8, new ItemStack(ScapecraftItems.barrowsTab));
 		addDrop(EntityDarkwizard.class, 8, new ItemStack(ScapecraftItems.bandosTab));
-		addDrop(EntityDarkwizard.class, 8, new ItemStack(ScapecraftItems.cTab));
-		addDrop(EntityDarkwizard.class, 8, new ItemStack(ScapecraftItems.fTab));
-		addDrop(EntityDarkwizard.class, 8, new ItemStack(ScapecraftItems.hTab));
-		addDrop(EntityDarkwizard.class, 8, new ItemStack(ScapecraftItems.lTab));
-		addDrop(EntityDarkwizard.class, 8, new ItemStack(ScapecraftItems.tdTab));
-		addDrop(EntityDarkwizard.class, 8, new ItemStack(ScapecraftItems.vTab));
+		addDrop(EntityDarkwizard.class, 8, new ItemStack(ScapecraftItems.cathTab));
+		addDrop(EntityDarkwizard.class, 8, new ItemStack(ScapecraftItems.faladorTab));
+		addDrop(EntityDarkwizard.class, 8, new ItemStack(ScapecraftItems.hubTab));
+		addDrop(EntityDarkwizard.class, 8, new ItemStack(ScapecraftItems.lumbridgeTab));
+		addDrop(EntityDarkwizard.class, 8, new ItemStack(ScapecraftItems.tormentedDemonsTab));
+		addDrop(EntityDarkwizard.class, 8, new ItemStack(ScapecraftItems.varrockTeletab));
 		addDrop(EntityDharok.class, 1, new ItemStack(ScapecraftItems.dharokKey));
 		addDrop(EntityDharok.class, 300, new ItemStack(ScapecraftItems.dharokBoots));
 		addDrop(EntityDharok.class, 300, new ItemStack(ScapecraftItems.dharokChestplate));
@@ -360,7 +364,7 @@ public class ScapecraftEntities
 		addDrop(EntityKK.class, 15, new ItemStack(ScapecraftItems.dragonAxe));
 		addDrop(EntityKK.class, 15, new ItemStack(ScapecraftItems.dragonBoots));
 		addDrop(EntityKK.class, 150, new ItemStack(ScapecraftItems.dryLong));
-		addDrop(EntityKK.class, 20, new ItemStack(ScapecraftItems.sandSpawn));
+		addDrop(EntityKK.class, 20, new ItemStack(ScapecraftBlocks.sandSpawn));
 		addDrop(EntityKK.class, 30, new ItemStack(ScapecraftItems.DDS));
 		addDrop(EntityKK.class, 4, new ItemStack(ScapecraftItems.runeBoots));
 		addDrop(EntityKK.class, 4, new ItemStack(ScapecraftItems.runeChestplate));
@@ -375,7 +379,7 @@ public class ScapecraftEntities
 		addDrop(EntityKQ.class, 1, new ItemStack(ScapecraftBlocks.addyOre, 2));
 		addDrop(EntityKQ.class, 10, new ItemStack(ScapecraftItems.dragonLongsword));
 		addDrop(EntityKQ.class, 2, new ItemStack(ScapecraftItems.mithLeggings));
-		addDrop(EntityKQ.class, 50, new ItemStack(ScapecraftItems.D2H));
+		addDrop(EntityKQ.class, 50, new ItemStack(ScapecraftItems.dragon2hSword));
 		addDrop(EntityKQ.class, 50, new ItemStack(ScapecraftItems.crystalBow));
 		addDrop(EntityKQ.class, 60, new ItemStack(ScapecraftItems.dragonChestplate));
 		addDrop(EntityKQ2.class, 100, new ItemStack(Items.coal));
@@ -387,7 +391,7 @@ public class ScapecraftEntities
 		addDrop(EntityKaril.class, 300, new ItemStack(ScapecraftItems.karilChestplate));
 		addDrop(EntityKaril.class, 300, new ItemStack(ScapecraftItems.karilHelmet));
 		addDrop(EntityKaril.class, 300, new ItemStack(ScapecraftItems.karilLeggings));
-		addDrop(EntityKaril.class, 400, new ItemStack(ScapecraftItems.KarilBow));
+		addDrop(EntityKaril.class, 400, new ItemStack(ScapecraftItems.karilBow));
 		addDrop(EntityKaril.class, 400, new ItemStack(ScapecraftItems.dragonLeggings));
 		addDrop(EntityKing.class, 1, new ItemStack(Items.gold_ingot));
 		addDrop(EntityKing.class, 100, new ItemStack(ScapecraftItems.saraSword));
@@ -403,9 +407,9 @@ public class ScapecraftEntities
 		addDrop(EntityKos3.class, 1, new ItemStack(Items.gold_ingot, 2));
 		addDrop(EntityKos3.class, 1, new ItemStack(ScapecraftBlocks.runeOre));
 		addDrop(EntityKos3.class, 10, new ItemStack(ScapecraftItems.dragonHelmet));
-		addDrop(EntityKos3.class, 100, new ItemStack(ScapecraftItems.coalSpawn));
+		addDrop(EntityKos3.class, 100, new ItemStack(ScapecraftBlocks.coalOreSpawn));
 		addDrop(EntityKos3.class, 100, new ItemStack(ScapecraftItems.crystalBow));
-		addDrop(EntityKos3.class, 15, new ItemStack(ScapecraftItems.cabbageSpawn));
+		addDrop(EntityKos3.class, 15, new ItemStack(ScapecraftBlocks.cabbageSpawn));
 		addDrop(EntityKos3.class, 2, new ItemStack(ScapecraftItems.fremSword));
 		addDrop(EntityKos3.class, 20, new ItemStack(ScapecraftItems.dragonLeggings));
 		addDrop(EntityKos3.class, 200, new ItemStack(ScapecraftBlocks.runeOreSpawn));
@@ -467,7 +471,7 @@ public class ScapecraftEntities
 		addDrop(EntityRatSmall.class, 4, new ItemStack(ScapecraftItems.ratTail));
 		addDrop(EntityRatSmall.class, 40, new ItemStack(Items.gold_nugget));
 		addDrop(EntityScorpion.class, 100, new ItemStack(ScapecraftItems.blackChestplate));
-		addDrop(EntityScorpion.class, 100, new ItemStack(ScapecraftItems.magicLog));
+		addDrop(EntityScorpion.class, 100, new ItemStack(ScapecraftBlocks.magicLog));
 		addDrop(EntityScorpion.class, 15, new ItemStack(Items.iron_pickaxe));
 		addDrop(EntityScorpion.class, 3000, new ItemStack(ScapecraftItems.dragonPickaxe));
 		addDrop(EntitySergeantGrimspike.class, 100, new ItemStack(ScapecraftItems.magicFruit));
@@ -534,13 +538,13 @@ public class ScapecraftEntities
 		addDrop(EntityWizard.class, 1000, new ItemStack(ScapecraftItems.guthixStaff));
 		addDrop(EntityWizard.class, 1000, new ItemStack(ScapecraftItems.saraStaff));
 		addDrop(EntityWizard.class, 5000, new ItemStack(ScapecraftItems.saradominHilt));
-		addDrop(EntityWizard.class, 8, new ItemStack(ScapecraftItems.bTab));
+		addDrop(EntityWizard.class, 8, new ItemStack(ScapecraftItems.barrowsTab));
 		addDrop(EntityWizard.class, 8, new ItemStack(ScapecraftItems.bandosTab));
-		addDrop(EntityWizard.class, 8, new ItemStack(ScapecraftItems.cTab));
-		addDrop(EntityWizard.class, 8, new ItemStack(ScapecraftItems.fTab));
-		addDrop(EntityWizard.class, 8, new ItemStack(ScapecraftItems.hTab));
-		addDrop(EntityWizard.class, 8, new ItemStack(ScapecraftItems.lTab));
-		addDrop(EntityWizard.class, 8, new ItemStack(ScapecraftItems.tdTab));
-		addDrop(EntityWizard.class, 8, new ItemStack(ScapecraftItems.vTab));
+		addDrop(EntityWizard.class, 8, new ItemStack(ScapecraftItems.cathTab));
+		addDrop(EntityWizard.class, 8, new ItemStack(ScapecraftItems.faladorTab));
+		addDrop(EntityWizard.class, 8, new ItemStack(ScapecraftItems.hubTab));
+		addDrop(EntityWizard.class, 8, new ItemStack(ScapecraftItems.lumbridgeTab));
+		addDrop(EntityWizard.class, 8, new ItemStack(ScapecraftItems.tormentedDemonsTab));
+		addDrop(EntityWizard.class, 8, new ItemStack(ScapecraftItems.varrockTeletab));
 	}
 }

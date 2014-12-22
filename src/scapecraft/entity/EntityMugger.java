@@ -71,6 +71,8 @@ public class EntityMugger extends EntityScapecraft
 		this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityHeroKnight.class, this.moveSpeed, false));
 		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityBarbarian.class, 0, true));
 		this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityBarbarian.class, this.moveSpeed, false));
+
+		this.lifespan = 3600;
 	}
 	protected void applyEntityAttributes()
 	{
@@ -198,13 +200,6 @@ public class EntityMugger extends EntityScapecraft
 	public boolean isPotionApplicable(PotionEffect par1PotionEffect)
 	{
 		return par1PotionEffect.getPotionID() == Potion.poison.id ? false : super.isPotionApplicable(par1PotionEffect);
-	}
-
-
-	public void onLivingUpdate()
-	{
-		if(ticksExisted > 180 * 20) setDead(); 
-		super.onLivingUpdate();
 	}
 
 	private static final ItemStack defaultHeldItem;

@@ -2,8 +2,11 @@ package scapecraft.entity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map.Entry;
+import java.util.Set;
 
+import net.minecraft.command.IEntitySelector;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -17,11 +20,12 @@ import net.minecraft.world.World;
 
 import scapecraft.Stats;
 
-public abstract class EntityScapecraft extends EntityMob implements XpDropper
+public abstract class EntityScapecraft extends EntityMob implements XpDropper, IEntitySelector
 {
 	protected HashMap<EntityPlayer, Float> attackers = new HashMap<EntityPlayer, Float>();
 	public static HashMap<Class<? extends EntityScapecraft>, ArrayList<Drop>> drops = new HashMap<Class<? extends EntityScapecraft>, ArrayList<Drop>>();
 	protected int lifespan;
+	public Set<Class<? extends EntityLivingBase>> targetClasses = new HashSet<Class<? extends EntityLivingBase>>();
 
 	public EntityScapecraft(World par1World) 
 	{
@@ -135,4 +139,22 @@ public abstract class EntityScapecraft extends EntityMob implements XpDropper
 				attackers.put(attacker, attackers.get(attacker) + oldHealth - this.getHealth());
 		}
 	}
+
+	@Override
+	public boolean isEntityApplicable(Entity entity)
+	{
+		return targetClasses.contains(entity.getClass());
+	}
+
+	/*
+	 * Object instead of Class to avoid warnings because java is weird
+	 */
+	@SuppressWarnings("unchecked")
+	public void addTargets(Object... entityClasses)
+	{
+		for(Object entityClass : entityClasses)
+			if(EntityLivingBase.class.isAssignableFrom((Class<?>) entityClass))
+				targetClasses.add((Class<? extends EntityLivingBase>) entityClass);
+	}
+
 }

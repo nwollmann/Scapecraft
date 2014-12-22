@@ -4,7 +4,7 @@
         "parent": "", 
         "updateUrl": "http://ci.mraof.com/job/Scapecraft/", 
         "version": "${version}", 
-        "modid": "Minestuck", 
+        "modid": "Scapecraft", 
         "authors": [
             "Mraof", 
             "999134fishy"

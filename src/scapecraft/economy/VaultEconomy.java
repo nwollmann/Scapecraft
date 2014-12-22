@@ -2,16 +2,16 @@ package scapecraft.economy;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.List;
 import java.util.UUID;
-
-import org.bukkit.Bukkit;
-import org.bukkit.OfflinePlayer;
 
 public class VaultEconomy implements Economy
 {
 	private Object economy; 
 	private Class<?> economyClass;
 	private Class<?> econResponseClass;
+	private Class<?> bukkitClass;
+	private Method getOfflinePlayerMethod;
 	private Method getBalanceMethod;
 	private Method depositPlayerMethod;
 	private Method bankBalanceMethod;
@@ -19,26 +19,27 @@ public class VaultEconomy implements Economy
 	private Field balanceField;
 	private Field amountField;
 
-	public VaultEconomy()
+	@SuppressWarnings("unchecked")
+	public VaultEconomy() throws Throwable
 	{
-		for(Class<?> clazz : Bukkit.getServer().getServicesManager().getKnownServices())
+		bukkitClass = Class.forName("org.bukkit.Bukkit");
+		Object servicesManager = Class.forName("org.bukkit.Server").getMethod("getServicesManager").invoke(bukkitClass.getMethod("getServer").invoke(null));
+		for(Class<?> clazz : (List<Class<?>>) servicesManager.getClass().getMethod("getKnownServices").invoke(servicesManager))
 			if(clazz.getCanonicalName().equals("net.milkbowl.vault.economy.Economy"))
 			{
-				economy = clazz.cast(Bukkit.getServer().getServicesManager().getRegistration(clazz).getProvider());
+				//economy = clazz.cast(org.bukkit.Bukkit.getServer().getServicesManager().getRegistration(clazz).getProvider()); What it's doing with less reflection
+				Object registration = servicesManager.getClass().getMethod("getRegistration", Class.class).invoke(servicesManager, clazz);
+				economy = clazz.cast(registration.getClass().getMethod("getProvider").invoke(registration));
 				economyClass = clazz;
 
-				try
-				{
-					getBalanceMethod = economyClass.getMethod("getBalance", new Class[] { OfflinePlayer.class });
-					depositPlayerMethod = economyClass.getMethod("depositPlayer", new Class[] { OfflinePlayer.class, double.class});
-					bankBalanceMethod = economyClass.getMethod("bankBalance", new Class[] { String.class });
-					bankDepositMethod = economyClass.getMethod("bankDeposit", new Class[] { String.class, double.class});
-					econResponseClass = bankBalanceMethod.getReturnType();
-					balanceField = econResponseClass.getField("balance");
-					amountField = econResponseClass.getField("amount");
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
+				getOfflinePlayerMethod = bukkitClass.getMethod("getOfflinePlayer", UUID.class);
+				getBalanceMethod = economyClass.getMethod("getBalance", new Class[] { Class.forName("org.bukkit.OfflinePlayer") });
+				depositPlayerMethod = economyClass.getMethod("depositPlayer", new Class[] { Class.forName("org.bukkit.OfflinePlayer"), double.class});
+				bankBalanceMethod = economyClass.getMethod("bankBalance", new Class[] { String.class });
+				bankDepositMethod = economyClass.getMethod("bankDeposit", new Class[] { String.class, double.class});
+				econResponseClass = bankBalanceMethod.getReturnType();
+				balanceField = econResponseClass.getField("balance");
+				amountField = econResponseClass.getField("amount");
 				break;
 			}
 	}
@@ -46,10 +47,9 @@ public class VaultEconomy implements Economy
 	@Override
 	public double getBalance(UUID uuid)
 	{
-		OfflinePlayer player = Bukkit.getOfflinePlayer(uuid);
 		try
 		{
-			return (Double) getBalanceMethod.invoke(economy, player);
+			return (Double) getBalanceMethod.invoke(economy, getOfflinePlayerMethod.invoke(null, uuid));
 		} catch (Exception e) {
 			return 0;
 		}
@@ -58,10 +58,9 @@ public class VaultEconomy implements Economy
 	@Override
 	public double deposit(UUID uuid, double amount)
 	{
-		OfflinePlayer player = Bukkit.getOfflinePlayer(uuid);
 		try
 		{
-			return (Double) amountField.get(depositPlayerMethod.invoke(economy, player, amount));
+			return (Double) amountField.get(depositPlayerMethod.invoke(economy, getOfflinePlayerMethod.invoke(null, uuid), amount));
 		} catch (Exception e) {
 			return 0;
 		}

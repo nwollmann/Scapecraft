@@ -20,12 +20,13 @@ public class EntityZilyana extends EntityScapecraft
 		super(world);
 		this.setSize(1.5F, 4F);
 		this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false));
-		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityLivingBase.class, 0, true));
 		this.tasks.addTask(1, new EntityAISwimming(this));
+		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityLivingBase.class, 0, true, false, this));
 		this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.1D, false)); //speed argument of AI (1D in this case) is multiplied by the base value
 		this.tasks.addTask(5, new EntityAIWander(this, 1D));
 		this.tasks.addTask(6, new EntityAILookIdle(this));
 		this.tasks.addTask(6, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
+		this.addTargets(EntityPlayer.class, EntityKrilTsutsaroth.class, EntityGeneralGraardor.class);
 	}
 	protected void applyEntityAttributes()
 	{

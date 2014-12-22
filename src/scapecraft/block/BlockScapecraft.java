@@ -30,4 +30,16 @@ public class BlockScapecraft extends Block
 	{
 		return this.beaconBase;
 	}
+
+	public BlockScapecraft setHarvest(String tool, int level)
+	{
+		this.setHarvestLevel(tool, level);
+		return this;
+	}
+
+	public BlockScapecraft setSlipperiness(float slipperiness)
+	{
+		this.slipperiness = slipperiness;
+		return this;
+	}
 }

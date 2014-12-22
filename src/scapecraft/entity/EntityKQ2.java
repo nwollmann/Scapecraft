@@ -30,7 +30,7 @@ public class EntityKQ2 extends EntityScapecraft
 	{
 		super(par1World);
 
-		this.moveSpeed = 0.6F;
+		this.moveSpeed = 1F;
 		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityBlackDragon.class, 0, true));
 		this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityBlackDragon.class, this.moveSpeed, false));
 		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityKos1.class, 0, true));
@@ -104,7 +104,7 @@ public class EntityKQ2 extends EntityScapecraft
 		// Follow Range - default 32.0D - min 0.0D - max 2048.0D
 		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(32.0D);
 		// Movement Speed - default 0.699D - min 0.0D - max Double.MAX_VALUE
-		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(1.2D);
+		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.4D);
 		// Attack Damage - default 2.0D - min 0.0D - max Doubt.MAX_VALUE
 		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(1.0D);
 	}

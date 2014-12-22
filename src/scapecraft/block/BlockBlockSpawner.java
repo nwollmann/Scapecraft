@@ -2,7 +2,6 @@ package scapecraft.block;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
-import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -10,6 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.stats.StatList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -25,8 +25,15 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class BlockBlockSpawner extends Block implements ITileEntityProvider
 {
 	Block fullBlock;
-	int regenTime;
 	int xp;
+	public int regenTime;
+	public int fullSize = 15;
+
+	public BlockBlockSpawner(Block fullBlock, int regenTime, int xp, int fullSize)
+	{
+		this(fullBlock, regenTime, xp);
+		this.fullSize = fullSize;
+	}
 
 	public BlockBlockSpawner(Block fullBlock, int regenTime, int xp)
 	{
@@ -36,6 +43,7 @@ public class BlockBlockSpawner extends Block implements ITileEntityProvider
 		this.setCreativeTab(Scapecraft.tabScapecraftBlock);
 		this.regenTime = regenTime * 20;
 		this.xp = xp;
+		this.setHarvestLevel(fullBlock.getHarvestTool(0), fullBlock.getHarvestLevel(0));
 	}
 
 	public BlockBlockSpawner(Block fullBlock, int regenTime)
@@ -61,6 +69,11 @@ public class BlockBlockSpawner extends Block implements ITileEntityProvider
 		return false;
 	}
 
+	public int getRenderType()
+	{
+		return fullBlock.getRenderType();
+	}
+
 	@Override
 	public void setBlockBoundsForItemRender()
 	{
@@ -76,6 +89,8 @@ public class BlockBlockSpawner extends Block implements ITileEntityProvider
 	protected void setBlockBoundsForDepth(int metadata)
 	{
 		float height = (1 + metadata) / 16.0F;
+		if(fullBlock.getBlockBoundsMaxY() < 1.0F)
+			height = (float) fullBlock.getBlockBoundsMaxY();
 		this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, height, 1.0F);
 	}
 	
@@ -86,11 +101,11 @@ public class BlockBlockSpawner extends Block implements ITileEntityProvider
 		return side == 1 ? true : super.shouldSideBeRendered(blockAccess, x, y, z, side);
 	}
 
-	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerIcons(IIconRegister par1IconRegister)
+	@Override
+	public IIcon getIcon(int side, int meta)
 	{
-		this.blockIcon = fullBlock.getIcon(0, 0);
+		return fullBlock.getIcon(side, 0);
 	}
 
 	@Override
@@ -101,15 +116,9 @@ public class BlockBlockSpawner extends Block implements ITileEntityProvider
 	@Override
 	public TileEntity createTileEntity(World world, int metadata) 
 	{
-		return new TileEntityBlockSpawner().setRegenTime(this.regenTime);
+		return new TileEntityBlockSpawner();
 	}
 	
-	@Override
-	public void breakBlock(World world, int x, int y, int z, Block block, int metadata)
-	{
-		super.breakBlock(world, x, y, z, block, metadata);
-	}
-
 	@Override
 	public boolean hasTileEntity(int metadata)
 	{
@@ -151,11 +160,11 @@ public class BlockBlockSpawner extends Block implements ITileEntityProvider
 		}
 
 		te.startTime = 0; //Reset start time
-		te.setRegenTime(this.regenTime);
 		if(te.uses != 0)
 		{
 			if(te.uses > 0)
 				te.uses--;
+			te.growing = true;
 			worldIn.setBlockMetadataWithNotify(x, y, z, 0, 3);
 		}
 	}
@@ -178,5 +187,14 @@ public class BlockBlockSpawner extends Block implements ITileEntityProvider
 		if(itemStack.getMetadata() > 0)
 			((TileEntityBlockSpawner) world.getTileEntity(x, y, z)).uses = itemStack.getMetadata();
 		System.out.println(((TileEntityBlockSpawner) world.getTileEntity(x, y, z)).uses); 
+	}
+
+	public void onFullyGrown(World world, int x, int y, int z)
+	{
+	}
+
+	public int getRegenTime()
+	{
+		return regenTime;
 	}
 }

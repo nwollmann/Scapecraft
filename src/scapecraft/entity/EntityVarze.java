@@ -24,6 +24,7 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
+import scapecraft.item.ItemScapecraftSpawnEgg;
 import scapecraft.item.ScapecraftItems;
 
 public class EntityVarze extends EntityScapecraft
@@ -209,8 +210,6 @@ public class EntityVarze extends EntityScapecraft
 		}
 	}
 
-
-
 	public boolean interact(EntityPlayer par1EntityPlayer)
 	{
 
@@ -218,21 +217,20 @@ public class EntityVarze extends EntityScapecraft
 
 		if (itemstack != null && itemstack.getItem() == ScapecraftItems.invincibilityPotion)
 		{
+			ItemStack lootChest = new ItemStack(ScapecraftItems.scapecraftSpawnEgg, 1, ItemScapecraftSpawnEgg.entities.indexOf("EntityLootChest"));
 			if (itemstack.stackSize-- == 1)
 			{
-				par1EntityPlayer.inventory.setInventorySlotContents(par1EntityPlayer.inventory.currentItem, new ItemStack(ScapecraftItems.RewardChest));
+				par1EntityPlayer.inventory.setInventorySlotContents(par1EntityPlayer.inventory.currentItem, lootChest);
 				par1EntityPlayer.addChatComponentMessage(new ChatComponentText("\u00a7ESir Amik Varze: Thanks for your help! Take this treasure chest as a reward."));
 
 			}
-			else if (!par1EntityPlayer.inventory.addItemStackToInventory(new ItemStack(ScapecraftItems.RewardChest)))
+			else if (!par1EntityPlayer.inventory.addItemStackToInventory(lootChest))
 			{
-				par1EntityPlayer.entityDropItem(new ItemStack(ScapecraftItems.RewardChest, 1, 0), 0.5F);
+				par1EntityPlayer.entityDropItem(lootChest, 0.5F);
 			}
 
 			return true;
 		}
-
-
 
 		else
 			par1EntityPlayer.addChatComponentMessage(new ChatComponentText("\u00a7ESir Amik Varze: Please investisgate the Black Knights Fortress north of here, I need you to steal their invincibility potion"));

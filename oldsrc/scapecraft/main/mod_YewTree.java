@@ -17,9 +17,9 @@ public class mod_YewTree
 	public static final Block Yewlog = (new BlockYewlog(210, 23).setHardness(20.0F).setUnlocalizedName("yewlog"));
 	public static final Block Yewleaf = (new BlockYewleaf(211, 22).setHardness(0.2F).setUnlocalizedName("yewleaf"));
 	public static final Block Yewsapling = (new BlockYewsapling(212, 21).setHardness(0.0F).setUnlocalizedName("yewsapling"));
-	public static final Item Yewstick = new ItemYewstick(17107).setUnlocalizedName("mod_YewTree:yewstick");
 	public static final Block Yewplank = (new BlockYewplank(213, 19).setHardness(50.0F).setUnlocalizedName("yewplank"));
 	public static final Block Yewstairs = (new BlockYewstairs(215, mod_YewTree.Yewplank, 0).setHardness(50.0F).setUnlocalizedName("yewstairs"));
+	public static final Item Yewstick = new ItemYewstick(17107).setUnlocalizedName("mod_YewTree:yewstick");
 
 
 	public static int blocktop;

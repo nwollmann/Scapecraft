@@ -29,7 +29,6 @@ import scapecraft.item.ScapecraftItems;
 public class EntityHighMage extends EntityScapecraft implements IRangedAttackMob
 {
 	private EntityAIArrowAttack aiArrowAttack = new EntityAIArrowAttack(this, 0.25F, 40, 10.0F);
-	private EntityAIAttackOnCollide aiAttackOnCollide = new EntityAIAttackOnCollide(this, EntityPlayer.class, 0.31F, false);
 	private float moveSpeed;
 	
 
@@ -195,25 +194,13 @@ public class EntityHighMage extends EntityScapecraft implements IRangedAttackMob
 
 	static
 	{
-		defaultHeldItem = new ItemStack(ScapecraftItems.Armastaff, 1);
+		defaultHeldItem = new ItemStack(ScapecraftItems.armaStaff, 1);
 	}
-
-
 
 	public void setCombatTask()
 	{
-		this.tasks.removeTask(this.aiAttackOnCollide);
 		this.tasks.removeTask(this.aiArrowAttack);
-		ItemStack itemstack = this.getHeldItem();
-
-		if (itemstack != null && itemstack.getItem() == ScapecraftItems.Armastaff)
-		{
-			this.tasks.addTask(4, this.aiArrowAttack);
-		}
-		else
-		{
-			this.tasks.addTask(4, this.aiAttackOnCollide);
-		}
+		this.tasks.addTask(4, this.aiArrowAttack);
 	}
 
 

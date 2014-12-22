@@ -15,7 +15,7 @@ public class ItemDryWeapon extends ItemWeapon
 	public float extraDamage;
 	public ItemDryWeapon(float extraDamage, String name)
 	{
-		super(ScapecraftToolMaterial.DRYGORE, 5F, name);
+		super(ScapecraftToolMaterial.DRYGORE, 4, name);
 		this.extraDamage = extraDamage;
 	}
 

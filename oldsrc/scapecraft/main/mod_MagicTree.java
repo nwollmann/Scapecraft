@@ -21,14 +21,14 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 
 public class mod_MagicTree extends BaseMod {
 	public static final String modid = "mod_MagicTree";
-	public static final Block Magiclog = (new BlockMagiclog(200, 19).setHardness(50.0F).setUnlocalizedName("magiclog").setStepSound(Block.soundWoodFootstep));
 	public static final Block Magicleaf = (new BlockMagicleaf(201, 18).setHardness(0.2F).setUnlocalizedName("magicleaf").setStepSound(Block.soundGrassFootstep));
+	public static final Block Magiclog = (new BlockMagiclog(200, 19).setHardness(50.0F).setUnlocalizedName("magiclog").setStepSound(Block.soundWoodFootstep));
+	public static final Block Magicplank = (new BlockMagicplank(203, 19).setHardness(5.0F).setUnlocalizedName("magicplank").setStepSound(Block.soundWoodFootstep));
 	public static final Block Magicsapling = (new BlockMagicsapling(202, 17).setHardness(0.0F).setUnlocalizedName("magicsapling").setStepSound(Block.soundGrassFootstep));
+	public static final Block Magicstairs = (new BlockMagicstairs(214, mod_MagicTree.Magicplank, 0).setHardness(5.0F).setUnlocalizedName("magicstairs").setStepSound(Block.soundWoodFootstep));
+	public static final Item Magicboat = new ItemMagicBoat(17117).setUnlocalizedName("mod_MagicTree:magicboat");
 	public static final Item Magicfruit = new ItemFood(17105, 20, true).setUnlocalizedName("mod_MagicTree:magicfruit").setTextureName("magicfruit");
 	public static final Item Magicstick = new ItemMagicstick(17106).setUnlocalizedName("mod_MagicTree:magicstick");
-	public static final Item Magicboat = new ItemMagicBoat(17117).setUnlocalizedName("mod_MagicTree:magicboat");
-	public static final Block Magicplank = (new BlockMagicplank(203, 19).setHardness(5.0F).setUnlocalizedName("magicplank").setStepSound(Block.soundWoodFootstep));
-	public static final Block Magicstairs = (new BlockMagicstairs(214, mod_MagicTree.Magicplank, 0).setHardness(5.0F).setUnlocalizedName("magicstairs").setStepSound(Block.soundWoodFootstep));
 
 	public static int blocktop;
 

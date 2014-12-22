@@ -11,6 +11,7 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EntityDamageSource;
 import net.minecraft.util.Facing;
 import net.minecraft.world.World;
@@ -87,13 +88,31 @@ public class ItemScapecraftSpawnEgg extends Item
 	@Override
 	public String getUnlocalizedName(ItemStack par1ItemStack) 
 	{
+		this.checkStack(par1ItemStack);
 		return getUnlocalizedName() + "." + entities.get(par1ItemStack.getMetadata());
 	}
+
 	@Override
 	public boolean hitEntity(ItemStack stack, EntityLivingBase target, EntityLivingBase attacker)
 	{
+		this.checkStack(stack);
 		target.attackEntityFrom(new EntityDamageSource("player", attacker), (float) ((EntityScapecraft)entityObjects.get(stack.getMetadata())).getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue());
 		return true;
 	}
 
+	public void checkStack(ItemStack stack)
+	{
+		 if(stack.hasTagCompound() && !stack.getTagCompound().getString("mob").isEmpty())
+		 {
+			 int newMeta = entities.indexOf(stack.getTagCompound().getString("mob"));
+			 if(newMeta != -1)
+				 stack.setMetadata(newMeta);
+		 }
+		 else
+		 {
+			 if(!stack.hasTagCompound())
+				 stack.setTagCompound(new NBTTagCompound());
+			 stack.getTagCompound().setString("mob", entities.get(stack.getMetadata()));
+		 }
+	}
 }
