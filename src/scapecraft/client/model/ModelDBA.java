@@ -5,7 +5,7 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 
-public class DBA extends ModelBase
+public class ModelDBA extends ModelBase
 {
 	//fields
 	ModelRenderer Shape1;
@@ -20,7 +20,7 @@ public class DBA extends ModelBase
 	ModelRenderer Shape10;
 	ModelRenderer Shape11;
 
-	public DBA()
+	public ModelDBA()
 	{
 		textureWidth = 64;
 		textureHeight = 32;

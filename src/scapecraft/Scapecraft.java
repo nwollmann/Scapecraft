@@ -19,6 +19,7 @@ import net.minecraftforge.common.util.Constants;
 
 import scapecraft.block.ScapecraftBlocks;
 import scapecraft.client.gui.GuiHandler;
+import scapecraft.command.SpawnCommand;
 import scapecraft.economy.EconomyHandler;
 import scapecraft.entity.Drop;
 import scapecraft.entity.EntityScapecraft;
@@ -226,6 +227,8 @@ public class Scapecraft
 
 				}
 		}
+
+		event.registerServerCommand(new SpawnCommand());
 	}
 
 	@EventHandler

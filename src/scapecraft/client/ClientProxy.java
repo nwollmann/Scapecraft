@@ -1,18 +1,28 @@
 package scapecraft.client;
 
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.ClientCommandHandler;
 import net.minecraftforge.client.MinecraftForgeClient;
 
 import scapecraft.CommonProxy;
 import scapecraft.client.gui.GuiHealth;
+import scapecraft.client.model.ModelAGS;
 import scapecraft.client.model.ModelAbbyDemon;
 import scapecraft.client.model.ModelAhrim;
 import scapecraft.client.model.ModelAkrisae;
+import scapecraft.client.model.ModelAkrisaeMace;
+import scapecraft.client.model.ModelBGS;
 import scapecraft.client.model.ModelBalfrugKreeyath;
 import scapecraft.client.model.ModelBandosArmor;
 import scapecraft.client.model.ModelBlackDemon;
 import scapecraft.client.model.ModelCaveCrawler;
+import scapecraft.client.model.ModelDBA;
+import scapecraft.client.model.ModelDD;
 import scapecraft.client.model.ModelDharok;
+import scapecraft.client.model.ModelDharokAxe;
+import scapecraft.client.model.ModelDrylong;
+import scapecraft.client.model.ModelDrymace;
+import scapecraft.client.model.ModelDryrapier;
 import scapecraft.client.model.ModelDwarf;
 import scapecraft.client.model.ModelFireGiant;
 import scapecraft.client.model.ModelGeneralGraardor;
@@ -20,6 +30,8 @@ import scapecraft.client.model.ModelGhost;
 import scapecraft.client.model.ModelGoblin;
 import scapecraft.client.model.ModelGreenDragon;
 import scapecraft.client.model.ModelGuthan;
+import scapecraft.client.model.ModelGuthanSpear;
+import scapecraft.client.model.ModelHalberd;
 import scapecraft.client.model.ModelHellhound;
 import scapecraft.client.model.ModelHillGiant;
 import scapecraft.client.model.ModelIceGiant;
@@ -35,21 +47,33 @@ import scapecraft.client.model.ModelLesserDemon2;
 import scapecraft.client.model.ModelLootChest;
 import scapecraft.client.model.ModelMagicBoat;
 import scapecraft.client.model.ModelMossGiant;
+import scapecraft.client.model.ModelPitchFork;
+import scapecraft.client.model.ModelRapier;
 import scapecraft.client.model.ModelRat;
+import scapecraft.client.model.ModelSGS;
+import scapecraft.client.model.ModelSaraSword;
 import scapecraft.client.model.ModelScorpion;
 import scapecraft.client.model.ModelSergeantGrimSpike;
 import scapecraft.client.model.ModelSergeantSteelWill;
 import scapecraft.client.model.ModelSergeantStrongStack;
 import scapecraft.client.model.ModelTD;
 import scapecraft.client.model.ModelTorag;
+import scapecraft.client.model.ModelToragHammer;
 import scapecraft.client.model.ModelTstanonKarlak;
 import scapecraft.client.model.ModelVerac;
+import scapecraft.client.model.ModelVeracFlail;
+import scapecraft.client.model.ModelWarhammer;
+import scapecraft.client.model.ModelWhip;
+import scapecraft.client.model.ModelZGS;
 import scapecraft.client.model.ModelZaklnGritch;
 import scapecraft.client.model.ModelZilyana;
+import scapecraft.client.model.Modelcmaul;
+import scapecraft.client.model.Modeld2h;
 import scapecraft.client.renderer.RenderBipedScapecraft;
 import scapecraft.client.renderer.RenderEntityScapecraft;
-import scapecraft.client.renderer.RenderItemSpawnEgg;
-import scapecraft.client.renderer.item.ItemRenderHammer;
+import scapecraft.client.renderer.item.RenderItemSpawnEgg;
+import scapecraft.client.renderer.item.RenderItemWeapon;
+import scapecraft.command.WeaponModelCommand;
 import scapecraft.entity.EntityAbbyDemon;
 import scapecraft.entity.EntityAhrim;
 import scapecraft.entity.EntityAkrisae;
@@ -142,10 +166,7 @@ public class ClientProxy extends CommonProxy
 
 	public void registerRenderers()
 	{
-		MinecraftForgeClient.registerItemRenderer(ScapecraftItems.ironHammer, new ItemRenderHammer(Resources.TEXTURE_SteelHammer));
-		MinecraftForgeClient.registerItemRenderer(ScapecraftItems.mithHammer, new ItemRenderHammer(Resources.TEXTURE_MithHammer));
-		MinecraftForgeClient.registerItemRenderer(ScapecraftItems.addyHammer, new ItemRenderHammer(Resources.TEXTURE_AddyHammer));
-		MinecraftForgeClient.registerItemRenderer(ScapecraftItems.runeHammer, new ItemRenderHammer(Resources.TEXTURE_RuneHammer));
+		ClientCommandHandler.instance.registerCommand(new WeaponModelCommand());
 
 		RenderingRegistry.registerEntityRenderingHandler(EntityBandit.class, new RenderBipedScapecraft(new ResourceLocation("scapecraft", "textures/entity/bandit.png")).setScale(1.5F));
 		RenderingRegistry.registerEntityRenderingHandler(EntityBarbarian.class, new RenderBipedScapecraft(new ResourceLocation("scapecraft", "textures/entity/barbarian.png")));
@@ -221,9 +242,35 @@ public class ClientProxy extends CommonProxy
 		RenderingRegistry.registerEntityRenderingHandler(EntityZaklnGritch.class, new RenderEntityScapecraft(new ModelZaklnGritch(), 0.5F, new ResourceLocation("scapecraft", "textures/entity/ZaklnGritch.png")));
 		RenderingRegistry.registerEntityRenderingHandler(EntityTstanonKarlak.class, new RenderEntityScapecraft(new ModelTstanonKarlak(), 0.5F, new ResourceLocation("scapecraft", "textures/entity/TstanonKarlak.png")));
 		RenderingRegistry.registerEntityRenderingHandler(EntityKrilTsutsaroth.class, new RenderEntityScapecraft(new ModelKrilTsutsaroth(), 0.5F, new ResourceLocation("scapecraft", "textures/entity/KrilTsutsaroth.png")));
-		RenderingRegistry.registerEntityRenderingHandler(EntityBalfrugKreeyath.class, new RenderEntityScapecraft(new ModelBalfrugKreeyath(), 0.5F, new ResourceLocation("scapecraft", "textures/entity/BalfrugKreeyath.png")));
-
+		RenderingRegistry.registerEntityRenderingHandler(EntityBalfrugKreeyath.class, new RenderEntityScapecraft(new ModelBalfrugKreeyath(), 0.5F, new ResourceLocation("scapecraft", "textures/entity/BalfrugKreeyath.png"))); 
 
 		MinecraftForgeClient.registerItemRenderer(ScapecraftItems.scapecraftSpawnEgg, new RenderItemSpawnEgg());
+		MinecraftForgeClient.registerItemRenderer(ScapecraftItems.ironHammer, new RenderItemWeapon(new ModelWarhammer(), Resources.TEXTURE_SteelHammer, 0.85F, 230F).setOffset(-0.15F, 1.1F, 0F));
+		MinecraftForgeClient.registerItemRenderer(ScapecraftItems.mithHammer, new RenderItemWeapon(new ModelWarhammer(), Resources.TEXTURE_MithHammer, 0.85F, 230F).setOffset(-0.15F, 1.1F, 0F));
+		MinecraftForgeClient.registerItemRenderer(ScapecraftItems.addyHammer, new RenderItemWeapon(new ModelWarhammer(), Resources.TEXTURE_AddyHammer, 0.85F, 230F).setOffset(-0.15F, 1.1F, 0F));
+		MinecraftForgeClient.registerItemRenderer(ScapecraftItems.runeHammer, new RenderItemWeapon(new ModelWarhammer(), Resources.TEXTURE_RuneHammer, 0.85F, 230F).setOffset(-0.15F, 1.1F, 0F));
+		MinecraftForgeClient.registerItemRenderer(ScapecraftItems.AGS, new RenderItemWeapon(new ModelAGS(), Resources.TEXTURE_AGS, 0.55F, 220F).setOffset(0.9F, 0.5F, -0.1F));
+		MinecraftForgeClient.registerItemRenderer(ScapecraftItems.BGS, new RenderItemWeapon(new ModelBGS(), Resources.TEXTURE_BGS, 0.55F, 220F).setOffset(0.9F, 0.5F, -0.1F));
+		MinecraftForgeClient.registerItemRenderer(ScapecraftItems.SGS, new RenderItemWeapon(new ModelSGS(), Resources.TEXTURE_SGS, 0.55F, 220F).setOffset(0.9F, 0.5F, -0.1F));
+		MinecraftForgeClient.registerItemRenderer(ScapecraftItems.ZGS, new RenderItemWeapon(new ModelZGS(), Resources.TEXTURE_ZGS, 0.55F, 220F).setOffset(0.9F, 0.5F, -0.1F));
+		MinecraftForgeClient.registerItemRenderer(ScapecraftItems.DBA, new RenderItemWeapon(new ModelDBA(), Resources.TEXTURE_DBA, 1.05F, 220F).setOffset(0F, 0F, 0F));
+		MinecraftForgeClient.registerItemRenderer(ScapecraftItems.DD, new RenderItemWeapon(new ModelDD(), Resources.TEXTURE_DD, 1F, 220F).setOffset(0F, 0F, 0F));
+		MinecraftForgeClient.registerItemRenderer(ScapecraftItems.DDS, new RenderItemWeapon(new ModelDD(), Resources.TEXTURE_DDS, 1F, 220F).setOffset(0F, 0F, 0F));
+		MinecraftForgeClient.registerItemRenderer(ScapecraftItems.chaoticRapier, new RenderItemWeapon(new ModelRapier(), Resources.TEXTURE_RAPIER, 0.15F, 220F).setOffset(0F, 0F, 0F));
+		MinecraftForgeClient.registerItemRenderer(ScapecraftItems.whip, new RenderItemWeapon(new ModelWhip(), Resources.TEXTURE_Whip, 1.15F, 220F).setOffset(0.5F, 0.3F, 0F));
+		MinecraftForgeClient.registerItemRenderer(ScapecraftItems.saraSword, new RenderItemWeapon(new ModelSaraSword(), Resources.TEXTURE_SS, 1.1F, 220F).setOffset(0F, 0F, 0F));
+		MinecraftForgeClient.registerItemRenderer(ScapecraftItems.toragHammer, new RenderItemWeapon(new ModelToragHammer(), Resources.TEXTURE_TORAG, 0.7F, 220F).setOffset(0.4F, 0.9F, 0.1F).setRotation(0F, 90F, 220F));
+		MinecraftForgeClient.registerItemRenderer(ScapecraftItems.veracFlail, new RenderItemWeapon(new ModelVeracFlail(), Resources.TEXTURE_VERAC, 1.1F, 220F).setOffset(0F, 0F, 0F));
+		MinecraftForgeClient.registerItemRenderer(ScapecraftItems.guthanSpear, new RenderItemWeapon(new ModelGuthanSpear(), Resources.TEXTURE_GUTHAN, 1.5F).setOffset(0F, 0F, 0F));
+		MinecraftForgeClient.registerItemRenderer(ScapecraftItems.dharokAxe, new RenderItemWeapon(new ModelDharokAxe(), Resources.TEXTURE_DHAROK, 1.1F, 220F).setOffset(0F, 0F, 0F));
+		MinecraftForgeClient.registerItemRenderer(ScapecraftItems.akrisaeMace, new RenderItemWeapon(new ModelAkrisaeMace(), Resources.TEXTURE_AKRISAE, 1.3F, 220F).setOffset(0F, 0F, 0F));
+		MinecraftForgeClient.registerItemRenderer(ScapecraftItems.pitchFork, new RenderItemWeapon(new ModelPitchFork(), Resources.TEXTURE_PITCHFORK, 1F, 220F).setOffset(0F, 0F, 0F));
+		MinecraftForgeClient.registerItemRenderer(ScapecraftItems.blackHalberd, new RenderItemWeapon(new ModelHalberd(), Resources.TEXTURE_BLACKHALBERD, 1F, 220F).setOffset(0F, 0F, 0F));
+		MinecraftForgeClient.registerItemRenderer(ScapecraftItems.chaoticMaul, new RenderItemWeapon(new Modelcmaul(), Resources.TEXTURE_CMAUL, 1F, 220F).setOffset(0F, 0F, 0F));
+		MinecraftForgeClient.registerItemRenderer(ScapecraftItems.dryRapier, new RenderItemWeapon(new ModelDryrapier(), Resources.TEXTURE_DRYRAPIER, 1F, 220F).setOffset(0F, 0F, 0F));
+		MinecraftForgeClient.registerItemRenderer(ScapecraftItems.dryMace, new RenderItemWeapon(new ModelDrymace(), Resources.TEXTURE_DRYMACE, 1F, 220F).setOffset(0F, 0F, 0F));
+		MinecraftForgeClient.registerItemRenderer(ScapecraftItems.dryLong, new RenderItemWeapon(new ModelDrylong(), Resources.TEXTURE_DRYLONG, 1F, 220F).setOffset(0F, 0F, 0F));
+		MinecraftForgeClient.registerItemRenderer(ScapecraftItems.dragon2hSword, new RenderItemWeapon(new Modeld2h(), Resources.TEXTURE_D2H, 1F, 220F).setOffset(0F, 0F, 0F));
+
 	}
 }

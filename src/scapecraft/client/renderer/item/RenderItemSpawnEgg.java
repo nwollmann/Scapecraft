@@ -1,4 +1,4 @@
-package scapecraft.client.renderer;
+package scapecraft.client.renderer.item;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.OpenGlHelper;
