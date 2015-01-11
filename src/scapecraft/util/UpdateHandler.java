@@ -91,6 +91,7 @@ public class UpdateHandler
 			put(215, "yewStairs");
 			put(228, "serverNotice");
 			put(230, "keyBlock");
+			put(231, "keyBlock");
 			put(1257, "magicBow");
 			put(1258, "yewBow");
 			put(1606, "dragonLongsword");
@@ -120,10 +121,11 @@ public class UpdateHandler
 			put(2006, "blackSword");
 			put(2016, "whiteSword");
 			put(2292, "coffin");
-			put(2293, "coffin2");
+			put(2293, "coffin");
 			put(2302, "kosTele");
 			put(2304, "blueCobbleCompressed");
 			put(2305, "keyBlock2");
+			put(2306, "keyBlock2");
 			put(2380, "fire");
 			put(2381, "stall");
 			put(2382, "blockStall");
@@ -363,8 +365,6 @@ public class UpdateHandler
 			put(224, "bandosMinion1Spawn");
 			put(225, "bandosMinion2Spawn");
 			put(226, "bandosMinion3Spawn");
-			put(231, "openKeyBlock");
-			put(2306, "openKeyBlock2");
 			put(2700, "Mithores");
 			put(2701, "Addyores");
 			put(2702, "Runeores");

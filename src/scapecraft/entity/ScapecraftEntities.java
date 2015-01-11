@@ -8,6 +8,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 
 import scapecraft.Scapecraft;
 import scapecraft.block.ScapecraftBlocks;
@@ -100,6 +101,7 @@ public class ScapecraftEntities
 		registerEntity(EntityTstanonKarlak.class, "TstanonKarlak");
 		registerEntity(EntityKrilTsutsaroth.class, "KrilTsutsaroth");
 		registerEntity(EntityBalfrugKreeyath.class, "BalfrugKreeyath");
+		registerEntity(EntityShapeshifter.class, "Shapeshifter");
 
 		CombatXpHelper.addVanilla();
 	}
@@ -110,6 +112,7 @@ public class ScapecraftEntities
 		entityNames.put(name, entityClass);
 		if(EntityScapecraft.class.isAssignableFrom(entityClass))
 			ItemScapecraftSpawnEgg.addEntity(name);
+
 		currentEntityIdOffset++;
 	}
 
@@ -547,4 +550,16 @@ public class ScapecraftEntities
 		addDrop(EntityWizard.class, 8, new ItemStack(ScapecraftItems.tormentedDemonsTab));
 		addDrop(EntityWizard.class, 8, new ItemStack(ScapecraftItems.varrockTeletab));
 	}
+
+	public static EntityScapecraft spawnScapecraftEntity(String name, World world)
+	{
+		EntityScapecraft entity = null;
+		try {
+			entity = (EntityScapecraft) ScapecraftEntities.entityNames.get(name).getConstructor(new Class[] { World.class }).newInstance(new Object[] { world });
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return entity;
+	}
+
 }

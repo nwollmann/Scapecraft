@@ -197,7 +197,7 @@ public class ScapecraftEventHandler
 			ClientProxy.guiHealth.drawHealthBar(event.resolution);
 		}
 	}
-	
+
 	public void setMoveSpeed(EntityPlayer player, float speed)
 	{
 		if(player.capabilities.getWalkSpeed() == speed)

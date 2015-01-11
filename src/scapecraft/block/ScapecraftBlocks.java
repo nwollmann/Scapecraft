@@ -71,6 +71,7 @@ public class ScapecraftBlocks
 	public static Block kqSpawn;
 	public static Block kkSpawn;
 	public static Block hellhoundSpawn;
+	public static Block coffin;
 
 	public static Block blueCobble;
 	public static Block blueCobbleCompressed;
@@ -188,6 +189,8 @@ public class ScapecraftBlocks
 		kkSpawn = new BlockSpawn("EntityKK", 24000);
 		hellhoundSpawn = new BlockSpawn("EntityHellhound", 72000);
 
+		coffin = new BlockCoffin();
+
 		blueCobble = new BlockScapecraft(Material.rock).setTextureName("scapecraft:BlueCobblestone").setUnlocalizedName("blueCobble");
 		blueCobbleCompressed = new BlockScapecraft(Material.rock).setTextureName("scapecraft:BlueCobblestonec").setUnlocalizedName("blueCobbleCompressed");
 
@@ -298,6 +301,8 @@ public class ScapecraftBlocks
 		GameRegistry.registerBlock(kqSpawn, "kqSpawn");
 		GameRegistry.registerBlock(kkSpawn, "kkSpawn");
 		GameRegistry.registerBlock(hellhoundSpawn, "hellhoundSpawn");
+
+		GameRegistry.registerBlock(coffin, "coffin");
 
 		GameRegistry.registerBlock(blueCobble, "blueCobble");
 		GameRegistry.registerBlock(blueCobbleCompressed, "blueCobbleCompressed");

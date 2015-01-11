@@ -28,7 +28,6 @@ public class ItemScapecraftSpawnEgg extends Item
 	public static ArrayList<String> entities = new ArrayList<String>();
 	public static ArrayList<Entity> entityObjects = new ArrayList<Entity>();
 	
-
 	public ItemScapecraftSpawnEgg()
 	{
 		this.setUnlocalizedName("scapecraftSpawnEgg");
@@ -47,6 +46,7 @@ public class ItemScapecraftSpawnEgg extends Item
 			z += Facing.offsetsZForSide[side];
 			double yOffset = (side == 1 && block.getRenderType() == 11) ? 0.5D : 0D;
 
+			System.out.println(entities.get(itemStack.getMetadata()));
 			EntityScapecraft entity;
 			try {
 				entity = (EntityScapecraft) ScapecraftEntities.entityNames.get(entities.get(itemStack.getMetadata())).getConstructor(new Class[] { World.class }).newInstance(new Object[] { world });
@@ -96,23 +96,24 @@ public class ItemScapecraftSpawnEgg extends Item
 	public boolean hitEntity(ItemStack stack, EntityLivingBase target, EntityLivingBase attacker)
 	{
 		this.checkStack(stack);
-		target.attackEntityFrom(new EntityDamageSource("player", attacker), (float) ((EntityScapecraft)entityObjects.get(stack.getMetadata())).getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue());
+		if(attacker instanceof EntityPlayer && ((EntityPlayer) attacker).capabilities.isCreativeMode)
+			target.attackEntityFrom(new EntityDamageSource("player", attacker), (float) ((EntityScapecraft)entityObjects.get(stack.getMetadata())).getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue());
 		return true;
 	}
 
 	public void checkStack(ItemStack stack)
 	{
-		 if(stack.hasTagCompound() && !stack.getTagCompound().getString("mob").isEmpty())
-		 {
-			 int newMeta = entities.indexOf(stack.getTagCompound().getString("mob"));
-			 if(newMeta != -1)
-				 stack.setMetadata(newMeta);
-		 }
-		 else
-		 {
-			 if(!stack.hasTagCompound())
-				 stack.setTagCompound(new NBTTagCompound());
-			 stack.getTagCompound().setString("mob", entities.get(stack.getMetadata()));
-		 }
+		if(stack.hasTagCompound() && !stack.getTagCompound().getString("mob").isEmpty())
+		{
+			int newMeta = entities.indexOf(stack.getTagCompound().getString("mob"));
+			if(newMeta != -1)
+				stack.setMetadata(newMeta);
+		}
+		else
+		{
+			if(!stack.hasTagCompound())
+				stack.setTagCompound(new NBTTagCompound());
+			stack.getTagCompound().setString("mob", entities.get(stack.getMetadata()));
+		}
 	}
 }

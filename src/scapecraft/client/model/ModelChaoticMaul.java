@@ -4,7 +4,7 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 
-public class Modelcmaul extends ModelBase
+public class ModelChaoticMaul extends ModelBase
 {
 	//fields
 	ModelRenderer a1;
@@ -26,7 +26,7 @@ public class Modelcmaul extends ModelBase
 	ModelRenderer a17;
 	ModelRenderer a18;
 
-	public Modelcmaul()
+	public ModelChaoticMaul()
 	{
 		textureWidth = 128;
 		textureHeight = 64;

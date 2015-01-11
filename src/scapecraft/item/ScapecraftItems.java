@@ -153,6 +153,8 @@ public class ScapecraftItems
 	public static Item fremSword;
 	public static Item fremSwordf;
 	public static Item chaoticRapier;
+	public static Item chaoticMaul;
+	public static Item chaoticLongsword;
 
 	public static Item ironHammer;
 	public static Item mithHammer;
@@ -259,12 +261,12 @@ public class ScapecraftItems
 	public static Item varrockTeletab;
 	public static Item doorKey;
 	public static Item boltRack;
+	public static Item garlic;
 
 	//TODO melee weapons
 	public static Item keris;
 	public static Item korasis;
 	public static Item stake;
-	public static Item chaoticMaul;
 	public static Item vestaSword;
 	public static Item agilitySword;
 
@@ -421,13 +423,15 @@ public class ScapecraftItems
 		whiteSword = new ItemWeapon(ScapecraftToolMaterial.BLACK, 4, "WhiteSword");
 		blackHalberd = new ItemWeapon(ScapecraftToolMaterial.BLACKH, 4, "BlackHalberd");
 		chicken = new ItemWeapon(ScapecraftToolMaterial.CHICKEN, 4, "Chicken");
-		dragon2hSword = new ItemWeapon(ScapecraftToolMaterial.WHIP, 4, "dragon2hSword");
+		dragon2hSword = new ItemWeapon(ScapecraftToolMaterial.WHIP, 4, "Dragon2hSword");
 		dragonLongsword = new ItemWeapon(ScapecraftToolMaterial.DRAGON, 4, "DragonLongsword");
 		dragonCScimmy = new ItemWeapon(ScapecraftToolMaterial.DRAGONC, 4, "DragonCScimmy");
 		pitchFork = new ItemWeapon(ScapecraftToolMaterial.PITCHFORK, 4, "PitchFork");
 		fremSword = new ItemWeapon(ScapecraftToolMaterial.FREM, 4, "FremSword");
 		fremSwordf = new ItemWeapon(ScapecraftToolMaterial.FREMF, 4, "FremSwordf");
-		chaoticRapier = new ItemWeapon(ScapecraftToolMaterial.RAPIER, 4F, "ChaoticRapier");
+		chaoticRapier = new ItemWeapon(ScapecraftToolMaterial.CHAOTIC, 4F, "ChaoticRapier");
+		chaoticMaul = new ItemWeapon(ScapecraftToolMaterial.MAUL, 11F, "ChaoticMaul");
+		chaoticLongsword = new ItemWeapon(ScapecraftToolMaterial.CHAOTIC, 15F, "ChaoticLongsword");
 
 		ironHammer = new ItemHammer(ScapecraftToolMaterial.IRON, "IronHammer");
 		mithHammer = new ItemHammer(ScapecraftToolMaterial.MITH, "MithHammer");
@@ -519,9 +523,10 @@ public class ScapecraftItems
 		ahrimKey = new Item().setUnlocalizedName("ahrimKey").setTextureName("scapecraft:Key1").setCreativeTab(Scapecraft.tabScapecraftMisc);
 		guthanKey = new Item().setUnlocalizedName("guthanKey").setTextureName("scapecraft:Key1").setCreativeTab(Scapecraft.tabScapecraftMisc);
 		akrisaeKey = new Item().setUnlocalizedName("akrisaeKey").setTextureName("scapecraft:Key1").setCreativeTab(Scapecraft.tabScapecraftMisc);
-		tombKey = new Item().setUnlocalizedName("tombKey").setCreativeTab(Scapecraft.tabScapecraftMisc);
-		doorKey = new Item().setUnlocalizedName("doorKey").setCreativeTab(Scapecraft.tabScapecraftMisc);
-		boltRack = new Item().setUnlocalizedName("boltRack").setCreativeTab(Scapecraft.tabScapecraftMisc);
+		tombKey = new Item().setUnlocalizedName("tombKey").setTextureName("scapecraft:Key2").setCreativeTab(Scapecraft.tabScapecraftMisc);
+		doorKey = new Item().setUnlocalizedName("doorKey").setTextureName("scapecraft:Key2").setCreativeTab(Scapecraft.tabScapecraftMisc);
+		boltRack = new Item().setUnlocalizedName("boltRack").setTextureName("scapecraft:BoltRack").setCreativeTab(Scapecraft.tabScapecraftMisc);
+		garlic = new Item().setUnlocalizedName("garlic").setTextureName("scapecraft:Garlic").setCreativeTab(Scapecraft.tabScapecraftMisc);
 		scapecraftSpawnEgg = new ItemScapecraftSpawnEgg().setTextureName("minecraft:spawn_egg");
 
 		bandosTab = new ItemTeletab("bandos").setTextureName("scapecraft:bandosTab").setUnlocalizedName("bandosTab");
@@ -677,6 +682,8 @@ public class ScapecraftItems
 		GameRegistry.registerItem(fremSword, "fremSword");
 		GameRegistry.registerItem(fremSwordf, "fremSwordf");
 		GameRegistry.registerItem(chaoticRapier, "chaoticRapier");
+		GameRegistry.registerItem(chaoticMaul, "chaoticMaul");
+		GameRegistry.registerItem(chaoticLongsword, "chaoticLongsword");
 
 		GameRegistry.registerItem(ironHammer, "ironHammer");
 		GameRegistry.registerItem(mithHammer, "mithHammer");
@@ -769,6 +776,7 @@ public class ScapecraftItems
 		GameRegistry.registerItem(tombKey, "tombKey");
 		GameRegistry.registerItem(doorKey, "doorKey");
 		GameRegistry.registerItem(boltRack, "boltRack");
+		GameRegistry.registerItem(garlic, "garlic");
 		GameRegistry.registerItem(scapecraftSpawnEgg, "scapecraftSpawnEgg");
 		GameRegistry.registerItem(bandosTab, "bandosTab");;
 		GameRegistry.registerItem(barrowsTab, "barrowsTab");;

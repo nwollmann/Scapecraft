@@ -1,8 +1,10 @@
 package scapecraft.command;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.model.ModelBase;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer;
 import net.minecraftforge.client.IItemRenderer.ItemRenderType;
 import net.minecraftforge.client.MinecraftForgeClient;
@@ -42,6 +44,18 @@ public class WeaponModelCommand extends CommandBase
 			else if(args[0].toLowerCase().startsWith("s") && args.length == 2)
 				((RenderItemWeapon) itemRenderer).scale = Float.parseFloat(args[1]);
 
+		}
+		else if(args.length == 2 && args[0].toLowerCase().startsWith("m"))
+		{
+			try
+			{
+				Object model = Class.forName("scapecraft.client.model." + args[1]).newInstance();
+				if(model instanceof ModelBase)
+					MinecraftForgeClient.registerItemRenderer(Minecraft.getMinecraft().thePlayer.getHeldItem().getItem(), new RenderItemWeapon((ModelBase) model, new ResourceLocation("scapecraft", "NOTSET"), 1F, 220F));
+			}
+			catch(Exception e)
+			{
+			}
 		}
 	}
 }

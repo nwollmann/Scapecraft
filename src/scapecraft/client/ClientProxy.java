@@ -16,6 +16,8 @@ import scapecraft.client.model.ModelBalfrugKreeyath;
 import scapecraft.client.model.ModelBandosArmor;
 import scapecraft.client.model.ModelBlackDemon;
 import scapecraft.client.model.ModelCaveCrawler;
+import scapecraft.client.model.ModelChaoticLongsword;
+import scapecraft.client.model.ModelChaoticMaul;
 import scapecraft.client.model.ModelDBA;
 import scapecraft.client.model.ModelDD;
 import scapecraft.client.model.ModelDharok;
@@ -67,10 +69,10 @@ import scapecraft.client.model.ModelWhip;
 import scapecraft.client.model.ModelZGS;
 import scapecraft.client.model.ModelZaklnGritch;
 import scapecraft.client.model.ModelZilyana;
-import scapecraft.client.model.Modelcmaul;
 import scapecraft.client.model.Modeld2h;
 import scapecraft.client.renderer.RenderBipedScapecraft;
 import scapecraft.client.renderer.RenderEntityScapecraft;
+import scapecraft.client.renderer.RenderShapeshifter;
 import scapecraft.client.renderer.item.RenderItemSpawnEgg;
 import scapecraft.client.renderer.item.RenderItemWeapon;
 import scapecraft.command.WeaponModelCommand;
@@ -137,6 +139,7 @@ import scapecraft.entity.EntityScorpion;
 import scapecraft.entity.EntitySergeantGrimspike;
 import scapecraft.entity.EntitySergeantSteelwill;
 import scapecraft.entity.EntitySergeantStrongstack;
+import scapecraft.entity.EntityShapeshifter;
 import scapecraft.entity.EntityShopKeeper;
 import scapecraft.entity.EntityTD;
 import scapecraft.entity.EntityTheif;
@@ -243,6 +246,7 @@ public class ClientProxy extends CommonProxy
 		RenderingRegistry.registerEntityRenderingHandler(EntityTstanonKarlak.class, new RenderEntityScapecraft(new ModelTstanonKarlak(), 0.5F, new ResourceLocation("scapecraft", "textures/entity/TstanonKarlak.png")));
 		RenderingRegistry.registerEntityRenderingHandler(EntityKrilTsutsaroth.class, new RenderEntityScapecraft(new ModelKrilTsutsaroth(), 0.5F, new ResourceLocation("scapecraft", "textures/entity/KrilTsutsaroth.png")));
 		RenderingRegistry.registerEntityRenderingHandler(EntityBalfrugKreeyath.class, new RenderEntityScapecraft(new ModelBalfrugKreeyath(), 0.5F, new ResourceLocation("scapecraft", "textures/entity/BalfrugKreeyath.png"))); 
+		RenderingRegistry.registerEntityRenderingHandler(EntityShapeshifter.class, new RenderShapeshifter()); 
 
 		MinecraftForgeClient.registerItemRenderer(ScapecraftItems.scapecraftSpawnEgg, new RenderItemSpawnEgg());
 		MinecraftForgeClient.registerItemRenderer(ScapecraftItems.ironHammer, new RenderItemWeapon(new ModelWarhammer(), Resources.TEXTURE_SteelHammer, 0.85F, 230F).setOffset(-0.15F, 1.1F, 0F));
@@ -257,6 +261,8 @@ public class ClientProxy extends CommonProxy
 		MinecraftForgeClient.registerItemRenderer(ScapecraftItems.DD, new RenderItemWeapon(new ModelDD(), Resources.TEXTURE_DD, 1F, 220F).setOffset(0F, 0F, 0F));
 		MinecraftForgeClient.registerItemRenderer(ScapecraftItems.DDS, new RenderItemWeapon(new ModelDD(), Resources.TEXTURE_DDS, 1F, 220F).setOffset(0F, 0F, 0F));
 		MinecraftForgeClient.registerItemRenderer(ScapecraftItems.chaoticRapier, new RenderItemWeapon(new ModelRapier(), Resources.TEXTURE_RAPIER, 0.15F, 220F).setOffset(0F, 0F, 0F));
+		MinecraftForgeClient.registerItemRenderer(ScapecraftItems.chaoticMaul, new RenderItemWeapon(new ModelChaoticMaul(), Resources.TEXTURE_CMAUL, 0.4F, 220F).setOffset(1.5F, 0.4F, -0.1F));
+		MinecraftForgeClient.registerItemRenderer(ScapecraftItems.chaoticLongsword, new RenderItemWeapon(new ModelChaoticLongsword(), Resources.TEXTURE_CHAOTICLONGSWORD, 1F, 220F).setOffset(0.87F, 0.08F, -0.05F));	
 		MinecraftForgeClient.registerItemRenderer(ScapecraftItems.whip, new RenderItemWeapon(new ModelWhip(), Resources.TEXTURE_Whip, 1.15F, 220F).setOffset(0.5F, 0.3F, 0F));
 		MinecraftForgeClient.registerItemRenderer(ScapecraftItems.saraSword, new RenderItemWeapon(new ModelSaraSword(), Resources.TEXTURE_SS, 1.1F, 220F).setOffset(0F, 0F, 0F));
 		MinecraftForgeClient.registerItemRenderer(ScapecraftItems.toragHammer, new RenderItemWeapon(new ModelToragHammer(), Resources.TEXTURE_TORAG, 0.7F, 220F).setOffset(0.4F, 0.9F, 0.1F).setRotation(0F, 90F, 220F));
@@ -266,11 +272,9 @@ public class ClientProxy extends CommonProxy
 		MinecraftForgeClient.registerItemRenderer(ScapecraftItems.akrisaeMace, new RenderItemWeapon(new ModelAkrisaeMace(), Resources.TEXTURE_AKRISAE, 1.3F, 220F).setOffset(0F, 0F, 0F));
 		MinecraftForgeClient.registerItemRenderer(ScapecraftItems.pitchFork, new RenderItemWeapon(new ModelPitchFork(), Resources.TEXTURE_PITCHFORK, 1F, 220F).setOffset(0F, 0F, 0F));
 		MinecraftForgeClient.registerItemRenderer(ScapecraftItems.blackHalberd, new RenderItemWeapon(new ModelHalberd(), Resources.TEXTURE_BLACKHALBERD, 1F, 220F).setOffset(0F, 0F, 0F));
-		MinecraftForgeClient.registerItemRenderer(ScapecraftItems.chaoticMaul, new RenderItemWeapon(new Modelcmaul(), Resources.TEXTURE_CMAUL, 1F, 220F).setOffset(0F, 0F, 0F));
 		MinecraftForgeClient.registerItemRenderer(ScapecraftItems.dryRapier, new RenderItemWeapon(new ModelDryrapier(), Resources.TEXTURE_DRYRAPIER, 1F, 220F).setOffset(0F, 0F, 0F));
 		MinecraftForgeClient.registerItemRenderer(ScapecraftItems.dryMace, new RenderItemWeapon(new ModelDrymace(), Resources.TEXTURE_DRYMACE, 1F, 220F).setOffset(0F, 0F, 0F));
 		MinecraftForgeClient.registerItemRenderer(ScapecraftItems.dryLong, new RenderItemWeapon(new ModelDrylong(), Resources.TEXTURE_DRYLONG, 1F, 220F).setOffset(0F, 0F, 0F));
 		MinecraftForgeClient.registerItemRenderer(ScapecraftItems.dragon2hSword, new RenderItemWeapon(new Modeld2h(), Resources.TEXTURE_D2H, 1F, 220F).setOffset(0F, 0F, 0F));
-
 	}
 }

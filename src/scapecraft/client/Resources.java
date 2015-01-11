@@ -38,6 +38,8 @@ public class Resources
 			"scapecraft", ENTITY_SHEET_LOCATION + "MithrilWarhammer.png");
 	public static final ResourceLocation TEXTURE_RAPIER = new ResourceLocation(
 			"scapecraft", ENTITY_SHEET_LOCATION + "rapier.png");
+	public static final ResourceLocation TEXTURE_CHAOTICLONGSWORD = new ResourceLocation(
+			"scapecraft", ENTITY_SHEET_LOCATION + "ChaoticLongsword.png");
 	public static final ResourceLocation TEXTURE_RuneHammer = new ResourceLocation(
 			"scapecraft", ENTITY_SHEET_LOCATION + "RuneWarhammer.png");
 	public static final ResourceLocation TEXTURE_SARASTAFF = new ResourceLocation(
