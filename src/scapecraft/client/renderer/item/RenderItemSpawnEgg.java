@@ -10,7 +10,7 @@ import net.minecraftforge.client.IItemRenderer;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
-import scapecraft.item.ItemScapecraftSpawnEgg;
+import scapecraft.entity.ScapecraftEntities;
 
 public class RenderItemSpawnEgg implements IItemRenderer
 {
@@ -29,7 +29,7 @@ public class RenderItemSpawnEgg implements IItemRenderer
 	@Override
 	public void renderItem(ItemRenderType type, ItemStack item, Object... data)
 	{
-		Entity entity = ItemScapecraftSpawnEgg.entityObjects.get(item.getMetadata());
+		Entity entity = ScapecraftEntities.entityObjects.get(item.getMetadata());
 		entity.setWorld(Minecraft.getMinecraft().thePlayer.worldObj);
 		GL11.glPushMatrix();
 		if(type == ItemRenderType.INVENTORY)

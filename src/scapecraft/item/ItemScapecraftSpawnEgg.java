@@ -1,11 +1,9 @@
 package scapecraft.item;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
@@ -25,9 +23,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemScapecraftSpawnEgg extends Item
 {
-	public static ArrayList<String> entities = new ArrayList<String>();
-	public static ArrayList<Entity> entityObjects = new ArrayList<Entity>();
-	
 	public ItemScapecraftSpawnEgg()
 	{
 		this.setUnlocalizedName("scapecraftSpawnEgg");
@@ -38,7 +33,7 @@ public class ItemScapecraftSpawnEgg extends Item
 	@Override
 	public boolean onItemUse(ItemStack itemStack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ)
 	{
-		if(!world.isRemote && itemStack.getMetadata() < entities.size())
+		if(!world.isRemote && itemStack.getMetadata() < ScapecraftEntities.entities.size())
 		{
 			Block block = world.getBlock(x, y, z);
 			x += Facing.offsetsXForSide[side];
@@ -46,14 +41,9 @@ public class ItemScapecraftSpawnEgg extends Item
 			z += Facing.offsetsZForSide[side];
 			double yOffset = (side == 1 && block.getRenderType() == 11) ? 0.5D : 0D;
 
-			System.out.println(entities.get(itemStack.getMetadata()));
-			EntityScapecraft entity;
-			try {
-				entity = (EntityScapecraft) ScapecraftEntities.entityNames.get(entities.get(itemStack.getMetadata())).getConstructor(new Class[] { World.class }).newInstance(new Object[] { world });
-			} catch (Exception e) {
-				e.printStackTrace();
+			EntityScapecraft entity = ScapecraftEntities.spawnScapecraftEntity(ScapecraftEntities.entities.get(itemStack.getMetadata()), world);
+			if(entity == null)
 				return false;
-			}
 
 			entity.setLocationAndAngles(x + 0.5D, y + yOffset, z + 0.5D, 0F, 0F);
 			entity.onSpawnWithEgg(null);
@@ -66,22 +56,12 @@ public class ItemScapecraftSpawnEgg extends Item
 		return true;
 	}
 
-	public static void addEntity(String entityName)
-	{
-		entities.add(entityName);
-		try
-		{
-			entityObjects.add(ScapecraftEntities.entityNames.get(entityName).getConstructor(new Class[] { World.class }).newInstance(new Object[] { null }));
-		} catch(Exception e) {e.printStackTrace(); };
-		System.out.println(entityName);
-	}
-
 	@SideOnly(Side.CLIENT)
 	@Override
 	@SuppressWarnings({"unchecked", "rawtypes"})
 	public void getSubItems(Item item, CreativeTabs tab, List subItems)
 	{
-		for(int id = 0; id < entities.size(); id++)
+		for(int id = 0; id < ScapecraftEntities.entities.size(); id++)
 			subItems.add(new ItemStack(this, 1, id));
 	}
 
@@ -89,7 +69,7 @@ public class ItemScapecraftSpawnEgg extends Item
 	public String getUnlocalizedName(ItemStack par1ItemStack) 
 	{
 		this.checkStack(par1ItemStack);
-		return getUnlocalizedName() + "." + entities.get(par1ItemStack.getMetadata());
+		return getUnlocalizedName() + "." + ScapecraftEntities.entities.get(par1ItemStack.getMetadata());
 	}
 
 	@Override
@@ -97,23 +77,23 @@ public class ItemScapecraftSpawnEgg extends Item
 	{
 		this.checkStack(stack);
 		if(attacker instanceof EntityPlayer && ((EntityPlayer) attacker).capabilities.isCreativeMode)
-			target.attackEntityFrom(new EntityDamageSource("player", attacker), (float) ((EntityScapecraft)entityObjects.get(stack.getMetadata())).getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue());
+			target.attackEntityFrom(new EntityDamageSource("player", attacker), (float) ((EntityScapecraft)ScapecraftEntities.entityObjects.get(stack.getMetadata())).getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue());
 		return true;
 	}
 
 	public void checkStack(ItemStack stack)
 	{
-		if(stack.hasTagCompound() && !stack.getTagCompound().getString("mob").isEmpty())
-		{
-			int newMeta = entities.indexOf(stack.getTagCompound().getString("mob"));
-			if(newMeta != -1)
-				stack.setMetadata(newMeta);
-		}
-		else
-		{
-			if(!stack.hasTagCompound())
-				stack.setTagCompound(new NBTTagCompound());
-			stack.getTagCompound().setString("mob", entities.get(stack.getMetadata()));
-		}
+		 if(stack.hasTagCompound() && !stack.getTagCompound().getString("mob").isEmpty())
+		 {
+			 int newMeta = ScapecraftEntities.entities.indexOf(stack.getTagCompound().getString("mob"));
+			 if(newMeta != -1)
+				 stack.setMetadata(newMeta);
+		 }
+		 else
+		 {
+			 if(!stack.hasTagCompound())
+				 stack.setTagCompound(new NBTTagCompound());
+			 stack.getTagCompound().setString("mob", ScapecraftEntities.entities.get(stack.getMetadata()));
+		 }
 	}
 }

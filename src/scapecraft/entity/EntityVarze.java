@@ -217,7 +217,7 @@ public class EntityVarze extends EntityScapecraft
 
 		if (itemstack != null && itemstack.getItem() == ScapecraftItems.invincibilityPotion)
 		{
-			ItemStack lootChest = new ItemStack(ScapecraftItems.scapecraftSpawnEgg, 1, ItemScapecraftSpawnEgg.entities.indexOf("EntityLootChest"));
+			ItemStack lootChest = new ItemStack(ScapecraftItems.scapecraftSpawnEgg, 1, ScapecraftEntities.entities.indexOf("EntityLootChest"));
 			if (itemstack.stackSize-- == 1)
 			{
 				par1EntityPlayer.inventory.setInventorySlotContents(par1EntityPlayer.inventory.currentItem, lootChest);

@@ -2,6 +2,7 @@ package scapecraft.entity;
 
 import static scapecraft.entity.EntityScapecraft.addDrop;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import net.minecraft.entity.Entity;
@@ -12,7 +13,6 @@ import net.minecraft.world.World;
 
 import scapecraft.Scapecraft;
 import scapecraft.block.ScapecraftBlocks;
-import scapecraft.item.ItemScapecraftSpawnEgg;
 import scapecraft.item.ScapecraftItems;
 import scapecraft.util.CombatXpHelper;
 
@@ -23,6 +23,9 @@ public class ScapecraftEntities
 	private static int currentEntityIdOffset = 0;
 
 	public static HashMap<String, Class<? extends Entity>> entityNames = new HashMap<String, Class<? extends Entity>>();
+	public static ArrayList<String> entities = new ArrayList<String>();
+	public static ArrayList<Entity> entityObjects = new ArrayList<Entity>();
+	
 	
 	public static void registerEntities()
 	{
@@ -111,7 +114,14 @@ public class ScapecraftEntities
 		EntityRegistry.registerModEntity(entityClass, name, currentEntityIdOffset, Scapecraft.instance, 80, 3, true);
 		entityNames.put(name, entityClass);
 		if(EntityScapecraft.class.isAssignableFrom(entityClass))
-			ItemScapecraftSpawnEgg.addEntity(name);
+		{
+			entities.add(name);
+			try
+			{
+				entityObjects.add(entityClass.getConstructor(new Class[] { World.class }).newInstance(new Object[] { null }));
+			} catch(Exception e) {e.printStackTrace(); };
+			System.out.println(name);
+		}
 
 		currentEntityIdOffset++;
 	}
