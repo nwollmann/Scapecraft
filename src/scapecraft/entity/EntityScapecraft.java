@@ -19,6 +19,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 import scapecraft.Stats;
+import scapecraft.tileentity.TileEntityScapecraftMobSpawner;
 
 public abstract class EntityScapecraft extends EntityMob implements XpDropper, IEntitySelector
 {
@@ -26,19 +27,27 @@ public abstract class EntityScapecraft extends EntityMob implements XpDropper, I
 	public static HashMap<Class<? extends EntityScapecraft>, ArrayList<Drop>> drops = new HashMap<Class<? extends EntityScapecraft>, ArrayList<Drop>>();
 	protected int lifespan;
 	public Set<Class<? extends EntityLivingBase>> targetClasses = new HashSet<Class<? extends EntityLivingBase>>();
+	public boolean passive = false;
+	public TileEntityScapecraftMobSpawner mobSpawner = null;
 
 	public EntityScapecraft(World par1World) 
 	{
 		super(par1World);
+		this.addArmor();
 	}
 
 	public void giveXp()
 	{
 		float damageTaken = 0;
 		for(Float damage : attackers.values())
+		{
 			damageTaken += damage;
+		}
+
 		for(Entry<EntityPlayer, Float> entry : attackers.entrySet())
-			Stats.addXp(entry.getKey(), (int) (damageTaken / entry.getValue() * this.getXpValue()));
+		{
+			Stats.addCombatXp(entry.getKey(), (int) (damageTaken / entry.getValue() * this.getXpValue()));
+		}
 	}
 
 	public int getXpValue()
@@ -130,9 +139,9 @@ public abstract class EntityScapecraft extends EntityMob implements XpDropper, I
 	{
 		float oldHealth = this.getHealth();
 		super.damageEntity(source, damage);
-		if(source.getSourceOfDamage() instanceof EntityPlayer)
+		if(source.getEntity() instanceof EntityPlayer)
 		{
-			EntityPlayer attacker = (EntityPlayer) source.getSourceOfDamage();
+			EntityPlayer attacker = (EntityPlayer) source.getEntity();
 			if(attackers.get(attacker) == null)
 				attackers.put(attacker, oldHealth - this.getHealth());
 			else
@@ -143,7 +152,15 @@ public abstract class EntityScapecraft extends EntityMob implements XpDropper, I
 	@Override
 	public boolean isEntityApplicable(Entity entity)
 	{
+		if(entity instanceof EntityPlayer && passive)
+			return false;
 		return targetClasses.contains(entity.getClass());
+	}
+
+	@Override
+	protected Entity findPlayerToAttack()
+	{
+		return passive ? null : super.findPlayerToAttack();
 	}
 
 	/*
@@ -157,4 +174,48 @@ public abstract class EntityScapecraft extends EntityMob implements XpDropper, I
 				targetClasses.add((Class<? extends EntityLivingBase>) entityClass);
 	}
 
+	public void onSpawnerSpawn(ArrayList<String> args)
+	{
+	}
+
+	public void addArmor()
+	{
+	}
+
+	@Override
+	public void addRandomArmor()
+	{
+		this.addArmor();
+		for(int i = 0; i < equipmentDropChances.length; i++)
+		{
+			equipmentDropChances[i] = 0F;
+		}
+	}
+
+	@Override
+	public void setEquipmentDropChance(int slot, float chance)
+	{
+		equipmentDropChances[slot] = 0F;
+	}
+
+	@Override
+	protected void dropEquipment(boolean b, int i)
+	{
+	}
+
+	@Override
+	public void setDead()
+	{
+		super.setDead();
+		if(mobSpawner != null && !worldObj.isRemote)
+		{
+			mobSpawner.onSpawnedDeath(this);
+		}
+	}
+
+	@Override
+	public int getExperiencePoints(EntityPlayer player)
+	{
+		return (int) Math.sqrt(this.getXpValue()) + 5;
+	}
 }

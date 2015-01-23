@@ -1,6 +1,7 @@
 package scapecraft.entity;
 
-import net.minecraft.client.Minecraft;
+import java.util.ArrayList;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -15,7 +16,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
@@ -167,13 +167,6 @@ public class EntityGeneralGraardor extends EntityScapecraft
 		}
 	}
 
-
-
-	protected EntityGoblin createInstance()
-	{
-		return new EntityGoblin(this.worldObj);
-	}
-
 	@SideOnly(Side.CLIENT)
 	public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
 	{
@@ -183,14 +176,6 @@ public class EntityGeneralGraardor extends EntityScapecraft
 		{
 			return false;
 		}
-		if(!worldObj.isRemote)
-		{
-			int j = 1;
-
-			for (int k = 0; k < j; ++k)
-			{
-				Minecraft.getMinecraft().thePlayer.addChatComponentMessage(new ChatComponentText("\u00a7CGeneral Graardor: Split their skulls! Break their bones!"));
-			}}
 
 		return super.attackEntityFrom(par1DamageSource, par2);
 	}
@@ -220,5 +205,19 @@ public class EntityGeneralGraardor extends EntityScapecraft
 	public int getXpValue()
 	{
 		return 1800;
+	}
+
+	@Override
+	public void onSpawnerSpawn(ArrayList<String> args)
+	{
+		Entity minion = new EntitySergeantGrimspike(this.worldObj);
+		minion.setLocationAndAngles(this.posX, this.posY, this.posZ, 0F, 0F);
+		this.worldObj.spawnEntityInWorld(minion);
+		minion = new EntitySergeantSteelwill(this.worldObj);
+		minion.setLocationAndAngles(this.posX, this.posY, this.posZ, 0F, 0F);
+		this.worldObj.spawnEntityInWorld(minion);
+		minion = new EntitySergeantStrongstack(this.worldObj);
+		minion.setLocationAndAngles(this.posX, this.posY, this.posZ, 0F, 0F);
+		this.worldObj.spawnEntityInWorld(minion);
 	}
 }

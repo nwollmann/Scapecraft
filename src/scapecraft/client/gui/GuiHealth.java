@@ -4,6 +4,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.potion.Potion;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.GuiIngameForge;
 
 import org.lwjgl.opengl.GL11;
@@ -16,7 +18,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class GuiHealth extends Gui
 {
-	Minecraft mc = Minecraft.getMinecraft();
+	private Minecraft mc = Minecraft.getMinecraft();
+	private static ResourceLocation statIcons = new ResourceLocation("scapecraft", "textures/gui/StatIcons.png");
 
 	public void drawHealthBar(ScaledResolution resolution)
 	{
@@ -29,17 +32,29 @@ public class GuiHealth extends Gui
 		float absorb = this.mc.thePlayer.getAbsorptionAmount();
 		health += absorb;
 		int healthColor = absorb > 0 ? 0xFFDD11 : 0xFFFFFF;
+		if(this.mc.thePlayer.isPotionActive(Potion.poison))
+		{
+			healthColor -= 0x3333BB;
+		}
+		if(this.mc.thePlayer.isPotionActive(Potion.wither))
+		{
+			healthColor = healthColor & 0x444444;
+		}
 
 		int x = width / 2 - 83;
 		int y = height - GuiIngameForge.left_height;
 
 		GL11.glPushMatrix();
 		GL11.glEnable(GL11.GL_BLEND);
+		this.mc.getTextureManager().bindTexture(statIcons);
+		this.drawTexturedModalRect(width - 118, y - 14, 0, 0, 16, 16);
+		this.drawTexturedModalRect(width - 118, y + 3, 32, 0, 16, 16);
+		this.drawTexturedModalRect(width - 118, y + 18, 16, 0, 16, 16);
 		this.mc.fontRendererObj.drawStringWithShadow("Special: " + Stats.clientStats.get("energy") + "/" + 100, x, y - 10, 0xFFFFFF);
 		this.mc.fontRendererObj.drawStringWithShadow("HP: " + String.format("%.1f", health) + "/" + maxHealth, x, y, healthColor);
-		this.mc.fontRendererObj.drawStringWithShadow("Combat: " + Stats.clientStats.get("combatLevel") + " (" + Stats.clientStats.get("combatxp") + ")", width - 100, y, 0xFFFFFF);
-		this.mc.fontRendererObj.drawStringWithShadow("Agility: " + Stats.clientStats.get("agilityLevel") + " (" + Stats.clientStats.get("agilityxp") + ")", width - 100, y + 10, 0xFFFFFF);
-		this.mc.fontRendererObj.drawStringWithShadow("Mining: " + Stats.clientStats.get("miningLevel") + " (" + Stats.clientStats.get("miningxp") + ")", width - 100, y + 20, 0xFFFFFF);
+		this.mc.fontRendererObj.drawStringWithShadow("Combat: " + Stats.clientStats.get("combatLevel") + " (" + Stats.clientStats.get("combatxp") + ")", width - 100, y - 10, 0xFFFFFF);
+		this.mc.fontRendererObj.drawStringWithShadow("Agility: " + Stats.clientStats.get("agilityLevel") + " (" + Stats.clientStats.get("agilityxp") + ")", width - 100, y + 6, 0xFFFFFF);
+		this.mc.fontRendererObj.drawStringWithShadow("Mining: " + Stats.clientStats.get("miningLevel") + " (" + Stats.clientStats.get("miningxp") + ")", width - 100, y + 22, 0xFFFFFF);
 		GL11.glDisable(GL11.GL_BLEND);
 		GL11.glDisable(GL11.GL_ALPHA_TEST);
 		GL11.glPopMatrix();

@@ -24,7 +24,6 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-import scapecraft.item.ItemScapecraftSpawnEgg;
 import scapecraft.item.ScapecraftItems;
 
 public class EntityVarze extends EntityScapecraft
@@ -263,7 +262,7 @@ public class EntityVarze extends EntityScapecraft
 	}
 
 	@Override
-	public void addRandomArmor()
+	public void addArmor()
 	{
 			this.setCurrentItemOrArmor(1, new ItemStack(ScapecraftItems.dragonBoots));
 			this.setCurrentItemOrArmor(2, new ItemStack(ScapecraftItems.whiteLeggings));

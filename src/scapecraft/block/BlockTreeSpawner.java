@@ -14,6 +14,7 @@ public class BlockTreeSpawner extends BlockBlockSpawner
 	{
 		super(fullBlock, regenTime);
 		this.treeGen = treeGen;
+		this.stat = "woodcutting";
 	}
 
 	@Override

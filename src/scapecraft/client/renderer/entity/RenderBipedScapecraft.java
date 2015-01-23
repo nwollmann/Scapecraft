@@ -1,4 +1,4 @@
-package scapecraft.client.renderer;
+package scapecraft.client.renderer.entity;
 
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.entity.RenderBiped;

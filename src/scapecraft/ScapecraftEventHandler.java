@@ -100,20 +100,7 @@ public class ScapecraftEventHandler
 			}
 			if(invChanged)
 			{
-				double maxHealth = 20;
-				Item[] newInv = new Item[4];
-				for(int i = 0; i < 4; i++)
-				{
-					newInv[i] = player.getCurrentArmor(i) != null ? player.getCurrentArmor(i).getItem() : null;
-					if(newInv[i] != null && newInv[i] instanceof ItemArmorScapecraft)
-						maxHealth += ((ItemArmorScapecraft) newInv[i]).getHealthBoost(); 
-				}
-				inventories.put(player.getCommandSenderName(), newInv);
-				player.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(maxHealth);
-				if(player.getHealth() > maxHealth)
-					player.setHealth((float) maxHealth);
-				System.out.println(maxHealth + " " + player.getHealth());
-
+				updateHealth(player);
 			}
 		}
 	}
@@ -121,18 +108,20 @@ public class ScapecraftEventHandler
 	@SubscribeEvent
 	public void onLivingDeathEvent(LivingDeathEvent event)
 	{
-		if(event.source.getEntity() != null && event.source.getEntity() instanceof EntityPlayer)
+		if(event.source.getEntity() instanceof EntityPlayer)
 		{
 			EntityPlayer player = (EntityPlayer) event.source.getEntity();
+			if(player.capabilities.isCreativeMode)
+				return;
 			if(event.entityLiving instanceof XpDropper)
 				((XpDropper) event.entityLiving).giveXp();
 			else
-				Stats.addXp(player, CombatXpHelper.getAmount(event.entityLiving));
+				Stats.addCombatXp(player, CombatXpHelper.getAmount(event.entityLiving));
 		}
 	}
 
 	@SubscribeEvent
-	public void onWorldSave(WorldEvent.Load event)
+	public void onWorldSave(WorldEvent.Save event)
 	{
 		if(event.world.provider.dimensionId != 0)
 			return;
@@ -157,6 +146,9 @@ public class ScapecraftEventHandler
 
 			nbt.setTag("drops", drops);
 
+			if(EconomyHandler.scEconomy != null)
+				EconomyHandler.scEconomy.writeToNBT(nbt);
+
 			try {
 				CompressedStreamTools.writeCompressed(nbt, new FileOutputStream(dataFile));
 			} catch(IOException e) {
@@ -169,11 +161,13 @@ public class ScapecraftEventHandler
 	public void onPlayerSpawn(PlayerEvent.StartTracking event)
 	{
 		Scapecraft.network.sendTo(new StatsPacket(event.entityPlayer), (EntityPlayerMP) event.entityPlayer);
-		event.entityPlayer.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(event.entityPlayer.getEntityAttribute(SharedMonsterAttributes.maxHealth).getBaseValue());
-		event.entityPlayer.setHealth(event.entityPlayer.getHealth()); //Make sure client has the right health
 
-		if(EconomyHandler.economy != null)
-			System.out.println(EconomyHandler.economy.getBalance(event.entityPlayer.getUniqueID()));
+		double maxHealth = event.entityPlayer.getEntityAttribute(SharedMonsterAttributes.maxHealth).getBaseValue();
+		float health = event.entityPlayer.getHealth();
+		event.entityPlayer.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(maxHealth);
+		event.entityPlayer.setHealth(health); //Make sure client has the right health
+
+		EconomyHandler.getBalance(event.entityPlayer.getUniqueID());
 	}
 
 	@SubscribeEvent
@@ -198,6 +192,12 @@ public class ScapecraftEventHandler
 		}
 	}
 
+	@SubscribeEvent
+	public void onPlayerLogin(cpw.mods.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent event)
+	{
+		Stats.convertFromOldSystem(event.player);
+	}
+
 	public void setMoveSpeed(EntityPlayer player, float speed)
 	{
 		if(player.capabilities.getWalkSpeed() == speed)
@@ -206,5 +206,33 @@ public class ScapecraftEventHandler
 		player.capabilities.writeCapabilitiesToNBT(capabilities);
 		capabilities.getCompoundTag("abilities").setFloat("walkSpeed", speed);
 		player.capabilities.readCapabilitiesFromNBT(capabilities);
+	}
+
+	public void updateHealth(EntityPlayer player)
+	{
+		double maxHealth = 20;
+		Item[] newInv = new Item[4];
+		for(int i = 0; i < 4; i++)
+		{
+			newInv[i] = player.getCurrentArmor(i) != null ? player.getCurrentArmor(i).getItem() : null;
+			if(newInv[i] != null && newInv[i] instanceof ItemArmorScapecraft)
+			{
+				if(Scapecraft.requireLevels && !player.capabilities.isCreativeMode && ((ItemArmorScapecraft) newInv[i]).getMinLevel() > Stats.getCombatLevel(player))
+				{
+					if(!player.worldObj.isRemote)
+						player.entityDropItem(player.getCurrentArmor(i), 0F).setOwner(player.getCommandSenderName());
+					newInv[i] = null;
+					player.inventory.armorInventory[i] = null;
+					continue;
+				}
+				maxHealth += ((ItemArmorScapecraft) newInv[i]).getHealthBoost(); 
+			}
+		}
+		inventories.put(player.getCommandSenderName(), newInv);
+		player.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(maxHealth);
+		if(player.getHealth() > maxHealth)
+			player.setHealth((float) maxHealth);
+		//System.out.println(maxHealth + " " + player.getHealth());
+
 	}
 }

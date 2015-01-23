@@ -75,8 +75,8 @@ public class ItemSpecialWeapon extends ItemWeapon
 
 					case SGS:
 						event.ammount += 5F;
-						player.addPotionEffect(new PotionEffect(Potion.regeneration.id, 100, 6)); //TODO this seems way too high
-						player.addPotionEffect(new PotionEffect(Potion.resistance.id, 100, 7)); 
+						player.addPotionEffect(new PotionEffect(Potion.regeneration.id, 100, 3)); //TODO this seems way too high
+						player.addPotionEffect(new PotionEffect(Potion.resistance.id, 100, 5)); 
 						break;
 
 					case ZGS:
@@ -84,7 +84,7 @@ public class ItemSpecialWeapon extends ItemWeapon
 						event.entityLiving.addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 200, 5));
 						break;
 					case WHIP:
-						event.ammount += 8F;
+						event.ammount *= 4;
 						break;
 					case DRAGONB:
 						player.addPotionEffect(new PotionEffect(Potion.damageBoost.id, 800, 0));
@@ -107,6 +107,10 @@ public class ItemSpecialWeapon extends ItemWeapon
 						event.entityLiving.motionZ = 0D;
 						event.entityLiving.setFire(100);
 						event.entityLiving.worldObj.addWeatherEffect(new EntityLightningBolt(event.entityLiving.worldObj, event.entityLiving.posX, event.entityLiving.posY, event.entityLiving.posZ)); 
+						break;
+					case VESTA:
+						event.ammount *= 2;
+						player.addPotionEffect(new PotionEffect(Potion.moveSpeed.id, 30, 4));
 						break;
 					default:
 				}

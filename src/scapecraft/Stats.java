@@ -76,36 +76,23 @@ public class Stats
 		return level;
 	}
 		
-	public static int getAgilityLevelFromXp(int xp)
+	public static int getOldLevelFromXp(int xp)
 	{
 		int level = 0;
 		for(; level < oldLevels.length && oldLevels[level] <= xp; level++);
 		return level;
 	}
 
-	public static int getMiningLevelFromXp(int xp)
-	{
-		int level = 0;
-		for(; level < oldLevels.length && oldLevels[level] <= xp; level++);
-		return level;
-	}
-
-	public static void addXp(EntityPlayer player, int amount)
+	public static void addCombatXp(EntityPlayer player, int amount)
 	{
 		setStat(player, "combatLevel", getLevelFromXp(getStat(player, "combatxp") + amount));
 		addStat(player, "combatxp", amount);
 	}
 
-	public static void addAXp(EntityPlayer player, int amount) 
+	public static void addXp(EntityPlayer player, String stat, int amount)
 	{
-		setStat(player, "agilityLevel", getAgilityLevelFromXp(getStat(player, "agilityxp") + amount));
-		addStat(player, "agilityxp", amount);
-	}
-
-	public static void addMXp(EntityPlayer player, int amount) 
-	{ 
-		setStat(player, "miningLevel", getMiningLevelFromXp(getStat(player, "miningxp") + amount));
-		addStat(player, "miningxp", amount);
+		setStat(player, stat + "Level", getOldLevelFromXp(getStat(player, stat + "xp") + amount));
+		addStat(player, stat + "xp", amount);
 	}
 
 	public static void addEnergy(EntityPlayer player, int amount)
@@ -179,6 +166,23 @@ public class Stats
 			NBTTagCompound persistedNBT = player.getEntityData().getCompoundTag(EntityPlayer.PERSISTED_NBT_TAG);
 			persistedNBT.setInteger(stat, amount);
 			player.getEntityData().setTag(EntityPlayer.PERSISTED_NBT_TAG, persistedNBT);
+		}
+	}
+
+	public static void convertFromOldSystem(EntityPlayer player)
+	{
+		NBTTagCompound tagCompound = new NBTTagCompound();
+		player.writeToNBT(tagCompound);
+		if(tagCompound.getCompoundTag("ExtendedPlayer") != null && tagCompound.getCompoundTag("ExtendedPlayer").getInteger("combatxp") != 0)
+		{
+			int axp = tagCompound.getCompoundTag("ExtendedPlayer").getInteger("agilityxp");
+			int mxp = tagCompound.getCompoundTag("ExtendedPlayer").getInteger("miningxp");
+			int cxp = tagCompound.getCompoundTag("ExtendedPlayer").getInteger("combatxp") * 25;
+			tagCompound.getCompoundTag("ExtendedPlayer").removeTag("miningxp");
+			player.readFromNBT(tagCompound);
+			addXp(player, "agilityxp", axp);
+			addXp(player, "mining", mxp);
+			addCombatXp(player, cxp);
 		}
 	}
 

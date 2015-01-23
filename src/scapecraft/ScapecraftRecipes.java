@@ -5,6 +5,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
 import scapecraft.block.ScapecraftBlocks;
+import scapecraft.entity.ScapecraftEntities;
 import scapecraft.item.ScapecraftItems;
 
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -18,11 +19,11 @@ public class ScapecraftRecipes
 		GameRegistry.addRecipe(new ItemStack(ScapecraftItems.boltRack, 3), new Object[] { " X ", " Y ", 'X', ScapecraftBlocks.magicPlank, 'Y', Items.arrow});
 		GameRegistry.addRecipe(new ItemStack(ScapecraftItems.cabbagePieUncooked, 1), new Object[] {" X ", " Y ", 'X', ScapecraftItems.cutCabbage, 'Y', Items.bread});
 		GameRegistry.addRecipe(new ItemStack(ScapecraftItems.cabbagePieUncooked, 1), new Object[] {" X ", "XYX", 'X', Blocks.log, 'Y', Blocks.torch});
-		GameRegistry.addRecipe(new ItemStack(ScapecraftItems.contract, 1), new Object[] {"XYX", 'X', Items.gold_ingot, 'Y', Items.paper});
-		GameRegistry.addRecipe(new ItemStack(ScapecraftItems.contract2, 1), new Object[] {"XY", 'X', Items.gold_ingot, 'Y', Items.paper});
-		GameRegistry.addRecipe(new ItemStack(ScapecraftItems.contract3, 1), new Object[] {" X ", "XYX", " X ", 'X', Items.gold_ingot, 'Y', Items.paper});
-		GameRegistry.addRecipe(new ItemStack(ScapecraftItems.contract4, 1), new Object[] {"XXX", "XYX", "XXX", 'X', Items.diamond, 'Y', Items.paper});
-		//;GameRegistry.addRecipe(new ItemStack(ScapecraftItems.cutCabbage, 1), new Object[] {"X", 'X', ScapecraftBlocks.cabbage});
+		GameRegistry.addRecipe(new ItemStack(ScapecraftItems.scapecraftSpawnEgg, ScapecraftEntities.entities.indexOf("WhiteKnight")), new Object[] {"XYX", 'X', Items.gold_ingot, 'Y', Items.paper});
+		GameRegistry.addRecipe(new ItemStack(ScapecraftItems.scapecraftSpawnEgg, ScapecraftEntities.entities.indexOf("Guard")), new Object[] {"XY", 'X', Items.gold_ingot, 'Y', Items.paper});
+		GameRegistry.addRecipe(new ItemStack(ScapecraftItems.scapecraftSpawnEgg, ScapecraftEntities.entities.indexOf("Wizard")), new Object[] {" X ", "XYX", " X ", 'X', Items.gold_ingot, 'Y', Items.paper});
+		GameRegistry.addRecipe(new ItemStack(ScapecraftItems.scapecraftSpawnEgg, ScapecraftEntities.entities.indexOf("HeroKnight")), new Object[] {"XXX", "XYX", "XXX", 'X', Items.diamond, 'Y', Items.paper});
+		GameRegistry.addRecipe(new ItemStack(ScapecraftItems.cutCabbage, 1), new Object[] {"X", 'X', ScapecraftBlocks.cabbage});
 		GameRegistry.addRecipe(new ItemStack(ScapecraftItems.fishPieUncooked, 1), new Object[] {" X ", " Y ", 'X', Items.cooked_fish, 'Y', Items.bread});
 		GameRegistry.addRecipe(new ItemStack(ScapecraftItems.greenDLeather, 1), new Object[] {" X ", " Y ", 'X', Items.gold_ingot, 'Y', ScapecraftItems.greenDHide});
 		GameRegistry.addRecipe(new ItemStack(ScapecraftItems.magicBoat, 1), new Object[] { "X X", "XXX", 'X', ScapecraftBlocks.magicPlank});
@@ -71,6 +72,17 @@ public class ScapecraftRecipes
 		GameRegistry.addRecipe(new ItemStack(ScapecraftItems.hilt, 1), new Object[] {" X ", " Y ", " Z ", 'X', ScapecraftItems.shard1, 'Y', ScapecraftItems.shard2, 'Z', ScapecraftItems.shard3});
 		GameRegistry.addRecipe(new ItemStack(ScapecraftItems.ironHammer, 1), new Object[] {"XXX", "XYX", " Y ", 'X', Items.iron_ingot, 'Y', Items.stick});
 		GameRegistry.addRecipe(new ItemStack(ScapecraftItems.meatPieUncooked, 1), new Object[] {" X ", " Y ", 'X', Items.cooked_porkchop, 'Y', Items.bread});
+		GameRegistry.addRecipe(new ItemStack(ScapecraftItems.bronzeAxe, 1), new Object[] {"XX ", "XY ", " Y ", 'X', ScapecraftItems.bronzeIngot, 'Y', Items.stick});
+		GameRegistry.addRecipe(new ItemStack(ScapecraftItems.bronzeBoots, 1), new Object[] { "X X", "X X", 'X', ScapecraftItems.bronzeIngot});
+		GameRegistry.addRecipe(new ItemStack(ScapecraftItems.bronzeChestplate, 1), new Object[] {"X X", "XXX", "XXX", 'X', ScapecraftItems.bronzeIngot});
+		GameRegistry.addRecipe(new ItemStack(ScapecraftItems.bronzeHammer, 1), new Object[] {"XXX", "XYX", " Y ", 'X', ScapecraftItems.bronzeIngot, 'Y', Items.stick});
+		GameRegistry.addRecipe(new ItemStack(ScapecraftItems.bronzeHelmet, 1), new Object[] {"XXX", "X X", 'X', ScapecraftItems.bronzeIngot});
+		GameRegistry.addRecipe(new ItemStack(ScapecraftItems.bronzeHoe, 1), new Object[] {"XX ", " Y ", " Y ", 'X', ScapecraftItems.bronzeIngot, 'Y', Items.stick});
+		GameRegistry.addRecipe(new ItemStack(ScapecraftItems.bronzeLeggings, 1), new Object[] {"XXX", "X X", "X X", 'X', ScapecraftItems.bronzeIngot});
+		GameRegistry.addRecipe(new ItemStack(ScapecraftItems.bronzePickaxe, 1), new Object[] {"XXX", " Y ", " Y ", 'X', ScapecraftItems.bronzeIngot, 'Y', Items.stick});
+		GameRegistry.addRecipe(new ItemStack(ScapecraftItems.bronzeShovel, 1), new Object[] {" X ", " Y ", " Y ", 'X', ScapecraftItems.bronzeIngot, 'Y', Items.stick});
+		GameRegistry.addRecipe(new ItemStack(ScapecraftItems.bronzeSword, 1), new Object[] {" X ", " X ", " Y ", 'X', ScapecraftItems.bronzeIngot, 'Y', Items.stick});
+
 		GameRegistry.addRecipe(new ItemStack(ScapecraftItems.mithAxe, 1), new Object[] {"XX ", "XY ", " Y ", 'X', ScapecraftItems.mithIngot, 'Y', Items.stick});
 		GameRegistry.addRecipe(new ItemStack(ScapecraftItems.mithBoots, 1), new Object[] { "X X", "X X", 'X', ScapecraftItems.mithIngot});
 		GameRegistry.addRecipe(new ItemStack(ScapecraftItems.mithChestplate, 1), new Object[] {"X X", "XXX", "XXX", 'X', ScapecraftItems.mithIngot});
@@ -94,12 +106,15 @@ public class ScapecraftRecipes
 		GameRegistry.addRecipe(new ItemStack(ScapecraftItems.runeShovel, 1), new Object[] {" X ", " Y ", " Y ", 'X', ScapecraftItems.runeIngot, 'Y', Items.stick});
 		GameRegistry.addRecipe(new ItemStack(ScapecraftItems.runeSword, 1), new Object[] {" X ", " X ", " Y ", 'X', ScapecraftItems.runeIngot, 'Y', Items.stick});
 		GameRegistry.addShapelessRecipe(new ItemStack(ScapecraftItems.tombKey, 2), new Object[] {ScapecraftItems.ahrimKey, ScapecraftItems.akrisaeKey, ScapecraftItems.dharokKey, ScapecraftItems.karilKey, ScapecraftItems.guthanKey, ScapecraftItems.toragKey, ScapecraftItems.veracKey});
-		GameRegistry.addRecipe(new ItemStack(ScapecraftItems.addyLump, 1), new Object[] {" X ", "XYX", " X ", 'X', Items.coal, 'Y', ScapecraftBlocks.addyOre});
 		GameRegistry.addRecipe(new ItemStack(Blocks.gold_block, 9), new Object[] {"X", 'X', ScapecraftItems.note1});
 		GameRegistry.addRecipe(new ItemStack(ScapecraftItems.note1, 1), new Object[] {"XXX", "XXX", "XXX", 'X', Blocks.gold_block});
+		GameRegistry.addShapelessRecipe(new ItemStack(ScapecraftItems.bronzeLump, 1), new Object[] {ScapecraftBlocks.copperOre, ScapecraftBlocks.tinOre});
 		GameRegistry.addRecipe(new ItemStack(ScapecraftItems.mithLump, 1), new Object[] {"XYX", 'X', Items.coal, 'Y', ScapecraftBlocks.mithOre});
+		GameRegistry.addRecipe(new ItemStack(ScapecraftItems.addyLump, 1), new Object[] {" X ", "XYX", " X ", 'X', Items.coal, 'Y', ScapecraftBlocks.addyOre});
 		GameRegistry.addRecipe(new ItemStack(ScapecraftItems.runeLump, 1), new Object[] {"XXX", "XYX", "XXX", 'X', Items.coal, 'Y', ScapecraftBlocks.runeOre});
 
+		GameRegistry.addRecipe(new ItemStack(ScapecraftItems.bronzeIngot, 9), new Object[] {"X", 'X', ScapecraftBlocks.bronzeBlock});
+		GameRegistry.addRecipe(new ItemStack(ScapecraftBlocks.bronzeBlock, 1), new Object[] {"XXX", "XXX", "XXX", 'X', ScapecraftItems.bronzeIngot});
 		GameRegistry.addRecipe(new ItemStack(ScapecraftItems.mithIngot, 9), new Object[] {"X", 'X', ScapecraftBlocks.mithBlock});
 		GameRegistry.addRecipe(new ItemStack(ScapecraftBlocks.mithBlock, 1), new Object[] {"XXX", "XXX", "XXX", 'X', ScapecraftItems.mithIngot});
 		GameRegistry.addRecipe(new ItemStack(ScapecraftItems.addyIngot, 9), new Object[] {"X", 'X', ScapecraftBlocks.addyBlock});
@@ -112,6 +127,7 @@ public class ScapecraftRecipes
 		GameRegistry.addSmelting(ScapecraftItems.cabbagePieUncooked, new ItemStack(ScapecraftItems.cabbagePie), 1.0F);
 		GameRegistry.addSmelting(ScapecraftItems.fishPieUncooked, new ItemStack(ScapecraftItems.fishPie), 1.0F);
 		GameRegistry.addSmelting(ScapecraftItems.meatPieUncooked, new ItemStack(ScapecraftItems.meatPie), 1.0F);
+		GameRegistry.addSmelting(ScapecraftItems.bronzeLump, new ItemStack(ScapecraftItems.bronzeIngot), 1.0F);
 		GameRegistry.addSmelting(ScapecraftItems.mithLump, new ItemStack(ScapecraftItems.mithIngot), 1.0F);
 		GameRegistry.addSmelting(ScapecraftItems.runeLump, new ItemStack(ScapecraftItems.runeIngot), 1.0F);
 	}

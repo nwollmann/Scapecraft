@@ -1,6 +1,7 @@
 package scapecraft.entity;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
@@ -16,6 +17,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
@@ -99,17 +101,6 @@ public class EntityVampire extends EntityScapecraft
 	{
 		return true;
 	}
-	/**
-	 * Called to update the entity's position/logic.
-	 */
-	public void onUpdate()
-	{
-		super.onUpdate();
-
-
-	}
-
-
 
 	protected Entity findPlayerToAttack()
 	{
@@ -222,5 +213,13 @@ public class EntityVampire extends EntityScapecraft
 	public int getXpValue()
 	{
 		return 100;
+	}
+
+	@Override
+	public void damageEntity(DamageSource source, float damage)
+	{
+		if(source.getSourceOfDamage() instanceof EntityLivingBase && ((EntityLivingBase) source.getSourceOfDamage()).getHeldItem().getItem() == ScapecraftItems.stake)
+			damage *= 600;
+		super.damageEntity(source, damage);
 	}
 }

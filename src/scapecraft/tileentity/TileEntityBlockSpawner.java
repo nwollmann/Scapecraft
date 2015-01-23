@@ -61,6 +61,7 @@ public class TileEntityBlockSpawner extends TileEntity
 		compound.setLong("startTime", startTime);
 		compound.setInteger("uses", uses);
 		compound.setBoolean("growing", growing);
+		compound.setBoolean("updated", true);
 	}
 
 	public void readFromNBT(NBTTagCompound compound)
@@ -69,5 +70,7 @@ public class TileEntityBlockSpawner extends TileEntity
 		this.startTime = compound.getLong("startTime");
 		this.uses = compound.getInteger("uses");
 		this.growing = compound.getBoolean("growing");
+		if(compound.getBoolean("updated") == false)
+			this.uses = 50;
 	}
 }

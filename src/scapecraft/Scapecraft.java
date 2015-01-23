@@ -8,23 +8,21 @@ import java.util.Arrays;
 import java.util.List;
 
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.EntityList;
 import net.minecraft.item.Item;
 import net.minecraft.nbt.CompressedStreamTools;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.util.Constants;
 
 import scapecraft.block.ScapecraftBlocks;
 import scapecraft.client.gui.GuiHandler;
-import scapecraft.command.SpawnCommand;
 import scapecraft.economy.EconomyHandler;
-import scapecraft.entity.Drop;
-import scapecraft.entity.EntityScapecraft;
+import scapecraft.economy.ScapecraftEconomy;
 import scapecraft.entity.ScapecraftEntities;
 import scapecraft.item.ScapecraftItems;
+import scapecraft.network.MobSpawnerGuiPacket;
+import scapecraft.network.MobSpawnerPacket;
 import scapecraft.network.StatsPacket;
 import scapecraft.util.UpdateHandler;
 
@@ -37,6 +35,7 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLMissingMappingsEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.event.FMLServerStartedEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
@@ -46,7 +45,7 @@ import cpw.mods.fml.relauncher.Side;
 public class Scapecraft
 {
 	public static final String version = "@VERSION@";
-	public static boolean requireLevels = false;
+	public static boolean requireLevels = true;
 
 	/*start armor*/
 	public static final CreativeTabs tabScapecraftArmor = new CreativeTabs("tabScapecraftArmor")
@@ -105,8 +104,8 @@ public class Scapecraft
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event)
 	{
-		ScapecraftBlocks.registerBlocks();
 		ScapecraftItems.registerItems();
+		ScapecraftBlocks.registerBlocks();
 	}
 
 	@EventHandler
@@ -124,6 +123,8 @@ public class Scapecraft
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
 		network = NetworkRegistry.INSTANCE.newSimpleChannel("scapecraft");
 		network.registerMessage(StatsPacket.class, StatsPacket.class, 0, Side.CLIENT);
+		network.registerMessage(MobSpawnerGuiPacket.class, MobSpawnerGuiPacket.class, 1, Side.CLIENT);
+		network.registerMessage(MobSpawnerPacket.class, MobSpawnerPacket.class, 2, Side.SERVER);
 	}
 
 	@EventHandler
@@ -134,6 +135,7 @@ public class Scapecraft
 		{
 			if(GameRegistry.findUniqueIdentifierFor(item).modId.equals("Scapecraft"))
 			{
+				@SuppressWarnings("rawtypes")
 				List subItems = new ArrayList();
 				item.getSubItems(item, null, subItems);
 				for(ItemStack stack : (Iterable<ItemStack>) subItems)
@@ -156,9 +158,9 @@ public class Scapecraft
 					System.out.println(block.getLocalizedName());
 			}
 		}
-		for(Entry<String, Class<? extends Entity>> entry : ScapecraftEntities.entityNames.entrySet())
+		for(String name : ScapecraftEntities.entities)
 		{
-			System.out.println("entity." + entry.getKey() + ".name");
+			System.out.println(StatCollector.translateToLocal("entity.Scapecraft." + name + ".name"));
 		}
 /**/
 
@@ -197,8 +199,6 @@ public class Scapecraft
 	@EventHandler
 	public void serverStarting(FMLServerStartingEvent event)
 	{
-		EconomyHandler.initEconomy();
-
 		File dataFile = event.getServer().worldServers[0].getSaveHandler().getMapFileFromName("ScapecraftData");
 		if(dataFile != null && dataFile.exists())
 		{
@@ -210,25 +210,36 @@ public class Scapecraft
 				return;
 			}
 
-			NBTTagCompound drops = nbt.getCompoundTag("drops");
-			boolean update = !drops.getString("version").equals(version) || version.isEmpty();
-			if(update)
-				ScapecraftEntities.addDrops();
+			//NBTTagCompound drops = nbt.getCompoundTag("drops");
+			//boolean update = !drops.getString("version").equals(version) || version.isEmpty();
+			//if(update)
+			ScapecraftEntities.addDrops();
 
-			if(!drops.hasNoTags())
-				for(Object id : drops.getKeySet())
-				{
-					NBTTagList list = drops.getTagList((String) id, Constants.NBT.TAG_COMPOUND);
-					@SuppressWarnings("unchecked") //Decompiling causes type erasure, so this is necessary to prevent warnings
-						Class<? extends EntityScapecraft> entityClass = (Class<? extends EntityScapecraft>) EntityList.stringToClassMapping.get((String) id);
-					while(list.tagCount() > 0)
-						if(!update || list.getCompoundTagAt(0).getBoolean("custom"))
-							EntityScapecraft.addDrop(entityClass, Drop.fromNBT((NBTTagCompound) list.removeTag(0)));
+			/*if(!drops.hasNoTags())
+			  {
+			  for(Object id : drops.getKeySet())
+			  {
+			  NBTTagList list = drops.getTagList((String) id, Constants.NBT.TAG_COMPOUND);
+			  @SuppressWarnings("unchecked") //Decompiling causes type erasure, so this is necessary to prevent warnings
+			  Class<? extends EntityScapecraft> entityClass = (Class<? extends EntityScapecraft>) EntityList.stringToClassMapping.get((String) id);
+			  while(list.tagCount() > 0)
+			  if(!update || list.getCompoundTagAt(0).getBoolean("custom"))
+			  EntityScapecraft.addDrop(entityClass, Drop.fromNBT((NBTTagCompound) list.removeTag(0)));
 
-				}
+			  }
+			  }*/
+			EconomyHandler.scEconomy = new ScapecraftEconomy();
+			EconomyHandler.scEconomy.readFromNBT(nbt);
 		}
 
-		event.registerServerCommand(new SpawnCommand());
+		//event.registerServerCommand(new TestingCommand());
+	}
+
+	@EventHandler
+	public void serverStarted(FMLServerStartedEvent event)
+	{
+		System.out.println("Initiallizing economy");
+		EconomyHandler.initEconomy();
 	}
 
 	@EventHandler

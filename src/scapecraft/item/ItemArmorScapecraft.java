@@ -2,8 +2,10 @@ package scapecraft.item;
 
 import java.util.List;
 
+import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
@@ -23,6 +25,10 @@ public class ItemArmorScapecraft extends ItemArmor
 	public String armorNameType;
 	protected ScapecraftArmorMaterial material;
 	private static ArmorMaterial fakeMaterial = EnumHelper.addArmorMaterial("SCAPECRAFTARMOR", 1000, new int[] {1, 1, 1, 1}, 1); //Values are all totally arbitrary
+	@SideOnly(Side.CLIENT)
+	public ModelBiped armorModel;
+
+	public String textureName;
 
 	public ItemArmorScapecraft(ScapecraftArmorMaterial armorMaterial, int par3, int type, String armornamePrefix)
 	{
@@ -34,6 +40,7 @@ public class ItemArmorScapecraft extends ItemArmor
 		this.setMaxDurability(armorMaterial.getDurability(type));
 		this.setCreativeTab(Scapecraft.tabScapecraftArmor);
 		this.armorNamePrefix = armornamePrefix;
+		this.textureName = "scapecraft:textures/armor/" + armorNamePrefix + "_1.png";
 		switch(type)
 		{
 			case 0:
@@ -44,6 +51,7 @@ public class ItemArmorScapecraft extends ItemArmor
 				break;
 			case 2:
 				armorNameType = "Leggings";
+				this.textureName = "scapecraft:textures/armor/" + armorNamePrefix + "_2.png";
 				break;
 			case 3:
 				armorNameType = "Boots";
@@ -55,11 +63,7 @@ public class ItemArmorScapecraft extends ItemArmor
 	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
 	{
-		if (armorNameType.equals("Leggings")) 
-		{
-			return "scapecraft:textures/armor/" + armorNamePrefix + "_2.png";
-		}
-		return "scapecraft:textures/armor/" + armorNamePrefix + "_1.png";
+		return this.textureName;
 	}
 
 
@@ -113,7 +117,7 @@ public class ItemArmorScapecraft extends ItemArmor
 			case VERAC:
 				if(this.armorType == 0 && event.source.getEntity() instanceof EntityPlayer && this.isWearingFullSet((EntityPlayer) event.source.getEntity()) && ((EntityPlayer) event.source.getEntity()).getCurrentEquippedItem() != null && ((EntityPlayer) event.source.getEntity()).getCurrentEquippedItem().getItem() == ScapecraftItems.veracFlail)
 				{
-					System.out.println(event.ammount);
+					//System.out.println(event.ammount);
 					event.source.setDamageBypassesArmor().setDamageIsAbsolute();
 				}
 				break;
@@ -160,5 +164,31 @@ public class ItemArmorScapecraft extends ItemArmor
 		super.addInformation(itemStack, player, lines, advancedTooltips);
 		lines.add(StatCollector.translateToLocal("weapon.minlevel") + " " + material.getMinLevel());
 		lines.add(StatCollector.translateToLocal("armor.healthboost") + " " + this.getHealthBoost());
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, int armorSlot) 
+	{
+		if(armorModel == null)
+			return super.getArmorModel(entityLiving, itemStack, armorSlot);
+
+		armorModel.bipedHead.showModel = armorSlot == 0;
+		armorModel.bipedHeadwear.showModel = armorSlot == 0;
+		armorModel.bipedBody.showModel = armorSlot == 1 || armorSlot == 2;
+		armorModel.bipedRightArm.showModel = armorSlot == 1;
+		armorModel.bipedLeftArm.showModel = armorSlot == 1;
+		armorModel.bipedRightLeg.showModel = armorSlot == 2 || armorSlot == 3;
+		armorModel.bipedLeftLeg.showModel = armorSlot == 2 || armorSlot == 3;
+
+		armorModel.isSneak = entityLiving.isSneaking();
+		armorModel.isRiding = entityLiving.isRiding();
+		armorModel.isChild = entityLiving.isChild();
+		armorModel.heldItemRight = entityLiving.getEquipmentInSlot(0) != null ? 1 :0;
+		if(entityLiving instanceof EntityPlayer)
+		{
+			armorModel.aimedBow = ((EntityPlayer)entityLiving).getItemInUseDuration() > 2;
+		}
+		return armorModel;
 	}
 }

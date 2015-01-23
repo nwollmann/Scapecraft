@@ -1,8 +1,7 @@
-package scapecraft.client.renderer;
+package scapecraft.client.renderer.entity;
 
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.client.renderer.entity.ScapecraftRenderHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 
@@ -14,12 +13,12 @@ public class RenderShapeshifter extends Render
 	@Override
 	public void doRender(Entity entity, double x, double y, double z, float f, float f1)
 	{
-		RenderManager.instance.doRenderEntity(((EntityShapeshifter)entity).copiedMob, x, y, z, f, f1, false);
+		((Render)RenderManager.instance.entityRenderMap.get(((EntityShapeshifter)entity).copiedMob.getClass())).doRender(((EntityShapeshifter)entity).copiedMob, x, y, z, f, f1);
 	}
 
 	@Override
 	protected ResourceLocation getEntityTexture(Entity entity)
 	{
-		return ScapecraftRenderHelper.getEntityTexture(((EntityShapeshifter)entity).copiedMob);
+		return null;
 	}
 }

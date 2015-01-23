@@ -219,7 +219,7 @@ public class EntityBlackGuard extends EntityScapecraft
 	}
 
 	@Override
-	public void addRandomArmor()
+	public void addArmor()
 	{
 			this.setCurrentItemOrArmor(1, new ItemStack(ScapecraftItems.blackBoots));
 			this.setCurrentItemOrArmor(2, new ItemStack(ScapecraftItems.blackLeggings));
@@ -227,6 +227,7 @@ public class EntityBlackGuard extends EntityScapecraft
 			this.equipmentDropChances[4] = 0.0F;
 	}
 
+	@Override
 	public ItemStack getHeldItem()
 	{
 		return defaultHeldItem;

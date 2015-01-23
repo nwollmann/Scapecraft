@@ -104,6 +104,8 @@ public class ScapecraftEntities
 		registerEntity(EntityTstanonKarlak.class, "TstanonKarlak");
 		registerEntity(EntityKrilTsutsaroth.class, "KrilTsutsaroth");
 		registerEntity(EntityBalfrugKreeyath.class, "BalfrugKreeyath");
+		registerEntity(EntityKreearra.class, "Kreearra");
+		registerEntity(EntityGenericBiped.class, "GenericBiped");
 		registerEntity(EntityShapeshifter.class, "Shapeshifter");
 
 		CombatXpHelper.addVanilla();
@@ -112,7 +114,7 @@ public class ScapecraftEntities
 	public static void registerEntity(Class<? extends Entity> entityClass, String name)
 	{
 		EntityRegistry.registerModEntity(entityClass, name, currentEntityIdOffset, Scapecraft.instance, 80, 3, true);
-		entityNames.put(name, entityClass);
+		entityNames.put(name.toLowerCase(), entityClass);
 		if(EntityScapecraft.class.isAssignableFrom(entityClass))
 		{
 			entities.add(name);
@@ -257,7 +259,7 @@ public class ScapecraftEntities
 		addDrop(EntityEliteBlackKnight.class, 500, new ItemStack(ScapecraftItems.blackgChestplate));
 		addDrop(EntityEliteBlackKnight.class, 500, new ItemStack(ScapecraftItems.blackgHelmet));
 		addDrop(EntityEliteBlackKnight.class, 500, new ItemStack(ScapecraftItems.blackgLeggings));
-		addDrop(EntityFarmer.class, 140, new ItemStack(ScapecraftItems.guardHelmet));
+		addDrop(EntityFarmer.class, 140, new ItemStack(ScapecraftItems.bronzeHelmet));
 		addDrop(EntityFarmer.class, 15, new ItemStack(Items.stone_sword));
 		addDrop(EntityFarmer.class, 160, new ItemStack(ScapecraftItems.guardChestplate));
 		addDrop(EntityFarmer.class, 40, new ItemStack(ScapecraftItems.pitchFork));
@@ -317,7 +319,7 @@ public class ScapecraftEntities
 		addDrop(EntityGreenDragon.class, 3, new ItemStack(Items.gold_ingot));
 		addDrop(EntityGreenDragon.class, 5, new ItemStack(ScapecraftBlocks.addyOre));
 		addDrop(EntityGreenDragon.class, 500000, new ItemStack(ScapecraftItems.dragonChestplate));
-		addDrop(EntityGuard.class, 140, new ItemStack(ScapecraftItems.guardHelmet));
+		addDrop(EntityGuard.class, 140, new ItemStack(ScapecraftItems.bronzeHelmet));
 		addDrop(EntityGuard.class, 150, new ItemStack(Items.stone_sword));
 		addDrop(EntityGuard.class, 160, new ItemStack(ScapecraftItems.guardChestplate));
 		addDrop(EntityGuard.class, 5000, new ItemStack(ScapecraftItems.DD));
@@ -414,7 +416,7 @@ public class ScapecraftEntities
 		addDrop(EntityKing.class, 6, new ItemStack(ScapecraftItems.whiteChestplate));
 		addDrop(EntityKing.class, 60, new ItemStack(ScapecraftItems.runeLeggings));
 		addDrop(EntityKingsGuard.class, 10, new ItemStack(ScapecraftItems.guardChestplate));
-		addDrop(EntityKingsGuard.class, 10, new ItemStack(ScapecraftItems.guardHelmet));
+		addDrop(EntityKingsGuard.class, 10, new ItemStack(ScapecraftItems.bronzeHelmet));
 		addDrop(EntityKingsGuard.class, 100, new ItemStack(Items.golden_sword));
 		addDrop(EntityKingsGuard.class, 10000, new ItemStack(ScapecraftItems.saraSword));
 		addDrop(EntityKos3.class, 1, new ItemStack(Items.gold_ingot, 2));
@@ -452,7 +454,7 @@ public class ScapecraftEntities
 		addDrop(EntityLootChest.class, 1, new ItemStack(ScapecraftItems.whiteHelmet));
 		addDrop(EntityLootChest.class, 1, new ItemStack(ScapecraftItems.whiteLeggings));
 		addDrop(EntityLootChest.class, 1, new ItemStack(ScapecraftItems.whiteSword));
-		addDrop(EntityMan.class, 140, new ItemStack(ScapecraftItems.guardHelmet));
+		addDrop(EntityMan.class, 140, new ItemStack(ScapecraftItems.bronzeHelmet));
 		addDrop(EntityMan.class, 150, new ItemStack(Items.stone_sword));
 		addDrop(EntityMan.class, 160, new ItemStack(ScapecraftItems.guardChestplate));
 		addDrop(EntityMan.class, 5000, new ItemStack(ScapecraftItems.DD));
@@ -476,11 +478,11 @@ public class ScapecraftEntities
 		addDrop(EntityMugger.class, 30, new ItemStack(ScapecraftItems.magicFruit));
 		addDrop(EntityMugger.class, 3000, new ItemStack(ScapecraftItems.dragonBoots));
 		addDrop(EntityRat.class, 10, new ItemStack(Items.gold_nugget));
-		addDrop(EntityRat.class, 30, new ItemStack(ScapecraftItems.guardHelmet));
+		addDrop(EntityRat.class, 30, new ItemStack(ScapecraftItems.bronzeHelmet));
 		addDrop(EntityRat.class, 5, new ItemStack(Items.stone_sword));
 		addDrop(EntityRat.class, 5000, new ItemStack(ScapecraftItems.DD));
 		addDrop(EntityRatSmall.class, 10, new ItemStack(Items.stone_sword));
-		addDrop(EntityRatSmall.class, 100, new ItemStack(ScapecraftItems.guardHelmet));
+		addDrop(EntityRatSmall.class, 100, new ItemStack(ScapecraftItems.bronzeHelmet));
 		addDrop(EntityRatSmall.class, 4, new ItemStack(ScapecraftItems.ratTail));
 		addDrop(EntityRatSmall.class, 40, new ItemStack(Items.gold_nugget));
 		addDrop(EntityScorpion.class, 100, new ItemStack(ScapecraftItems.blackChestplate));
@@ -565,11 +567,10 @@ public class ScapecraftEntities
 	{
 		EntityScapecraft entity = null;
 		try {
-			entity = (EntityScapecraft) ScapecraftEntities.entityNames.get(name).getConstructor(new Class[] { World.class }).newInstance(new Object[] { world });
+			entity = (EntityScapecraft) ScapecraftEntities.entityNames.get(name.toLowerCase()).getConstructor(new Class[] { World.class }).newInstance(new Object[] { world });
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return entity;
 	}
-
 }

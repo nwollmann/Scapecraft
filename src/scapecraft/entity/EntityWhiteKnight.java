@@ -239,7 +239,7 @@ public class EntityWhiteKnight extends EntityScapecraft
 	}
 
 	@Override
-	public void addRandomArmor()
+	public void addArmor()
 	{
 			this.setCurrentItemOrArmor(4, new ItemStack(ScapecraftItems.whiteHelmet));
 			this.setCurrentItemOrArmor(1, new ItemStack(ScapecraftItems.whiteBoots));

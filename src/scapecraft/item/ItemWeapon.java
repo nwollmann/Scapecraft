@@ -3,6 +3,7 @@ package scapecraft.item;
 import java.util.List;
 
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
@@ -92,15 +93,27 @@ public class ItemWeapon extends ItemSword
 		lines.add(StatCollector.translateToLocal("weapon.minlevel") + " " + toolMaterial.getMinLevel());
 	}
 
+	public boolean unableToUse(EntityLivingBase entityLiving)
+	{
+		if(entityLiving instanceof EntityPlayer)
+		{
+			if(Scapecraft.requireLevels && Stats.getCombatLevel((EntityPlayer) entityLiving) < this.toolMaterial.getMinLevel() && !((EntityPlayer) entityLiving).capabilities.isCreativeMode)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
 	//Don't swing the weapon normally, this is also where custom attacking can start
 	@Override
 	public boolean onEntitySwing(EntityLivingBase entityLiving, ItemStack stack)
 	{
-		if(entityLiving instanceof EntityPlayer)
-		{
-			if(Scapecraft.requireLevels && Stats.getCombatLevel((EntityPlayer) entityLiving) < this.toolMaterial.getMinLevel())
-				return true;
-		}
-		return false;
+		return unableToUse(entityLiving);
+	}
+
+	@Override
+	public boolean onLeftClickEntity(ItemStack stack, EntityPlayer player, Entity target)
+	{
+		return unableToUse(player);
 	}
 }

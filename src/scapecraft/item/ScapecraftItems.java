@@ -2,6 +2,8 @@ package scapecraft.item;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
 
 import scapecraft.Scapecraft;
 
@@ -38,8 +40,12 @@ public class ScapecraftItems
 	public static Item whiteLeggings;
 	public static Item whiteBoots;
 
-	public static Item guardHelmet;
 	public static Item guardChestplate;
+
+	public static Item bronzeHelmet;
+	public static Item bronzeChestplate;
+	public static Item bronzeLeggings;
+	public static Item bronzeBoots;
 
 	public static Item mithHelmet;
 	public static Item mithChestplate;
@@ -137,8 +143,11 @@ public class ScapecraftItems
 	public static Item dragonCChestplate;
 	public static Item dragonCLeggings;
 	public static Item dragonCBoots;
+
+	public static Item neitiznotHelmet;
 	/*end armor*/
 
+	public static Item bronzeSword;
 	public static Item mithSword;
 	public static Item addySword;
 	public static Item runeSword;
@@ -146,6 +155,10 @@ public class ScapecraftItems
 	public static Item whiteSword;
 	public static Item blackHalberd;
 	public static Item chicken;
+	public static Item keris;
+	public static Item korasis;
+	public static Item stake;
+	public static Item cutlass;
 	public static Item dragon2hSword;
 	public static Item dragonLongsword;
 	public static Item dragonCScimmy;
@@ -156,6 +169,7 @@ public class ScapecraftItems
 	public static Item chaoticMaul;
 	public static Item chaoticLongsword;
 
+	public static Item bronzeHammer;
 	public static Item ironHammer;
 	public static Item mithHammer;
 	public static Item addyHammer;
@@ -171,6 +185,7 @@ public class ScapecraftItems
 	public static Item DD;
 	public static Item DDS;
 	public static Item saraSword;
+	public static Item vestaSword;
 	public static Item AGS;
 	public static Item BGS;
 	public static Item SGS;
@@ -181,27 +196,34 @@ public class ScapecraftItems
 	public static Item guthanSpear;
 	public static Item dharokAxe;
 	public static Item akrisaeMace;
+
+	public static Item bronzeShovel;
 	public static Item mithShovel;
 	public static Item addyShovel;
 	public static Item runeShovel;
 	public static Item dragonShovel;
+	public static Item bronzePickaxe;
 	public static Item mithPickaxe;
 	public static Item addyPickaxe;
 	public static Item runePickaxe;
 	public static Item dragonPickaxe;
 	public static Item dragonPickaxeg;
+	public static Item bronzeAxe;
 	public static Item mithAxe;
 	public static Item addyAxe;
 	public static Item runeAxe;
 	public static Item dragonAxe;
+	public static Item bronzeHoe;
 	public static Item mithHoe;
 	public static Item addyHoe;
 	public static Item runeHoe;
 	public static Item dragonHoe;
 
+	public static Item bronzeLump;
 	public static Item mithLump;
 	public static Item addyLump;
 	public static Item runeLump;
+	public static Item bronzeIngot;
 	public static Item mithIngot;
 	public static Item addyIngot;
 	public static Item runeIngot;
@@ -233,10 +255,6 @@ public class ScapecraftItems
 	public static Item questPoint1;
 	public static Item questPoint2;
 	public static Item questPoint3;
-	public static Item contract;
-	public static Item contract2;
-	public static Item contract3;
-	public static Item contract4;
 	public static Item armadylHilt;
 	public static Item bandosHilt;
 	public static Item saradominHilt;
@@ -262,13 +280,7 @@ public class ScapecraftItems
 	public static Item doorKey;
 	public static Item boltRack;
 	public static Item garlic;
-
-	//TODO melee weapons
-	public static Item keris;
-	public static Item korasis;
-	public static Item stake;
-	public static Item vestaSword;
-	public static Item agilitySword;
+	public static Item invincibilityPotion;
 
 	public static Item yewBow;
 	public static Item magicBow;
@@ -276,12 +288,20 @@ public class ScapecraftItems
 	public static Item crystalBow;
 	public static Item karilBow;
 
-	public static Item magicBoat, invincibilityPotion, ahrimStaff, armaStaff, guthixStaff, saraStaff, zammyStaff;
-	static
-	{
-		magicBoat = invincibilityPotion = ahrimStaff = armaStaff = guthixStaff = saraStaff = zammyStaff
-		= new Item(); //TODO This does look messy, but it should not exist at all, it's to prevent errors in mobs that drop these */
-	}
+	public static Item saraBrew;
+	public static Item superRestore;
+	public static Item superStr;
+	public static Item superDef;
+	public static Item specPot;
+
+	public static Item magicBoat;
+	public static Item cracker;
+
+	public static Item ahrimStaff;
+ 	public static Item armaStaff;
+ 	public static Item guthixStaff;
+ 	public static Item saraStaff;
+ 	public static Item zammyStaff;
 
 	public static void registerItems()
 	{
@@ -315,8 +335,12 @@ public class ScapecraftItems
 		whiteLeggings = new ItemArmorScapecraft(ScapecraftArmorMaterial.WHITE, 2, 2, "white");
 		whiteBoots = new ItemArmorScapecraft(ScapecraftArmorMaterial.WHITE, 3, 3, "white");
 
-		guardHelmet = new ItemArmorScapecraft(ScapecraftArmorMaterial.GUARD, 0, 0, "guard");
-		guardChestplate = new ItemArmorScapecraft(ScapecraftArmorMaterial.GUARD, 1, 1, "guard");
+		guardChestplate = new ItemArmorScapecraft(ScapecraftArmorMaterial.BRONZE, 1, 1, "guard");
+
+		bronzeHelmet = new ItemArmorScapecraft(ScapecraftArmorMaterial.BRONZE, 0, 0, "bronze");
+		bronzeChestplate = new ItemArmorScapecraft(ScapecraftArmorMaterial.BRONZE, 1, 1, "bronze");
+		bronzeLeggings = new ItemArmorScapecraft(ScapecraftArmorMaterial.BRONZE, 2, 2, "bronze");
+		bronzeBoots = new ItemArmorScapecraft(ScapecraftArmorMaterial.BRONZE, 3, 3, "bronze");
 
 		mithHelmet = new ItemArmorScapecraft(ScapecraftArmorMaterial.MITH, 0, 0, "mith");
 		mithChestplate = new ItemArmorScapecraft(ScapecraftArmorMaterial.MITH, 1, 1, "mith");
@@ -414,8 +438,11 @@ public class ScapecraftItems
 		dragonCChestplate = new ItemArmorScapecraft(ScapecraftArmorMaterial.CDRAGON, 1, 1, "dragonC");
 		dragonCLeggings = new ItemArmorScapecraft(ScapecraftArmorMaterial.CDRAGON, 2, 2, "dragonC");
 		dragonCBoots = new ItemArmorScapecraft(ScapecraftArmorMaterial.CDRAGON, 3, 3, "dragonC");
+
+		neitiznotHelmet = new ItemArmorScapecraft(ScapecraftArmorMaterial.NEIT, 0, 0, "neitiznot");
 		/*end armor*/
 
+		bronzeSword = new ItemWeapon(ScapecraftToolMaterial.BRONZE, 4, "BronzeSword");
 		mithSword = new ItemWeapon(ScapecraftToolMaterial.MITH, 4, "MithSword");
 		addySword = new ItemWeapon(ScapecraftToolMaterial.ADDY, 4, "AddySword");
 		runeSword = new ItemWeapon(ScapecraftToolMaterial.RUNE, 4, "RuneSword");
@@ -423,6 +450,9 @@ public class ScapecraftItems
 		whiteSword = new ItemWeapon(ScapecraftToolMaterial.BLACK, 4, "WhiteSword");
 		blackHalberd = new ItemWeapon(ScapecraftToolMaterial.BLACKH, 4, "BlackHalberd");
 		chicken = new ItemWeapon(ScapecraftToolMaterial.CHICKEN, 4, "Chicken");
+		keris = new ItemWeapon(ScapecraftToolMaterial.KERIS, 4, "Keris");
+		korasis = new ItemWeapon(ScapecraftToolMaterial.KORASIS, 4, "KorasiSword");
+		stake = new ItemWeapon(ScapecraftToolMaterial.STAKE, 4, "Stake");
 		dragon2hSword = new ItemWeapon(ScapecraftToolMaterial.WHIP, 4, "Dragon2hSword");
 		dragonLongsword = new ItemWeapon(ScapecraftToolMaterial.DRAGON, 4, "DragonLongsword");
 		dragonCScimmy = new ItemWeapon(ScapecraftToolMaterial.DRAGONC, 4, "DragonCScimmy");
@@ -430,9 +460,12 @@ public class ScapecraftItems
 		fremSword = new ItemWeapon(ScapecraftToolMaterial.FREM, 4, "FremSword");
 		fremSwordf = new ItemWeapon(ScapecraftToolMaterial.FREMF, 4, "FremSwordf");
 		chaoticRapier = new ItemWeapon(ScapecraftToolMaterial.CHAOTIC, 4F, "ChaoticRapier");
-		chaoticMaul = new ItemWeapon(ScapecraftToolMaterial.MAUL, 11F, "ChaoticMaul");
-		chaoticLongsword = new ItemWeapon(ScapecraftToolMaterial.CHAOTIC, 15F, "ChaoticLongsword");
+		chaoticMaul = new ItemWeapon(ScapecraftToolMaterial.CHAOTIC, 11F, "ChaoticMaul");
+		chaoticLongsword = new ItemWeapon(ScapecraftToolMaterial.CHAOTIC, 7F, "ChaoticLongsword");
 
+		cutlass = new ItemCutlass();
+
+		bronzeHammer = new ItemHammer(ScapecraftToolMaterial.BRONZE, "BronzeHammer");
 		ironHammer = new ItemHammer(ScapecraftToolMaterial.IRON, "IronHammer");
 		mithHammer = new ItemHammer(ScapecraftToolMaterial.MITH, "MithHammer");
 		addyHammer = new ItemHammer(ScapecraftToolMaterial.ADDY, "AddyHammer");
@@ -448,6 +481,7 @@ public class ScapecraftItems
 		DD = new ItemSpecialWeapon(ScapecraftToolMaterial.DRAGOND, 4, "DragonDagger", 25);
 		DDS = new ItemSpecialWeapon(ScapecraftToolMaterial.DRAGONDS, 4, "DragonDaggerS", 25);
 		saraSword = new ItemSpecialWeapon(ScapecraftToolMaterial.SS, 4, "SaraSword", 99);
+		vestaSword = new ItemSpecialWeapon(ScapecraftToolMaterial.VESTA, 4, "Vesta", 25);
 		AGS = new ItemSpecialWeapon(ScapecraftToolMaterial.AGS, 4, "ArmadylGodsword", 50);
 		BGS = new ItemSpecialWeapon(ScapecraftToolMaterial.BGS, 4, "BandosGodsword", 99);
 		SGS = new ItemSpecialWeapon(ScapecraftToolMaterial.SGS, 4, "SaradominGodsword", 55);
@@ -458,28 +492,34 @@ public class ScapecraftItems
 		guthanSpear = new ItemSetWeapon(ScapecraftToolMaterial.GUTHAN, ScapecraftArmorMaterial.GUTHAN, "GuthanSpear");
 		dharokAxe = new ItemSetWeapon(ScapecraftToolMaterial.DHAROK, ScapecraftArmorMaterial.DHAROK, "DharokAxe");
 		akrisaeMace = new ItemSetWeapon(ScapecraftToolMaterial.AKRISAE, ScapecraftArmorMaterial.AKRISAE, "AkrisaeMace");
+		bronzeShovel = new ItemScapecraftShovel(ScapecraftToolMaterial.BRONZE).setTextureName("scapecraft:BronzeShovel");
 		mithShovel = new ItemScapecraftShovel(ScapecraftToolMaterial.MITH).setTextureName("scapecraft:MithShovel");
 		addyShovel = new ItemScapecraftShovel(ScapecraftToolMaterial.ADDY).setTextureName("scapecraft:AddyShovel");
 		runeShovel = new ItemScapecraftShovel(ScapecraftToolMaterial.RUNE).setTextureName("scapecraft:RuneShovel");
 		dragonShovel = new ItemScapecraftShovel(ScapecraftToolMaterial.DRAGON).setTextureName("scapecraft:DragonShovel");
+		bronzePickaxe = new ItemScapecraftPickaxe(ScapecraftToolMaterial.BRONZE).setTextureName("scapecraft:BronzePickaxe");
 		mithPickaxe = new ItemScapecraftPickaxe(ScapecraftToolMaterial.MITH).setTextureName("scapecraft:MithPickaxe");
 		addyPickaxe = new ItemScapecraftPickaxe(ScapecraftToolMaterial.ADDY).setTextureName("scapecraft:AddyPickaxe");
 		runePickaxe = new ItemScapecraftPickaxe(ScapecraftToolMaterial.RUNE).setTextureName("scapecraft:RunePickaxe");
 		dragonPickaxe = new ItemScapecraftPickaxe(ScapecraftToolMaterial.DRAGON).setTextureName("scapecraft:DragonPickaxe");
 		dragonPickaxeg = new ItemScapecraftPickaxe(ScapecraftToolMaterial.DRAGONG).setTextureName("scapecraft:DragonPickaxeg");
 		runePickaxe = new ItemScapecraftPickaxe(ScapecraftToolMaterial.RUNE).setTextureName("scapecraft:RunePickaxe");
+		bronzeAxe = new ItemScapecraftAxe(ScapecraftToolMaterial.BRONZE).setTextureName("scapecraft:BronzeAxe");
 		mithAxe = new ItemScapecraftAxe(ScapecraftToolMaterial.MITH).setTextureName("scapecraft:MithAxe");
 		addyAxe = new ItemScapecraftAxe(ScapecraftToolMaterial.ADDY).setTextureName("scapecraft:AddyAxe");
 		runeAxe = new ItemScapecraftAxe(ScapecraftToolMaterial.RUNE).setTextureName("scapecraft:RuneAxe");
-		dragonAxe = new ItemScapecraftAxe(ScapecraftToolMaterial.DRAGONB).setTextureName("scapecraft:DragonAxe");
+		dragonAxe = new ItemScapecraftAxe(ScapecraftToolMaterial.DRAGON).setTextureName("scapecraft:DragonAxe");
+		bronzeHoe = new ItemScapecraftHoe(ScapecraftToolMaterial.BRONZE).setTextureName("scapecraft:BronzeHoe");
 		mithHoe = new ItemScapecraftHoe(ScapecraftToolMaterial.MITH).setTextureName("scapecraft:MithHoe");
 		addyHoe = new ItemScapecraftHoe(ScapecraftToolMaterial.ADDY).setTextureName("scapecraft:AddyHoe");
 		runeHoe = new ItemScapecraftHoe(ScapecraftToolMaterial.RUNE).setTextureName("scapecraft:RuneHoe");
 		dragonHoe = new ItemScapecraftHoe(ScapecraftToolMaterial.DRAGON).setTextureName("scapecraft:DragonHoe");
 
+		bronzeLump = new Item().setTextureName("scapecraft:BronzeLump").setUnlocalizedName("bronzeLump").setCreativeTab(Scapecraft.tabScapecraftMisc);
 		mithLump = new Item().setTextureName("scapecraft:MithLump").setUnlocalizedName("mithLump").setCreativeTab(Scapecraft.tabScapecraftMisc);
 		addyLump = new Item().setTextureName("scapecraft:AddyLump").setUnlocalizedName("addyLump").setCreativeTab(Scapecraft.tabScapecraftMisc);
 		runeLump = new Item().setTextureName("scapecraft:RuneLump").setUnlocalizedName("runeLump").setCreativeTab(Scapecraft.tabScapecraftMisc);
+		bronzeIngot = new Item().setTextureName("scapecraft:BronzeIngot").setUnlocalizedName("bronzeIngot").setCreativeTab(Scapecraft.tabScapecraftMisc);
 		mithIngot = new Item().setTextureName("scapecraft:MithIngot").setUnlocalizedName("mithIngot").setCreativeTab(Scapecraft.tabScapecraftMisc);
 		addyIngot = new Item().setTextureName("scapecraft:AddyIngot").setUnlocalizedName("addyIngot").setCreativeTab(Scapecraft.tabScapecraftMisc);
 		runeIngot = new Item().setTextureName("scapecraft:RuneIngot").setUnlocalizedName("runeIngot").setCreativeTab(Scapecraft.tabScapecraftMisc);
@@ -527,6 +567,7 @@ public class ScapecraftItems
 		doorKey = new Item().setUnlocalizedName("doorKey").setTextureName("scapecraft:Key2").setCreativeTab(Scapecraft.tabScapecraftMisc);
 		boltRack = new Item().setUnlocalizedName("boltRack").setTextureName("scapecraft:BoltRack").setCreativeTab(Scapecraft.tabScapecraftMisc);
 		garlic = new Item().setUnlocalizedName("garlic").setTextureName("scapecraft:Garlic").setCreativeTab(Scapecraft.tabScapecraftMisc);
+		invincibilityPotion = new Item().setUnlocalizedName("invincibilityPotion").setTextureName("potion_bottle_empty").setCreativeTab(Scapecraft.tabScapecraftMisc);
 		scapecraftSpawnEgg = new ItemScapecraftSpawnEgg().setTextureName("minecraft:spawn_egg");
 
 		bandosTab = new ItemTeletab("bandos").setTextureName("scapecraft:bandosTab").setUnlocalizedName("bandosTab");
@@ -537,6 +578,26 @@ public class ScapecraftItems
 		lumbridgeTab = new ItemTeletab("lumbridge").setTextureName("scapecraft:lumbridgeTab").setUnlocalizedName("lumbridgeTab");
 		tormentedDemonsTab = new ItemTeletab("tds").setTextureName("scapecraft:tormentedDemonsTab").setUnlocalizedName("tormentedDemonsTab");
 		varrockTeletab = new ItemTeletab("varrock").setTextureName("scapecraft:varrockTab").setUnlocalizedName("varrockTab");
+
+		yewBow = new ItemScapecraftBow(ScapecraftBowMaterial.YEW, "YewBow");
+		magicBow = new ItemScapecraftBow(ScapecraftBowMaterial.MAGIC, "MagicBow");
+		darkBow = new ItemScapecraftBow(ScapecraftBowMaterial.DARK, "DarkBow").setHasModel(true);
+		crystalBow = new ItemScapecraftBow(ScapecraftBowMaterial.CRYSTAL, "CrystalBow");
+		karilBow = new ItemScapecraftBow(ScapecraftBowMaterial.KARIL, "KarilCBow").setHasModel(true);
+
+		saraBrew = new ItemScapecraftPotion(new PotionEffect(Potion.regeneration.id, 600, 1)).setUnlocalizedName("saraBrew").setTextureName("scapecraft:sarabrew");
+		superRestore = new ItemScapecraftPotion(new PotionEffect(Potion.saturation.id, 600, 1), new PotionEffect(Potion.moveSpeed.id, 600, 0)).setUnlocalizedName("superRestore").setTextureName("scapecraft:superrestore");
+		superStr = new ItemScapecraftPotion(new PotionEffect(Potion.damageBoost.id, 600, 0)).setUnlocalizedName("superStr").setTextureName("scapecraft:superstr");
+		superDef = new ItemScapecraftPotion(new PotionEffect(Potion.resistance.id, 600, 1)).setUnlocalizedName("superDef").setTextureName("scapecraft:superdef");
+		specPot = new ItemSpecialPotion().setUnlocalizedName("specPot").setTextureName("scapecraft:superdef");
+		magicBoat = new ItemMagicBoat();
+		cracker = new ItemCracker();
+
+		ahrimStaff = new Item().setUnlocalizedName("ahrimStaff").setTextureName("scapecraft:AhrimStaff").setCreativeTab(Scapecraft.tabScapecraftWeapon);
+		armaStaff = new Item().setUnlocalizedName("armaStaff").setTextureName("scapecraft:ArmaStaff").setCreativeTab(Scapecraft.tabScapecraftWeapon);
+		guthixStaff = new Item().setUnlocalizedName("guthixStaff").setTextureName("scapecraft:GuthixStaff").setCreativeTab(Scapecraft.tabScapecraftWeapon);
+		saraStaff = new Item().setUnlocalizedName("saraStaff").setTextureName("scapecraft:SaraStaff").setCreativeTab(Scapecraft.tabScapecraftWeapon);
+		zammyStaff = new Item().setUnlocalizedName("zammyStaff").setTextureName("scapecraft:ZammyStaff").setCreativeTab(Scapecraft.tabScapecraftWeapon);
 
 		GameRegistry.registerItem(santaHelmet, "santaHelmet");
 
@@ -567,8 +628,12 @@ public class ScapecraftItems
 		GameRegistry.registerItem(whiteLeggings, "whiteLeggings");
 		GameRegistry.registerItem(whiteBoots, "whiteBoots");
 
-		GameRegistry.registerItem(guardHelmet, "guardHelmet");
 		GameRegistry.registerItem(guardChestplate, "guardChestplate");
+
+		GameRegistry.registerItem(bronzeHelmet, "bronzeHelmet");
+		GameRegistry.registerItem(bronzeChestplate, "bronzeChestplate");
+		GameRegistry.registerItem(bronzeLeggings, "bronzeLeggings");
+		GameRegistry.registerItem(bronzeBoots, "bronzeBoots");
 
 		GameRegistry.registerItem(mithHelmet, "mithHelmet");
 		GameRegistry.registerItem(mithChestplate, "mithChestplate");
@@ -646,7 +711,6 @@ public class ScapecraftItems
 		GameRegistry.registerItem(blackdLeggings, "blackdLeggings");
 		GameRegistry.registerItem(blackdBoots, "blackdBoots");
 
-
 		GameRegistry.registerItem(dragonlHelmet, "dragonlHelmet");
 		GameRegistry.registerItem(dragonlChestplate, "dragonlChestplate");
 		GameRegistry.registerItem(dragonlLeggings, "dragonlLeggings");
@@ -661,13 +725,15 @@ public class ScapecraftItems
 		GameRegistry.registerItem(stoneLeggings, "stoneLeggings");
 		GameRegistry.registerItem(stoneBoots, "stoneBoots");
 
-
 		GameRegistry.registerItem(dragonCHelmet, "dragonCHelmet");
 		GameRegistry.registerItem(dragonCChestplate, "dragonCChestplate");
 		GameRegistry.registerItem(dragonCLeggings, "dragonCLeggings");
 		GameRegistry.registerItem(dragonCBoots, "dragonCBoots");
+
+		GameRegistry.registerItem(neitiznotHelmet, "neitiznotHelmet");
 		/*end armor*/
 
+		GameRegistry.registerItem(bronzeSword, "bronzeSword");
 		GameRegistry.registerItem(mithSword, "mithSword");
 		GameRegistry.registerItem(addySword, "addySword");
 		GameRegistry.registerItem(runeSword, "runeSword");
@@ -675,6 +741,9 @@ public class ScapecraftItems
 		GameRegistry.registerItem(whiteSword, "whiteSword");
 		GameRegistry.registerItem(blackHalberd, "blackHalberd");
 		GameRegistry.registerItem(chicken, "chicken");
+		GameRegistry.registerItem(keris, "keris");
+		GameRegistry.registerItem(korasis, "korasis");
+		GameRegistry.registerItem(stake, "stake");
 		GameRegistry.registerItem(dragon2hSword, "dragon2hSword");
 		GameRegistry.registerItem(dragonLongsword, "dragonLongsword");
 		GameRegistry.registerItem(dragonCScimmy, "dragonCScimmy");
@@ -685,6 +754,9 @@ public class ScapecraftItems
 		GameRegistry.registerItem(chaoticMaul, "chaoticMaul");
 		GameRegistry.registerItem(chaoticLongsword, "chaoticLongsword");
 
+		GameRegistry.registerItem(cutlass, "cutlass");
+
+		GameRegistry.registerItem(bronzeHammer, "bronzeHammer");
 		GameRegistry.registerItem(ironHammer, "ironHammer");
 		GameRegistry.registerItem(mithHammer, "mithHammer");
 		GameRegistry.registerItem(addyHammer, "addyHammer");
@@ -700,6 +772,7 @@ public class ScapecraftItems
 		GameRegistry.registerItem(DD, "DD");
 		GameRegistry.registerItem(DDS, "DDS");
 		GameRegistry.registerItem(saraSword, "saraSword");
+		GameRegistry.registerItem(vestaSword, "vestaSword");
 		GameRegistry.registerItem(AGS, "AGS");
 		GameRegistry.registerItem(BGS, "BGS");
 		GameRegistry.registerItem(SGS, "SGS");
@@ -710,27 +783,33 @@ public class ScapecraftItems
 		GameRegistry.registerItem(guthanSpear, "guthanSpear");
 		GameRegistry.registerItem(dharokAxe, "dharokAxe");
 		GameRegistry.registerItem(akrisaeMace, "akrisaeMace");
+		GameRegistry.registerItem(bronzeShovel, "bronzeShovel");
 		GameRegistry.registerItem(mithShovel, "mithShovel");
 		GameRegistry.registerItem(addyShovel, "addyShovel");
 		GameRegistry.registerItem(runeShovel, "runeShovel");
 		GameRegistry.registerItem(dragonShovel, "dragonShovel");
+		GameRegistry.registerItem(bronzePickaxe, "bronzePickaxe");
 		GameRegistry.registerItem(mithPickaxe, "mithPickaxe");
 		GameRegistry.registerItem(addyPickaxe, "addyPickaxe");
 		GameRegistry.registerItem(runePickaxe, "runePickaxe");
 		GameRegistry.registerItem(dragonPickaxe, "dragonPickaxe");
 		GameRegistry.registerItem(dragonPickaxeg, "dragonPickaxeg");
+		GameRegistry.registerItem(bronzeAxe, "bronzeAxe");
 		GameRegistry.registerItem(mithAxe, "mithAxe");
 		GameRegistry.registerItem(addyAxe, "addyAxe");
 		GameRegistry.registerItem(runeAxe, "runeAxe");
 		GameRegistry.registerItem(dragonAxe, "dragonAxe");
+		GameRegistry.registerItem(bronzeHoe, "bronzeHoe");
 		GameRegistry.registerItem(mithHoe, "mithHoe");
 		GameRegistry.registerItem(addyHoe, "addyHoe");
 		GameRegistry.registerItem(runeHoe, "runeHoe");
 		GameRegistry.registerItem(dragonHoe, "dragonHoe");
 
+		GameRegistry.registerItem(bronzeLump, "bronzeLump");
 		GameRegistry.registerItem(mithLump, "mithLump");
 		GameRegistry.registerItem(addyLump, "addyLump");
 		GameRegistry.registerItem(runeLump, "runeLump");
+		GameRegistry.registerItem(bronzeIngot, "bronzeIngot");
 		GameRegistry.registerItem(mithIngot, "mithIngot");
 		GameRegistry.registerItem(addyIngot, "addyIngot");
 		GameRegistry.registerItem(runeIngot, "runeIngot");
@@ -740,6 +819,7 @@ public class ScapecraftItems
 		GameRegistry.registerItem(blackDLeather, "blackDLeather");
 		GameRegistry.registerItem(blackDHide, "blackDHide");
 		GameRegistry.registerItem(yewStick, "yewStick");
+		GameRegistry.registerItem(magicStick, "magicStick");
 		GameRegistry.registerItem(magicFruit, "magicFruit");
 		GameRegistry.registerItem(cabbagePieUncooked, "cabbagePieUncooked");
 		GameRegistry.registerItem(meatPieUncooked, "meatPieUncooked");
@@ -777,14 +857,36 @@ public class ScapecraftItems
 		GameRegistry.registerItem(doorKey, "doorKey");
 		GameRegistry.registerItem(boltRack, "boltRack");
 		GameRegistry.registerItem(garlic, "garlic");
+		GameRegistry.registerItem(invincibilityPotion, "invincibilityPotion");
 		GameRegistry.registerItem(scapecraftSpawnEgg, "scapecraftSpawnEgg");
-		GameRegistry.registerItem(bandosTab, "bandosTab");;
-		GameRegistry.registerItem(barrowsTab, "barrowsTab");;
-		GameRegistry.registerItem(cathTab, "cathTab");;
-		GameRegistry.registerItem(faladorTab, "faladorTab");;
-		GameRegistry.registerItem(hubTab, "hubTab");;
-		GameRegistry.registerItem(lumbridgeTab, "lumbridgeTab");;
-		GameRegistry.registerItem(tormentedDemonsTab, "tormentedDemonsTab");;
-		GameRegistry.registerItem(varrockTeletab, "varrockTeletab");;
+		GameRegistry.registerItem(bandosTab, "bandosTab");
+		GameRegistry.registerItem(barrowsTab, "barrowsTab");
+		GameRegistry.registerItem(cathTab, "cathTab");
+		GameRegistry.registerItem(faladorTab, "faladorTab");
+		GameRegistry.registerItem(hubTab, "hubTab");
+		GameRegistry.registerItem(lumbridgeTab, "lumbridgeTab");
+		GameRegistry.registerItem(tormentedDemonsTab, "tormentedDemonsTab");
+		GameRegistry.registerItem(varrockTeletab, "varrockTeletab");
+
+		GameRegistry.registerItem(yewBow, "yewBow");
+		GameRegistry.registerItem(magicBow, "magicBow");
+		GameRegistry.registerItem(darkBow, "darkBow");
+		GameRegistry.registerItem(crystalBow, "crystalBow");
+		GameRegistry.registerItem(karilBow, "karilBow");
+
+		GameRegistry.registerItem(saraBrew, "saraBrew");
+		GameRegistry.registerItem(superRestore, "superRestore");
+		GameRegistry.registerItem(superStr, "superStr");
+		GameRegistry.registerItem(superDef, "superDef");
+		GameRegistry.registerItem(specPot, "specPot");
+
+		GameRegistry.registerItem(magicBoat, "magicBoat");
+		GameRegistry.registerItem(cracker, "cracker");
+
+		GameRegistry.registerItem(ahrimStaff, "ahrimStaff"); 
+		GameRegistry.registerItem(armaStaff, "armaStaff"); 
+		GameRegistry.registerItem(guthixStaff, "guthixStaff"); 
+		GameRegistry.registerItem(saraStaff, "saraStaff"); 
+		GameRegistry.registerItem(zammyStaff, "zammyStaff");
 	}
 }

@@ -1,85 +1,72 @@
 package scapecraft.block;
 
-import java.util.Random;
-
-import net.minecraft.block.Block;
+import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 import scapecraft.Scapecraft;
-import scapecraft.entity.ScapecraftEntities;
+import scapecraft.network.MobSpawnerGuiPacket;
+import scapecraft.tileentity.TileEntityScapecraftMobSpawner;
 
-public class BlockSpawn extends Block
+public class BlockSpawn extends BlockContainer
 {
-	int tickInterval;
-	String entityName;
-
-	public BlockSpawn(String entityName, int tickInterval)
+	public BlockSpawn()
 	{
 		super(Material.rock);
 		this.setCreativeTab(Scapecraft.tabScapecraftBlock);
 		setHardness(200000.0F);
 		setResistance(5000.0F);
-		this.entityName = entityName;
-		this.tickInterval = tickInterval;
-		//setStepSound(soundStoneFootstep);
-		this.setUnlocalizedName(entityName + "Spawn");
 		this.setTextureName("minecraft:stone");
+		this.setUnlocalizedName("scapecraftSpawner");
 	}
 
-	public BlockSpawn(String entityName, int tickInterval, boolean tickRandomly)
+	@Override
+	public boolean canProvidePower()
 	{
-		this(entityName, tickInterval);
-		setTickRandomly(tickRandomly);
-	}
-
-	public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9)
-	{
-		par1World.scheduleBlockUpdate(par2, par3, par4, this, this.tickRate(par1World));
 		return true;
 	}
 
 	@Override
-	public void onBlockAdded(World par1World, int par2, int par3, int par4)
+	public int isProvidingWeakPower(IBlockAccess world, int x, int y, int z, int side)
 	{
-		par1World.scheduleBlockUpdate(par2, par3, par4, this, this.tickRate(par1World));
+		return world.getBlockMetadata(x, y, z) * 15;
 	}
 
 	@Override
-	public int tickRate(World par1World)
+	public int isProvidingStrongPower(IBlockAccess world, int x, int y, int z, int side)
 	{
-		return tickInterval;
+		return world.getBlockMetadata(x, y, z) * 15;
 	}
 
 	@Override
-	public void updateTick(World world, int x, int y, int z, Random par5Random)
+	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float subX, float subY, float subZ)
 	{
-		if(this.tickInterval != 0)
-			world.scheduleBlockUpdate(x, y, z, this, this.tickRate(world));
-                Entity entity;
-		try {
-			entity = (Entity) ScapecraftEntities.entityNames.get(entityName).getConstructor(new Class[] { World.class }).newInstance(new Object[] { world });
-		} catch (Exception e) {
-			e.printStackTrace();
-			return;
+		if(player.capabilities.isCreativeMode && !player.isSneaking())
+		{
+			if(!world.isRemote)
+			{
+				MobSpawnerGuiPacket packet = new MobSpawnerGuiPacket(world.getTileEntity(x, y, z));
+				Scapecraft.network.sendTo(packet, (EntityPlayerMP) player);
+			}
+			return true;
 		}
-
-		entity.setLocationAndAngles(x, y + 1, z, world.rand.nextFloat() * 360.0F, 0.0F);
-		world.spawnEntityInWorld(entity);
-		world.setBlockToAir(x, y + 1, z);
-		world.setBlockToAir(x, y + 2, z);
-		world.setBlockToAir(x, y + 3, z);
-
-
+		return false;
 	}
 
 	@Override
-	public Item getItemDropped(int par1, Random par2Random, int par3)
+	public TileEntity createNewTileEntity(World world, int metadata)
 	{
-		return Item.getItemFromBlock(Blocks.stone);
+		return createTileEntity(world, metadata);
+	}
+
+	@Override
+	public TileEntity createTileEntity(World world, int metadata)
+	{
+		TileEntityScapecraftMobSpawner tileEntity = new TileEntityScapecraftMobSpawner();
+		return tileEntity;
 	}
 }

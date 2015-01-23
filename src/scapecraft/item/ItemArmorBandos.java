@@ -27,6 +27,7 @@ public class ItemArmorBandos extends ItemArmorScapecraft
 	@SideOnly(Side.CLIENT)
 	public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, int armorSlot) 
 	{
+		super.getArmorModel(entityLiving, itemStack, armorSlot);
 		ModelBiped armorModel = (this.armorType == 1 || this.armorType == 3) ? ClientProxy.bandosChest : ClientProxy.bandosLegs;
 
 		armorModel.bipedHead.showModel = armorSlot == 0;
@@ -51,7 +52,8 @@ public class ItemArmorBandos extends ItemArmorScapecraft
 	@Override
 	public void onWearerAttack(LivingHurtEvent event)
 	{
-		event.ammount += damageBoosts[armorType];
+		if(!event.source.isProjectile())
+			event.ammount += damageBoosts[armorType];
 	}
 
 	@Override

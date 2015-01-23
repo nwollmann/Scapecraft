@@ -2,6 +2,7 @@ package scapecraft.block;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -10,6 +11,7 @@ import net.minecraft.stats.StatList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
+import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -28,6 +30,7 @@ public class BlockBlockSpawner extends Block implements ITileEntityProvider
 	int xp;
 	public int regenTime;
 	public int fullSize = 15;
+	public String stat = "mining";
 
 	public BlockBlockSpawner(Block fullBlock, int regenTime, int xp, int fullSize)
 	{
@@ -39,7 +42,7 @@ public class BlockBlockSpawner extends Block implements ITileEntityProvider
 	{
 		super(fullBlock.getMaterial());
 		this.fullBlock = fullBlock;
-		this.setUnlocalizedName(fullBlock.getUnlocalizedName() + "Spawn");
+		this.setUnlocalizedName(fullBlock.getUnlocalizedName().substring(5) + "Spawn");
 		this.setCreativeTab(Scapecraft.tabScapecraftBlock);
 		this.regenTime = regenTime * 20;
 		this.xp = xp;
@@ -54,6 +57,8 @@ public class BlockBlockSpawner extends Block implements ITileEntityProvider
 	@Override
 	public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z)
 	{
+		if(fullBlock.getCollisionBoundingBoxFromPool(world, x, y, z) == null)
+			return null;
 		float height = ((float) world.getBlockMetadata(x, y, z) + 1F) / 16F;
 		return AxisAlignedBB.getBoundingBox(x + this.minX, y + this.minY, z + this.minZ, x + this.maxX, y + height, z + this.maxZ);
 	}
@@ -150,7 +155,7 @@ public class BlockBlockSpawner extends Block implements ITileEntityProvider
 		fullBlock.dropBlockAsItem(worldIn, x, y, z, meta, i1);
 		harvesters.set(null);
 
-		Stats.addMXp(player, xp);
+		Stats.addXp(player, stat, xp);
 
 		TileEntityBlockSpawner te = (TileEntityBlockSpawner) worldIn.getTileEntity(x, y, z);
 		if(te == null)
@@ -172,7 +177,7 @@ public class BlockBlockSpawner extends Block implements ITileEntityProvider
 	@Override
 	public float getBlockHardness(World world, int x, int y, int z)
 	{
-		return fullBlock.getBlockHardness(world, x, y, z);
+		return world.getBlockMetadata(x, y, z) < fullSize ? 1000F : fullBlock.getBlockHardness(world, x, y, z);
 	}
 
 	@Override
@@ -184,9 +189,20 @@ public class BlockBlockSpawner extends Block implements ITileEntityProvider
 	@Override
 	public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase placer, ItemStack itemStack)
 	{
-		if(itemStack.getMetadata() > 0)
-			((TileEntityBlockSpawner) world.getTileEntity(x, y, z)).uses = itemStack.getMetadata();
-		System.out.println(((TileEntityBlockSpawner) world.getTileEntity(x, y, z)).uses); 
+		int uses = itemStack.getMetadata();
+		if(uses == 0)
+		{
+			if(placer instanceof EntityPlayer && ((EntityPlayer)placer).capabilities.isCreativeMode)
+			{
+				uses = -1;
+			}
+			else
+			{
+				uses = 50;
+			}
+		}
+		((TileEntityBlockSpawner) world.getTileEntity(x, y, z)).uses = uses;
+		//System.out.println(((TileEntityBlockSpawner) world.getTileEntity(x, y, z)).uses); 
 	}
 
 	public void onFullyGrown(World world, int x, int y, int z)
@@ -196,5 +212,24 @@ public class BlockBlockSpawner extends Block implements ITileEntityProvider
 	public int getRegenTime()
 	{
 		return regenTime;
+	}
+
+	@Override
+	public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z)
+	{
+		TileEntityBlockSpawner te = (TileEntityBlockSpawner) world.getTileEntity(x, y, z);
+		if(te == null)
+		{
+			System.out.printf("Spawner at %d, %d, %d in dimension %d for %s is null, this should not happen\n", x, y, z, world.provider.dimensionId, this.fullBlock.getUnlocalizedName());
+			return null;
+		}
+
+		return new ItemStack(this, 1, te.uses);
+	}
+
+	@SideOnly(Side.CLIENT)
+	@Override
+	public void registerIcons(IIconRegister iconRegister)
+	{
 	}
 }

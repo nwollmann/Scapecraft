@@ -236,10 +236,10 @@ public class EntityKingsGuard extends EntityScapecraft
 	}
 
 	@Override
-	public void addRandomArmor()
+	public void addArmor()
 	{
 
-		this.setCurrentItemOrArmor(4, new ItemStack(ScapecraftItems.guardHelmet));
+		this.setCurrentItemOrArmor(4, new ItemStack(ScapecraftItems.bronzeHelmet));
 		this.setCurrentItemOrArmor(3, new ItemStack(ScapecraftItems.guardChestplate));
 		this.setCurrentItemOrArmor(2, new ItemStack(Items.golden_leggings));
 		this.equipmentDropChances[4] = 0.0F;

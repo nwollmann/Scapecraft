@@ -29,6 +29,11 @@ public class RenderItemSpawnEgg implements IItemRenderer
 	@Override
 	public void renderItem(ItemRenderType type, ItemStack item, Object... data)
 	{
+		if(ScapecraftEntities.entityObjects.size() <= item.getMetadata())
+		{
+			return;
+		}
+
 		Entity entity = ScapecraftEntities.entityObjects.get(item.getMetadata());
 		entity.setWorld(Minecraft.getMinecraft().thePlayer.worldObj);
 		GL11.glPushMatrix();

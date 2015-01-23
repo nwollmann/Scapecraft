@@ -201,7 +201,7 @@ public class EntityEliteBlackKnight extends EntityScapecraft
 	}
 
 	@Override
-	public void addRandomArmor()
+	public void addArmor()
 	{
 			this.setCurrentItemOrArmor(4, new ItemStack(ScapecraftItems.blackgHelmet));
 			this.setCurrentItemOrArmor(1, new ItemStack(ScapecraftItems.blackgBoots));

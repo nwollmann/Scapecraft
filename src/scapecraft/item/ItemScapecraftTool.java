@@ -3,12 +3,15 @@ package scapecraft.item;
 import java.util.Set;
 
 import net.minecraft.block.Block;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
 
 import scapecraft.Scapecraft;
+import scapecraft.Stats;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.ImmutableSet;
@@ -86,4 +89,13 @@ public class ItemScapecraftTool extends ItemTool
 		return multimap;
 	}
 
+	@Override
+	public boolean onLeftClickEntity(ItemStack stack, EntityPlayer player, Entity target)
+	{
+		if(Scapecraft.requireLevels && Stats.getCombatLevel(player) < this.toolMaterial.getMinLevel() && !player.capabilities.isCreativeMode)
+		{
+			return true;
+		}
+		return false;
+	}
 }

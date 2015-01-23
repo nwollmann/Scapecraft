@@ -1,5 +1,13 @@
 package scapecraft.client;
 
+import java.io.File;
+
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.model.ModelBiped;
+import net.minecraft.item.Item;
+import net.minecraft.nbt.CompressedStreamTools;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.ClientCommandHandler;
 import net.minecraftforge.client.MinecraftForgeClient;
@@ -20,8 +28,10 @@ import scapecraft.client.model.ModelChaoticLongsword;
 import scapecraft.client.model.ModelChaoticMaul;
 import scapecraft.client.model.ModelDBA;
 import scapecraft.client.model.ModelDD;
+import scapecraft.client.model.ModelDarkBow;
 import scapecraft.client.model.ModelDharok;
 import scapecraft.client.model.ModelDharokAxe;
+import scapecraft.client.model.ModelDragonHelm;
 import scapecraft.client.model.ModelDrylong;
 import scapecraft.client.model.ModelDrymace;
 import scapecraft.client.model.ModelDryrapier;
@@ -42,13 +52,15 @@ import scapecraft.client.model.ModelKKspawn;
 import scapecraft.client.model.ModelKQ;
 import scapecraft.client.model.ModelKQ2;
 import scapecraft.client.model.ModelKaril;
+import scapecraft.client.model.ModelKarilBow;
+import scapecraft.client.model.ModelKreearra;
 import scapecraft.client.model.ModelKrilTsutsaroth;
 import scapecraft.client.model.ModelLavaBlock;
 import scapecraft.client.model.ModelLesserDemon;
 import scapecraft.client.model.ModelLesserDemon2;
 import scapecraft.client.model.ModelLootChest;
-import scapecraft.client.model.ModelMagicBoat;
 import scapecraft.client.model.ModelMossGiant;
+import scapecraft.client.model.ModelNeitiznotHelm;
 import scapecraft.client.model.ModelPitchFork;
 import scapecraft.client.model.ModelRapier;
 import scapecraft.client.model.ModelRat;
@@ -70,11 +82,15 @@ import scapecraft.client.model.ModelZGS;
 import scapecraft.client.model.ModelZaklnGritch;
 import scapecraft.client.model.ModelZilyana;
 import scapecraft.client.model.Modeld2h;
-import scapecraft.client.renderer.RenderBipedScapecraft;
-import scapecraft.client.renderer.RenderEntityScapecraft;
-import scapecraft.client.renderer.RenderShapeshifter;
+import scapecraft.client.renderer.entity.RenderBipedScapecraft;
+import scapecraft.client.renderer.entity.RenderEntityScapecraft;
+import scapecraft.client.renderer.entity.RenderGenericBiped;
+import scapecraft.client.renderer.entity.RenderMagicBoat;
+import scapecraft.client.renderer.entity.RenderShapeshifter;
 import scapecraft.client.renderer.item.RenderItemSpawnEgg;
 import scapecraft.client.renderer.item.RenderItemWeapon;
+import scapecraft.client.renderer.tileentity.RenderFire;
+import scapecraft.client.renderer.tileentity.RenderStall;
 import scapecraft.command.WeaponModelCommand;
 import scapecraft.entity.EntityAbbyDemon;
 import scapecraft.entity.EntityAhrim;
@@ -101,6 +117,7 @@ import scapecraft.entity.EntityFarmer;
 import scapecraft.entity.EntityFireGiant;
 import scapecraft.entity.EntityFremGuard;
 import scapecraft.entity.EntityGeneralGraardor;
+import scapecraft.entity.EntityGenericBiped;
 import scapecraft.entity.EntityGhost;
 import scapecraft.entity.EntityGoblin;
 import scapecraft.entity.EntityGreenDragon;
@@ -123,6 +140,7 @@ import scapecraft.entity.EntityKos1;
 import scapecraft.entity.EntityKos2;
 import scapecraft.entity.EntityKos3;
 import scapecraft.entity.EntityKos4;
+import scapecraft.entity.EntityKreearra;
 import scapecraft.entity.EntityKrilTsutsaroth;
 import scapecraft.entity.EntityLavaBlock;
 import scapecraft.entity.EntityLesserDemon;
@@ -152,8 +170,12 @@ import scapecraft.entity.EntityWhiteKnight;
 import scapecraft.entity.EntityWizard;
 import scapecraft.entity.EntityZaklnGritch;
 import scapecraft.entity.EntityZilyana;
+import scapecraft.item.ItemArmorScapecraft;
 import scapecraft.item.ScapecraftItems;
+import scapecraft.tileentity.TileEntityFire;
+import scapecraft.tileentity.TileEntityStall;
 
+import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -170,6 +192,37 @@ public class ClientProxy extends CommonProxy
 	public void registerRenderers()
 	{
 		ClientCommandHandler.instance.registerCommand(new WeaponModelCommand());
+		//Add server to server list
+		try
+		{
+			NBTTagCompound tagCompound = CompressedStreamTools.read(new File(Minecraft.getMinecraft().mcDataDir, "servers.dat"));
+			NBTTagList servers = tagCompound.getTagList("servers", 10);
+			boolean hasServer = false;
+			for(int i = 0; i < servers.tagCount(); i++)
+			{
+				if(servers.getCompoundTagAt(i).getString("ip").equals("108.60.193.139:25825"))//TODO move to config
+				{
+					hasServer = true;
+					break;
+				}
+			}
+
+			if(!hasServer)
+			{
+				NBTTagCompound scServer = new NBTTagCompound();
+				scServer.setString("name", "Scapecraft");
+				scServer.setString("ip", "108.60.193.139:25825");
+				scServer.setBoolean("acceptTextures", true);
+				servers.appendTag(scServer);
+				tagCompound.setTag("servers", servers);
+				CompressedStreamTools.safeWrite(tagCompound, new File(Minecraft.getMinecraft().mcDataDir, "servers.dat"));
+			}
+
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 
 		RenderingRegistry.registerEntityRenderingHandler(EntityBandit.class, new RenderBipedScapecraft(new ResourceLocation("scapecraft", "textures/entity/bandit.png")).setScale(1.5F));
 		RenderingRegistry.registerEntityRenderingHandler(EntityBarbarian.class, new RenderBipedScapecraft(new ResourceLocation("scapecraft", "textures/entity/barbarian.png")));
@@ -230,7 +283,7 @@ public class ClientProxy extends CommonProxy
 		RenderingRegistry.registerEntityRenderingHandler(EntityLesserDemon.class, new RenderEntityScapecraft(new ModelLesserDemon(), 0.5F, new ResourceLocation("scapecraft", "textures/entity/LesserDemon.png")).setScale(1.5F));
 		RenderingRegistry.registerEntityRenderingHandler(EntityLesserDemon2.class, new RenderEntityScapecraft(new ModelLesserDemon2(), 0.5F, new ResourceLocation("scapecraft", "textures/entity/LesserDemon2.png")).setScale(1.5F));
 		RenderingRegistry.registerEntityRenderingHandler(EntityLootChest.class, new RenderEntityScapecraft(new ModelLootChest(), 0.5F, new ResourceLocation("scapecraft", "textures/entity/Chest.png")));
-		RenderingRegistry.registerEntityRenderingHandler(EntityMagicBoat.class, new RenderEntityScapecraft(new ModelMagicBoat(), 0.5F, new ResourceLocation("scapecraft", "textures/entity/magicboat.png")));
+		RenderingRegistry.registerEntityRenderingHandler(EntityMagicBoat.class, new RenderMagicBoat());
 		RenderingRegistry.registerEntityRenderingHandler(EntityMossGiant.class, new RenderEntityScapecraft(new ModelMossGiant(), 0.5F, new ResourceLocation("scapecraft", "textures/entity/MossGiant.png")).setScale(1.4F));
 		RenderingRegistry.registerEntityRenderingHandler(EntityRat.class, new RenderEntityScapecraft(new ModelRat(), 0.5F, new ResourceLocation("scapecraft", "textures/entity/rat.png")));
 		RenderingRegistry.registerEntityRenderingHandler(EntityRatSmall.class, new RenderEntityScapecraft(new ModelRat(), 0.5F, new ResourceLocation("scapecraft", "textures/entity/rat.png")).setScale(0.3F));
@@ -246,9 +299,12 @@ public class ClientProxy extends CommonProxy
 		RenderingRegistry.registerEntityRenderingHandler(EntityTstanonKarlak.class, new RenderEntityScapecraft(new ModelTstanonKarlak(), 0.5F, new ResourceLocation("scapecraft", "textures/entity/TstanonKarlak.png")));
 		RenderingRegistry.registerEntityRenderingHandler(EntityKrilTsutsaroth.class, new RenderEntityScapecraft(new ModelKrilTsutsaroth(), 0.5F, new ResourceLocation("scapecraft", "textures/entity/KrilTsutsaroth.png")));
 		RenderingRegistry.registerEntityRenderingHandler(EntityBalfrugKreeyath.class, new RenderEntityScapecraft(new ModelBalfrugKreeyath(), 0.5F, new ResourceLocation("scapecraft", "textures/entity/BalfrugKreeyath.png"))); 
+		RenderingRegistry.registerEntityRenderingHandler(EntityKreearra.class, new RenderEntityScapecraft(new ModelKreearra(), 0.5F, new ResourceLocation("scapecraft", "textures/entity/Kreearra.png")));
 		RenderingRegistry.registerEntityRenderingHandler(EntityShapeshifter.class, new RenderShapeshifter()); 
+		RenderingRegistry.registerEntityRenderingHandler(EntityGenericBiped.class, new RenderGenericBiped()); 
 
 		MinecraftForgeClient.registerItemRenderer(ScapecraftItems.scapecraftSpawnEgg, new RenderItemSpawnEgg());
+		MinecraftForgeClient.registerItemRenderer(ScapecraftItems.bronzeHammer, new RenderItemWeapon(new ModelWarhammer(), Resources.TEXTURE_BronzeHammer, 0.85F, 230F).setOffset(-0.15F, 1.1F, 0F));
 		MinecraftForgeClient.registerItemRenderer(ScapecraftItems.ironHammer, new RenderItemWeapon(new ModelWarhammer(), Resources.TEXTURE_SteelHammer, 0.85F, 230F).setOffset(-0.15F, 1.1F, 0F));
 		MinecraftForgeClient.registerItemRenderer(ScapecraftItems.mithHammer, new RenderItemWeapon(new ModelWarhammer(), Resources.TEXTURE_MithHammer, 0.85F, 230F).setOffset(-0.15F, 1.1F, 0F));
 		MinecraftForgeClient.registerItemRenderer(ScapecraftItems.addyHammer, new RenderItemWeapon(new ModelWarhammer(), Resources.TEXTURE_AddyHammer, 0.85F, 230F).setOffset(-0.15F, 1.1F, 0F));
@@ -275,6 +331,20 @@ public class ClientProxy extends CommonProxy
 		MinecraftForgeClient.registerItemRenderer(ScapecraftItems.dryRapier, new RenderItemWeapon(new ModelDryrapier(), Resources.TEXTURE_DRYRAPIER, 1F, 220F).setOffset(0F, 0F, 0F));
 		MinecraftForgeClient.registerItemRenderer(ScapecraftItems.dryMace, new RenderItemWeapon(new ModelDrymace(), Resources.TEXTURE_DRYMACE, 1F, 220F).setOffset(0F, 0F, 0F));
 		MinecraftForgeClient.registerItemRenderer(ScapecraftItems.dryLong, new RenderItemWeapon(new ModelDrylong(), Resources.TEXTURE_DRYLONG, 1F, 220F).setOffset(0F, 0F, 0F));
-		MinecraftForgeClient.registerItemRenderer(ScapecraftItems.dragon2hSword, new RenderItemWeapon(new Modeld2h(), Resources.TEXTURE_D2H, 1F, 220F).setOffset(0F, 0F, 0F));
+		MinecraftForgeClient.registerItemRenderer(ScapecraftItems.dragon2hSword, new RenderItemWeapon(new Modeld2h(), Resources.TEXTURE_D2H, 0.5F, 220F).setOffset(1.3F, 0.9F, -0.1F));
+		MinecraftForgeClient.registerItemRenderer(ScapecraftItems.darkBow, new RenderItemWeapon(new ModelDarkBow(), Resources.TEXTURE_DARKBOW, 1F, 0F).setOffset(0F, 0.5F, 0F).setRotation(0F, 270F, 0F));
+		MinecraftForgeClient.registerItemRenderer(ScapecraftItems.karilBow, new RenderItemWeapon(new ModelKarilBow(), Resources.TEXTURE_KARIL, 1F, 180F).setOffset(0.1F, 0.3F, 1F));
+
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityStall.class, new RenderStall());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityFire.class, new RenderFire());
+
+		setArmorModel(ScapecraftItems.dragonHelmet, new ModelDragonHelm(), "scapecraft:textures/armor/DragonHelm.png");
+		setArmorModel(ScapecraftItems.neitiznotHelmet, new ModelNeitiznotHelm(), "scapecraft:textures/armor/NeitiznotHelm.png");
+	}
+
+	public static void setArmorModel(Item armor, ModelBiped model, String textureName)
+	{
+		((ItemArmorScapecraft) armor).armorModel = model;
+		((ItemArmorScapecraft) armor).textureName = textureName;
 	}
 }
