@@ -67,3 +67,12 @@ build {
     }
 }
 
+runClient {
+    if(project.hasProperty('username')) {
+        args "--username", project.username
+        if(project.hasProperty('password')) {
+            args "--password", project.password
+        }
+    }
+}
+

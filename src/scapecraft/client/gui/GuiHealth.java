@@ -47,14 +47,17 @@ public class GuiHealth extends Gui
 		GL11.glPushMatrix();
 		GL11.glEnable(GL11.GL_BLEND);
 		this.mc.getTextureManager().bindTexture(statIcons);
-		this.drawTexturedModalRect(width - 118, y - 14, 0, 0, 16, 16);
-		this.drawTexturedModalRect(width - 118, y + 3, 32, 0, 16, 16);
-		this.drawTexturedModalRect(width - 118, y + 18, 16, 0, 16, 16);
-		this.mc.fontRendererObj.drawStringWithShadow("Special: " + Stats.clientStats.get("energy") + "/" + 100, x, y - 10, 0xFFFFFF);
+		if(Stats.clientStats.get("energy") != null)
+		{
+			this.drawTexturedModalRect(width - 118, y - 14, 0, 0, 16, 16);
+			this.drawTexturedModalRect(width - 118, y + 3, 32, 0, 16, 16);
+			this.drawTexturedModalRect(width - 118, y + 18, 16, 0, 16, 16);
+			this.mc.fontRendererObj.drawStringWithShadow("Special: " + Stats.clientStats.get("energy") + "/" + 100, x, y - 10, 0xFFFFFF);
+			this.mc.fontRendererObj.drawStringWithShadow("Combat: " + Stats.clientStats.get("combatLevel") + " (" + Stats.clientStats.get("combatxp") + ")", width - 100, y - 10, 0xFFFFFF);
+			this.mc.fontRendererObj.drawStringWithShadow("Agility: " + Stats.clientStats.get("agilityLevel") + " (" + Stats.clientStats.get("agilityxp") + ")", width - 100, y + 6, 0xFFFFFF);
+			this.mc.fontRendererObj.drawStringWithShadow("Mining: " + Stats.clientStats.get("miningLevel") + " (" + Stats.clientStats.get("miningxp") + ")", width - 100, y + 22, 0xFFFFFF);
+		}
 		this.mc.fontRendererObj.drawStringWithShadow("HP: " + String.format("%.1f", health) + "/" + maxHealth, x, y, healthColor);
-		this.mc.fontRendererObj.drawStringWithShadow("Combat: " + Stats.clientStats.get("combatLevel") + " (" + Stats.clientStats.get("combatxp") + ")", width - 100, y - 10, 0xFFFFFF);
-		this.mc.fontRendererObj.drawStringWithShadow("Agility: " + Stats.clientStats.get("agilityLevel") + " (" + Stats.clientStats.get("agilityxp") + ")", width - 100, y + 6, 0xFFFFFF);
-		this.mc.fontRendererObj.drawStringWithShadow("Mining: " + Stats.clientStats.get("miningLevel") + " (" + Stats.clientStats.get("miningxp") + ")", width - 100, y + 22, 0xFFFFFF);
 		GL11.glDisable(GL11.GL_BLEND);
 		GL11.glDisable(GL11.GL_ALPHA_TEST);
 		GL11.glPopMatrix();

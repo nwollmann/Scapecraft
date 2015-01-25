@@ -28,7 +28,7 @@ public enum ScapecraftArmorMaterial
 	GREEND(60, new int[]{3, 5, 4, 2}, 10, 15, 8D),
 	GUTHAN(10000, new int[]{3, 9, 6, 3}, 30, 30, 30D),
 	KARIL(10000, new int[]{3, 7, 4, 3}, 30, 30, 30D),
-	BRONZE(80, new int[]{2, 3, 3, 2}, 10, 0, 4D),
+	BRONZE(80, new int[]{2, 5, 4, 2}, 10, 0, 4D),
 	MITH(190, new int[]{2, 6, 5, 2}, 10, 5, 10D),
 	ADDY(250, new int[]{2, 7, 5, 2}, 10, 10, 14D),
 	RUNE(290, new int[]{3, 7, 5, 3}, 10, 15, 20D),

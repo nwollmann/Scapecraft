@@ -193,9 +193,9 @@ public class ScapecraftEventHandler
 	}
 
 	@SubscribeEvent
-	public void onPlayerLogin(cpw.mods.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent event)
+	public void onPlayerLoaded(PlayerEvent.LoadFromFile event)
 	{
-		Stats.convertFromOldSystem(event.player);
+		Stats.convertFromOldSystem(event.entityPlayer);
 	}
 
 	public void setMoveSpeed(EntityPlayer player, float speed)

@@ -4,15 +4,13 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
 
+import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.nbt.CompressedStreamTools;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.common.MinecraftForge;
 
 import scapecraft.block.ScapecraftBlocks;
@@ -33,12 +31,14 @@ import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLMissingMappingsEvent;
-import cpw.mods.fml.common.event.FMLPostInitializationEvent;
+import cpw.mods.fml.common.event.FMLMissingMappingsEvent.MissingMapping;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.event.FMLServerAboutToStartEvent;
 import cpw.mods.fml.common.event.FMLServerStartedEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
+import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 
 @Mod(modid = "Scapecraft", name = "Scapecraft", version = Scapecraft.version)
@@ -128,62 +128,29 @@ public class Scapecraft
 	}
 
 	@EventHandler
-	public void postInit(FMLPostInitializationEvent event)
+	public void serverAboutToStart(FMLServerAboutToStartEvent event)
 	{
-/*
-		for(Item item : (Iterable<Item>) GameData.getItemRegistry())
+		if(event.getServer() != null)
 		{
-			if(GameRegistry.findUniqueIdentifierFor(item).modId.equals("Scapecraft"))
-			{
-				@SuppressWarnings("rawtypes")
-				List subItems = new ArrayList();
-				item.getSubItems(item, null, subItems);
-				for(ItemStack stack : (Iterable<ItemStack>) subItems)
-				{
-					String stackName = item.getItemStackDisplayName(stack);
-					if(stackName.contains("item."))
-						System.out.println(stackName);
-				}
-				if(item instanceof ItemSpecialWeapon)
-					System.out.println(item.getUnlocalizedName() + ".special");
-				if(item instanceof ItemSetWeapon)
-					System.out.println(item.getUnlocalizedName() + ".fullseteffect");
-			}
-		}
-		for(Block block : (Iterable<Block>) GameData.getBlockRegistry())
-		{
-			if(GameRegistry.findUniqueIdentifierFor(block).modId.equals("Scapecraft"))
-			{
-				if(block.getLocalizedName().contains("tile."))
-					System.out.println(block.getLocalizedName());
-			}
-		}
-		for(String name : ScapecraftEntities.entities)
-		{
-			System.out.println(StatCollector.translateToLocal("entity.Scapecraft." + name + ".name"));
-		}
-/**/
-
-		//Updating from 1.6.4
-		if(MinecraftServer.getServer() != null && MinecraftServer.getServer().isDedicatedServer())
-		{
-			File levelDat = new File(MinecraftServer.getServer().getFile("world"), "level.dat");
+			File levelDat = new File(event.getServer().getFile(event.getServer().getFolderName()), "level.dat");
 			if(levelDat.exists())
 			{
 				try
 				{
-					List<String> oldIds = Arrays.asList(new String[] {"mod_BlocksGalore", "mod_Botter", "mod_Flower", "mod_MagicBow", "mod_MagicTree", "mod_mobs", "mod_phat", "mod_WorldGenBarrows", "mod_WorldGenBlackFortress", "mod_WorldGenBlacktower", "mod_WorldGenCastle", "mod_WorldGenDragons", "mod_WorldGenIceDragons", "mod_WorldGen", "mod_WorldGenLummy", "mod_WorldGenVarrock", "mod_WorldGenWar", "mod_WorldGenWhitetower", "mod_YewTree", "You_Must_Update_Scapecraft"});
+					//List<String> oldIds = Arrays.asList(new String[] {"mod_BlocksGalore", "mod_Botter", "mod_Flower", "mod_MagicBow", "mod_MagicTree", "mod_mobs", "mod_phat", "mod_WorldGenBarrows", "mod_WorldGenBlackFortress", "mod_WorldGenBlacktower", "mod_WorldGenCastle", "mod_WorldGenDragons", "mod_WorldGenIceDragons", "mod_WorldGen", "mod_WorldGenLummy", "mod_WorldGenVarrock", "mod_WorldGenWar", "mod_WorldGenWhitetower", "mod_YewTree", "You_Must_Update_Scapecraft"});
 					NBTTagCompound nbt = CompressedStreamTools.readCompressed(new FileInputStream(levelDat));
 
 					NBTTagList itemList = nbt.getCompoundTag("FML").getTagList("ModItemData", 10);
 					for(int i = 0; i < itemList.tagCount(); i++)
 					{
-						if(oldIds.contains(itemList.getCompoundTagAt(i).getString("ModId")))
+						if(UpdateHandler.mappings.containsKey(itemList.getCompoundTagAt(i).getInteger("ItemId")))
 						{
 							itemList.getCompoundTagAt(i).setString("ModId", "Scapecraft");
-							itemList.getCompoundTagAt(i).setString("ForcedName", UpdateHandler.mappings.containsKey(itemList.getCompoundTagAt(i).getInteger("ItemId")) ? UpdateHandler.mappings.get(itemList.getCompoundTagAt(i).getInteger("ItemId")) : "UNKNOWN" + itemList.getCompoundTagAt(i).getInteger("ItemId"));
+							//itemList.getCompoundTagAt(i).setString("ForcedName", UpdateHandler.mappings.containsKey(itemList.getCompoundTagAt(i).getInteger("ItemId")) ? UpdateHandler.mappings.get(itemList.getCompoundTagAt(i).getInteger("ItemId")) : "UNKNOWN" + itemList.getCompoundTagAt(i).getInteger("ItemId"));
+							itemList.getCompoundTagAt(i).setString("ForcedName", "" + itemList.getCompoundTagAt(i).getInteger("ItemId"));
 						}
 					}
+					System.out.println(itemList);
 
 					CompressedStreamTools.writeCompressed(nbt, new FileOutputStream(levelDat));
 				}
@@ -193,7 +160,6 @@ public class Scapecraft
 				}
 			}
 		}
-
 	}
 
 	@EventHandler
@@ -245,7 +211,28 @@ public class Scapecraft
 	@EventHandler
 	public void onMissingMapping(FMLMissingMappingsEvent event)
 	{
-		System.out.println(event.getAll().size());
-		//UpdateHandler.onMissingMapping(event);
+		for(MissingMapping mapping: event.get())
+		{
+			System.out.println(mapping.id);
+			if(UpdateHandler.mappings.containsKey(mapping.id))
+			{
+				if(mapping.type == GameRegistry.Type.BLOCK)
+				{
+					Block block = GameRegistry.findBlock("Scapecraft", UpdateHandler.mappings.get(mapping.id));
+					if(block != null)
+					{
+						mapping.remap(block);
+					}
+				}
+				else
+				{
+					Item item = GameRegistry.findItem("Scapecraft", UpdateHandler.mappings.get(mapping.id));
+					if(item != null)
+					{
+						mapping.remap(item);
+					}
+				}
+			}
+		}
 	}
 }

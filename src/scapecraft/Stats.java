@@ -173,12 +173,15 @@ public class Stats
 	{
 		NBTTagCompound tagCompound = new NBTTagCompound();
 		player.writeToNBT(tagCompound);
-		if(tagCompound.getCompoundTag("ExtendedPlayer") != null && tagCompound.getCompoundTag("ExtendedPlayer").getInteger("combatxp") != 0)
+		if(tagCompound.getCompoundTag("ExtendedPlayer") != null && tagCompound.getCompoundTag("ExtendedPlayer").hasKey("combatxp"))
 		{
 			int axp = tagCompound.getCompoundTag("ExtendedPlayer").getInteger("agilityxp");
-			int mxp = tagCompound.getCompoundTag("ExtendedPlayer").getInteger("miningxp");
+			int mxp = tagCompound.getCompoundTag("ExtendedPlayer").getInteger("mining");
 			int cxp = tagCompound.getCompoundTag("ExtendedPlayer").getInteger("combatxp") * 25;
-			tagCompound.getCompoundTag("ExtendedPlayer").removeTag("miningxp");
+			tagCompound.getCompoundTag("ExtendedPlayer").removeTag("mining");
+			tagCompound.getCompoundTag("ExtendedPlayer").removeTag("agilityxp");
+			tagCompound.getCompoundTag("ExtendedPlayer").removeTag("combatxp");
+			tagCompound.getCompoundTag("ExtendedPlayer").removeTag("energy");
 			player.readFromNBT(tagCompound);
 			addXp(player, "agilityxp", axp);
 			addXp(player, "mining", mxp);

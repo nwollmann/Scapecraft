@@ -5,7 +5,7 @@ import net.minecraft.item.Item;
 
 public enum ScapecraftBowMaterial
 {
-	KARIL(10000, 1.4F, 1, 8F),
+	KARIL(10000, 1.4F, 1, 8F, ScapecraftItems.boltRack),
 	YEW(384, 2.5F, 1),
 	MAGIC(384, 2.9F, 1),
 	CRYSTAL(4000, 3.8F, 1, 20F, null),
