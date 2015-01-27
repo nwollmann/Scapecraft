@@ -25,6 +25,8 @@ public class ScapecraftItems
 
 	public static Item pphatHelmet;
 
+	public static Item dragonFullHelm;
+
 	public static Item dragonHelmet;
 	public static Item dragonChestplate;
 	public static Item dragonLeggings;
@@ -320,6 +322,8 @@ public class ScapecraftItems
 
 		pphatHelmet = new ItemArmorScapecraft(ScapecraftArmorMaterial.PPHAT, 0, 0, "purplephat");
 
+		dragonFullHelm = new ItemArmorScapecraft(ScapecraftArmorMaterial.DRAGON, 0, 0, "dragonFull");
+
 		dragonHelmet = new ItemArmorScapecraft(ScapecraftArmorMaterial.DRAGON, 0, 0, "dragon");
 		dragonChestplate = new ItemArmorScapecraft(ScapecraftArmorMaterial.DRAGON, 1, 1, "dragon");
 		dragonLeggings = new ItemArmorScapecraft(ScapecraftArmorMaterial.DRAGON, 2, 2, "dragon");
@@ -612,6 +616,8 @@ public class ScapecraftItems
 		GameRegistry.registerItem(rphatHelmet, "rphatHelmet");
 
 		GameRegistry.registerItem(pphatHelmet, "pphatHelmet");
+
+		GameRegistry.registerItem(dragonFullHelm, "dragonFullHelm");
 
 		GameRegistry.registerItem(dragonHelmet, "dragonHelmet");
 		GameRegistry.registerItem(dragonChestplate, "dragonChestplate");

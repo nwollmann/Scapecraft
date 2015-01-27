@@ -95,7 +95,6 @@ public class ItemTeletab extends Item implements ICommandSender
 	@Override
 	public World getEntityWorld()
 	{
-		// TODO Auto-generated method stub
 		if(MinecraftServer.getServer() != null)
 			return MinecraftServer.getServer().getEntityWorld();
 		else

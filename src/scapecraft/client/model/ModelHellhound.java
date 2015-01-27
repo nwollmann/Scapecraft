@@ -213,8 +213,6 @@ public class ModelHellhound extends ModelBase
 		this.Mane.rotateAngleZ = entitywolf.getShakeAngle(par4, -0.08F);
 		this.Body.rotateAngleZ = entitywolf.getShakeAngle(par4, -0.16F);
 		this.Tail.rotateAngleZ = entitywolf.getShakeAngle(par4, -0.2F);
-		 
-		//TODO Uncomment Hellhound model when EntityHellhound exists
 	}
 
 

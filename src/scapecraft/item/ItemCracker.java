@@ -30,7 +30,9 @@ public class ItemCracker extends Item
 	public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player)
 	{
 		super.onItemRightClick(itemStack, world, player);
-		return rewards.get(rand.nextInt(rewards.size())).copy();
+		if(rewards.size() > 0)
+			return rewards.get(rand.nextInt(rewards.size())).copy();
+		return itemStack;
 	}
 
 	public void addAll(Object... items)

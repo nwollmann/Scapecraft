@@ -195,12 +195,15 @@ public class ClientProxy extends CommonProxy
 		//Add server to server list
 		try
 		{
+			String address = "";
+			if(address.isEmpty())
+				return;
 			NBTTagCompound tagCompound = CompressedStreamTools.read(new File(Minecraft.getMinecraft().mcDataDir, "servers.dat"));
 			NBTTagList servers = tagCompound.getTagList("servers", 10);
 			boolean hasServer = false;
 			for(int i = 0; i < servers.tagCount(); i++)
 			{
-				if(servers.getCompoundTagAt(i).getString("ip").equals("108.60.193.139:25825"))//TODO move to config
+				if(servers.getCompoundTagAt(i).getString("ip").equals(address))//TODO move to config
 				{
 					hasServer = true;
 					break;
@@ -211,7 +214,7 @@ public class ClientProxy extends CommonProxy
 			{
 				NBTTagCompound scServer = new NBTTagCompound();
 				scServer.setString("name", "Scapecraft");
-				scServer.setString("ip", "108.60.193.139:25825");
+				scServer.setString("ip", address);
 				scServer.setBoolean("acceptTextures", true);
 				servers.appendTag(scServer);
 				tagCompound.setTag("servers", servers);
@@ -338,7 +341,7 @@ public class ClientProxy extends CommonProxy
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityStall.class, new RenderStall());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityFire.class, new RenderFire());
 
-		setArmorModel(ScapecraftItems.dragonHelmet, new ModelDragonHelm(), "scapecraft:textures/armor/DragonHelm.png");
+		setArmorModel(ScapecraftItems.dragonFullHelm, new ModelDragonHelm(), "scapecraft:textures/armor/DragonHelm.png");
 		setArmorModel(ScapecraftItems.neitiznotHelmet, new ModelNeitiznotHelm(), "scapecraft:textures/armor/NeitiznotHelm.png");
 	}
 
