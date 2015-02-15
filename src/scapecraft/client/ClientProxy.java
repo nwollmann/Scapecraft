@@ -196,29 +196,30 @@ public class ClientProxy extends CommonProxy
 		try
 		{
 			String address = "";
-			if(address.isEmpty())
-				return;
-			NBTTagCompound tagCompound = CompressedStreamTools.read(new File(Minecraft.getMinecraft().mcDataDir, "servers.dat"));
-			NBTTagList servers = tagCompound.getTagList("servers", 10);
-			boolean hasServer = false;
-			for(int i = 0; i < servers.tagCount(); i++)
+			if(!address.isEmpty())
 			{
-				if(servers.getCompoundTagAt(i).getString("ip").equals(address))//TODO move to config
+				NBTTagCompound tagCompound = CompressedStreamTools.read(new File(Minecraft.getMinecraft().mcDataDir, "servers.dat"));
+				NBTTagList servers = tagCompound.getTagList("servers", 10);
+				boolean hasServer = false;
+				for(int i = 0; i < servers.tagCount(); i++)
 				{
-					hasServer = true;
-					break;
+					if(servers.getCompoundTagAt(i).getString("ip").equals(address))//TODO move to config
+					{
+						hasServer = true;
+						break;
+					}
 				}
-			}
 
-			if(!hasServer)
-			{
-				NBTTagCompound scServer = new NBTTagCompound();
-				scServer.setString("name", "Scapecraft");
-				scServer.setString("ip", address);
-				scServer.setBoolean("acceptTextures", true);
-				servers.appendTag(scServer);
-				tagCompound.setTag("servers", servers);
-				CompressedStreamTools.safeWrite(tagCompound, new File(Minecraft.getMinecraft().mcDataDir, "servers.dat"));
+				if(!hasServer)
+				{
+					NBTTagCompound scServer = new NBTTagCompound();
+					scServer.setString("name", "Scapecraft");
+					scServer.setString("ip", address);
+					scServer.setBoolean("acceptTextures", true);
+					servers.appendTag(scServer);
+					tagCompound.setTag("servers", servers);
+					CompressedStreamTools.safeWrite(tagCompound, new File(Minecraft.getMinecraft().mcDataDir, "servers.dat"));
+				}
 			}
 
 		}
