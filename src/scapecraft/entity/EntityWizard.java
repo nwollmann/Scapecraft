@@ -159,7 +159,7 @@ public class EntityWizard extends EntityScapecraft implements IRangedAttackMob
 
 	static
 	{
-		defaultHeldItem = new ItemStack(ScapecraftItems.chicken, /*ScapecraftItems.Sarastaff,*/ 1); //TODO fix when staffs are added
+		defaultHeldItem = new ItemStack(ScapecraftItems.saraStaff, 1);
 	}
 
 
@@ -171,7 +171,7 @@ public class EntityWizard extends EntityScapecraft implements IRangedAttackMob
 		this.tasks.removeTask(this.aiArrowAttack);
 		ItemStack itemstack = this.getHeldItem();
 
-		if (itemstack != null/* && itemstack == ScapecraftItems.Sarastaff*/) //TODO fix when staffs are added
+		if (itemstack != null && itemstack.getItem() == ScapecraftItems.saraStaff)
 		{
 			this.tasks.addTask(4, this.aiArrowAttack);
 		}

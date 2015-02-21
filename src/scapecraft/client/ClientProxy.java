@@ -267,7 +267,7 @@ public class ClientProxy extends CommonProxy
 		RenderingRegistry.registerEntityRenderingHandler(EntityBlackDragon.class, new RenderEntityScapecraft(new ModelGreenDragon(), 0.5F, new ResourceLocation("scapecraft", "textures/entity/BlackDragon.png")).setScale(2.0F));
 		RenderingRegistry.registerEntityRenderingHandler(EntityCaveCrawler.class, new RenderEntityScapecraft(new ModelCaveCrawler(), 0.5F, new ResourceLocation("scapecraft", "textures/entity/CaveCrawler.png")).setScale(1.4F));
 		RenderingRegistry.registerEntityRenderingHandler(EntityDharok.class, new RenderEntityScapecraft(new ModelDharok(), 0.5F, new ResourceLocation("scapecraft", "textures/entity/Dharok.png")));
-		RenderingRegistry.registerEntityRenderingHandler(EntityDwarf.class, new RenderEntityScapecraft(new ModelDwarf(), 0.5F, new ResourceLocation("scapecraft", "textures/entity/dwarf.png")).setScale(.7F));
+		RenderingRegistry.registerEntityRenderingHandler(EntityDwarf.class, new RenderEntityScapecraft(new ModelDwarf(), 0.5F, new ResourceLocation("scapecraft", "textures/entity/dwarf.png")));
 		RenderingRegistry.registerEntityRenderingHandler(EntityFireGiant.class, new RenderEntityScapecraft(new ModelFireGiant(), 0.5F, new ResourceLocation("scapecraft", "textures/entity/FireGiant.png")).setScale(1.4F));
 		RenderingRegistry.registerEntityRenderingHandler(EntityGeneralGraardor.class, new RenderEntityScapecraft(new ModelGeneralGraardor(), 0.5F, new ResourceLocation("scapecraft", "textures/entity/GeneralGraardor.png")).setScale(2.0F));
 		RenderingRegistry.registerEntityRenderingHandler(EntityGhost.class, new RenderEntityScapecraft(new ModelGhost(), 0.5F, new ResourceLocation("scapecraft", "textures/entity/GhostF.png")));

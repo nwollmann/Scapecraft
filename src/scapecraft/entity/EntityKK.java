@@ -259,19 +259,15 @@ public class EntityKK extends EntityScapecraft
 		}
 
 
-		if(!worldObj.isRemote)
+		if(!worldObj.isRemote && rand.nextFloat() * par2 > 5)
 		{ 
-			int j = 1;
+			float f = -0.125f;
+			float f1 = -0.125f;
+			EntityKKspawn entityKKspawn = this.createInstance();
 
-			for (int k = 0; k < j; ++k)
-			{
-				float f = ((float)(k % 2) - 0.5F) * (float)1 / 4.0F;
-				float f1 = ((float)(k / 2) - 0.5F) * (float)1 / 4.0F;
-				EntityKKspawn entityKKspawn = this.createInstance();
-
-				entityKKspawn.setLocationAndAngles(this.posX + (double)f, this.posY + 0.5D, this.posZ + (double)f1, this.rand.nextFloat() * 360.0F, 0.0F);
-				this.worldObj.spawnEntityInWorld(entityKKspawn);    
-			}}
+			entityKKspawn.setLocationAndAngles(this.posX + (double)f, this.posY + 0.5D, this.posZ + (double)f1, this.rand.nextFloat() * 360.0F, 0.0F);
+			this.worldObj.spawnEntityInWorld(entityKKspawn);    
+		}
 
 		return super.attackEntityFrom(par1DamageSource, par2);
 	}

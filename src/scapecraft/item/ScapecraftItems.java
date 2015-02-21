@@ -540,11 +540,11 @@ public class ScapecraftItems
 		applePieUncooked = new Item().setUnlocalizedName("applePieUncooked").setTextureName("scapecraft:ApplePie").setCreativeTab(Scapecraft.tabScapecraftMisc);
 		fishPieUncooked = new Item().setUnlocalizedName("fishPieUncooked").setTextureName("scapecraft:FishPie").setCreativeTab(Scapecraft.tabScapecraftMisc);
 		cutCabbage = new ItemFood(2, true).setAlwaysEdible().setUnlocalizedName("cutCabbage").setTextureName("scapecraft:CutCabbage").setCreativeTab(Scapecraft.tabScapecraftMisc);
-		cabbagePie = new ItemFood(4, 3, true).setAlwaysEdible().setUnlocalizedName("cabbagePie").setTextureName("scapecraft:CabbagePie").setCreativeTab(Scapecraft.tabScapecraftMisc);
-		fishPie = new ItemFood(4, 12, true).setAlwaysEdible().setUnlocalizedName("fishPie").setTextureName("scapecraft:FishPie").setCreativeTab(Scapecraft.tabScapecraftMisc);
-		meatPie = new ItemFood(4, 5, true).setAlwaysEdible().setUnlocalizedName("meatPie").setTextureName("scapecraft:MeatPie").setCreativeTab(Scapecraft.tabScapecraftMisc);
-		applePie = new ItemFood(4, 4, true).setAlwaysEdible().setUnlocalizedName("applePie").setTextureName("scapecraft:ApplePie").setCreativeTab(Scapecraft.tabScapecraftMisc);
-		beer = new ItemFood(1, 2, true).setAlwaysEdible().setUnlocalizedName("beer").setTextureName("scapecraft:Beer").setCreativeTab(Scapecraft.tabScapecraftMisc);
+		cabbagePie = new ItemScapecraftFood(3).setAlwaysEdible().setUnlocalizedName("cabbagePie").setTextureName("scapecraft:CabbagePie").setCreativeTab(Scapecraft.tabScapecraftMisc);
+		fishPie = new ItemScapecraftFood(12).setAlwaysEdible().setUnlocalizedName("fishPie").setTextureName("scapecraft:FishPie").setCreativeTab(Scapecraft.tabScapecraftMisc);
+		meatPie = new ItemScapecraftFood(5).setAlwaysEdible().setUnlocalizedName("meatPie").setTextureName("scapecraft:MeatPie").setCreativeTab(Scapecraft.tabScapecraftMisc);
+		applePie = new ItemScapecraftFood(4).setAlwaysEdible().setUnlocalizedName("applePie").setTextureName("scapecraft:ApplePie").setCreativeTab(Scapecraft.tabScapecraftMisc);
+		beer = new ItemScapecraftFood(2).setAlwaysEdible().setUnlocalizedName("beer").setTextureName("scapecraft:Beer").setCreativeTab(Scapecraft.tabScapecraftMisc);
 		shard1 = new Item().setUnlocalizedName("shard1").setTextureName("scapecraft:Shard1").setCreativeTab(Scapecraft.tabScapecraftMisc);
 		shard2 = new Item().setUnlocalizedName("shard2").setTextureName("scapecraft:Shard2").setCreativeTab(Scapecraft.tabScapecraftMisc);
 		shard3 = new Item().setUnlocalizedName("shard3").setTextureName("scapecraft:Shard3").setCreativeTab(Scapecraft.tabScapecraftMisc);

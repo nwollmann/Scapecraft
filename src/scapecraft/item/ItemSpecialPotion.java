@@ -22,9 +22,9 @@ public class ItemSpecialPotion extends ItemScapecraftPotion
 			stack.stackSize--;
 		}
 
-		if(!world.isRemote)
+		if(!world.isRemote && Stats.getEnergy(player) < 25)
 		{
-			Stats.addEnergy(player, 2500);
+			Stats.addEnergy(player, 25);
 		}
 
 		return stack;

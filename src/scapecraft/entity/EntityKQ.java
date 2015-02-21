@@ -269,18 +269,19 @@ public class EntityKQ extends EntityScapecraft
 
 			for (int k = 0; k < j; ++k)
 			{
-				float f = ((float)(k % 2) - 0.5F) * (float)1 / 4.0F;
-				float f1 = ((float)(k / 2) - 0.5F) * (float)1 / 4.0F;
-				EntityKQ2 entityKQ2 = this.createInstance();
+				if(rand.nextFloat() * par2 > 4)
+				{
+					float f = ((float)(k % 2) - 0.5F) * (float)1 / 4.0F;
+					float f1 = ((float)(k / 2) - 0.5F) * (float)1 / 4.0F;
+					EntityKQ2 entityKQ2 = this.createInstance();
 
-				entityKQ2.setLocationAndAngles(this.posX + (double)f, this.posY + 0.5D, this.posZ + (double)f1, this.rand.nextFloat() * 360.0F, 0.0F);
-				this.worldObj.spawnEntityInWorld(entityKQ2);
-				this.worldObj.spawnEntityInWorld(entityKQ2);
-				this.worldObj.spawnEntityInWorld(entityKQ2);
-
-
-
-			}}
+					entityKQ2.setLocationAndAngles(this.posX + (double)f, this.posY + 0.5D, this.posZ + (double)f1, this.rand.nextFloat() * 360.0F, 0.0F);
+					this.worldObj.spawnEntityInWorld(entityKQ2);
+					this.worldObj.spawnEntityInWorld(entityKQ2);
+					this.worldObj.spawnEntityInWorld(entityKQ2);
+				}
+			}
+		}
 
 		return super.attackEntityFrom(par1DamageSource, par2);
 	}
