@@ -67,7 +67,7 @@ public class TileEntityScapecraftMobSpawner extends TileEntity
 
 					EntityScapecraft entity = ScapecraftEntities.spawnScapecraftEntity(args.get(0), this.worldObj);
 					int y = this.yCoord + 1;
-					while(this.worldObj.getBlock(this.xCoord, y, this.zCoord).isOpaqueCube() && y < 256)
+					while( y < 256 && this.worldObj.getBlock(this.xCoord, y, this.zCoord).isOpaqueCube())
 					{
 						y++;
 					}
