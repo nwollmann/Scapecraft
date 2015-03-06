@@ -139,13 +139,22 @@ public abstract class EntityScapecraft extends EntityMob implements XpDropper, I
 	{
 		float oldHealth = this.getHealth();
 		boolean success = super.attackEntityFrom(source, damage);
-		if(success && source.getEntity() instanceof EntityPlayer && !((EntityPlayer) source.getEntity()).capabilities.isCreativeMode)
+		if(success && !this.worldObj.isRemote && source.getEntity() instanceof EntityPlayer && !((EntityPlayer) source.getEntity()).capabilities.isCreativeMode)
 		{
 			EntityPlayer attacker = (EntityPlayer) source.getEntity();
 			if(attackers.get(attacker) == null)
+			{
 				attackers.put(attacker, oldHealth - this.getHealth());
+			}
 			else
+			{
 				attackers.put(attacker, attackers.get(attacker) + oldHealth - this.getHealth());
+			}
+
+			if(this.getHealth() <= 0)
+			{
+				this.giveXp();
+			}
 		}
 		return success;
 	}

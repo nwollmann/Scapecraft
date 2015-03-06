@@ -29,7 +29,6 @@ import scapecraft.client.ClientProxy;
 import scapecraft.economy.EconomyHandler;
 import scapecraft.entity.Drop;
 import scapecraft.entity.EntityScapecraft;
-import scapecraft.entity.XpDropper;
 import scapecraft.item.ItemArmorScapecraft;
 import scapecraft.item.ItemWeapon;
 import scapecraft.network.StatsPacket;
@@ -108,11 +107,11 @@ public class ScapecraftEventHandler
 	@SubscribeEvent
 	public void onLivingDeathEvent(LivingDeathEvent event)
 	{
-		if(event.entityLiving instanceof XpDropper)
+		/* if(event.entityLiving instanceof XpDropper)
 		{
 			((XpDropper) event.entityLiving).giveXp();
-		}
-		else if(event.source.getEntity() instanceof EntityPlayer)
+		} */
+		if(event.source.getEntity() instanceof EntityPlayer)
 		{
 			EntityPlayer player = (EntityPlayer) event.source.getEntity();
 			if(player.capabilities.isCreativeMode)

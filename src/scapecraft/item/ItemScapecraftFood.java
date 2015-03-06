@@ -12,6 +12,7 @@ public class ItemScapecraftFood extends ItemFood
 	public ItemScapecraftFood(int healAmount)
 	{
 		super(healAmount, 0.6f, true);
+		this.healAmount = healAmount;
 	}
 
 	@Override
