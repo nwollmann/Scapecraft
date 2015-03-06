@@ -108,15 +108,16 @@ public class ScapecraftEventHandler
 	@SubscribeEvent
 	public void onLivingDeathEvent(LivingDeathEvent event)
 	{
-		if(event.source.getEntity() instanceof EntityPlayer)
+		if(event.entityLiving instanceof XpDropper)
+		{
+			((XpDropper) event.entityLiving).giveXp();
+		}
+		else if(event.source.getEntity() instanceof EntityPlayer)
 		{
 			EntityPlayer player = (EntityPlayer) event.source.getEntity();
 			if(player.capabilities.isCreativeMode)
 				return;
-			if(event.entityLiving instanceof XpDropper)
-				((XpDropper) event.entityLiving).giveXp();
-			else
-				Stats.addCombatXp(player, CombatXpHelper.getAmount(event.entityLiving));
+			Stats.addCombatXp(player, CombatXpHelper.getAmount(event.entityLiving));
 		}
 	}
 

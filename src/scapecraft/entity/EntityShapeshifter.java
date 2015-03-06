@@ -124,12 +124,12 @@ public class EntityShapeshifter extends EntityScapecraft implements IEntityAddit
 		}
 
 		this.mobName = mobName;
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(copiedMob.getEntityAttribute(SharedMonsterAttributes.maxHealth).getAttributeValue());
 	}
 
 	protected void applyEntityAttributes()
 	{
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(75D);
 		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(32D);
 		this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.4D);
 		this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(2D);

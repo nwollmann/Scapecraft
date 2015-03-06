@@ -135,11 +135,11 @@ public abstract class EntityScapecraft extends EntityMob implements XpDropper, I
 	}
 
 	@Override
-	public void damageEntity(DamageSource source, float damage)
+	public boolean attackEntityFrom(DamageSource source, float damage)
 	{
 		float oldHealth = this.getHealth();
-		super.damageEntity(source, damage);
-		if(source.getEntity() instanceof EntityPlayer)
+		boolean success = super.attackEntityFrom(source, damage);
+		if(success && source.getEntity() instanceof EntityPlayer && !((EntityPlayer) source.getEntity()).capabilities.isCreativeMode)
 		{
 			EntityPlayer attacker = (EntityPlayer) source.getEntity();
 			if(attackers.get(attacker) == null)
@@ -147,6 +147,7 @@ public abstract class EntityScapecraft extends EntityMob implements XpDropper, I
 			else
 				attackers.put(attacker, attackers.get(attacker) + oldHealth - this.getHealth());
 		}
+		return success;
 	}
 
 	@Override

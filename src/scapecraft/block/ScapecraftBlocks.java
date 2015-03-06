@@ -93,6 +93,7 @@ public class ScapecraftBlocks
 	public static Block whiteBlock;
 	public static Block blackBlock;
 	public static Block hardIce;
+	public static Block invisibleLight;;
 
 	public static Block cabbage;
 
@@ -173,6 +174,7 @@ public class ScapecraftBlocks
 		whiteBlock = new BlockScapecraft(Material.glass).setTextureName("scapecraft:WhiteBlock").setHardness(40F).setResistance(5000F).setUnlocalizedName("whiteBlock");
 		blackBlock = new BlockScapecraft(Material.glass).setTextureName("scapecraft:BlackBlock").setHardness(40F).setResistance(5000F).setUnlocalizedName("blackBlock");
 		hardIce = new BlockScapecraftTransparent(Material.ice).setTextureName("minecraft:ice").setHardness(40F).setResistance(5000F).setUnlocalizedName("hardIce");
+		invisibleLight = new BlockInvisibleLight();
 
 		stall = new BlockStall();
 		mobSpawner = new BlockSpawn();
@@ -259,6 +261,7 @@ public class ScapecraftBlocks
 		GameRegistry.registerBlock(whiteBlock, "whiteBlock");
 		GameRegistry.registerBlock(blackBlock, "blackBlock");
 		GameRegistry.registerBlock(hardIce, "hardIce");
+		GameRegistry.registerBlock(invisibleLight, "invisibleLight");
 
 		GameRegistry.registerBlock(stall, "stall");
 		GameRegistry.registerBlock(mobSpawner, "mobSpawner");
