@@ -14,7 +14,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class BlockInvisibleLight extends BlockScapecraft
 {
 	@SideOnly(Side.CLIENT)
-	private IIcon[] icons = new IIcon[2];
+	private IIcon[] icons;
+
 	public BlockInvisibleLight()
 	{
 		super(Material.glass);
@@ -74,6 +75,7 @@ public class BlockInvisibleLight extends BlockScapecraft
 	@Override
 	public void registerIcons(IIconRegister iconRegister)
 	{
+		icons = new IIcon[2];
 		icons[0] = iconRegister.registerIcon("scapecraft:Clear");
 		icons[1] = iconRegister.registerIcon("scapecraft:Light");
 	}
