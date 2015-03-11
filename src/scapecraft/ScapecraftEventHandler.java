@@ -34,10 +34,10 @@ import scapecraft.item.ItemWeapon;
 import scapecraft.network.StatsPacket;
 import scapecraft.util.CombatXpHelper;
 
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.gameevent.PlayerEvent.PlayerChangedDimensionEvent;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerChangedDimensionEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ScapecraftEventHandler
 {
@@ -87,14 +87,14 @@ public class ScapecraftEventHandler
 			}
 
 			boolean invChanged = false;
-			if(inventories.get(player.getCommandSenderName()) == null)
+			if(inventories.get(player.getCommandSenderEntity().getName()) == null)
 			{
 				invChanged = true;
 			}
 			else
 			{
 				for(int i = 0; i <= 3; i++)
-					if(inventories.get(player.getCommandSenderName())[i] != (player.getCurrentArmor(i) != null ? player.getCurrentArmor(i).getItem() : null))
+					if(inventories.get(player.getCommandSenderEntity().getName())[i] != (player.getCurrentArmor(i) != null ? player.getCurrentArmor(i).getItem() : null))
 						invChanged = true;
 			}
 			if(invChanged)
@@ -123,7 +123,7 @@ public class ScapecraftEventHandler
 	@SubscribeEvent
 	public void onWorldSave(WorldEvent.Save event)
 	{
-		if(event.world.provider.dimensionId != 0)
+		if(event.world.provider.getDimensionId() != 0)
 			return;
 
 		File dataFile = event.world.getSaveHandler().getMapFileFromName("ScapecraftData");
@@ -220,7 +220,7 @@ public class ScapecraftEventHandler
 				if(Scapecraft.requireLevels && !player.capabilities.isCreativeMode && ((ItemArmorScapecraft) newInv[i]).getMinLevel() > Stats.getCombatLevel(player))
 				{
 					if(!player.worldObj.isRemote)
-						player.entityDropItem(player.getCurrentArmor(i), 0F).setOwner(player.getCommandSenderName());
+						player.entityDropItem(player.getCurrentArmor(i), 0F).setOwner(player.getCommandSenderEntity().getName());
 					newInv[i] = null;
 					player.inventory.armorInventory[i] = null;
 					continue;
@@ -228,7 +228,7 @@ public class ScapecraftEventHandler
 				maxHealth += ((ItemArmorScapecraft) newInv[i]).getHealthBoost(); 
 			}
 		}
-		inventories.put(player.getCommandSenderName(), newInv);
+		inventories.put(player.getCommandSenderEntity().getName(), newInv);
 		player.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(maxHealth);
 		if(player.getHealth() > maxHealth)
 			player.setHealth((float) maxHealth);

@@ -16,7 +16,7 @@ import scapecraft.block.ScapecraftBlocks;
 import scapecraft.item.ScapecraftItems;
 import scapecraft.util.CombatXpHelper;
 
-import cpw.mods.fml.common.registry.EntityRegistry;
+import net.minecraftforge.fml.common.registry.EntityRegistry;
 
 public class ScapecraftEntities
 {

@@ -53,7 +53,7 @@ public class ItemTeletab extends Item implements ICommandSender
 		{
 			if(!world.isRemote && MinecraftServer.getServer() != null && (Integer) recentlyHitField.get(player) > 0)
 			{
-				MinecraftServer.getServer().getCommandManager().executeCommand(this, "warp " + warp + " " + player.getCommandSenderName());
+				MinecraftServer.getServer().getCommandManager().executeCommand(this, "warp " + warp + " " + player.getCommandSenderEntity().getName());
 				itemStack.stackSize--;
 			}
 		}
@@ -73,7 +73,7 @@ public class ItemTeletab extends Item implements ICommandSender
 	@Override
 	public IChatComponent getFormattedCommandSenderName()
 	{
-		return new ChatComponentText(this.getCommandSenderName());
+		return new ChatComponentText(this.getCommandSenderEntity().getName());
 	}
 
 	@Override

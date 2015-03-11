@@ -15,9 +15,9 @@ import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
 import scapecraft.Scapecraft;
 
-import cpw.mods.fml.common.ObfuscationReflectionHelper;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemArmorScapecraft extends ItemArmor
 {

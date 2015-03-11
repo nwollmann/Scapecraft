@@ -27,8 +27,8 @@ import net.minecraft.world.World;
 
 import com.mojang.authlib.GameProfile;
 
-import cpw.mods.fml.common.network.ByteBufUtils;
-import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
+import net.minecraftforge.fml.common.network.ByteBufUtils;
+import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 
 public class EntityShapeshifter extends EntityScapecraft implements IEntityAdditionalSpawnData
 {
@@ -248,8 +248,8 @@ public class EntityShapeshifter extends EntityScapecraft implements IEntityAddit
 	public String getCommandSenderName()
 	{
 		if(worldObj.isRemote)
-			return copiedMob.getCommandSenderName();
-		return StatCollector.translateToLocalFormatted("entity.Scapecraft.Shapeshifter.mob", copiedMob.getCommandSenderName());
+			return copiedMob.getCommandSenderEntity().getName();
+		return StatCollector.translateToLocalFormatted("entity.Scapecraft.Shapeshifter.mob", copiedMob.getCommandSenderEntity().getName());
 	}
 
 	@Override

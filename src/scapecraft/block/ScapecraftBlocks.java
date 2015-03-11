@@ -16,7 +16,7 @@ import scapecraft.tileentity.TileEntityStall;
 import scapecraft.world.gen.feature.WorldGenMagicTree;
 import scapecraft.world.gen.feature.WorldGenYewTree;
 
-import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class ScapecraftBlocks
 {

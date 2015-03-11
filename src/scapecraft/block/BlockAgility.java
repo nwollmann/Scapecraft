@@ -2,12 +2,14 @@ package scapecraft.block;
 
 import java.util.Random;
 
-import scapecraft.Stats;
-
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import scapecraft.Stats;
 
 public class BlockAgility extends BlockScapecraft
 {
@@ -18,7 +20,7 @@ public class BlockAgility extends BlockScapecraft
 		super(Material.rock);
 		this.xp = xp;
 		this.setUnlocalizedName("agilityBlock" + xp);
-		this.setTextureName("scapecraft:AgilityBlock");
+		//this.setTextureName("scapecraft:AgilityBlock");
 		this.setBlockUnbreakable();
 	}
 
@@ -29,32 +31,34 @@ public class BlockAgility extends BlockScapecraft
 	}
 
 	@Override
-	public int isProvidingWeakPower(IBlockAccess world, int x, int y, int z, int side)
+	public int isProvidingWeakPower(IBlockAccess world, BlockPos pos, IBlockState state, EnumFacing facing)
 	{
-		return world.getBlockMetadata(x, y, z) * 15;
+		return state.getBlock().getMetaFromState(state) * 15;
 	}
 
 	@Override
-	public int isProvidingStrongPower(IBlockAccess world, int x, int y, int z, int side)
+	public int isProvidingStrongPower(IBlockAccess world, BlockPos pos, IBlockState state, EnumFacing facing)
 	{
-		return world.getBlockMetadata(x, y, z) * 15;
+		return state.getBlock().getMetaFromState(state) * 15;
 	}
 
 	@Override
-	public void updateTick(World world, int x, int y, int z, Random random)
+	public void updateTick(World world, BlockPos pos, IBlockState state, Random random)
 	{
-		if(!world.isRemote && world.getBlockMetadata(x, y, z) != 0)
-			world.setBlockMetadataWithNotify(x, y, z, 0, 3);
+		if(!world.isRemote && state.getBlock().getMetaFromState(state) != 0)
+			//world.setBlockMetadataWithNotify(x, y, z, 0, 3);
+			world.setBlockState(pos, state.getBlock().getStateFromMeta(0), 3);
 
 	}
 
 	@Override
-	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float subX, float subY, float subZ)
+	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumFacing side, float subX, float subY, float subZ)
 	{
-		if(!world.isRemote && world.getBlockMetadata(x, y, z) == 0)
+		if(!world.isRemote && state.getBlock().getMetaFromState(state) == 0)
 		{
-			world.setBlockMetadataWithNotify(x, y, z, 1, 3);
-			world.scheduleBlockUpdate(x, y, z, this, 40);
+			//world.setBlockMetadataWithNotify(x, y, z, 1, 3); assuming x, y, z, meta, flags
+			world.setBlockState(pos, state.getBlock().getStateFromMeta(1), 3);
+			world.scheduleUpdate(pos, this, 40);
 			Stats.addXp(player, "agility", xp);
 		}
 

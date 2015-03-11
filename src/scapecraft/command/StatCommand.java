@@ -34,7 +34,7 @@ public class StatCommand extends CommandBase
 		EntityPlayerMP player = getPlayer(sender, args[0]);;
 		if(args[1].equalsIgnoreCase("get"))
 		{
-			getCommandSenderAsPlayer(sender).addChatMessage(new ChatComponentText(player.getCommandSenderName() + " is level " + Stats.getStat(player, args[2].toLowerCase() + "Level") + " (" + Stats.getStat(player, args[2].toLowerCase() + "xp") + "xp) for " + args[2]));
+			getCommandSenderAsPlayer(sender).addChatMessage(new ChatComponentText(player.getCommandSenderEntity().getName() + " is level " + Stats.getStat(player, args[2].toLowerCase() + "Level") + " (" + Stats.getStat(player, args[2].toLowerCase() + "xp") + "xp) for " + args[2]));
 		}
 		else if(args[1].equalsIgnoreCase("set") && args.length >= 4)
 		{
@@ -47,7 +47,7 @@ public class StatCommand extends CommandBase
 			{
 				Stats.setStat(player, args[2].toLowerCase() + "Level", Stats.getOldLevelFromXp(Integer.parseInt(args[3])));
 			}
-			getCommandSenderAsPlayer(sender).addChatMessage(new ChatComponentText(player.getCommandSenderName() + " is level " + Stats.getStat(player, args[2].toLowerCase() + "Level") + " (" + Stats.getStat(player, args[2].toLowerCase() + "xp") + "xp) for " + args[2]));
+			getCommandSenderAsPlayer(sender).addChatMessage(new ChatComponentText(player.getCommandSenderEntity().getName() + " is level " + Stats.getStat(player, args[2].toLowerCase() + "Level") + " (" + Stats.getStat(player, args[2].toLowerCase() + "xp") + "xp) for " + args[2]));
 		}
 	}
 }

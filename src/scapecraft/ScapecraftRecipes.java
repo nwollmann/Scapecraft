@@ -8,7 +8,7 @@ import scapecraft.block.ScapecraftBlocks;
 import scapecraft.entity.ScapecraftEntities;
 import scapecraft.item.ScapecraftItems;
 
-import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class ScapecraftRecipes
 {
