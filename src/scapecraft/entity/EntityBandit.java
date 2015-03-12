@@ -32,22 +32,22 @@ public class EntityBandit extends EntityScapecraft
 
 		this.moveSpeed = 0.5F;
 		this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false));
-		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityBarbarian.class, 0, true));
-		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityFarmer.class, 0, true));
-		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityGreenDragon.class, 0, true));
-		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityGuard.class, 0, true));
-		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityHeroKnight.class, 0, true));
-		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityKQ.class, 0, true));
-		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityKQ2.class, 0, true));
-		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityKing.class, 0, true));
-		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityKingsGuard.class, 0, true));
-		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityKos1.class, 0, true));
-		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityKos2.class, 0, true));
-		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityKos3.class, 0, true));
-		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
-		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityTD.class, 0, true));
-		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityWhiteKnight.class, 0, true));
-		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityWizard.class, 0, true));
+		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityBarbarian.class, true));
+		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityFarmer.class, true));
+		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityGreenDragon.class, true));
+		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityGuard.class, true));
+		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityHeroKnight.class, true));
+		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityKQ.class, true));
+		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityKQ2.class, true));
+		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityKing.class, true));
+		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityKingsGuard.class, true));
+		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityKos1.class, true));
+		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityKos2.class, true));
+		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityKos3.class, true));
+		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
+		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityTD.class, true));
+		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityWhiteKnight.class, true));
+		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityWizard.class, true));
 		this.tasks.addTask(1, new EntityAISwimming(this));
 		this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityBarbarian.class, this.moveSpeed, false));
 		this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityFarmer.class, this.moveSpeed, false));
@@ -120,7 +120,7 @@ public class EntityBandit extends EntityScapecraft
 		if (var1 < 0.5F)
 		{
 			double var2 = 16.0D;
-			return this.worldObj.getClosestVulnerablePlayerToEntity(this, var2);
+			return this.worldObj.getClosestPlayerToEntity(this, var2);
 		}
 		else
 		{
@@ -161,13 +161,15 @@ public class EntityBandit extends EntityScapecraft
 	/**
 	 * Basic mob attack. Default to touch of death in EntityCreature. Overridden by each mob to define their attack.
 	 */
-	protected void attackEntity(Entity par1Entity, float par2)
+	@Override
+	public boolean attackEntityAsMob(Entity par1Entity)
 	{
 		float var3 = this.getBrightness(1.0F);
+		float par2 = this.getAttackStrength(par1Entity); //not sure if this actually works
 
 		if (var3 > 0.5F && this.rand.nextInt(100) == 0)
 		{
-			this.entityToAttack = null;
+			this.setAttackTarget(null);
 		}
 		else
 		{
@@ -185,9 +187,10 @@ public class EntityBandit extends EntityScapecraft
 			}
 			else
 			{
-				super.attackEntity(par1Entity, par2);
+				return super.attackEntityAsMob(par1Entity);
 			}
 		}
+		return false;
 	}
 
 	public EnumCreatureAttribute getCreatureAttribute()

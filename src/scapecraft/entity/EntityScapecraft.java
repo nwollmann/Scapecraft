@@ -21,7 +21,7 @@ import net.minecraft.world.World;
 import scapecraft.Stats;
 import scapecraft.tileentity.TileEntityScapecraftMobSpawner;
 
-public abstract class EntityScapecraft extends EntityMob implements XpDropper, IEntitySelector
+public abstract class EntityScapecraft extends EntityMob implements XpDropper//, IEntitySelector
 {
 	protected HashMap<EntityPlayer, Float> attackers = new HashMap<EntityPlayer, Float>();
 	public static HashMap<Class<? extends EntityScapecraft>, ArrayList<Drop>> drops = new HashMap<Class<? extends EntityScapecraft>, ArrayList<Drop>>();
@@ -80,12 +80,14 @@ public abstract class EntityScapecraft extends EntityMob implements XpDropper, I
 	@Override
 	public void onLivingUpdate()
 	{
-		if(lifespan != 0 && ticksExisted > lifespan && this.entityToAttack != null && !this.entityToAttack.isDead)
-			setDead(); 
+		//if(lifespan != 0 && ticksExisted > lifespan && this.entityToAttack != null && !this.entityToAttack.isDead)
+			//setDead(); 
+		if(lifespan != 0 && ticksExisted > lifespan && this.getAttackTarget() != null && !this.getAttackTarget().isDead)
+			setDead();
 		super.onLivingUpdate();
 	}
 
-	@Override
+	/*@Override
 	protected void attackEntity(Entity entity, float f)
 	{
 		if (this.attackTime <= 0 && f < 2.0F && entity.boundingBox.maxY > this.boundingBox.minY && entity.boundingBox.minY < this.boundingBox.maxY)
@@ -93,7 +95,7 @@ public abstract class EntityScapecraft extends EntityMob implements XpDropper, I
 			this.attackTime = 20;
 			this.attackEntityAsMob(entity);
 		}
-	}
+	}*/
 
 	public float getAttackStrength(Entity entity)
 	{

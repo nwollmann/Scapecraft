@@ -42,7 +42,7 @@ public class EntityBot2 extends EntityScapecraft
 		if (var1 < 0F)
 		{
 			double var2 = 16.0D;
-			return this.worldObj.getClosestVulnerablePlayerToEntity(this, var2);
+			return this.worldObj.getClosestPlayerToEntity(this, var2);
 		}
 		else
 		{

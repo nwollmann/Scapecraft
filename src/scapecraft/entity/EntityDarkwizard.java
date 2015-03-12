@@ -7,9 +7,9 @@ import net.minecraft.entity.projectile.EntityLargeFireball;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-
 import scapecraft.item.ScapecraftItems;
 
 public class EntityDarkwizard extends EntityScapecraft
@@ -89,17 +89,19 @@ public class EntityDarkwizard extends EntityScapecraft
 	/**
 	 * Basic mob attack. Default to touch of death in EntityCreature. Overridden by each mob to define their attack.
 	 */
-	protected void attackEntity(Entity par1Entity, float par2)
+	@Override
+	public boolean attackEntityAsMob(Entity par1Entity)
 	{
-		if (attackTime <= 0 && par2 < 2.0F && par1Entity.boundingBox.maxY > boundingBox.minY && par1Entity.boundingBox.minY < boundingBox.maxY)
+		float par2 = this.getAttackStrength(par1Entity);
+		if (attackTime <= 0 && par2 < 2.0F && par1Entity.getBoundingBox().maxY > getBoundingBox().minY && par1Entity.getBoundingBox().minY < getBoundingBox().maxY)
 		{
 			attackTime = 20;
-			attackEntityAsMob(par1Entity);
+			return super.attackEntityAsMob(par1Entity);
 		}
 		else if (par2 < 30F)
 		{
 			double d = par1Entity.posX - posX;
-			double d1 = (par1Entity.boundingBox.minY + (double)(par1Entity.height / 2.0F)) - (posY + (double)(height / 2.0F));
+			double d1 = (par1Entity.getBoundingBox().minY + (double)(par1Entity.height / 2.0F)) - (posY + (double)(height / 2.0F));
 			double d2 = par1Entity.posZ - posZ;
 
 			if (attackTime == 0)
@@ -125,7 +127,7 @@ public class EntityDarkwizard extends EntityScapecraft
 				if (field_40152_d > 1)
 				{
 					float f = MathHelper.sqrt_float(par2) * 0.5F;
-					worldObj.playAuxSFXAtEntity(null, 1009, (int)posX, (int)posY, (int)posZ, 0);
+					worldObj.playAuxSFXAtEntity(null, 1009, new BlockPos((int)posX, (int)posY, (int)posZ), 0);
 
 					for (int i = 0; i < 1; i++)
 					{
